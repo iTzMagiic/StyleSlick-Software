@@ -25,17 +25,13 @@ public class LoginController {
         String password = field_password.getText();
         Database database = new Database(username, password);
 
-
         if(!database.testConnection()) {
             Rules.showErrorAlert("Benutzername oder Passwort falsch.");
             return;
         }
 
-
         UserSession session = UserSession.getInstance();
         session.setDatabase(database);
-
-
 
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
@@ -52,6 +48,22 @@ public class LoginController {
         }
     }
 
+
+
+    @FXML
+    private void executeExit() {
+        System.exit(0);
+    }
+    @FXML
+    private void onMouseClickedExit(MouseEvent event) {
+        executeExit();
+    }
+    @FXML
+    private void onKeyPressedEnterExit(KeyEvent event) {
+        if(event.getCode().toString().equals("ENTER")) {
+            executeExit();
+        }
+    }
 
 
 

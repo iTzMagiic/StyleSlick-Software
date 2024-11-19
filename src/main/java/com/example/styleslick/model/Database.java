@@ -5,9 +5,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
-    private final String URL = "jdbc:mysql://localhost:3306/buecherverwaltung";
-//    private final String USER = "buecherverwaltung";
-//    private final String PASSWORD = "X(RL_{9yA#q,eTg?CZWJuX-";
+    private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
 
     private final String USER;
     private final String PASSWORD;

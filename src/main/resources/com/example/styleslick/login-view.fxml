@@ -31,5 +31,6 @@
          </font>
       </PasswordField>
       <Button layoutX="549.0" layoutY="386.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="50.0" prefWidth="254.0" style="-fx-background-radius: 15;" text="Einloggen" />
+      <Button layoutX="549.0" layoutY="446.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" prefHeight="50.0" prefWidth="254.0" style="-fx-background-radius: 15;" text="Beenden" />
    </children>
 </AnchorPane>
