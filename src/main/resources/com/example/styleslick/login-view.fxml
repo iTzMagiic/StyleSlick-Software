@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.PasswordField?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoginController">
+   <children>
+      <ImageView fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/login_background.jpg" />
+         </image></ImageView>
+      <Label layoutX="609.0" layoutY="209.0" text="Willkommen" underline="true">
+         <font>
+            <Font size="24.0" />
+         </font>
+      </Label>
+      <TextField fx:id="field_username" alignment="CENTER" layoutX="549.0" layoutY="254.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="50.0" prefWidth="254.0" promptText="Benutzername" style="-fx-background-radius: 15;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </TextField>
+      <PasswordField fx:id="field_password" alignment="CENTER" layoutX="549.0" layoutY="321.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="50.0" prefWidth="254.0" promptText="Passwort" style="-fx-background-radius: 15;">
+         <font>
+            <Font size="18.0" />
+         </font>
+      </PasswordField>
+      <Button layoutX="549.0" layoutY="386.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="50.0" prefWidth="254.0" style="-fx-background-radius: 15;" text="Einloggen" />
+   </children>
+</AnchorPane>

@@ -7,7 +7,10 @@ module com.example.styleslick {
     requires org.kordamp.ikonli.javafx;
     requires org.kordamp.bootstrapfx.core;
     requires eu.hansolo.tilesfx;
+    requires java.sql;
 
     opens com.example.styleslick to javafx.fxml;
     exports com.example.styleslick;
+    exports com.example.styleslick.controller;
+    opens com.example.styleslick.controller to javafx.fxml;
 }
