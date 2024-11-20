@@ -20,17 +20,17 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="357.0" layoutY="140.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Artikelverwaltung">
+            <Button layoutX="357.0" layoutY="140.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterArticleManagement" onMouseClicked="#onMousePressedArticleManagement" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Artikelverwaltung">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="357.0" layoutY="234.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Bestellungsverwaltung">
+            <Button layoutX="357.0" layoutY="234.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterOrdereManagement" onMouseClicked="#onMousePressedOrderManagement" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Bestellungsverwaltung">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="357.0" layoutY="327.0" mnemonicParsing="false" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Einstellungen">
+            <Button layoutX="357.0" layoutY="327.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSettings" onMouseClicked="#onMousePressedSettings" prefHeight="66.0" prefWidth="287.0" style="-fx-background-radius: 15;" text="Einstellungen">
                <font>
                   <Font size="24.0" />
                </font>

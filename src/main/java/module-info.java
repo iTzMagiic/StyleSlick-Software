@@ -13,4 +13,6 @@ module com.example.styleslick {
     exports com.example.styleslick;
     exports com.example.styleslick.controller;
     opens com.example.styleslick.controller to javafx.fxml;
+    exports com.example.styleslick.controller.customerManagement;
+    opens com.example.styleslick.controller.customerManagement to javafx.fxml;
 }
