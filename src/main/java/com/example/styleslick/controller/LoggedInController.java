@@ -80,7 +80,6 @@ public class LoggedInController{
 
 
 
-
     @FXML
     private void executeLogout() {
         SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
