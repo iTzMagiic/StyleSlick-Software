@@ -6,38 +6,49 @@ public class Customer {
     final String lastName;
     final String adress;
     final int plz;
+    final String ort;
     final String platform;
 
-    public Customer(String username, String name, String lastName, String adress, int plz, String platform) {
+    public Customer(String username, String name, String lastName, String street, int plz, String ort,String platform) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
-        this.adress = adress;
+        this.adress = street;
         this.plz = plz;
+        this.ort = ort;
         this.platform = platform;
     }
 
     public String getUsername() {
         return username;
     }
+
     public String getName() {
         return name;
     }
+
     public String getLastName() {
         return lastName;
     }
-    public String getAdress() {
+
+    public String getStreet() {
         return adress;
     }
+
     public int getPlz() {
         return plz;
     }
+
+    public String getOrt() {
+        return ort;
+    }
+
     public String getPlatform() {
         return platform;
     }
 
     @Override
     public String toString() {
-        return "Benutzername: " + username + "\n Name: " + name + "\n Nachname: " + lastName + "\n Adress: " + adress + "\n Plz: " + plz + "\n Platform: " + platform;
+        return "Benutzername: " + username + "\n Name: " + name + "\n Nachname: " + lastName + "\n Strasse: " + adress + "\n Plz: " + plz + "\n Ort: " + ort + "\n Platform: " + platform;
     }
 }
