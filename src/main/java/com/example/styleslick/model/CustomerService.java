@@ -1,25 +1,45 @@
 package com.example.styleslick.model;
 
+import com.example.styleslick.utils.SceneManager;
+
+import java.util.List;
+
 public class CustomerService {
 
-    final Database database;
+    private static CustomerService customerService;
+    private Database database;
 
-    CustomerService(Database database) {
+    /* TODO: CustomerService muss Database.existsCustomer() Methode enthalten.
+        Methode muss prüfen ob bei den Eingaben ein oder Mehrere passenden Kunden gefunden worden.
+     */
+
+    private CustomerService() {}
+
+    public CustomerService(Database database) {
         this.database = database;
     }
 
-    public boolean searchCustomer(String columnName, String username, String name, String lastName, String address, int plz, String platform) {
-
-
-    }
-
-    // Die Methode gibt die Anzahl an benutzern zurück dies mit den selben Werten gibt
-    public int getNumberOfCustomers(String columnName, String value) {
-        //Prüfen ob im value buchstaben für die PLZ drin steht
-        if (value.matches("[1-9]")) {
-            return database.existsCustomerInt(columnName, Integer.parseInt(value));
+    public static CustomerService getInstance() {
+        if (customerService == null) {
+            customerService = new CustomerService();
         }
-        return database.existsCustomerString(columnName, value);
+        return customerService;
     }
+
+    public void setDatabase(Database database) {
+        this.database = database;
+    }
+
+
+
+    public void searchCustomer(String columnName, String value) {
+        List<Customer> listOfCustomers = database.searchCustomerOneParameter(columnName, value);
+
+
+
+        // TODO: searCustomer Methode muss an ein Nues Fenster weiterleiten das nur die gesuchten Kunden ausgibt
+        SceneManager.switchScene("path// foundCustomers-view.fxml", "Gefundene Kunden");
+    }
+
 
 }

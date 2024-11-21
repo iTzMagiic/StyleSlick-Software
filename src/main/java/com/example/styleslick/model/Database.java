@@ -39,8 +39,8 @@ public class Database {
         return false; // Verbindung fehlgeschlagen
     }
 
-    // Gibt "true" wieder wenn man erfolgreich ein Kunden hinzugefügt hat und "false" wenn nicht
-    public boolean addCustomer(String username, String name, String lastName, String address, int plz, String platform) {
+    // Gibt "true" wieder wenn man erfolgreich einen Kunden hinzugefügt hat und "false" wenn nicht
+    public void addCustomer(String username, String name, String lastName, String address, int plz, String platform) {
         String sql = "INSERT INTO buecher (titel, autor, erscheinungsjahr, idbenutzer) VALUES (?, ?, ?, ?, ?, ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -54,12 +54,10 @@ public class Database {
             preparedStatement.setString(6, platform);
             preparedStatement.executeUpdate();
             Rules.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
-            return true;
         } catch (SQLException e) {
             System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());
         }
         Rules.showErrorAlert("Fehler beim hinzufügen des Benutzer.");
-        return false;
     }
 
     // Gibt alle bestehenden Kunden in einer Liste wieder
@@ -97,99 +95,70 @@ public class Database {
         return listOfCustomers;
     }
 
-//    // Gibt die Anzahl an vorkommenden Benutzernamen wieder.
-//    public int existCustomerUsername(String username) {
-//        String sql = "SELECT benutzername FROM kunden WHERE benutzername = ?";
-//        ResultSet resultSet = null;
-//        int count = 0;
-//
-//        try (Connection connection = getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            preparedStatement.setString(1, username);
-//            resultSet = preparedStatement.executeQuery();
-//
-//            while (resultSet.next()) {
-//                count++;
-//            }
-//            return count;
-//        } catch (SQLException e) {
-//            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-//        } finally {
-//            if (resultSet != null) {
-//                try {
-//                    resultSet.close();
-//                } catch (SQLException e) {
-//                    System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-//                }
-//            }
-//        }
-//        return count;
-//    }
-//
-//    public int existCustomerName(String name) {
-//        String sql = "SELECT name FROM kunden WHERE name = ?";
-//        ResultSet resultSet = null;
-//        int count = 0;
-//
-//        try (Connection connection = getConnection();
-//             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            preparedStatement.setString(1, name);
-//            resultSet = preparedStatement.executeQuery();
-//
-//            while (resultSet.next()) {
-//                count++;
-//            }
-//            return count;
-//        } catch (SQLException e) {
-//            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-//        } finally {
-//            if (resultSet != null) {
-//                try {
-//                    resultSet.close();
-//                } catch (SQLException e) {
-//                    System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-//                }
-//            }
-//        }
-//        return count;
-//    }
 
-    // Gibt die Anzahl von Kunden wieder
-    public int existsCustomerString(String columnName, String value) {
-        String sql = "SELECT " + columnName + " FROM kunden WHERE " + columnName + " = ?";
+    // Gibt eine Liste der Zutreffenden Kunden wieder wenn nur eine Eingabe getätigt wurde
+    public List<Customer> searchCustomerOneParameter(String columnName, String columnValue) {
+
+        List<Customer> listOfCustomers = new ArrayList<>();
+        String sql = "SELECT * FROM kunden WHERE " + columnName + " = ?";
 
         try (Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, value);
+
+            if (columnName.equals("plz")) {
+                preparedStatement.setInt(1, Integer.parseInt(columnValue));
+            } else {
+                preparedStatement.setString(1, columnValue);
+            }
 
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
                 int count = 0;
                 while (resultSet.next()) {
-                    count++;
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String adresse = resultSet.getString("adresse");
+                    int plz = resultSet.getInt("plz");
+                    String platform = resultSet.getString("plattform");
+
+                    Customer customer = new Customer(username, name, lastName, adresse, plz, platform);
+                    listOfCustomers.add(customer);
                 }
-                return count;
+                return listOfCustomers;
             } catch (SQLException e) {
                 System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
             }
         } catch (SQLException e) {
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
-        return 0;
+        return listOfCustomers;
     }
 
-    // Gibt die Anzahl von Kunden mit der selben PLZ wieder
-    public int existsCustomerInt(String columnName, int value) {
-        String sql = "SELECT " + columnName + " FROM kunden WHERE " + columnName + " = ?";
+    // Gibt eine Liste der Zutreffenden Kunden wieder, wenn nur zwei Eingaben getätigt hat
+    public List<Customer> searchCustomerTwoParameter(String columnName1, String columnName2, String columnValue1, String columnValue2 ) {
+        List<Customer> listOfCustomers = new ArrayList<>();
+        String sql = "SELECT * FROM kunden WHERE " + columnName1 + " = ? AND " + columnName2 + " = ?";
 
         try (Connection connection = getConnection();
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, value);
-
+            if (columnName1.equals("plz")) {
+                preparedStatement.setInt(1, Integer.parseInt(columnValue1));
+                preparedStatement.setString(2, columnValue2);
+            } else if (columnName2.equals("plz")) {
+                preparedStatement.setString(1, columnValue1);
+                preparedStatement.setInt(2, Integer.parseInt(columnValue2));
+            }
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                int count = 0;
+                while(resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String adresse = resultSet.getString("adresse");
+                    int plz = resultSet.getInt("plz");
+                    String platform = resultSet.getString("plattform");
 
-                while (resultSet.next()) {
-                    count++;
+                    Customer customer = new Customer(username, name, lastName, adresse, plz, platform);
+                    listOfCustomers.add(customer);
                 }
             } catch (SQLException e) {
                 System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
@@ -197,12 +166,8 @@ public class Database {
         } catch (SQLException e) {
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
-        return 0;
+        return listOfCustomers;
     }
-
-
-
-
 
 
 //    public boolean searchCustomer(String title, int userID) {
