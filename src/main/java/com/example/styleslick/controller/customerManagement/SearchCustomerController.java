@@ -18,10 +18,17 @@ public class SearchCustomerController {
             - Prüfen wie viele eingaben getätigt wurden bsp. ob nur Name oder Name und Nachname eingegeben wurde.
             - CustomerService Methode aufrufen lassen um die Kunden zu finden.
          */
+        String username = ""; // TextField.getText();
+        String name = "";
+        String lastName = "";
+        String address = "";
+        String plz = "";
+        String platfomr = "";
+
 
 
         CustomerService customerService = CustomerService.getInstance();
-        customerService.searchCustomer("Column Name", "Wert");
+        //customerService.searchCustomer();
     }
 
 }

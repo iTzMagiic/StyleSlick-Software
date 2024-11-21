@@ -3,6 +3,7 @@ package com.example.styleslick.model;
 import java.sql.*;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 public class Database {
     private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
@@ -168,6 +169,72 @@ public class Database {
         }
         return listOfCustomers;
     }
+
+
+
+    // Gibt eine Liste der Zutreffenden Kunden wieder wen, nur eine Eingabe getätigt wurde
+    public List<Customer> searchCustomer(Map<String, String> filledFields) {
+        // Liste in der Die gefundenen Kunden eingetragen werden
+        List<Customer> listOfCustomers = new ArrayList<>();
+
+        // SQL Abfrage für die Datenbank
+        String sql = "SELECT * FROM kunden WHERE ";
+
+        // WHERE-Bedingungen zum hinzufügen
+        StringBuilder whereClause = new StringBuilder();
+
+        // WHERE-Bedingung hinzufügen
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            String columnName = entry.getKey();
+            String columnValue = entry.getValue();
+
+            if (whereClause.length() > 0) {
+                whereClause.append(" AND ");
+            }
+            whereClause.append(columnName).append(" = ?");
+        }
+
+        // die sql Abfrage mit den WHERE-Bedingungen erweitern
+        sql += whereClause;
+
+
+        try (Connection connection = getConnection();
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            int index = 1;
+            for (String value : filledFields.values()) {
+                if (value.equals("plz")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(value));
+                } else {
+                    preparedStatement.setString(index++, value);
+                }
+            }
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                int count = 0;
+                while (resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String adresse = resultSet.getString("adresse");
+                    int plz = resultSet.getInt("plz");
+                    String platform = resultSet.getString("plattform");
+
+                    Customer customer = new Customer(username, name, lastName, adresse, plz, platform);
+                    listOfCustomers.add(customer);
+                }
+                return listOfCustomers;
+            } catch (SQLException e) {
+                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+        }
+        return listOfCustomers;
+    }
+
+
+
 
 
 //    public boolean searchCustomer(String title, int userID) {

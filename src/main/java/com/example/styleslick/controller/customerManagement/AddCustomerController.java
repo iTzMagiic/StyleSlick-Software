@@ -30,7 +30,7 @@ public class AddCustomerController {
         String name = "";
         String lastName = "";
         String adress = "";
-        int plz = 0;
+        String plz = "";
         String platform = "";
 
         Database database = userSession.getDatabase();
