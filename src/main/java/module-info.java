@@ -15,4 +15,5 @@ module com.example.styleslick {
     opens com.example.styleslick.controller to javafx.fxml;
     exports com.example.styleslick.controller.customerManagement;
     opens com.example.styleslick.controller.customerManagement to javafx.fxml;
+    opens com.example.styleslick.model to javafx.base;
 }

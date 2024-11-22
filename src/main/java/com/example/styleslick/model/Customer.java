@@ -4,7 +4,7 @@ public class Customer {
     final String username;
     final String name;
     final String lastName;
-    final String adress;
+    final String street;
     final int plz;
     final String ort;
     final String platform;
@@ -13,7 +13,7 @@ public class Customer {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
-        this.adress = street;
+        this.street = street;
         this.plz = plz;
         this.ort = ort;
         this.platform = platform;
@@ -32,7 +32,7 @@ public class Customer {
     }
 
     public String getStreet() {
-        return adress;
+        return street;
     }
 
     public int getPlz() {
@@ -49,6 +49,6 @@ public class Customer {
 
     @Override
     public String toString() {
-        return "Benutzername: " + username + "\n Name: " + name + "\n Nachname: " + lastName + "\n Strasse: " + adress + "\n Plz: " + plz + "\n Ort: " + ort + "\n Platform: " + platform;
+        return "Benutzername: " + username + "\n Name: " + name + "\n Nachname: " + lastName + "\n Strasse: " + street + "\n Plz: " + plz + "\n Ort: " + ort + "\n Platform: " + platform;
     }
 }

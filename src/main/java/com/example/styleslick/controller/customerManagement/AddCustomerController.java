@@ -38,23 +38,30 @@ public class AddCustomerController {
     @FXML
     private void executeAddCustomer() {
         /* TODO: AddCustomer Methode ausbessern !
-            - Rules Klasse neue Methoden für richtige eingaben um Kunden in die Datenbank zu schreiben
-            - Prüfen ob der Kunde schon vorhanden ist
+            - Rules Klasse neue Methoden für richtige eingaben um Kunden in die Datenbank zu schreiben und auf
+            Datentypen achten vorallem auf Int !!
          */
 
+
+        Database database = userSession.getDatabase();
 
         String username = field_username.getText();
         String name = field_name.getText();
         String lastName = field_lastName.getText();
         String street = field_street.getText();
-        String stringPlz = field_plz.getText();
-        int plz = Integer.parseInt(stringPlz);
         String ort = field_ort.getText();
         String platform = field_platform.getText();
-
-        Database database = userSession.getDatabase();
-
-        database.addCustomer(username, name, lastName, street, plz, ort, platform);
+        String stringPlz = field_plz.getText();
+        if (stringPlz != null && !stringPlz.isEmpty()) {
+            try {
+                int plz = Integer.parseInt(stringPlz);
+                database.addCustomer(username, name, lastName, street, plz, ort, platform);
+            } catch (NumberFormatException e) {
+                System.err.println("Fehler beim konvertieren von String zu Integer. " + e.getMessage());
+            }
+        } else {
+            database.addCustomer(username, name, lastName, street, 0, ort, platform);
+        }
     }
 
     @FXML
@@ -73,7 +80,7 @@ public class AddCustomerController {
 
     @FXML
     private void executeExitAddCustomer() {
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen")
+        SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
     }
 
     @FXML

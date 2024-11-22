@@ -62,7 +62,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="field_platfomr" alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -73,7 +73,7 @@
             <TextField fx:id="field_street" layoutX="550.0" layoutY="200.0" prefHeight="30.0" prefWidth="255.0" />
             <TextField fx:id="field_plz" layoutX="550.0" layoutY="250.0" prefHeight="30.0" prefWidth="255.0" />
             <TextField fx:id="field_ort" layoutX="550.0" layoutY="300.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="550.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_platform" layoutX="550.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
          </children>
       </AnchorPane>
    </children>
