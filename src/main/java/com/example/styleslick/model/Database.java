@@ -56,6 +56,8 @@ public class Database {
             preparedStatement.setString(7, platform);
             preparedStatement.executeUpdate();
             Rules.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
+            // TODO: Wenn der Customer hinzugefügt wird, wird der bereich außerhalb auch ausgeführt
+            //  evtl. einen Boolean erstellen der wiedergibt ob der customer erstellt wurde oder nicht
         } catch (SQLException e) {
             System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());
         }
@@ -99,81 +101,6 @@ public class Database {
     }
 
 
-//    // Gibt eine Liste der Zutreffenden Kunden wieder wenn nur eine Eingabe getätigt wurde
-//    public List<Customer> searchCustomerOneParameter(String columnName, String columnValue) {
-//
-//        List<Customer> listOfCustomers = new ArrayList<>();
-//        String sql = "SELECT * FROM customer WHERE " + columnName + " = ?";
-//
-//        try (Connection connection = getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//
-//            if (columnName.equals("plz")) {
-//                preparedStatement.setInt(1, Integer.parseInt(columnValue));
-//            } else {
-//                preparedStatement.setString(1, columnValue);
-//            }
-//
-//            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-//                int count = 0;
-//                while (resultSet.next()) {
-//                    String username = resultSet.getString("benutzername");
-//                    String name = resultSet.getString("name");
-//                    String lastName = resultSet.getString("nachname");
-//                    String street = resultSet.getString("adresse");
-//                    int plz = resultSet.getInt("plz");
-//                    String ort = resultSet.getString("ort");
-//                    String platform = resultSet.getString("plattform");
-//
-//                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
-//                    listOfCustomers.add(customer);
-//                }
-//                return listOfCustomers;
-//            } catch (SQLException e) {
-//                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-//        }
-//        return listOfCustomers;
-//    }
-
-//    // Gibt eine Liste der Zutreffenden Kunden wieder, wenn nur zwei Eingaben getätigt hat
-//    public List<Customer> searchCustomerTwoParameter(String columnName1, String columnName2, String columnValue1, String columnValue2 ) {
-//        List<Customer> listOfCustomers = new ArrayList<>();
-//        String sql = "SELECT * FROM kunden WHERE " + columnName1 + " = ? AND " + columnName2 + " = ?";
-//
-//        try (Connection connection = getConnection();
-//        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            if (columnName1.equals("plz")) {
-//                preparedStatement.setInt(1, Integer.parseInt(columnValue1));
-//                preparedStatement.setString(2, columnValue2);
-//            } else if (columnName2.equals("plz")) {
-//                preparedStatement.setString(1, columnValue1);
-//                preparedStatement.setInt(2, Integer.parseInt(columnValue2));
-//            }
-//            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-//                while(resultSet.next()) {
-//                    String username = resultSet.getString("benutzername");
-//                    String name = resultSet.getString("name");
-//                    String lastName = resultSet.getString("nachname");
-//                    String adresse = resultSet.getString("adresse");
-//                    int plz = resultSet.getInt("plz");
-//                    String platform = resultSet.getString("plattform");
-//
-//                    Customer customer = new Customer(username, name, lastName, adresse, plz, platform);
-//                    listOfCustomers.add(customer);
-//                }
-//            } catch (SQLException e) {
-//                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-//            }
-//        } catch (SQLException e) {
-//            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-//        }
-//        return listOfCustomers;
-//    }
-
-
 
     // Gibt eine Liste der Zutreffenden Kunden wieder wen, nur eine Eingabe getätigt wurde
     public List<Customer> searchCustomer(Map<String, String> filledFields) {
@@ -186,10 +113,9 @@ public class Database {
         // WHERE-Bedingungen zum hinzufügen
         StringBuilder whereClause = new StringBuilder();
 
-        // WHERE-Bedingung hinzufügen
+        // WHERE-Bedingung aus der Map filledFields einfügen und mit(" AND " &" = ?")trennen;
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             String columnName = entry.getKey();
-            String columnValue = entry.getValue();
 
             if (whereClause.length() > 0) {
                 whereClause.append(" AND ");
@@ -204,7 +130,8 @@ public class Database {
         try (Connection connection = getConnection();
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-            int index = 1;
+            int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
+            //
             for (String value : filledFields.values()) {
                 if (value.equals("plz")) {
                     preparedStatement.setInt(index++, Integer.parseInt(value));
@@ -214,7 +141,6 @@ public class Database {
             }
 
             try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                int count = 0;
                 while (resultSet.next()) {
                     String username = resultSet.getString("benutzername");
                     String name = resultSet.getString("name");
@@ -258,7 +184,7 @@ public class Database {
 //        return false;
 //    }
 
-    public int getUserID(String username, String password) {
+    public int getCustomerID(String username, String password) {
         String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";
         int userID = 0;
         ResultSet resultSet = null;

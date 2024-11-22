@@ -29,13 +29,14 @@ public class AddCustomerController {
         String username = ""; // Textfield.getText();
         String name = "";
         String lastName = "";
-        String adress = "";
-        String plz = "";
+        String street = "";
+        int plz = 0;
+        String ort = "";
         String platform = "";
 
         Database database = userSession.getDatabase();
 
-        database.addCustomer(username, name, lastName, adress, plz, platform);
+        database.addCustomer(username, name, lastName, street, plz, ort, platform);
     }
 
     @FXML
