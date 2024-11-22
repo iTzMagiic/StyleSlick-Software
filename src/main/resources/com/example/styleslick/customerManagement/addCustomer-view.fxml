@@ -22,64 +22,58 @@
                   <Image url="@../../../../image/blank_white_background_1100x500.jpg" />
                </image>
             </ImageView>
-            <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Abbrechen">
+            <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitAddCustomer" onMouseClicked="#onMouseClickedExitAddCustomer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Abbrechen">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Button layoutX="350.0" layoutY="450.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Speichern">
+            <Button layoutX="350.0" layoutY="450.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Speichern">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Button>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="100.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Name" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="100.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Name" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="200.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Adresse" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="200.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Adresse" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="150.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Nachname" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="150.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Nachname" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="250.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Postleitzahl" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="250.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Postleitzahl" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="50.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Benutzername" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="50.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Benutzername" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField layoutX="500.0" layoutY="50.0" prefHeight="30.0" prefWidth="255.0" />
-            <Label alignment="CENTER" layoutX="300.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Plattform" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="300.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Ort" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="300.0" layoutY="300.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Ort" underline="true">
+            <Label fx:id="field_platfomr" alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="345.0" layoutY="400.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
-               <font>
-                  <Font name="System Bold" size="16.0" />
-               </font>
-            </Label>
-            <TextField layoutX="500.0" layoutY="100.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="500.0" layoutY="150.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="500.0" layoutY="200.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="500.0" layoutY="250.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="500.0" layoutY="300.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="500.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
-            <TextField layoutX="550.0" layoutY="400.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_username" layoutX="550.0" layoutY="50.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_name" layoutX="550.0" layoutY="100.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_lastName" layoutX="550.0" layoutY="150.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_street" layoutX="550.0" layoutY="200.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_plz" layoutX="550.0" layoutY="250.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_ort" layoutX="550.0" layoutY="300.0" prefHeight="30.0" prefWidth="255.0" />
+            <TextField layoutX="550.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
          </children>
       </AnchorPane>
    </children>
