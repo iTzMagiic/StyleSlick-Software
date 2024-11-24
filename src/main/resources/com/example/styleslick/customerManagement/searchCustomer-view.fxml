@@ -1,14 +1,80 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.styleslick.controller.customerManagement.SearchCustomerController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.customerManagement.SearchCustomerController">
+    <children>
+        <ImageView fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
+            <image>
+                <Image url="@../../../../image/loggedIn_background.jpg" />
+            </image>
+        </ImageView>
+        <AnchorPane layoutX="100.0" layoutY="122.0" prefHeight="500.0" prefWidth="1100.0">
+            <children>
+                <ImageView fitHeight="500.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
+                    <image>
+                        <Image url="@../../../../image/blank_white_background_1100x500.jpg" />
+                    </image>
+                </ImageView>
+                <Button layoutX="600.0" layoutY="450.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitSearchCustomer" onMouseClicked="#onMouseClickedExitSearchCustomer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Abbrechen">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Button layoutX="350.0" layoutY="450.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Speichern">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Button>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="100.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Name" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="200.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Adresse" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="150.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Nachname" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="250.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Postleitzahl" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="50.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Benutzername" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="300.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Ort" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <Label alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
+                    <font>
+                        <Font name="System Bold" size="16.0" />
+                    </font>
+                </Label>
+                <TextField fx:id="field_username" layoutX="550.0" layoutY="50.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_name" layoutX="550.0" layoutY="100.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_lastName" layoutX="550.0" layoutY="150.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_street" layoutX="550.0" layoutY="200.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_plz" layoutX="550.0" layoutY="250.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_ort" layoutX="550.0" layoutY="300.0" prefHeight="30.0" prefWidth="255.0" />
+                <TextField fx:id="field_platform" layoutX="550.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
+            </children>
+        </AnchorPane>
+    </children>
 </AnchorPane>

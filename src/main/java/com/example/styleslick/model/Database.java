@@ -101,7 +101,6 @@ public class Database {
     }
 
 
-
     // Gibt eine Liste der Zutreffenden Kunden wieder wen, nur eine Eingabe getätigt wurde
     public List<Customer> searchCustomer(Map<String, String> filledFields) {
         // Liste in der Die gefundenen Kunden eingetragen werden
