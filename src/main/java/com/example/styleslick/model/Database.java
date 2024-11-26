@@ -40,7 +40,7 @@ public class Database {
         return false; // Verbindung fehlgeschlagen
     }
 
-    // Gibt "true" wieder wenn man erfolgreich einen Kunden hinzugefügt hat und "false" wenn nicht
+    // Fügt einen neuen Kunden hinzu und zeigt eine Bestätigung oder einen Fehler an.
     public void addCustomer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
         String sql = "INSERT INTO customer (benutzername, name, nachname, strasse, plz, ort, gekauft_ueber) VALUES (?, ?, ?, ?, ?, ?, ?)";
 
@@ -56,12 +56,10 @@ public class Database {
             preparedStatement.setString(7, platform);
             preparedStatement.executeUpdate();
             Rules.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
-            // TODO: Wenn der Customer hinzugefügt wird, wird der bereich außerhalb auch ausgeführt
-            //  evtl. einen Boolean erstellen der wiedergibt ob der customer erstellt wurde oder nicht
+
         } catch (SQLException e) {
             System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());
         }
-        Rules.showErrorAlert("Fehler beim hinzufügen des Benutzer.");
     }
 
     // Gibt alle bestehenden Kunden in einer Liste wieder
@@ -126,7 +124,7 @@ public class Database {
         sql += whereClause;
 
 
-        try (Connection connection = getConnection();
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)

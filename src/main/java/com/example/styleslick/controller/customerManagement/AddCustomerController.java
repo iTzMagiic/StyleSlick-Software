@@ -62,6 +62,14 @@ public class AddCustomerController {
         } else {
             database.addCustomer(username, name, lastName, street, 0, ort, platform);
         }
+
+        field_username.clear();
+        field_name.clear();
+        field_lastName.clear();
+        field_street.clear();
+        field_ort.clear();
+        field_platform.clear();
+        field_plz.clear();
     }
 
     @FXML

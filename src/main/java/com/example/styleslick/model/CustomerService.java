@@ -11,15 +11,8 @@ public class CustomerService {
     private static CustomerService customerService;
     private Database database;
 
-    /* TODO: CustomerService muss Database.existsCustomer() Methode enthalten.
-        Methode muss prüfen ob bei den Eingaben ein oder Mehrere passenden Kunden gefunden worden.
-     */
 
     private CustomerService() {}
-
-    public CustomerService(Database database) {
-        this.database = database;
-    }
 
     public static CustomerService getInstance() {
         if (customerService == null) {
@@ -34,12 +27,13 @@ public class CustomerService {
 
 
 
-    public void searchCustomer(String columnName1, String columnValue1,
+    public List<Customer> searchCustomer(String columnName1, String columnValue1,
                                String columnName2, String columnValue2,
                                String columnName3, String columnValue3,
                                String columnName4, String columnValue4,
                                String columnName5, String columnValue5,
-                               String columnName6, String columnValue6) {
+                               String columnName6, String columnValue6,
+                               String columnName7, String columnValue7) {
 
         // HashMap mit evtl. Leeren Eingaben
         Map<String, String> fields = new HashMap<>();
@@ -51,6 +45,12 @@ public class CustomerService {
         fields.put(columnName4, columnValue4);
         fields.put(columnName5, columnValue5);
         fields.put(columnName6, columnValue6);
+        fields.put(columnName7, columnValue7);
+
+        // TODO: Man muss alle Eingaben ausfüllen damit man den Kunden findet.
+        //  - FIXEN !! Man soll aber auch mit nur einer Eingabe Kunden finden können!
+        //  - Evtl. in der SearchCustomerController bei der Methode executeSearchCustomer() schon abfangen ob die Eingaben
+        //      Leer sind
 
         // HashMap für Werte die auch wirklich Eingegeben sind und nicht leer gelassen wurden
         Map<String, String> filledFields = new HashMap<>();
@@ -66,10 +66,11 @@ public class CustomerService {
 
         // Liste der gefundenen Kunden
         List<Customer> foundedCustomers = database.searchCustomer(filledFields);
+        return foundedCustomers;
 
 
-        // TODO: searchCustomer() Methode muss an ein neues Fenster die gefunden Kunden weiterleiten wo die ausgegeben werden
-        SceneManager.switchScene("path// foundCustomers-view.fxml", "Gefundene Kunden");
+
+//        SceneManager.switchScene("path// foundCustomers-view.fxml", "Gefundene Kunden");
     }
 
 

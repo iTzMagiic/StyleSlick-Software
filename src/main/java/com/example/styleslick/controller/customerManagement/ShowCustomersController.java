@@ -33,9 +33,7 @@ public class ShowCustomersController {
 
 
     public void initialize() {
-        /* TODO: Die initialize Methode muss gleich die Datenbank.getCustomers() aufrufen und
-            die Kunden in eine Tabelle schreiben
-         */
+
 
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -47,6 +45,9 @@ public class ShowCustomersController {
 
         UserSession userSession = UserSession.getInstance();
 
+        /* TODO: Evtl. statt UserSession, CustomerService getAllCustomers() aufrufen lassen. Da es für die Datenbank
+                        nur ein Benutzer gibt und die Klasse UserSession löschen?
+         */
         ObservableList<Customer> observableList = FXCollections.observableArrayList(userSession.getDatabase().getAllCustomers());
         tableView_customer.setItems(observableList);
 

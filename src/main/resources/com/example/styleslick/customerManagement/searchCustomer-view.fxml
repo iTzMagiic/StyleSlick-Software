@@ -2,6 +2,8 @@
 
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
@@ -15,7 +17,7 @@
                 <Image url="@../../../../image/loggedIn_background.jpg" />
             </image>
         </ImageView>
-        <AnchorPane layoutX="100.0" layoutY="122.0" prefHeight="500.0" prefWidth="1100.0">
+        <AnchorPane fx:id="anchorPane_searchForCustomer" layoutX="100.0" layoutY="122.0" prefHeight="500.0" prefWidth="1100.0">
             <children>
                 <ImageView fitHeight="500.0" fitWidth="1100.0" pickOnBounds="true" preserveRatio="true">
                     <image>
@@ -27,7 +29,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Button>
-                <Button layoutX="350.0" layoutY="450.0" mnemonicParsing="false" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Speichern">
+                <Button layoutX="350.0" layoutY="450.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" prefHeight="35.0" prefWidth="150.0" style="-fx-background-radius: 15;" text="Suchen">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -37,7 +39,7 @@
                         <Font name="System Bold" size="16.0" />
                     </font>
                 </Label>
-                <Label alignment="CENTER" layoutX="340.0" layoutY="200.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Adresse" underline="true">
+                <Label alignment="CENTER" layoutX="340.0" layoutY="200.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Strasse" underline="true">
                     <font>
                         <Font name="System Bold" size="16.0" />
                     </font>
@@ -76,5 +78,24 @@
                 <TextField fx:id="field_platform" layoutX="550.0" layoutY="350.0" prefHeight="30.0" prefWidth="255.0" />
             </children>
         </AnchorPane>
+      <AnchorPane fx:id="anchorPane_foundedCustomers" prefHeight="743.0" prefWidth="1300.0" visible="false">
+         <children>
+              <TableView fx:id="tableView_customer" layoutY="23.0" prefHeight="657.0" prefWidth="1300.0">
+                  <columns>
+                      <TableColumn fx:id="column_username" minWidth="185.0" prefWidth="75.0" text="Benutzername" />
+                      <TableColumn fx:id="column_name" minWidth="185.0" prefWidth="75.0" text="Name" />
+                      <TableColumn fx:id="column_lastName" minWidth="185.0" prefWidth="75.0" text="Nachname" />
+                      <TableColumn fx:id="column_street" minWidth="185.0" prefWidth="75.0" text="Strasse" />
+                      <TableColumn fx:id="column_plz" minWidth="185.0" prefWidth="75.0" text="Postleitzahl" />
+                      <TableColumn fx:id="column_ort" minWidth="185.0" prefWidth="75.0" text="Ort" />
+                      <TableColumn fx:id="column_platform" minWidth="190.0" prefWidth="75.0" text="Gekauft über" />
+                  </columns>
+              </TableView>
+              <Button layoutX="523.0" layoutY="689.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitFoundedCustomer" onMouseClicked="#onMouseClickedExitFoundedCustomer" prefHeight="40.0" prefWidth="255.0" text="Abbrechen">
+                  <font>
+                      <Font name="System Bold" size="18.0" />
+                  </font>
+              </Button>
+         </children></AnchorPane>
     </children>
 </AnchorPane>

@@ -48,7 +48,7 @@ public class CustomerManagementController{
 
     @FXML
     private void executeSearchCustomer() {
-        SceneManager.switchScene("/com/example/styleslick/customerManagement/searchCustomer-view.fyml","Kunden Suchen");
+        SceneManager.switchScene("/com/example/styleslick/customerManagement/searchCustomer-view.fxml","Kunden Suchen");
     }
     @FXML
     private void onKeyPressedEnterSearchCustomer(KeyEvent event) {
