@@ -67,10 +67,6 @@ public class CustomerService {
         // Liste der gefundenen Kunden
         List<Customer> foundedCustomers = database.searchCustomer(filledFields);
         return foundedCustomers;
-
-
-
-//        SceneManager.switchScene("path// foundCustomers-view.fxml", "Gefundene Kunden");
     }
 
 

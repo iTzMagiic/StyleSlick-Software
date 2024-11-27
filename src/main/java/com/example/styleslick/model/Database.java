@@ -54,6 +54,7 @@ public class Database {
             preparedStatement.setInt(5, plz);
             preparedStatement.setString(6, ort);
             preparedStatement.setString(7, platform);
+            // executeUpdate() wird verwendet, um Daten zu verändern (INSERT, UPDATE, DELETE-Anweisung)
             preparedStatement.executeUpdate();
             Rules.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
 
@@ -162,25 +163,6 @@ public class Database {
 
 
 
-
-
-//    public boolean searchCustomer(String title, int userID) {
-//        String sql = "DELETE FROM buecher WHERE titel = ? AND idbenutzer = ?";
-//
-//        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-//             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-//            preparedStatement.setString(1, title);
-//            preparedStatement.setInt(2, userID);
-//            preparedStatement.executeUpdate();
-//
-//            return true;
-//        } catch (SQLException e) {
-//            System.out.println("Fehler beim Löschen des Buches: " + e.getMessage());
-//        }
-//
-//        return false;
-//    }
-
     public int getCustomerID(String username, String password) {
         String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";
         int userID = 0;
@@ -215,23 +197,7 @@ public class Database {
         return -1;
     }
 
-    public boolean createAccount(String name, String username, String password) {
-        String sql = "INSERT INTO benutzer (name, benutzername, passwort) VALUES (?, ?, ?)";
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, name);
-            preparedStatement.setString(2, username);
-            preparedStatement.setString(3, password);
-            // executeUpdate() wird verwendet, um Daten zu verändern (INSERT, UPDATE, DELETE-Anweisung)
-            preparedStatement.executeUpdate();
-
-            return true;
-        } catch (SQLException e) {
-            System.out.println("Fehler beim erstellen des Accounts: " + e.getMessage());
-        }
-        return false;
-    }
 
     public String getName(int userID) {
         String sql = "SELECT name FROM benutzer WHERE idbenutzer = ?";
@@ -297,32 +263,6 @@ public class Database {
                 }
             }
         }
-        return false;
-    }
-
-    public boolean bookExists(String title, int userID) {
-        String sql = "SELECT titel FROM buecher WHERE titel = ? AND idbenutzer = ?";
-        ResultSet resultSet = null;
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, title);
-            preparedStatement.setInt(2, userID);
-            resultSet = preparedStatement.executeQuery();
-
-            return resultSet.next();
-        } catch (SQLException e) {
-            System.err.println("Fehler beim Prüfen nach dem Buch: " + e.getMessage());
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    System.err.println("Fehler beim Schließen des Resultsets: " + e.getMessage());
-                }
-            }
-        }
-
         return false;
     }
 
