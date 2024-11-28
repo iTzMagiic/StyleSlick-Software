@@ -20,20 +20,7 @@ public class Rules {
         return password != null && password.matches("^(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%^&*()_+\\-=\\[\\]{};':\"\\\\|,.<>/?]).{8,}$");
     }
 
-    public static Map<String, String> getFilledFields(Map<String, String> fields) {
-        Map<String, String> filledFields = new HashMap<>();
 
-        for (Map.Entry<String, String> entry : fields.entrySet()) {
-            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
-                filledFields.put(entry.getKey(), entry.getValue());
-            }
-        }
-        return filledFields;
-    }
-
-//    public static boolean isStringEmpty(String string) {
-//        return string == null || string.trim().isEmpty();
-//    }
 
     public static void showErrorAlert(String header) {
         Alert alert = new Alert(Alert.AlertType.ERROR); // Standardmäßig ein Info-Dialog

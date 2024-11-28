@@ -26,7 +26,16 @@ public class CustomerService {
     }
 
 
+    public void addCustomer(Map<String, String> fields) {
+        // Prüfen ob Felder Leer sind wenn ja Fehlermeldung ausgeben
+        /* TODO:: in der Datenbank überprüfen welche Felder überhaupt ausgefüllt werden müssen
+            Evtl. die Map weiterleiten an die Klasse Rules das er Prüft ob die Felder die ausgefüllt werden
+            müssen auch ausgefüllt sind.
+            - Fehler für jeden bestimmtes Feld ausgeben
+            Wenn der Rest passt weiterleiten an die Datenbank und Kunden erstellen.
 
+         */
+    }
     public List<Customer> searchCustomer(String columnName1, String columnValue1,
                                String columnName2, String columnValue2,
                                String columnName3, String columnValue3,
@@ -67,6 +76,24 @@ public class CustomerService {
         // Liste der gefundenen Kunden
         List<Customer> foundedCustomers = database.searchCustomer(filledFields);
         return foundedCustomers;
+    }
+
+    // Sucht nach den Kunden und gibt eine Liste von Customer wieder
+    public List<Customer> searchCustomer(Map<String, String> fields) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
+                filledFields.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        if (filledFields.isEmpty()) {
+            Rules.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
+            return null;
+        }
+
+        return database.searchCustomer(filledFields);
     }
 
 

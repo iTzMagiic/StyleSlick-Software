@@ -1,5 +1,6 @@
 package com.example.styleslick.controller.customerManagement;
 
+import com.example.styleslick.model.CustomerService;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.model.Rules;
 import com.example.styleslick.model.UserSession;
@@ -15,6 +16,7 @@ import java.util.Map;
 public class AddCustomerController {
 
     UserSession userSession;
+    CustomerService customerService;
 
     @FXML
     private TextField field_username;
@@ -35,6 +37,7 @@ public class AddCustomerController {
 
     public void initialize() {
         userSession = UserSession.getInstance();
+        customerService = CustomerService.getInstance();
     }
 
 
@@ -48,41 +51,26 @@ public class AddCustomerController {
 
         Database database = userSession.getDatabase();
 
-        Map<String, String> fields = new HashMap<>();
 
-        fields.put("username", field_username.getText());
-        fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
+        String username = field_username.getText();
+        String name = field_name.getText();
+        String lastName = field_lastName.getText();
+        String street = field_street.getText();
+        String ort = field_ort.getText();
+        String platform = field_platform.getText();
+        String stringPlz = field_plz.getText();
 
-        Map<String, String> filledFields = Rules.getFilledFields(fields);
-        if (!filledFields.isEmpty()) {
 
+        if (stringPlz != null && !stringPlz.isEmpty()) {
+            try {
+                int plz = Integer.parseInt(stringPlz);
+                database.addCustomer(username, name, lastName, street, plz, ort, platform);
+            } catch (NumberFormatException e) {
+                System.err.println("Fehler beim konvertieren von String zu Integer. " + e.getMessage());
+            }
+        } else {
+            database.addCustomer(username, name, lastName, street, 0, ort, platform);
         }
-
-
-//        String username = field_username.getText();
-//        String name = field_name.getText();
-//        String lastName = field_lastName.getText();
-//        String street = field_street.getText();
-//        String ort = field_ort.getText();
-//        String platform = field_platform.getText();
-//        String stringPlz = field_plz.getText();
-//
-//
-//        if (stringPlz != null && !stringPlz.isEmpty()) {
-//            try {
-//                int plz = Integer.parseInt(stringPlz);
-//                database.addCustomer(username, name, lastName, street, plz, ort, platform);
-//            } catch (NumberFormatException e) {
-//                System.err.println("Fehler beim konvertieren von String zu Integer. " + e.getMessage());
-//            }
-//        } else {
-//            database.addCustomer(username, name, lastName, street, 0, ort, platform);
-//        }
 
         field_username.clear();
         field_name.clear();
@@ -91,6 +79,25 @@ public class AddCustomerController {
         field_ort.clear();
         field_platform.clear();
         field_plz.clear();
+    }
+
+
+    @FXML
+    private void executeAddCustomerNEW() {
+        //TODO:: Die Methode muss ausgearbeitet werden!! und wenn Fertig benutzen
+
+        Map<String, String> fields = new HashMap<>();
+
+        fields.put("benutzername", field_username.getText());
+        fields.put("name", field_name.getText());
+        fields.put("nachname", field_lastName.getText());
+        fields.put("strasse", field_street.getText());
+        fields.put("plz", field_plz.getText());
+        fields.put("ort", field_ort.getText());
+        fields.put("gekauft_ueber", field_platform.getText());
+
+        customerService.addCustomer(fields);
+
     }
 
     @FXML
