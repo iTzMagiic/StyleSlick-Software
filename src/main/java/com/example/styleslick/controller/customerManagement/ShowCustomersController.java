@@ -1,7 +1,7 @@
 package com.example.styleslick.controller.customerManagement;
 
 import com.example.styleslick.model.Customer;
-import com.example.styleslick.model.UserSession;
+import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -33,8 +33,6 @@ public class ShowCustomersController {
 
 
     public void initialize() {
-
-
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -43,14 +41,11 @@ public class ShowCustomersController {
         column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
         column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
 
-        UserSession userSession = UserSession.getInstance();
 
-        /* TODO: Evtl. statt UserSession, CustomerService getAllCustomers() aufrufen lassen. Da es für die Datenbank
-                        nur ein Benutzer gibt und die Klasse UserSession löschen?
-         */
-        ObservableList<Customer> observableList = FXCollections.observableArrayList(userSession.getDatabase().getAllCustomers());
+        CustomerService customerService = CustomerService.getInstance();
+
+        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
-
     }
 
 

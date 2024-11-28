@@ -1,6 +1,7 @@
 package com.example.styleslick.controller;
 
-import com.example.styleslick.model.CustomerService;
+import com.example.styleslick.service.ArticleService;
+import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.model.Rules;
 import com.example.styleslick.model.UserSession;
@@ -36,6 +37,9 @@ public class LoginController {
 
         CustomerService customerService = CustomerService.getInstance();
         customerService.setDatabase(database);
+
+        ArticleService articleService = ArticleService.getInstance();
+        articleService.setDatabase(database);
 
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }

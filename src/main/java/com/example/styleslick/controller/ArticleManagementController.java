@@ -44,7 +44,7 @@ public class ArticleManagementController {
 
     @FXML
     private void executeUpdateArticle() {
-        SceneManager.switchScene("/com/example/styleslick/articleManagement/showArticle-view.fxml", "Artikel bearbeiten");
+        SceneManager.switchScene("/com/example/styleslick/articleManagement/updateArticle-view.fxml", "Artikel bearbeiten");
     }
     @FXML
     private void onKeyPressedUpdateArticle(KeyEvent event) {

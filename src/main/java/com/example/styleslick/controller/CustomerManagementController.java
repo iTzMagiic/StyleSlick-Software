@@ -1,7 +1,5 @@
 package com.example.styleslick.controller;
 
-import com.example.styleslick.model.CustomerService;
-import com.example.styleslick.model.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;

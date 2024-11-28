@@ -1,6 +1,7 @@
 package com.example.styleslick.controller.customerManagement;
 
 import com.example.styleslick.model.*;
+import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -64,49 +65,9 @@ public class SearchCustomerController {
     }
 
 
-
-    @FXML
-    private void executeSearchCustomer() {
-
-        String username = field_username.getText();
-        String name = field_name.getText();
-        String lastName = field_lastName.getText();
-        String street = field_street.getText();
-        String plz = field_plz.getText();
-        String ort = field_ort.getText();
-        String platform = field_platform.getText();
-
-
-        column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
-        column_ort.setCellValueFactory(new PropertyValueFactory<>("ort"));
-        column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
-        column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
-
-        CustomerService customerService = CustomerService.getInstance();
-
-
-        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.searchCustomer(
-                "benutzername", username,
-                "name", name,
-                "nachname", lastName,
-                "strasse", street,
-                "plz", plz,
-                "ort", ort,
-                "gekauft_ueber", platform));
-
-        tableView_customer.setItems(observableList);
-
-        anchorPane_searchForCustomer.setVisible(false);
-        anchorPane_foundedCustomers.setVisible(true);
-    }
-
-
     // TODO:: Diese Methode ausprobieren statt executeSearchCustomer()
     @FXML
-    private void executeSearchCustomerNEW() {
+    private void executeSearchCustomer() {
 
         //TODO:: Kommentieren!
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -128,10 +89,14 @@ public class SearchCustomerController {
         fields.put("gekauft_ueber", field_platform.getText());
 
         // Bekommt eine Liste aller Customer
-        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.searchCustomer(fields));
-        // Packt die Liste von Customers in die Tabllenansicht
-        tableView_customer.setItems(observableList);
+        List<Customer> listOfCustomers = customerService.searchCustomer(fields);
+        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            return;
+        }
 
+        // Packt die Liste von Customers in die Tabllenansicht
+        ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
+        tableView_customer.setItems(observableList);
         anchorPane_searchForCustomer.setVisible(false);
         anchorPane_foundedCustomers.setVisible(true);
     }
