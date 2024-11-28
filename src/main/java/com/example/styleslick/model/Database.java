@@ -63,6 +63,33 @@ public class Database {
         }
     }
 
+    public void addCustomerMap(Map<String, String> listOfNewCustomers) {
+        String sql = "INSERT INTO customer() VALUES()";
+
+        // StringBuilder ist besser als ein String, wenn Strings häufig verändert werden,
+        // da bei jedem Verändern eines Strings ein neues String-Objekt erzeugt wird.
+        // Das alte Objekt bleibt im **Heap**, bis der Garbage Collector es löscht.
+        StringBuilder insertIntoBuilder = new StringBuilder();
+        StringBuilder valuesBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : listOfNewCustomers.entrySet()) {
+            if (insertIntoBuilder.length() > 0) {
+                insertIntoBuilder.append(", ");
+            }
+            insertIntoBuilder.append(entry.getKey());
+
+
+            if (valuesBuilder.length() > 0) {
+                insertIntoBuilder.append(", ");
+            }
+            insertIntoBuilder.append("?");
+        }
+
+
+
+
+    }
+
     // Gibt alle bestehenden Kunden in einer Liste wieder
     public List<Customer> getAllCustomers() {
         List<Customer> listOfCustomers = new ArrayList<>();
@@ -122,7 +149,7 @@ public class Database {
         }
 
         // die sql Abfrage mit den WHERE-Bedingungen erweitern
-        sql += whereClause;
+        sql += whereClause.toString();
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
