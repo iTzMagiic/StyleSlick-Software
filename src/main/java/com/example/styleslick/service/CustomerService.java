@@ -64,6 +64,9 @@ public class CustomerService {
             listOfCustomers = database.searchCustomerLike(filledFields);
         }
 
+        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            Rules.showErrorAlert("Kein Kunden gefunden.");
+        }
         return listOfCustomers;
     }
 
