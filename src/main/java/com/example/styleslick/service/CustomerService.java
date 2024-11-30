@@ -4,6 +4,7 @@ import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.model.Rules;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -43,6 +44,7 @@ public class CustomerService {
     // Sucht nach den Kunden und gibt eine Liste von Customer wieder
     public List<Customer> searchCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
+        List<Customer> listOfCustomers = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
@@ -55,7 +57,14 @@ public class CustomerService {
             return null;
         }
 
-        return database.searchCustomer(filledFields);
+        listOfCustomers = database.searchCustomer(filledFields);
+
+        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            //TODO:: Wenn kein Kunde gefunden wurden ist
+            listOfCustomers = database.searchCustomerLike(filledFields);
+        }
+
+        return listOfCustomers;
     }
 
     // Liste aller Customers wiedergeben

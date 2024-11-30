@@ -200,6 +200,43 @@ public class Database {
         return -1;
     }
 
+    public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
+        List<Customer> listOfCustomers = new ArrayList<>();
+        String sql = "SELECT * FROM customer WHERE ";
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (sql.contains("LIKE")) {
+                //TODO:: das += gegen einen StringBuilder austauschen damit nicht immer neue Kopien aus dem Objekt
+                // erueugt werden!
+                sql += " OR ";
+            }
+
+            sql += entry.getKey() + " LIKE '" + entry.getValue() + "%'";
+        }
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String street = resultSet.getString("strasse");
+                    int plz = resultSet.getInt("plz");
+                    String ort = resultSet.getString("ort");
+                    String platform = resultSet.getString("gekauft_ueber");
+
+                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
+                    listOfCustomers.add(customer);
+                }
+            } catch (SQLException e) {
+                System.err.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+        }
+        return listOfCustomers;
+    }
 
 
     public String getName(int userID) {

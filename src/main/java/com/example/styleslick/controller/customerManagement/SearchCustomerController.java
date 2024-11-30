@@ -80,7 +80,7 @@ public class SearchCustomerController {
 
         Map<String, String> fields = new HashMap<>();
 
-        fields.put("username", field_username.getText());
+        fields.put("benutzername", field_username.getText());
         fields.put("name", field_name.getText());
         fields.put("nachname", field_lastName.getText());
         fields.put("strasse", field_street.getText());
@@ -91,6 +91,7 @@ public class SearchCustomerController {
         // Bekommt eine Liste aller Customer
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            Rules.showErrorAlert("Keinen Kunden gefunden.");
             return;
         }
 
