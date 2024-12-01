@@ -67,13 +67,13 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <TextField fx:id="field_username" layoutX="550.0" layoutY="50.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_name" layoutX="550.0" layoutY="100.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_lastName" layoutX="550.0" layoutY="150.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_street" layoutX="550.0" layoutY="200.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_plz" layoutX="550.0" layoutY="250.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_ort" layoutX="550.0" layoutY="300.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
-            <TextField fx:id="field_platform" layoutX="550.0" layoutY="350.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_username" layoutX="550.0" layoutY="50.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_name" layoutX="550.0" layoutY="100.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_lastName" layoutX="550.0" layoutY="150.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_street" layoutX="550.0" layoutY="200.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_plz" layoutX="550.0" layoutY="250.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_ort" layoutX="550.0" layoutY="300.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
+            <TextField fx:id="field_platform" layoutX="550.0" layoutY="350.0" onKeyPressed="#onKeyPressedEnterAddCustomer" prefHeight="30.0" prefWidth="255.0" />
          </children>
       </AnchorPane>
    </children>
