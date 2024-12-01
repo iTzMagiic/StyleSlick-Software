@@ -88,10 +88,11 @@ public class SearchCustomerController {
         fields.put("ort", field_ort.getText());
         fields.put("gekauft_ueber", field_platform.getText());
 
-        // Bekommt eine Liste aller Customer
+        // Bekommt eine Liste aller gefundenen Customer
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
+
+        // Wenn kein Customer gefunden wurde abbrechen
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            Rules.showErrorAlert("Keinen Kunden gefunden.");
             return;
         }
 

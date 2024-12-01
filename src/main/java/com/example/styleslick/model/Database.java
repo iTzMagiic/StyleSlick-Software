@@ -36,7 +36,6 @@ public class Database {
         } catch (SQLException e) {
             System.err.println("Verbindung zur Datenbank fehlgeschlagen! " + e.getMessage());
         }
-        Rules.showErrorAlert("Verbindung zur Datenbank fehlgeschlagen!");
         return false; // Verbindung fehlgeschlagen
     }
 

@@ -44,7 +44,7 @@ public class CustomerService {
     // Sucht nach den Kunden und gibt eine Liste von Customer wieder
     public List<Customer> searchCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
-        List<Customer> listOfCustomers = new ArrayList<>();
+        List<Customer> listOfCustomers;
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
@@ -59,6 +59,8 @@ public class CustomerService {
 
         listOfCustomers = database.searchCustomer(filledFields);
 
+        // Sucht in der Datenbank alles was mit der Eingabe anfängt wenn kein Kunde gefunden wurden ist.
+        //      WHERE (column) LIKE "B%";
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             //TODO:: Wenn kein Kunde gefunden wurden ist
             listOfCustomers = database.searchCustomerLike(filledFields);
