@@ -52,7 +52,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="340.0" layoutY="50.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Benutzername" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="50.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Benutzername*" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>
@@ -62,7 +62,7 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über" underline="true">
+            <Label alignment="CENTER" layoutX="340.0" layoutY="350.0" prefHeight="30.0" prefWidth="164.0" style="-fx-border-color: Black;" text="Gekauft über*" underline="true">
                <font>
                   <Font name="System Bold" size="16.0" />
                </font>

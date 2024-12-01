@@ -65,7 +65,6 @@ public class SearchCustomerController {
     }
 
 
-    // TODO:: Diese Methode ausprobieren statt executeSearchCustomer()
     @FXML
     private void executeSearchCustomer() {
 

@@ -43,9 +43,7 @@ public class AddCustomerController {
 
     @FXML
     private void executeAddCustomer() {
-        /* TODO: AddCustomer Methode ausbessern !
-            - Rules Klasse neue Methoden für richtige eingaben um Kunden in die Datenbank zu schreiben und auf
-            Datentypen achten vorallem auf Int !!
+        /* TODO: Die Methode ersetzten wenn die Neue fertig ist.
          */
 
         Database database = userSession.getDatabase();
@@ -95,8 +93,15 @@ public class AddCustomerController {
         fields.put("ort", field_ort.getText());
         fields.put("gekauft_ueber", field_platform.getText());
 
-        customerService.addCustomer(fields);
-
+        if (customerService.addCustomer(fields)) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_ort.clear();
+            field_platform.clear();
+            field_plz.clear();
+        }
     }
 
     @FXML

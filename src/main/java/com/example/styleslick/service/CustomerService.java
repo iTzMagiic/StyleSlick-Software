@@ -29,15 +29,40 @@ public class CustomerService {
     }
 
 
-    public void addCustomer(Map<String, String> fields) {
-        // Prüfen ob Felder Leer sind wenn ja Fehlermeldung ausgeben
-        /* TODO:: in der Datenbank überprüfen welche Felder überhaupt ausgefüllt werden müssen
-            Evtl. die Map weiterleiten an die Klasse Rules das er Prüft ob die Felder die ausgefüllt werden
-            müssen auch ausgefüllt sind.
-            - Fehler für jeden bestimmtes Feld ausgeben
-            Wenn der Rest passt weiterleiten an die Datenbank und Kunden erstellen.
+    public boolean addCustomer(Map<String, String> fields) {
 
-         */
+        // Ausgefüllte Eingaben in eine Hashmap packen
+        Map<String, String> filledFields = new HashMap<>();
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() != null || !entry.getValue().isEmpty()) {
+                filledFields.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        // Prüft, ob die pflicht Felder nicht leer sind.
+        if (filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
+            Rules.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
+            return false;
+        } else if (filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
+            Rules.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
+            return false;
+        }
+
+        // Prüfen ob Felder Leer sind wenn ja Fehlermeldung ausgeben
+        if (filledFields == null || filledFields.isEmpty()) {
+            Rules.showErrorAlert("Bitte geben Sie Mind. die pflicht Felder an.");
+            return false;
+        }
+
+        //TODO:: Evtl. prüfen ob ein Kunde mit dem Benutzername und der Platform schon existiert.
+        //  Methode muss in der Datenbank Klasse sein.
+        //if (database.checkForCustomer(filledFields)) {return false;}
+
+        //TODO:: Methode in der Datenbank schreiben, für eine Dynamische customerAddToDatabase()
+        //database.addCustomer(filledFields);
+        Rules.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
+
+        return true;
     }
 
 
@@ -62,7 +87,6 @@ public class CustomerService {
         // Sucht in der Datenbank alles was mit der Eingabe anfängt wenn kein Kunde gefunden wurden ist.
         //      WHERE (column) LIKE "B%";
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            //TODO:: Wenn kein Kunde gefunden wurden ist
             listOfCustomers = database.searchCustomerLike(filledFields);
         }
 
