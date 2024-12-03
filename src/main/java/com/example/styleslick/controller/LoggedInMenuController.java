@@ -1,6 +1,9 @@
 package com.example.styleslick.controller;
 
 
+import com.example.styleslick.service.ArticleService;
+import com.example.styleslick.service.CustomerService;
+import com.example.styleslick.service.OrderService;
 import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
@@ -15,6 +18,7 @@ public class LoggedInMenuController {
     @FXML
     private void executeCustomerManagement() {
         SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+        CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
     @FXML
     private void onKeyPressedEnterCustomerManagement(KeyEvent event) {
@@ -32,6 +36,7 @@ public class LoggedInMenuController {
     @FXML
     private void executeArticleManagement() {
         SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Kundenverwaltung");
+        ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
     @FXML
     private void onKeyPressedEnterArticleManagement(KeyEvent event) {
@@ -49,6 +54,7 @@ public class LoggedInMenuController {
     @FXML
     private void executeOrderManagement() {
         SceneManager.switchScene("/com/example/styleslick/orderManagement-view.fxml", "Kundenverwaltung");
+        OrderService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
     @FXML
     private void onKeyPressedEnterOrdereManagement(KeyEvent event) {
@@ -83,9 +89,7 @@ public class LoggedInMenuController {
     @FXML
     private void executeLogout() {
         SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
-
-        UserSession session = UserSession.getInstance();
-        session.clearSession();
+        UserSession.getInstance().clearSession();
     }
     @FXML
     private void onMouseClickedLogout(MouseEvent event) {

@@ -1,6 +1,6 @@
 package com.example.styleslick.model;
 
-import com.example.styleslick.service.Rules;
+import com.example.styleslick.service.RulesService;
 
 import java.sql.*;
 import java.util.ArrayList;
@@ -57,7 +57,7 @@ public class Database {
             preparedStatement.setString(7, platform);
             // executeUpdate() wird verwendet, um Daten zu verändern (INSERT, UPDATE, DELETE-Anweisung)
             preparedStatement.executeUpdate();
-            Rules.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
+            RulesService.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
 
         } catch (SQLException e) {
             System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());

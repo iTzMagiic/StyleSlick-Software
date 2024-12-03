@@ -21,7 +21,6 @@ import java.util.Map;
 
 public class SearchCustomerController {
 
-    UserSession userSession;
     CustomerService customerService;
 
     @FXML
@@ -61,7 +60,6 @@ public class SearchCustomerController {
 
 
     public void initialize() {
-         userSession = UserSession.getInstance();
          customerService = CustomerService.getInstance();
     }
 

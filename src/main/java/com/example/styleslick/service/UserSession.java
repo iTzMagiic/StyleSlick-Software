@@ -1,12 +1,8 @@
 package com.example.styleslick.service;
 
-import com.example.styleslick.model.Book;
 import com.example.styleslick.model.Database;
 
-import java.util.List;
-
 public class UserSession {
-
     /*
      * Diese Klasse implementiert das "Singleton-Pattern".
      * Ein Objekt der Klasse kann nur über die Methode getInstance() erstellt werden.
@@ -14,24 +10,25 @@ public class UserSession {
      * nur eine einzige Instanz der Klasse gibt.
      */
 
-
-    private static UserSession instance;
+    private static UserSession userSession;
     private Database database;
-    private List<Book> books;
+
 
 
     private UserSession() {}
 
+
+
     public static UserSession getInstance() {
-        if(instance == null) {
-            instance = new UserSession();
+        if(userSession == null) {
+            userSession = new UserSession();
         }
-        return instance;
+        return userSession;
     }
 
     public void clearSession() {
         database = null;
-        clearBooks();
+        userSession = null;
     }
 
     public void setDatabase(Database database) {
@@ -42,16 +39,5 @@ public class UserSession {
         return database;
     }
 
-    public void setBooks(List<Book> books) {
-        this.books = books;
-    }
-
-    public List<Book> getBooks() {
-        return books;
-    }
-
-    public void clearBooks() {
-        books = null;
-    }
 
 }

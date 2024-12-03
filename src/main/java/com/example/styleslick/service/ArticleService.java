@@ -9,7 +9,11 @@ public class ArticleService {
     private static ArticleService articleService;
     private Database database;
 
+
+
     private ArticleService() {}
+
+
 
     public static ArticleService getInstance() {
         if (articleService == null) {
@@ -24,6 +28,11 @@ public class ArticleService {
 
     public void addArticle(Map<String, String> fields) {
         //TODO:: addArticle Methode erstellen
+    }
+
+    public void clearSession() {
+        articleService = null;
+        database = null;
     }
 
 }

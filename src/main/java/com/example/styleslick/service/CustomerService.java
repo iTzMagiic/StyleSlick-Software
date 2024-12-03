@@ -9,11 +9,16 @@ import java.util.Map;
 
 public class CustomerService {
 
+
     private static CustomerService customerService;
     private Database database;
 
 
+
     private CustomerService() {}
+
+
+
 
     public static CustomerService getInstance() {
         if (customerService == null) {
@@ -21,6 +26,7 @@ public class CustomerService {
         }
         return customerService;
     }
+
 
     public void setDatabase(Database database) {
         this.database = database;
@@ -39,16 +45,16 @@ public class CustomerService {
 
         // Prüft, ob die pflicht Felder nicht leer sind.
         if (filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
-            Rules.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
+            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
         } else if (filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
-            Rules.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
+            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
         }
 
         // Prüfen ob Felder Leer sind wenn ja Fehlermeldung ausgeben
         if (filledFields == null || filledFields.isEmpty()) {
-            Rules.showErrorAlert("Bitte geben Sie Mind. die pflicht Felder an.");
+            RulesService.showErrorAlert("Bitte geben Sie Mind. die pflicht Felder an.");
             return false;
         }
 
@@ -58,7 +64,7 @@ public class CustomerService {
 
         //TODO:: Methode in der Datenbank schreiben, für eine Dynamische customerAddToDatabase()
         //database.addCustomer(filledFields);
-        Rules.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
+        RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
 
         return true;
     }
@@ -76,7 +82,7 @@ public class CustomerService {
         }
 
         if (filledFields.isEmpty()) {
-            Rules.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
+            RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
             return null;
         }
 
@@ -89,7 +95,7 @@ public class CustomerService {
         }
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            Rules.showErrorAlert("Kein Kunden gefunden.");
+            RulesService.showErrorAlert("Kein Kunden gefunden.");
         }
         return listOfCustomers;
     }
@@ -97,6 +103,12 @@ public class CustomerService {
     // Liste aller Customers wiedergeben
     public List<Customer> getCustomers() {
         return database.getAllCustomers();
+    }
+
+
+    public void clearSession() {
+        database = null;
+        customerService = null;
     }
 
 

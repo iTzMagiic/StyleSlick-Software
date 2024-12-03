@@ -2,7 +2,7 @@ package com.example.styleslick.service;
 
 import javafx.scene.control.Alert;
 
-public class Rules {
+public class RulesService {
 
     public static boolean isUsernameValid(String username) {
         return username != null && username.matches("(?=(.*[a-zA-ZäöüÄÖÜß]){2,})[a-zA-ZäöüÄÖÜß0-9]{4,}");
