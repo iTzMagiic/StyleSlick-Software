@@ -2,6 +2,7 @@ package com.example.styleslick.controller.customerManagement;
 
 import com.example.styleslick.model.*;
 import com.example.styleslick.service.CustomerService;
+import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;

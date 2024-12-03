@@ -1,4 +1,7 @@
-package com.example.styleslick.model;
+package com.example.styleslick.service;
+
+import com.example.styleslick.model.Book;
+import com.example.styleslick.model.Database;
 
 import java.util.List;
 

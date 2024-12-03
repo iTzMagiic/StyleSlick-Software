@@ -1,9 +1,6 @@
-package com.example.styleslick.model;
+package com.example.styleslick.service;
 
 import javafx.scene.control.Alert;
-
-import java.util.HashMap;
-import java.util.Map;
 
 public class Rules {
 

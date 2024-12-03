@@ -2,7 +2,7 @@ package com.example.styleslick.controller.customerManagement;
 
 import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.model.Database;
-import com.example.styleslick.model.UserSession;
+import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;

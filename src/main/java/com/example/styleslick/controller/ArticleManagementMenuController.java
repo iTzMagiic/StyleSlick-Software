@@ -5,7 +5,7 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class ArticleManagementController {
+public class ArticleManagementMenuController {
 
 
     @FXML

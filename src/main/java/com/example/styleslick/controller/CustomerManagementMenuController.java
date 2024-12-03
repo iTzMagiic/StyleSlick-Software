@@ -5,7 +5,8 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class OrderManagementController {
+public class CustomerManagementMenuController {
+
 
 
 
@@ -27,25 +28,25 @@ public class OrderManagementController {
 
 
     @FXML
-    private void executeShowCustomer() {
-        SceneManager.switchScene("/com/example/styleslick/customerManagement/showCustomer-view.fxml", "Kunden anzeigen");
+    private void executeShowCustomers() {
+        SceneManager.switchScene("/com/example/styleslick/customerManagement/showCustomers-view.fxml", "Kunden anzeigen");
     }
     @FXML
-    private void onKeyPressedEnterShowCustomer(KeyEvent event) {
+    private void onKeyPressedEnterShowCustomers(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
-            executeShowCustomer();
+            executeShowCustomers();
         }
     }
     @FXML
-    private void onMouseClickedShowCustomer(MouseEvent event) {
-        executeShowCustomer();
+    private void onMouseClickedShowCustomers(MouseEvent event) {
+        executeShowCustomers();
     }
 
 
 
     @FXML
     private void executeSearchCustomer() {
-        SceneManager.switchScene("/com/example/styleslick/customerManagement/showCustomer-view.fxml", "Kunden suchen");
+        SceneManager.switchScene("/com/example/styleslick/customerManagement/searchCustomer-view.fxml","Kunden Suchen");
     }
     @FXML
     private void onKeyPressedEnterSearchCustomer(KeyEvent event) {
@@ -61,17 +62,18 @@ public class OrderManagementController {
 
 
     @FXML
-    private void executeExitOrderManagement(){
+    private void executeExitCustomerManagement(){
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
     @FXML
-    private void onKeyPressedEnterExitOrderManagement(KeyEvent event){
+    private void onKeyPressedEnterExitCustomerManagement(KeyEvent event){
         if(event.getCode().toString().equals("ENTER")){
-            executeExitOrderManagement();
+            executeExitCustomerManagement();
         }
     }
     @FXML
-    private void onMouseClickedExitOrderManagement(MouseEvent event){
-        executeExitOrderManagement();
+    private void onMouseClickedExitCustomerManagement(MouseEvent event){
+        executeExitCustomerManagement();
     }
+
 }

@@ -1,5 +1,7 @@
-package com.example.styleslick.model;
+package com.example.styleslick.service;
 
+
+import com.example.styleslick.model.Database;
 
 public class AccountService {
 

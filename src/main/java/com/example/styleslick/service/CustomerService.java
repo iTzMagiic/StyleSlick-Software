@@ -2,9 +2,7 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
-import com.example.styleslick.model.Rules;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
