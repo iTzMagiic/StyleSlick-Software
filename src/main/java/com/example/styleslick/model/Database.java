@@ -30,7 +30,7 @@ public class Database {
     }
 
     // Testet die Verbindung zur Datenbank
-    public boolean testConnection() {
+    public boolean isConnected() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             if (connection != null) {
                 return true; // Verbindung erfolgreich
