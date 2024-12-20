@@ -20,12 +20,14 @@ public class LoggedInMenuController {
         SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
         CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
+
     @FXML
     private void onKeyPressedEnterCustomerManagement(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeCustomerManagement();
         }
     }
+
     @FXML
     private void onMousePressedCustomerManagement(MouseEvent event) {
         executeCustomerManagement();
@@ -38,12 +40,14 @@ public class LoggedInMenuController {
         SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Kundenverwaltung");
         ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
+
     @FXML
     private void onKeyPressedEnterArticleManagement(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeArticleManagement();
         }
     }
+
     @FXML
     private void onMousePressedArticleManagement(MouseEvent event) {
         executeArticleManagement();
@@ -56,12 +60,14 @@ public class LoggedInMenuController {
         SceneManager.switchScene("/com/example/styleslick/orderManagement-view.fxml", "Kundenverwaltung");
         OrderService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
+
     @FXML
     private void onKeyPressedEnterOrdereManagement(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeOrderManagement();
         }
     }
+
     @FXML
     private void onMousePressedOrderManagement(MouseEvent event) {
         executeOrderManagement();
@@ -73,12 +79,14 @@ public class LoggedInMenuController {
     private void executeSettings() {
         SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Kundenverwaltung");
     }
+
     @FXML
     private void onKeyPressedEnterSettings(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeSettings();
         }
     }
+
     @FXML
     private void onMousePressedSettings(MouseEvent event) {
         executeSettings();
@@ -91,11 +99,14 @@ public class LoggedInMenuController {
         SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
         UserSession.getInstance().clearSession();
     }
+
     @FXML
     private void onMouseClickedLogout(MouseEvent event) {
         executeLogout();
     }
+
     @FXML
+
     private void onKeyPressedEnterLogout(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeLogout();
@@ -108,16 +119,19 @@ public class LoggedInMenuController {
     private void executeExit() {
         System.exit(0);
     }
+
     @FXML
     private void onMouseClickedExit(MouseEvent event) {
         executeExit();
     }
+
     @FXML
     private void onKeyPressedEnterExit(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeExit();
         }
     }
+
 
 
 }

@@ -57,17 +57,18 @@ public class LoginController {
     private void executeExit() {
         System.exit(0);
     }
+
     @FXML
     private void onMouseClickedExit(MouseEvent event) {
         executeExit();
     }
+
     @FXML
     private void onKeyPressedEnterExit(KeyEvent event) {
         if(event.getCode().toString().equals("ENTER")) {
             executeExit();
         }
     }
-
 
 
 

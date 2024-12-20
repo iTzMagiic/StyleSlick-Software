@@ -8,10 +8,12 @@ import java.util.List;
 import java.util.Map;
 
 public class Database {
-    private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
 
+    private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
     private final String USER;
     private final String PASSWORD;
+
+
 
     public Database(String USER, String PASSWORD) {
         this.USER = USER;
@@ -19,15 +21,7 @@ public class Database {
 
     }
 
-    // Gibt die Verbindung zur Datenbank wieder
-    public Connection getConnection() {
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            return connection;
-        } catch (SQLException e) {
-            System.err.println("Verbindung zur Datenbank fehlgeschlagen! " + e.getMessage());
-        }
-        return null;
-    }
+
 
     // Testet die Verbindung zur Datenbank
     public boolean isConnected() {
@@ -40,6 +34,7 @@ public class Database {
         }
         return false; // Verbindung fehlgeschlagen
     }
+
 
     // Fügt einen neuen Kunden hinzu und zeigt eine Bestätigung oder einen Fehler an.
     public void addCustomer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
@@ -63,7 +58,6 @@ public class Database {
             System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());
         }
     }
-
 
 
     // Gibt alle bestehenden Kunden in einer Liste wieder
@@ -197,9 +191,9 @@ public class Database {
                 }
             }
         }
-
         return -1;
     }
+
 
     public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
         List<Customer> listOfCustomers = new ArrayList<>();
@@ -208,7 +202,7 @@ public class Database {
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (sql.contains("LIKE")) {
                 //TODO:: das += gegen einen StringBuilder austauschen damit nicht immer neue Kopien aus dem Objekt
-                // erueugt werden!
+                // erzeugt werden!
                 sql += " OR ";
             }
 
@@ -230,8 +224,6 @@ public class Database {
                     Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
                     listOfCustomers.add(customer);
                 }
-            } catch (SQLException e) {
-                System.err.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
             }
         } catch (SQLException e) {
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
@@ -306,5 +298,4 @@ public class Database {
         }
         return false;
     }
-
 }
