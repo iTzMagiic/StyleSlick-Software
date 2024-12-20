@@ -273,7 +273,7 @@ public class Database {
         return "no user";
     }
 
-    public boolean usernameExists(String username) {
+    public boolean isUsernameExists(String username) {
         String sql = "SELECT benutzername FROM benutzer WHERE benutzername = ?";
         ResultSet resultSet = null;
 

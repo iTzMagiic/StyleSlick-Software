@@ -48,7 +48,6 @@ public class AddCustomerController {
 
         Database database = userSession.getDatabase();
 
-
         String username = field_username.getText();
         String name = field_name.getText();
         String lastName = field_lastName.getText();
@@ -104,12 +103,14 @@ public class AddCustomerController {
         }
     }
 
+
     @FXML
     private void onKeyPressedEnterAddCustomer(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             executeAddCustomer();
         }
     }
+
 
     @FXML
     private void onMouseClickedAddCustomer(MouseEvent event) {
