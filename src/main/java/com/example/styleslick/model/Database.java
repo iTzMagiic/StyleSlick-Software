@@ -36,31 +36,7 @@ public class Database {
     }
 
 
-    // Fügt einen neuen Kunden hinzu und zeigt eine Bestätigung oder einen Fehler an.
-    public void addCustomer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
-        String sql = "INSERT INTO customer (benutzername, name, nachname, strasse, plz, ort, gekauft_ueber) VALUES (?, ?, ?, ?, ?, ?, ?)";
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, name);
-            preparedStatement.setString(3, lastName);
-            preparedStatement.setString(4, street);
-            preparedStatement.setInt(5, plz);
-            preparedStatement.setString(6, ort);
-            preparedStatement.setString(7, platform);
-            // executeUpdate() wird verwendet, um Daten zu verändern (INSERT, UPDATE, DELETE-Anweisung)
-            preparedStatement.executeUpdate();
-            RulesService.showConfirmAlert("Neuer Benutzer wurde hinzugefügt.");
-
-        } catch (SQLException e) {
-            System.out.println("Fehler beim Hinzufügen des Buches: " + e.getMessage());
-        }
-    }
-
-
-    public void addCustomerNEW(Map<String, String> filledFields) {
+    public void addCustomer(Map<String, String> filledFields) {
         String sql = "INSERT INTO customer (";
         StringBuilder whereClause = new StringBuilder();
 
@@ -74,34 +50,26 @@ public class Database {
             whereClause.append(columnName);
         }
         whereClause.append(") VALUES (");
-
         sql += whereClause.toString();
+
 
         whereClause = new StringBuilder();
 
         for (Map.Entry<String, String> values : filledFields.entrySet()) {
-            String columnName = values.getValue();
-
             if (whereClause.length() > 0) {
                 whereClause.append(", ");
             }
             whereClause.append(" ?");
         }
+
         whereClause.append(")");
         sql += whereClause.toString();
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
             int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
-//            for (String value : filledFields.values()) {
-//                if (value.equals("plz")) {
-//                    preparedStatement.setInt(index++, Integer.parseInt(value));
-//                } else {
-//                    preparedStatement.setString(index++, value);
-//                }
-//            }
+
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
                 if (field.getKey().equals("plz")) {
                     preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
@@ -112,6 +80,7 @@ public class Database {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
+            RulesService.showErrorAlert("Fehler beim hinzufügen des Kunden.");
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
     }
@@ -235,6 +204,42 @@ public class Database {
     }
 
 
+    public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
+        List<Customer> listOfCustomers = new ArrayList<>();
+        String sql = "SELECT * FROM customer WHERE ";
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (sql.contains("LIKE")) {
+                //TODO:: das += gegen einen StringBuilder austauschen damit nicht immer neue Kopien aus dem Objekt
+                // erzeugt werden!
+                sql += " OR ";
+            }
+
+            sql += entry.getKey() + " LIKE '" + entry.getValue() + "%'";
+        }
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String street = resultSet.getString("strasse");
+                    int plz = resultSet.getInt("plz");
+                    String ort = resultSet.getString("ort");
+                    String platform = resultSet.getString("gekauft_ueber");
+
+                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
+                    listOfCustomers.add(customer);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+        }
+        return listOfCustomers;
+    }
+
 
 
     public int getCustomerID(String username, String password) {
@@ -271,41 +276,7 @@ public class Database {
     }
 
 
-    public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
-        List<Customer> listOfCustomers = new ArrayList<>();
-        String sql = "SELECT * FROM customer WHERE ";
 
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (sql.contains("LIKE")) {
-                //TODO:: das += gegen einen StringBuilder austauschen damit nicht immer neue Kopien aus dem Objekt
-                // erzeugt werden!
-                sql += " OR ";
-            }
-
-            sql += entry.getKey() + " LIKE '" + entry.getValue() + "%'";
-        }
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String username = resultSet.getString("benutzername");
-                    String name = resultSet.getString("name");
-                    String lastName = resultSet.getString("nachname");
-                    String street = resultSet.getString("strasse");
-                    int plz = resultSet.getInt("plz");
-                    String ort = resultSet.getString("ort");
-                    String platform = resultSet.getString("gekauft_ueber");
-
-                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
-                    listOfCustomers.add(customer);
-                }
-            }
-        } catch (SQLException e) {
-            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-        }
-        return listOfCustomers;
-    }
 
 
     public String getName(int userID) {

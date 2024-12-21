@@ -9,14 +9,12 @@ import java.util.Map;
 
 public class CustomerService {
 
-
     private static CustomerService customerService;
     private Database database;
 
 
 
     private CustomerService() {}
-
 
 
 
@@ -58,9 +56,8 @@ public class CustomerService {
             return false;
         }
 
-        database.addCustomerNEW(filledFields);
+        database.addCustomer(filledFields);
         RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
-
         return true;
     }
 
@@ -83,7 +80,7 @@ public class CustomerService {
 
         listOfCustomers = database.searchCustomer(filledFields);
 
-        // Sucht in der Datenbank alles was mit der Eingabe anfängt wenn kein Kunde gefunden wurden ist.
+        // Sucht in der Datenbank alles, was mit der Eingabe anfängt wenn kein Kunde gefunden wurden ist.
         //      WHERE (column) LIKE "B%";
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             listOfCustomers = database.searchCustomerLike(filledFields);

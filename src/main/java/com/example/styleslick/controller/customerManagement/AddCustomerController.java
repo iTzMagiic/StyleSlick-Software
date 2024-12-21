@@ -41,43 +41,6 @@ public class AddCustomerController {
 
 
 
-//    @FXML
-//    private void executeAddCustomer() {
-//        /* TODO: Die Methode ersetzten wenn die Neue fertig ist.
-//         */
-//
-//        Database database = userSession.getDatabase();
-//
-//        String username = field_username.getText();
-//        String name = field_name.getText();
-//        String lastName = field_lastName.getText();
-//        String street = field_street.getText();
-//        String ort = field_ort.getText();
-//        String platform = field_platform.getText();
-//        String stringPlz = field_plz.getText();
-//
-//
-//        if (stringPlz != null && !stringPlz.isEmpty()) {
-//            try {
-//                int plz = Integer.parseInt(stringPlz);
-//                database.addCustomer(username, name, lastName, street, plz, ort, platform);
-//            } catch (NumberFormatException e) {
-//                System.err.println("Fehler beim konvertieren von String zu Integer. " + e.getMessage());
-//            }
-//        } else {
-//            database.addCustomer(username, name, lastName, street, 0, ort, platform);
-//        }
-//
-//        field_username.clear();
-//        field_name.clear();
-//        field_lastName.clear();
-//        field_street.clear();
-//        field_ort.clear();
-//        field_platform.clear();
-//        field_plz.clear();
-//    }
-
-
     @FXML
     private void executeAddCustomer() {
         //TODO:: Die Methode muss ausgearbeitet werden!! und wenn Fertig benutzen
