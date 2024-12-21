@@ -60,6 +60,84 @@ public class Database {
     }
 
 
+    public void addCustomerNEW(Map<String, String> filledFields) {
+        List<Customer> listOfCustomers = new ArrayList<>();
+
+        String sql = "INSERT INTO customer (";
+        StringBuilder whereClause = new StringBuilder();
+
+        // WHERE-Bedingung aus der Map filledFields einfügen und mit(" AND " &" = ?")trennen;
+        for (Map.Entry<String, String> key : filledFields.entrySet()) {
+            String columnName = key.getKey();
+
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append(columnName);
+        }
+        whereClause.append(") VALUES (");
+
+        sql += whereClause.toString();
+
+        whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> values : filledFields.entrySet()) {
+            String columnName = values.getValue();
+
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append(" ?");
+        }
+        whereClause.append(")");
+        sql += whereClause.toString();
+
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
+            //
+//            for (String value : filledFields.values()) {
+//                if (value.equals("plz")) {
+//                    preparedStatement.setInt(index++, Integer.parseInt(value));
+//                } else {
+//                    preparedStatement.setString(index++, value);
+//                }
+//            }
+
+            for (Map.Entry<String, String> field : filledFields.entrySet()) {
+                if (field.getKey().equals("plz")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
+                } else {
+                    preparedStatement.setString(index++, field.getValue());
+                }
+            }
+
+            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String adresse = resultSet.getString("strasse");
+                    int plz = resultSet.getInt("plz");
+                    String ort = resultSet.getString("ort");
+                    String platform = resultSet.getString("gekauft_ueber");
+
+                    Customer customer = new Customer(username, name, lastName, adresse, plz, ort, platform);
+                    listOfCustomers.add(customer);
+                }
+                return listOfCustomers;
+            } catch (SQLException e) {
+                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+        }
+        return listOfCustomers;
+    }
+
+
     public boolean isUsernameExist(String username) {
         String sql = "SELECT * FROM customer WHERE benutzername = ?";
 
