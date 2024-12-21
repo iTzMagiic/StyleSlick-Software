@@ -242,6 +242,8 @@ public class Database {
 
 
 
+
+
     public int getCustomerID(String username, String password) {
         String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";
         int userID = 0;
@@ -274,9 +276,6 @@ public class Database {
         }
         return -1;
     }
-
-
-
 
 
     public String getName(int userID) {

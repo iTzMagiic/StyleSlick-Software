@@ -1,5 +1,6 @@
 package com.example.styleslick.controller;
 
+import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -63,6 +64,7 @@ public class CustomerManagementMenuController {
 
     @FXML
     private void executeExitCustomerManagement(){
+        CustomerService.getInstance().clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
     @FXML
