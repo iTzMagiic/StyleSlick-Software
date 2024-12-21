@@ -61,8 +61,6 @@ public class Database {
 
 
     public void addCustomerNEW(Map<String, String> filledFields) {
-        List<Customer> listOfCustomers = new ArrayList<>();
-
         String sql = "INSERT INTO customer (";
         StringBuilder whereClause = new StringBuilder();
 

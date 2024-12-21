@@ -43,7 +43,7 @@ public class CustomerService {
         }
 
         // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("Benutzername") || filledFields.get("Benutzername") == null || filledFields.get("Benutzername").isEmpty()) {
+        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
         } else if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
@@ -51,17 +51,13 @@ public class CustomerService {
             return false;
         }
 
-        if (database.isUsernameExist(filledFields.get("Benutzername"))) {
+        if (database.isUsernameExist(filledFields.get("benutzername"))) {
+            //TODO:: Noch eine Abfrage erstellen mit der Klasse RulesService ob man wirklich ein neuen Kunden erstellen
+            //  möchte mit den selben Benutzername
             RulesService.showErrorAlert("Benutzername existiert bereits.");
             return false;
         }
 
-
-        //TODO:: Evtl. prüfen ob ein Kunde mit dem Benutzername und der Platform schon existiert.
-        //  Methode muss in der Datenbank Klasse sein.
-        //if (database.checkForCustomer(filledFields)) {return false;}
-
-        //TODO:: Methode in der Datenbank schreiben, für eine Dynamische customerAddToDatabase()
         database.addCustomerNEW(filledFields);
         RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
 
