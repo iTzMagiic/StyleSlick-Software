@@ -37,10 +37,11 @@ public class CustomerService {
 
         // Ausgefüllte Eingaben in eine Hashmap packen
         Map<String, String> filledFields = new HashMap<>();
+
         for (Map.Entry<String, String> entry : fields.entrySet()) {
-            if (entry.getValue() != null || !entry.getValue().isEmpty()) {
-                filledFields.put(entry.getKey(), entry.getValue());
-            }
+            if (entry.getValue() == null || entry.getValue().isEmpty()) {continue;}
+
+            filledFields.put(entry.getKey(), entry.getValue());
         }
 
         // Prüft, ob die pflicht Felder nicht leer sind.
