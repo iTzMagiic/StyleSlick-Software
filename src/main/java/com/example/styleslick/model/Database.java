@@ -60,6 +60,25 @@ public class Database {
     }
 
 
+    public boolean isUsernameExist(String username) {
+        String sql = "SELECT * FROM customer WHERE benutzername = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fehler beim abrufen ob der Benutzername schon existiert. " + e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+
     // Gibt alle bestehenden Kunden in einer Liste wieder
     public List<Customer> getAllCustomers() {
         List<Customer> listOfCustomers = new ArrayList<>();
@@ -273,29 +292,5 @@ public class Database {
         return "no user";
     }
 
-    public boolean isUsernameExists(String username) {
-        String sql = "SELECT benutzername FROM benutzer WHERE benutzername = ?";
-        ResultSet resultSet = null;
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, username);
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                return true;
-            }
-        } catch (SQLException e) {
-            System.out.println("Fehler beim Abrufen des Benutzernamen: " + e.getMessage());
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    System.out.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
-                }
-            }
-        }
-        return false;
-    }
 }

@@ -34,8 +34,6 @@ public class CustomerService {
 
 
     public boolean addCustomer(Map<String, String> fields) {
-
-        // Ausgefüllte Eingaben in eine Hashmap packen
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -45,19 +43,19 @@ public class CustomerService {
         }
 
         // Prüft, ob die pflicht Felder nicht leer sind.
-        if (filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
+        if (!filledFields.containsKey("Benutzername") || filledFields.get("Benutzername") == null || filledFields.get("Benutzername").isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
-        } else if (filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
+        } else if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
         }
 
-        // Prüfen ob Felder Leer sind wenn ja Fehlermeldung ausgeben
-        if (filledFields == null || filledFields.isEmpty()) {
-            RulesService.showErrorAlert("Bitte geben Sie Mind. die pflicht Felder an.");
+        if (database.isUsernameExist(filledFields.get("Benutzername"))) {
+            RulesService.showErrorAlert("Benutzername existiert bereits.");
             return false;
         }
+
 
         //TODO:: Evtl. prüfen ob ein Kunde mit dem Benutzername und der Platform schon existiert.
         //  Methode muss in der Datenbank Klasse sein.
