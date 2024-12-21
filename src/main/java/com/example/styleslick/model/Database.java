@@ -97,7 +97,6 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
-            //
 //            for (String value : filledFields.values()) {
 //                if (value.equals("plz")) {
 //                    preparedStatement.setInt(index++, Integer.parseInt(value));
@@ -105,7 +104,6 @@ public class Database {
 //                    preparedStatement.setString(index++, value);
 //                }
 //            }
-
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
                 if (field.getKey().equals("plz")) {
                     preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
@@ -113,28 +111,11 @@ public class Database {
                     preparedStatement.setString(index++, field.getValue());
                 }
             }
+            preparedStatement.executeUpdate();
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String username = resultSet.getString("benutzername");
-                    String name = resultSet.getString("name");
-                    String lastName = resultSet.getString("nachname");
-                    String adresse = resultSet.getString("strasse");
-                    int plz = resultSet.getInt("plz");
-                    String ort = resultSet.getString("ort");
-                    String platform = resultSet.getString("gekauft_ueber");
-
-                    Customer customer = new Customer(username, name, lastName, adresse, plz, ort, platform);
-                    listOfCustomers.add(customer);
-                }
-                return listOfCustomers;
-            } catch (SQLException e) {
-                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-            }
         } catch (SQLException e) {
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
-        return listOfCustomers;
     }
 
 

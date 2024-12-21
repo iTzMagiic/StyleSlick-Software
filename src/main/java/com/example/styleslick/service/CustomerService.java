@@ -62,7 +62,7 @@ public class CustomerService {
         //if (database.checkForCustomer(filledFields)) {return false;}
 
         //TODO:: Methode in der Datenbank schreiben, für eine Dynamische customerAddToDatabase()
-        //database.addCustomer(filledFields);
+        database.addCustomerNEW(filledFields);
         RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
 
         return true;
