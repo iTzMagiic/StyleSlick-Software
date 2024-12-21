@@ -23,6 +23,9 @@ public class Database {
 
 
 
+
+
+
     // Testet die Verbindung zur Datenbank
     public boolean isConnected() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {

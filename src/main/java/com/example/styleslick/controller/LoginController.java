@@ -1,5 +1,10 @@
 package com.example.styleslick.controller;
 
+import com.example.styleslick.model.Database;
+import com.example.styleslick.service.ArticleService;
+import com.example.styleslick.service.CustomerService;
+import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.control.TextField;
@@ -18,23 +23,23 @@ public class LoginController {
 
     @FXML
     private void executeLogin() {
-//        String username = field_username.getText();
-//        String password = field_password.getText();
-//        Database database = new Database(username, password);
-//
-//        if(!database.testConnection()) {
-//            Rules.showErrorAlert("Benutzername oder Passwort falsch.");
-//            return;
-//        }
-//
-//        UserSession session = UserSession.getInstance();
-//        session.setDatabase(database);
-//
-//        CustomerService customerService = CustomerService.getInstance();
-//        customerService.setDatabase(database);
-//
-//        ArticleService articleService = ArticleService.getInstance();
-//        articleService.setDatabase(database);
+        String username = field_username.getText();
+        String password = field_password.getText();
+        Database database = new Database(username, password);
+
+        if(!database.isConnected()) {
+            RulesService.showErrorAlert("Benutzername oder Passwort falsch.");
+            return;
+        }
+
+        UserSession session = UserSession.getInstance();
+        session.setDatabase(database);
+
+        CustomerService customerService = CustomerService.getInstance();
+        customerService.setDatabase(database);
+
+        ArticleService articleService = ArticleService.getInstance();
+        articleService.setDatabase(database);
 
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
