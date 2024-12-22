@@ -43,8 +43,6 @@ public class AddCustomerController {
 
     @FXML
     private void executeAddCustomer() {
-        //TODO:: Die Methode muss ausgearbeitet werden!! und wenn Fertig benutzen
-
         Map<String, String> fields = new HashMap<>();
 
         fields.put("benutzername", field_username.getText());

@@ -23,23 +23,23 @@ public class LoginController {
 
     @FXML
     private void executeLogin() {
-        String username = field_username.getText();
-        String password = field_password.getText();
-        Database database = new Database(username, password);
-
-        if(!database.isConnected()) {
-            RulesService.showErrorAlert("Benutzername oder Passwort falsch.");
-            return;
-        }
-
-        UserSession session = UserSession.getInstance();
-        session.setDatabase(database);
-
-        CustomerService customerService = CustomerService.getInstance();
-        customerService.setDatabase(database);
-
-        ArticleService articleService = ArticleService.getInstance();
-        articleService.setDatabase(database);
+//        String username = field_username.getText();
+//        String password = field_password.getText();
+//        Database database = new Database(username, password);
+//
+//        if(!database.isConnected()) {
+//            RulesService.showErrorAlert("Benutzername oder Passwort falsch.");
+//            return;
+//        }
+//
+//        UserSession session = UserSession.getInstance();
+//        session.setDatabase(database);
+//
+//        CustomerService customerService = CustomerService.getInstance();
+//        customerService.setDatabase(database);
+//
+//        ArticleService articleService = ArticleService.getInstance();
+//        articleService.setDatabase(database);
 
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
