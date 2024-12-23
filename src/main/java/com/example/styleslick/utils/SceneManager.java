@@ -35,7 +35,7 @@ public class SceneManager {
             stage.setScene(scene);
 
             stage.setTitle(title);
-            stage.resizableProperty().setValue(false);
+            stage.resizableProperty().setValue(true);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();
