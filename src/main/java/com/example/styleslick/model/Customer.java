@@ -9,7 +9,7 @@ public class Customer {
     final String ort;
     final String platform;
 
-    public Customer(String username, String name, String lastName, String street, int plz, String ort,String platform) {
+    public Customer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;

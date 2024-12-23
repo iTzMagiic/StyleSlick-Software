@@ -14,13 +14,11 @@ public class Database {
     private final String PASSWORD;
 
 
-
     public Database(String USER, String PASSWORD) {
         this.USER = USER;
         this.PASSWORD = PASSWORD;
 
     }
-
 
 
     // Testet die Verbindung zur Datenbank
@@ -90,7 +88,7 @@ public class Database {
         String sql = "SELECT * FROM customer WHERE benutzername = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setString(1, username);
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
@@ -113,7 +111,7 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()){
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String username = resultSet.getString("benutzername");
                     String name = resultSet.getString("name");
@@ -173,7 +171,7 @@ public class Database {
                 }
             }
 
-            try(ResultSet resultSet = preparedStatement.executeQuery()) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String username = resultSet.getString("benutzername");
                     String name = resultSet.getString("name");
@@ -233,8 +231,27 @@ public class Database {
         return listOfCustomers;
     }
 
+    public boolean deleteCustomer(Map<String, String> filledFields) {
+        String sql = "DELETE FROM customer WHERE ";
+        StringBuilder whereClause = new StringBuilder();
 
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(" AND ");
+            }
+            whereClause.append(entry.getKey()).append(" = \"").append(entry.getValue()).append("\"");
+        }
+        sql += whereClause.toString();
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Löschen des Kunden. " + e.getMessage());
+            return false;
+        }
+    }
 
 
     public int getCustomerID(String username, String password) {

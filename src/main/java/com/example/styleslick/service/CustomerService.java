@@ -13,9 +13,8 @@ public class CustomerService {
     private Database database;
 
 
-
-    private CustomerService() {}
-
+    private CustomerService() {
+    }
 
 
     public static synchronized CustomerService getInstance() {
@@ -36,7 +35,9 @@ public class CustomerService {
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
-            if (entry.getValue() == null || entry.getValue().isEmpty()) {continue;}
+            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+                continue;
+            }
 
             filledFields.put(entry.getKey(), entry.getValue());
         }
@@ -51,10 +52,9 @@ public class CustomerService {
         }
 
         if (database.isUsernameExist(filledFields.get("benutzername"))) {
-            //TODO:: Noch eine Abfrage erstellen mit der Klasse RulesService ob man wirklich ein neuen Kunden erstellen
-            //  möchte mit den selben Benutzername
-            RulesService.showErrorAlert("Benutzername existiert bereits.");
-            return false;
+            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("benutzername") + "'")) {
+                return false;
+            }
         }
 
         database.addCustomer(filledFields);
@@ -93,9 +93,45 @@ public class CustomerService {
         return listOfCustomers;
     }
 
+
+    public boolean deleteCustomer(Map<String, String> fields) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() == null || entry.getValue().isEmpty()) {
+                continue;
+            }
+            filledFields.put(entry.getKey(), entry.getValue());
+        }
+
+        // Prüft, ob die pflicht Felder nicht leer sind.
+        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
+            return false;
+        } else if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
+            return false;
+        }
+
+        if (!database.isUsernameExist(filledFields.get("benutzername"))) {
+            RulesService.showErrorAlert("Benutzername existiert nicht.");
+            return false;
+        }
+
+        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich '" + filledFields.get("benutzername") + "' Löschen??")) {
+            return false;
+        }
+
+        if (!database.deleteCustomer(filledFields)) {
+            RulesService.showErrorAlert("Bitte überprüfen Sie ihre Eingaben. Kunde konnte nicht gelöscht werden.");
+            return false;
+        }
+
+        return true;
+    }
+
     // Liste aller Customers wiedergeben
     public List<Customer> getCustomers() {
-
         return database.getAllCustomers();
     }
 

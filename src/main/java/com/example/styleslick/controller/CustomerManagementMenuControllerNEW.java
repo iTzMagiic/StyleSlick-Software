@@ -66,7 +66,25 @@ public class CustomerManagementMenuControllerNEW implements Initializable {
 
     @FXML
     private void executeDeleteCustomer() {
+        Map<String, String> fields = new HashMap<>();
 
+        fields.put("benutzername", field_username.getText());
+        fields.put("name", field_name.getText());
+        fields.put("nachname", field_lastName.getText());
+        fields.put("strasse", field_street.getText());
+        fields.put("plz", field_plz.getText());
+        fields.put("ort", field_ort.getText());
+        fields.put("gekauft_ueber", field_platform.getText());
+
+        if (customerService.deleteCustomer(fields)) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_ort.clear();
+            field_platform.clear();
+            field_plz.clear();
+        }
     }
 
     @FXML
