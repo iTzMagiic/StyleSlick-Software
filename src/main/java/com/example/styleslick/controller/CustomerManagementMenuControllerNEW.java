@@ -2,7 +2,6 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.CustomerService;
-import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -62,6 +61,24 @@ public class CustomerManagementMenuControllerNEW implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
+    }
+
+
+    @FXML
+    private void executeDeleteCustomer() {
+
+    }
+
+    @FXML
+    private void onKeyPressedDeleteCustomer(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteCustomer();
+        }
+    }
+
+    @FXML
+    private void onMouseCLickedDeleteCustomer(MouseEvent event) {
+        executeDeleteCustomer();
     }
 
 

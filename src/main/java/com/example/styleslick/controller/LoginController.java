@@ -21,7 +21,8 @@ public class LoginController {
 
 
     public void initialize() {
-
+        field_username.setText("styleslick");
+        field_password.setText("rVHjMtqL{u%LZme=MQRHu~Q");
     }
 
     @FXML

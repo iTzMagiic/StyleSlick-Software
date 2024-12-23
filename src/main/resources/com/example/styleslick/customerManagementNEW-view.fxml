@@ -8,6 +8,7 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CustomerManagementMenuControllerNEW">
    <center>
@@ -40,12 +41,29 @@
                   <TextField fx:id="field_platform" promptText="Gekauft über*" />
                </children>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" text="Alle Kunden anzeigen" />
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" text="Kunden Speichern" />
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" text="Kunden Suchen" />
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" text="Abbrechen" />
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" text="Alle Kunden anzeigen">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" text="Kunde Speichern">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedDeleteCustomer" onMouseClicked="#onMouseCLickedDeleteCustomer" text="Kunde Löschen" textFill="RED">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" text="Kunde Suchen">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" text="Abbrechen">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font></Button>
                </children>
             </HBox>
          </children>
