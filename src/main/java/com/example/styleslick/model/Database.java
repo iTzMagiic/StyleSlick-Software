@@ -109,34 +109,27 @@ public class Database {
     public List<Customer> getAllCustomers() {
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer";
-        ResultSet resultSet = null;
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            resultSet = preparedStatement.executeQuery();
+            try (ResultSet resultSet = preparedStatement.executeQuery()){
+                while (resultSet.next()) {
+                    String username = resultSet.getString("benutzername");
+                    String name = resultSet.getString("name");
+                    String lastName = resultSet.getString("nachname");
+                    String street = resultSet.getString("strasse");
+                    int plz = resultSet.getInt("plz");
+                    String ort = resultSet.getString("ort");
+                    String platform = resultSet.getString("gekauft_ueber");
 
-            while (resultSet.next()) {
-                String username = resultSet.getString("benutzername");
-                String name = resultSet.getString("name");
-                String lastName = resultSet.getString("nachname");
-                String street = resultSet.getString("strasse");
-                int plz = resultSet.getInt("plz");
-                String ort = resultSet.getString("ort");
-                String platform = resultSet.getString("gekauft_ueber");
-
-                Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
-                listOfCustomers.add(customer);
-            }
-        } catch (SQLException e) {
-            System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    System.err.println("Fehler beim Schließen des Resultsets: " + e.getMessage());
+                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
+                    listOfCustomers.add(customer);
                 }
             }
+
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
         }
         return listOfCustomers;
     }

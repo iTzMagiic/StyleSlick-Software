@@ -18,9 +18,10 @@ public class CustomerService {
 
 
 
-    public static CustomerService getInstance() {
+    public static synchronized CustomerService getInstance() {
         if (customerService == null) {
             customerService = new CustomerService();
+
         }
         return customerService;
     }
@@ -94,6 +95,7 @@ public class CustomerService {
 
     // Liste aller Customers wiedergeben
     public List<Customer> getCustomers() {
+
         return database.getAllCustomers();
     }
 

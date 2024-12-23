@@ -9,8 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="800.0" prefHeight="800.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CustomerManagementMenuControllerNEW">
    <center>
       <TableView fx:id="tableView_customer" prefHeight="545.0" prefWidth="1288.0" BorderPane.alignment="CENTER">
         <columns>
@@ -32,21 +31,30 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField promptText="Benutzername*" />
-                  <TextField promptText="Name" />
-                  <TextField promptText="Nachname" />
-                  <TextField promptText="Straße" />
-                  <TextField promptText="Postleitzahl" />
-                  <TextField promptText="Ort" />
-                  <TextField promptText="Gekauft über*" />
+                  <TextField fx:id="field_username" promptText="Benutzername*" />
+                  <TextField fx:id="field_name" promptText="Name" />
+                  <TextField fx:id="field_lastName" promptText="Nachname" />
+                  <TextField fx:id="field_street" promptText="Straße" />
+                  <TextField fx:id="field_plz" promptText="Postleitzahl" />
+                  <TextField fx:id="field_ort" promptText="Ort" />
+                  <TextField fx:id="field_platform" promptText="Gekauft über*" />
                </children>
             </HBox>
-            <Button mnemonicParsing="false" text="Kunden Speichern" />
-            <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" text="Abbrechen" />
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="10.0">
+               <children>
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" text="Alle Kunden anzeigen" />
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" text="Kunden Speichern" />
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" text="Kunden Suchen" />
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" text="Abbrechen" />
+               </children>
+            </HBox>
          </children>
          <opaqueInsets>
             <Insets />
          </opaqueInsets>
+         <padding>
+            <Insets bottom="10.0" />
+         </padding>
       </VBox>
    </top>
 </BorderPane>
