@@ -13,8 +13,8 @@ module com.example.styleslick {
     exports com.example.styleslick;
     exports com.example.styleslick.controller;
     opens com.example.styleslick.controller to javafx.fxml;
-    exports com.example.styleslick.controller.customerManagement;
-    opens com.example.styleslick.controller.customerManagement to javafx.fxml;
+//    exports com.example.styleslick.controller.customerManagement;
+//    opens com.example.styleslick.controller.customerManagement to javafx.fxml;
     opens com.example.styleslick.model to javafx.base;
     opens com.example.styleslick.service to javafx.base;
 }

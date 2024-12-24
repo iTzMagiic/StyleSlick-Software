@@ -46,9 +46,19 @@ public class CustomerService {
         if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
-        } else if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
+        }
+        if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
+        }
+        if (filledFields.containsKey("plz")) {
+            try {
+                Integer.parseInt(filledFields.get("plz")); // Versuche nur, den Wert zu parsen
+                return true; // Es ist ein Integer
+            } catch (NumberFormatException e) {
+                RulesService.showErrorAlert("Postleitzahl darf nur aus Zahlen bestehen.");
+                return false; // Kein gültiger Integer
+            }
         }
 
         if (database.isUsernameExist(filledFields.get("benutzername"))) {
@@ -130,6 +140,7 @@ public class CustomerService {
         return true;
     }
 
+    
     // Liste aller Customers wiedergeben
     public List<Customer> getCustomers() {
         return database.getAllCustomers();

@@ -17,7 +17,7 @@ public class LoggedInMenuController {
 
     @FXML
     private void executeCustomerManagement() {
-        SceneManager.switchScene("/com/example/styleslick/customerManagementNEW-view.fxml", "Kundenverwaltung");
+        SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
         CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
 
