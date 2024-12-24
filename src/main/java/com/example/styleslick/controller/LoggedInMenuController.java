@@ -37,7 +37,7 @@ public class LoggedInMenuController {
 
     @FXML
     private void executeArticleManagement() {
-        SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Kundenverwaltung");
+        SceneManager.switchScene("/com/example/styleslick/articleManagementNEW-view.fxml", "Kundenverwaltung");
         ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
 
