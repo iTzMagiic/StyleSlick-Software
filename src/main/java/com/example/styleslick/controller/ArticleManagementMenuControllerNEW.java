@@ -1,6 +1,7 @@
 package com.example.styleslick.controller;
 
 import javafx.fxml.FXML;
+import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
@@ -10,46 +11,61 @@ import javafx.scene.input.MouseEvent;
 public class ArticleManagementMenuControllerNEW {
 
     @FXML
-    private TableColumn<?, ?> column_lastName;
+    private ChoiceBox<?> choice_category_id;
+
+    @FXML
+    private TableColumn<?, ?> column_article_id;
+
+    @FXML
+    private TableColumn<?, ?> column_category_id;
+
+    @FXML
+    private TableColumn<?, ?> column_farbe;
+
+    @FXML
+    private TableColumn<?, ?> column_gekauft_bei;
+
+    @FXML
+    private TableColumn<?, ?> column_hersteller;
+
+    @FXML
+    private TableColumn<?, ?> column_kaufdatum;
+
+    @FXML
+    private TableColumn<?, ?> column_kaufpreis;
+
+    @FXML
+    private TableColumn<?, ?> column_menge;
 
     @FXML
     private TableColumn<?, ?> column_name;
 
     @FXML
-    private TableColumn<?, ?> column_ort;
+    private TableColumn<?, ?> column_verarbeitung;
 
     @FXML
-    private TableColumn<?, ?> column_platform;
+    private TextField field_color;
 
     @FXML
-    private TableColumn<?, ?> column_plz;
+    private TextField field_gekauft_bei;
 
     @FXML
-    private TableColumn<?, ?> column_street;
+    private TextField field_hersteller;
 
     @FXML
-    private TableColumn<?, ?> column_username;
+    private TextField field_kaufdatum;
 
     @FXML
-    private TextField field_lastName;
+    private TextField field_kaufpreis;
+
+    @FXML
+    private TextField field_menge;
 
     @FXML
     private TextField field_name;
 
     @FXML
-    private TextField field_ort;
-
-    @FXML
-    private TextField field_platform;
-
-    @FXML
-    private TextField field_plz;
-
-    @FXML
-    private TextField field_street;
-
-    @FXML
-    private TextField field_username;
+    private TextField field_verarbeitung;
 
     @FXML
     private TableView<?> tableView_customer;
