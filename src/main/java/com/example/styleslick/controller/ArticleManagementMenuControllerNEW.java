@@ -71,52 +71,52 @@ public class ArticleManagementMenuControllerNEW {
     private TableView<?> tableView_customer;
 
     @FXML
-    void onKeyPressedDeleteCustomer(KeyEvent event) {
+    void onKeyPressedDeleteArticle(KeyEvent event) {
 
     }
 
     @FXML
-    void onKeyPressedEnterAddCustomer(KeyEvent event) {
+    void onKeyPressedEnterAddArticle(KeyEvent event) {
 
     }
 
     @FXML
-    void onKeyPressedEnterExitCustomerManagement(KeyEvent event) {
+    void onKeyPressedEnterExitArticleManagement(KeyEvent event) {
 
     }
 
     @FXML
-    void onKeyPressedEnterSearchCustomer(KeyEvent event) {
+    void onKeyPressedEnterSearchArticle(KeyEvent event) {
 
     }
 
     @FXML
-    void onKeyPressedEnterShowAllCustomers(KeyEvent event) {
+    void onKeyPressedEnterShowAllArticles(KeyEvent event) {
 
     }
 
     @FXML
-    void onMouseCLickedDeleteCustomer(MouseEvent event) {
+    void onMouseCLickedDeleteArticle(MouseEvent event) {
 
     }
 
     @FXML
-    void onMouseClickedAddCustomer(MouseEvent event) {
+    void onMouseClickedAddArticle(MouseEvent event) {
 
     }
 
     @FXML
-    void onMouseClickedExitCustomerManagement(MouseEvent event) {
+    void onMouseClickedExitArticleManagement(MouseEvent event) {
 
     }
 
     @FXML
-    void onMouseClickedSearchCustomer(MouseEvent event) {
+    void onMouseClickedSearchArticle(MouseEvent event) {
 
     }
 
     @FXML
-    void onMouseClickedShowAllCustomers(MouseEvent event) {
+    void onMouseClickedShowAllArticles(MouseEvent event) {
 
     }
 
