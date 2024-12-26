@@ -12,8 +12,8 @@ public class ArticleService {
     private Database database;
 
 
-
-    private ArticleService() {}
+    private ArticleService() {
+    }
 
     public static synchronized ArticleService getInstance() {
         if (articleService == null) {
@@ -25,7 +25,6 @@ public class ArticleService {
     public void setDatabase(Database database) {
         this.database = database;
     }
-
 
 
     public List<Article> getAllArticles() {

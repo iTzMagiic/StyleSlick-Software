@@ -2,12 +2,12 @@ package com.example.styleslick.model;
 
 public class Customer {
     private final String username;
-    final String name;
-    final String lastName;
-    final String street;
-    final int plz;
-    final String ort;
-    final String platform;
+    private final String name;
+    private final String lastName;
+    private final String street;
+    private final int plz;
+    private final String ort;
+    private final String platform;
 
     public Customer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
         this.username = username;

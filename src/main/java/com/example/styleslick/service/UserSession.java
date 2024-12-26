@@ -14,13 +14,11 @@ public class UserSession {
     private Database database;
 
 
-
     private UserSession() {}
 
 
-
     public static UserSession getInstance() {
-        if(userSession == null) {
+        if (userSession == null) {
             userSession = new UserSession();
         }
         return userSession;

@@ -39,12 +39,6 @@ public class LoginController {
         UserSession session = UserSession.getInstance();
         session.setDatabase(database);
 
-        CustomerService customerService = CustomerService.getInstance();
-        customerService.setDatabase(database);
-
-        ArticleService articleService = ArticleService.getInstance();
-        articleService.setDatabase(database);
-
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
 
