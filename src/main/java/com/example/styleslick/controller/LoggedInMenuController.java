@@ -20,7 +20,6 @@ public class LoggedInMenuController {
     private void executeArticleManagement() {
         SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
         ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
 
 

@@ -74,6 +74,7 @@ public class ArticleManagementMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         articleService = ArticleService.getInstance();
+        //TODO:: Es muss noch was mit Category gemacht werden, damit man statt Zahlen die wirkliche Kategorie sieht
         categoryService = CategoryService.getInstance();
     }
 
@@ -102,6 +103,9 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText() );
+        //TODO:: evtl. hier eine Prüfung für "kaufdatum" ob es im richtigen Format angegeben wurde
+        //  Falls möglich in Scene Builder schon abfangen das man "2001-12-01" angeben kann das er nach den ersten
+        //  4 Zahlen ein "-" macht und dann nach den 2 Zahlen "-" und dann stopt
         fields.put("kaufdatum", field_kaufdatum.getText());
         fields.put("hersteller", field_hersteller.getText());
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
