@@ -268,20 +268,20 @@ public class Database {
                     int category_id = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String farbe = resultSet.getString("farbe");
-                    double price = resultSet.getDouble("kaufpreis");
+                    double preis = resultSet.getDouble("kaufpreis");
                     LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
                     String hersteller = resultSet.getString("hersteller");
                     String gekauft_bei = resultSet.getString("gekauft_ueber");
-                    String verarbeitung = resultSet.getString("");
+                    String verarbeitung = resultSet.getString("verarbeitung");
                     int menge = resultSet.getInt("menge");
                     int bestand = resultSet.getInt("bestand");
+                    listOfArticle.add(new Article(article_id, category_id, name, farbe, preis, kaufdatum, hersteller, gekauft_bei, verarbeitung, menge, bestand));
                 }
+                return listOfArticle;
             }
         } catch (SQLException e) {
             System.out.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
         }
-
-
         return listOfArticle;
     }
 

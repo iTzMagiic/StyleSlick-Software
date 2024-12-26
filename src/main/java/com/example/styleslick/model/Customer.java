@@ -1,7 +1,7 @@
 package com.example.styleslick.model;
 
 public class Customer {
-    final String username;
+    private final String username;
     final String name;
     final String lastName;
     final String street;

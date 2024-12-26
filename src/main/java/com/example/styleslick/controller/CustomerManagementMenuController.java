@@ -21,8 +21,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CustomerManagementMenuController implements Initializable {
-    CustomerService customerService;
-    ObservableList<Customer> observableList;
+    private CustomerService customerService;
 
     @FXML
     private TableView<Customer> tableView_customer;
@@ -110,7 +109,7 @@ public class CustomerManagementMenuController implements Initializable {
         column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
         column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
 
-        observableList = FXCollections.observableArrayList(customerService.getCustomers());
+        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
     }
 

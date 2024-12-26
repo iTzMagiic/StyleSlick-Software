@@ -8,7 +8,7 @@ public class Article {
     private int category_id;
     private String name;
     private String farbe;
-    private double preis;
+    private double kaufpreis;
     private LocalDate kaufdatum;
     private String hersteller;
     private String gekauft_ueber;
@@ -16,12 +16,12 @@ public class Article {
     private int menge;
     private int bestand;
 
-    public Article(int article_id, int category_id, String name, String farbe, double preis, LocalDate kaufdatum, String hersteller, String gekauft_ueber, String verarbeitung, int menge, int bestand) {
+    public Article(int article_id, int category_id, String name, String farbe, double kaufpreis, LocalDate kaufdatum, String hersteller, String gekauft_ueber, String verarbeitung, int menge, int bestand) {
         this.article_id = article_id;
         this.category_id = category_id;
         this.name = name;
         this.farbe = farbe;
-        this.preis = preis;
+        this.kaufpreis = kaufpreis;
         this.kaufdatum = kaufdatum;
         this.hersteller = hersteller;
         this.gekauft_ueber = gekauft_ueber;
@@ -54,8 +54,8 @@ public class Article {
         this.farbe = farbe;
     }
 
-    public void setPreis(double preis) {
-        this.preis = preis;
+    public void setKaufpreis(double kaufpreis) {
+        this.kaufpreis = kaufpreis;
     }
 
     public void setKaufdatum(LocalDate kaufdatum) {
@@ -94,8 +94,8 @@ public class Article {
         return farbe;
     }
 
-    public double getPreis() {
-        return preis;
+    public double getKaufpreis() {
+        return kaufpreis;
     }
 
     public LocalDate getKaufdatum() {

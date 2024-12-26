@@ -1,7 +1,9 @@
 package com.example.styleslick.service;
 
+import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
 
+import java.util.List;
 import java.util.Map;
 
 public class ArticleService {
@@ -13,9 +15,7 @@ public class ArticleService {
 
     private ArticleService() {}
 
-
-
-    public static ArticleService getInstance() {
+    public static synchronized ArticleService getInstance() {
         if (articleService == null) {
             articleService = new ArticleService();
         }
@@ -26,9 +26,17 @@ public class ArticleService {
         this.database = database;
     }
 
+
+
+    public List<Article> getAllArticles() {
+        return database.getAllArticles();
+    }
+
+
     public void addArticle(Map<String, String> fields) {
         //TODO:: addArticle Methode erstellen
     }
+
 
     public void clearSession() {
         articleService = null;
