@@ -276,7 +276,6 @@ public class Database {
     }
 
 
-
     public List<Article> getAllArticles() {
         List<Article> listOfArticle = new ArrayList<>();
         String sql = "SELECT * FROM article";

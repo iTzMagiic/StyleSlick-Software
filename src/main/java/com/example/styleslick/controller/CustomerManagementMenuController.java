@@ -21,6 +21,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 public class CustomerManagementMenuController implements Initializable {
+
     private CustomerService customerService;
 
     @FXML
@@ -56,50 +57,12 @@ public class CustomerManagementMenuController implements Initializable {
 
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
     }
 
 
-    @FXML
-    private void executeDeleteCustomer() {
-        Map<String, String> fields = new HashMap<>();
-
-        fields.put("benutzername", field_username.getText());
-        fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
-
-        if (customerService.deleteCustomer(fields)) {
-            field_username.clear();
-            field_name.clear();
-            field_lastName.clear();
-            field_street.clear();
-            field_ort.clear();
-            field_platform.clear();
-            field_plz.clear();
-        }
-    }
-
-    @FXML
-    private void onKeyPressedDeleteCustomer(KeyEvent event) {
-        if (event.getCode().toString().equals("ENTER")) {
-            executeDeleteCustomer();
-        }
-    }
-
-    @FXML
-    private void onMouseCLickedDeleteCustomer(MouseEvent event) {
-        executeDeleteCustomer();
-    }
-
-
-    @FXML
     private void executeShowAllCustomers() {
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -113,21 +76,30 @@ public class CustomerManagementMenuController implements Initializable {
         tableView_customer.setItems(observableList);
     }
 
-    @FXML
-    private void onKeyPressedEnterShowAllCustomers(KeyEvent event) {
-        if (event.getCode().toString().equals("ENTER")) {
-            executeShowAllCustomers();
+
+    private void executeAddCustomer() {
+        Map<String, String> fields = new HashMap<>();
+
+        fields.put("benutzername", field_username.getText());
+        fields.put("name", field_name.getText());
+        fields.put("nachname", field_lastName.getText());
+        fields.put("strasse", field_street.getText());
+        fields.put("plz", field_plz.getText());
+        fields.put("ort", field_ort.getText());
+        fields.put("gekauft_ueber", field_platform.getText());
+
+        if (customerService.addCustomer(fields)) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_ort.clear();
+            field_platform.clear();
+            field_plz.clear();
         }
     }
 
-    @FXML
-    private void onMouseClickedShowAllCustomers(MouseEvent event) {
-        executeShowAllCustomers();
-    }
 
-
-
-    @FXML
     private void executeSearchCustomer() {
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -160,6 +132,64 @@ public class CustomerManagementMenuController implements Initializable {
         tableView_customer.setItems(observableList);
     }
 
+
+    private void executeDeleteCustomer() {
+        Map<String, String> fields = new HashMap<>();
+
+        fields.put("benutzername", field_username.getText());
+        fields.put("name", field_name.getText());
+        fields.put("nachname", field_lastName.getText());
+        fields.put("strasse", field_street.getText());
+        fields.put("plz", field_plz.getText());
+        fields.put("ort", field_ort.getText());
+        fields.put("gekauft_ueber", field_platform.getText());
+
+        if (customerService.deleteCustomer(fields)) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_ort.clear();
+            field_platform.clear();
+            field_plz.clear();
+        }
+    }
+
+
+    private void executeExitCustomerManagement() {
+        CustomerService.getInstance().clearSession();
+        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+    }
+
+
+    @FXML
+    private void onKeyPressedDeleteCustomer(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteCustomer();
+        }
+    }
+
+
+    @FXML
+    private void onMouseCLickedDeleteCustomer(MouseEvent event) {
+        executeDeleteCustomer();
+    }
+
+
+    @FXML
+    private void onKeyPressedEnterShowAllCustomers(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAllCustomers();
+        }
+    }
+
+
+    @FXML
+    private void onMouseClickedShowAllCustomers(MouseEvent event) {
+        executeShowAllCustomers();
+    }
+
+
     @FXML
     private void onKeyPressedEnterSearchCustomer(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
@@ -172,30 +202,6 @@ public class CustomerManagementMenuController implements Initializable {
         executeSearchCustomer();
     }
 
-
-
-    @FXML
-    private void executeAddCustomer() {
-        Map<String, String> fields = new HashMap<>();
-
-        fields.put("benutzername", field_username.getText());
-        fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
-
-        if (customerService.addCustomer(fields)) {
-            field_username.clear();
-            field_name.clear();
-            field_lastName.clear();
-            field_street.clear();
-            field_ort.clear();
-            field_platform.clear();
-            field_plz.clear();
-        }
-    }
 
     @FXML
     private void onKeyPressedEnterAddCustomer(KeyEvent event) {
@@ -211,22 +217,14 @@ public class CustomerManagementMenuController implements Initializable {
 
 
     @FXML
-    private void executeExitCustomerManagement(){
-        CustomerService.getInstance().clearSession();
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-    }
-
-    @FXML
-    private void onKeyPressedEnterExitCustomerManagement(KeyEvent event){
-        if(event.getCode().toString().equals("ENTER")){
+    private void onKeyPressedEnterExitCustomerManagement(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
             executeExitCustomerManagement();
         }
     }
 
     @FXML
-    private void onMouseClickedExitCustomerManagement(MouseEvent event){
+    private void onMouseClickedExitCustomerManagement(MouseEvent event) {
         executeExitCustomerManagement();
     }
-
-
 }

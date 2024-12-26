@@ -25,7 +25,6 @@ public class ArticleManagementMenuController implements Initializable {
     private ArticleService articleService;
     private CategoryService categoryService;
 
-
     @FXML
     private ChoiceBox<?> choice_category_id;
     @FXML
@@ -97,6 +96,11 @@ public class ArticleManagementMenuController implements Initializable {
     }
 
 
+    private void executeAddArticle() {
+
+    }
+
+
     private void executeExitArticleManagement() {
         articleService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
@@ -125,7 +129,9 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onKeyPressedEnterAddArticle(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeAddArticle();
+        }
     }
 
 
@@ -143,7 +149,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onMouseClickedAddArticle(MouseEvent event) {
-
+        executeAddArticle();
     }
 
 
