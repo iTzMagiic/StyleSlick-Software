@@ -1,29 +1,41 @@
 package com.example.styleslick.model;
 
+import java.time.LocalDate;
+
 public class Article {
 
     private int article_id;
     private int category_id;
     private String name;
     private String farbe;
-    private double price;
-    private String kaufdatum;
+    private double preis;
+    private LocalDate kaufdatum;
     private String hersteller;
-    private String gekauft_bei;
+    private String gekauft_ueber;
     private String verarbeitung;
     private int menge;
+    private int bestand;
 
-    public Article(int article_id, int category_id, String name, String farbe, double price, String kaufdatum, String hersteller, String gekauft_bei, String verarbeitung, int menge) {
+    public Article(int article_id, int category_id, String name, String farbe, double preis, LocalDate kaufdatum, String hersteller, String gekauft_ueber, String verarbeitung, int menge, int bestand) {
         this.article_id = article_id;
         this.category_id = category_id;
         this.name = name;
         this.farbe = farbe;
-        this.price = price;
+        this.preis = preis;
         this.kaufdatum = kaufdatum;
         this.hersteller = hersteller;
-        this.gekauft_bei = gekauft_bei;
+        this.gekauft_ueber = gekauft_ueber;
         this.verarbeitung = verarbeitung;
         this.menge = menge;
+        this.bestand = bestand;
+    }
+
+    public void setBestand(int bestand) {
+        this.bestand = bestand;
+    }
+
+    public int getBestand() {
+        return bestand;
     }
 
     public void setArticle_id(int article_id) {
@@ -42,11 +54,11 @@ public class Article {
         this.farbe = farbe;
     }
 
-    public void setPrice(double price) {
-        this.price = price;
+    public void setPreis(double preis) {
+        this.preis = preis;
     }
 
-    public void setKaufdatum(String kaufdatum) {
+    public void setKaufdatum(LocalDate kaufdatum) {
         this.kaufdatum = kaufdatum;
     }
 
@@ -54,8 +66,8 @@ public class Article {
         this.hersteller = hersteller;
     }
 
-    public void setGekauft_bei(String gekauft_bei) {
-        this.gekauft_bei = gekauft_bei;
+    public void setGekauft_ueber(String gekauft_ueber) {
+        this.gekauft_ueber = gekauft_ueber;
     }
 
     public void setVerarbeitung(String verarbeitung) {
@@ -82,11 +94,11 @@ public class Article {
         return farbe;
     }
 
-    public double getPrice() {
-        return price;
+    public double getPreis() {
+        return preis;
     }
 
-    public String getKaufdatum() {
+    public LocalDate getKaufdatum() {
         return kaufdatum;
     }
 
@@ -94,8 +106,8 @@ public class Article {
         return hersteller;
     }
 
-    public String getGekauft_bei() {
-        return gekauft_bei;
+    public String getGekauft_ueber() {
+        return gekauft_ueber;
     }
 
     public String getVerarbeitung() {

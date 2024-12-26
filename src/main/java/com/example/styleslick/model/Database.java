@@ -3,6 +3,7 @@ package com.example.styleslick.model;
 import com.example.styleslick.service.RulesService;
 
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -21,7 +22,6 @@ public class Database {
     }
 
 
-    // Testet die Verbindung zur Datenbank
     public boolean isConnected() {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             if (connection != null) {
@@ -231,6 +231,7 @@ public class Database {
         return listOfCustomers;
     }
 
+
     public boolean deleteCustomer(Map<String, String> filledFields) {
         String sql = "DELETE FROM customer WHERE ";
         StringBuilder whereClause = new StringBuilder();
@@ -253,6 +254,36 @@ public class Database {
         }
     }
 
+
+
+    public List<Article> getAllArticles() {
+        List<Article> listOfArticle = new ArrayList<>();
+        String sql = "SELECT * FROM article";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int article_id = resultSet.getInt("article_id");
+                    int category_id = resultSet.getInt("category_id");
+                    String name = resultSet.getString("name");
+                    String farbe = resultSet.getString("farbe");
+                    double price = resultSet.getDouble("kaufpreis");
+                    LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
+                    String hersteller = resultSet.getString("hersteller");
+                    String gekauft_bei = resultSet.getString("gekauft_ueber");
+                    String verarbeitung = resultSet.getString("");
+                    int menge = resultSet.getInt("menge");
+                    int bestand = resultSet.getInt("bestand");
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
+        }
+
+
+        return listOfArticle;
+    }
 
     public int getCustomerID(String username, String password) {
         String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";
