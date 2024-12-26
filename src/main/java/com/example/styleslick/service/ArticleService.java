@@ -2,7 +2,6 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
-
 import java.util.List;
 import java.util.Map;
 
@@ -10,6 +9,7 @@ public class ArticleService {
 
     private static ArticleService articleService;
     private Database database;
+
 
 
     private ArticleService() {
@@ -21,6 +21,7 @@ public class ArticleService {
         }
         return articleService;
     }
+
 
     public void setDatabase(Database database) {
         this.database = database;

@@ -1,8 +1,6 @@
 package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Database;
-import com.example.styleslick.service.ArticleService;
-import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.service.RulesService;
 import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
@@ -19,7 +17,6 @@ public class LoginController {
     private TextField field_password;
 
 
-
     public void initialize() {
         field_username.setText("styleslick");
         field_password.setText("rVHjMtqL{u%LZme=MQRHu~Q");
@@ -31,7 +28,7 @@ public class LoginController {
         String password = field_password.getText();
         Database database = new Database(username, password);
 
-        if(!database.isConnected()) {
+        if (!database.isConnected()) {
             RulesService.showErrorAlert("Benutzername oder Passwort falsch.");
             return;
         }
@@ -42,37 +39,37 @@ public class LoginController {
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
 
-    @FXML
-    private void onMouseClickedLogin(MouseEvent event) {
-        executeLogin();
-    }
-
-    @FXML
-    private void onKeyPressedEnterLogin(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")){
-            executeLogin();
-        }
-    }
-
-
 
     @FXML
     private void executeExit() {
         System.exit(0);
     }
 
+
+    @FXML
+    private void onMouseClickedLogin(MouseEvent event) {
+        executeLogin();
+    }
+
+
+    @FXML
+    private void onKeyPressedEnterLogin(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeLogin();
+        }
+    }
+
+
     @FXML
     private void onMouseClickedExit(MouseEvent event) {
         executeExit();
     }
 
+
     @FXML
     private void onKeyPressedEnterExit(KeyEvent event) {
-        if(event.getCode().toString().equals("ENTER")) {
+        if (event.getCode().toString().equals("ENTER")) {
             executeExit();
         }
     }
-
-
-
 }

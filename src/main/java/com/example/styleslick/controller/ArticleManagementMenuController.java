@@ -2,6 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.service.ArticleService;
+import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +23,7 @@ import java.util.ResourceBundle;
 public class ArticleManagementMenuController implements Initializable {
 
     private ArticleService articleService;
+    private CategoryService categoryService;
 
 
     @FXML
@@ -31,7 +33,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, Integer> column_article_id;
     @FXML
-    private TableColumn<Article, Integer> column_category_id;
+    private TableColumn<Article, String> column_category_id;
     @FXML
     private TableColumn<Article, String> column_name;
     @FXML
@@ -73,6 +75,7 @@ public class ArticleManagementMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         articleService = ArticleService.getInstance();
+        categoryService = CategoryService.getInstance();
     }
 
 
@@ -93,6 +96,13 @@ public class ArticleManagementMenuController implements Initializable {
         tableView_articles.setItems(observableList);
     }
 
+
+    private void executeExitArticleManagement() {
+        articleService.clearSession();
+        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+    }
+
+
     @FXML
     private void onKeyPressedEnterShowAllArticles(KeyEvent event) {
         if (event.getCode().toString().equals("Enter")) {
@@ -100,15 +110,18 @@ public class ArticleManagementMenuController implements Initializable {
         }
     }
 
+
     @FXML
     private void onMouseClickedShowAllArticles(MouseEvent event) {
         executeShowAllArticles();
     }
 
+
     @FXML
     void onKeyPressedDeleteArticle(KeyEvent event) {
 
     }
+
 
     @FXML
     void onKeyPressedEnterAddArticle(KeyEvent event) {
@@ -127,6 +140,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     }
 
+
     @FXML
     void onMouseClickedAddArticle(MouseEvent event) {
 
@@ -139,16 +153,13 @@ public class ArticleManagementMenuController implements Initializable {
     }
 
 
-    private void executeExitArticleManagement() {
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-    }
-
     @FXML
     void onKeyPressedEnterExitArticleManagement(KeyEvent event) {
         if (event.getCode().toString().equals("Enter")) {
             executeExitArticleManagement();
         }
     }
+
 
     @FXML
     void onMouseClickedExitArticleManagement(MouseEvent event) {

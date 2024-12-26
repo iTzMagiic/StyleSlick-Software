@@ -255,6 +255,27 @@ public class Database {
     }
 
 
+    public List<Category> getAllCategories() {
+        List<Category> listOfCategories = new ArrayList<>();
+        String sql = "SELECT * FROM category";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    int id = resultSet.getInt("category_id");
+                    listOfCategories.add(new Category(name, id));
+                }
+                return listOfCategories;
+            }
+        } catch (SQLException e) {
+            System.out.println("Fehler beim abrufen der Kategorien. " + e.getMessage());
+        }
+        return listOfCategories;
+    }
+
+
 
     public List<Article> getAllArticles() {
         List<Article> listOfArticle = new ArrayList<>();

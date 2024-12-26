@@ -1,10 +1,7 @@
 package com.example.styleslick.controller;
 
 
-import com.example.styleslick.service.ArticleService;
-import com.example.styleslick.service.CustomerService;
-import com.example.styleslick.service.OrderService;
-import com.example.styleslick.service.UserSession;
+import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
@@ -23,6 +20,7 @@ public class LoggedInMenuController {
     private void executeArticleManagement() {
         SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
         ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
     }
 
 

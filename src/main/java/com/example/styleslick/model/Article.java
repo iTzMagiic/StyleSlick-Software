@@ -69,4 +69,8 @@ public class Article {
     public int getMenge() {
         return menge;
     }
+
+    public int getBestand() {
+        return bestand;
+    }
 }
