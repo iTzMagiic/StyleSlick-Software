@@ -39,9 +39,9 @@
                     <children>
                   <ChoiceBox fx:id="choice_category_id" prefWidth="150.0" />
                         <TextField fx:id="field_name" promptText="Artikel Name*" />
-                        <TextField fx:id="field_color" promptText="Farbe*" />
+                        <TextField fx:id="field_farbe" promptText="Farbe*" />
                         <TextField fx:id="field_kaufpreis" promptText="Kaufpreis*" />
-                        <TextField fx:id="field_kaufdatum" promptText="Kaufdatum*" />
+                        <TextField fx:id="field_kaufdatum" promptText="Kaufdatum* 2025-01-01" />
                     </children>
                 </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

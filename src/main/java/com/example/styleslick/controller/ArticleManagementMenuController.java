@@ -18,7 +18,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class ArticleManagementMenuController implements Initializable {
 
@@ -54,7 +54,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TextField field_name;
     @FXML
-    private TextField field_color;
+    private TextField field_farbe;
     @FXML
     private TextField field_kaufpreis;
     @FXML
@@ -97,7 +97,27 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeAddArticle() {
+        Map<String, String> fields = new HashMap<>();
 
+        fields.put("name", field_name.getText());
+        fields.put("farbe", field_farbe.getText());
+        fields.put("kaufpreis", field_kaufpreis.getText() );
+        fields.put("kaufdatum", field_kaufdatum.getText());
+        fields.put("hersteller", field_hersteller.getText());
+        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("verarbeitung", field_verarbeitung.getText());
+        fields.put("menge", field_menge.getText());
+
+        if (articleService.addArticle(fields)) {
+            field_name.clear();
+            field_farbe.clear();
+            field_kaufpreis.clear();
+            field_kaufdatum.clear();
+            field_hersteller.clear();
+            field_gekauft_ueber.clear();
+            field_verarbeitung.clear();
+            field_menge.clear();
+        }
     }
 
 

@@ -260,7 +260,7 @@ public class Database {
         String sql = "SELECT * FROM category";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String name = resultSet.getString("name");
@@ -281,7 +281,7 @@ public class Database {
         String sql = "SELECT * FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int article_id = resultSet.getInt("article_id");
@@ -304,6 +304,7 @@ public class Database {
         }
         return listOfArticle;
     }
+
 
     public int getCustomerID(String username, String password) {
         String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";

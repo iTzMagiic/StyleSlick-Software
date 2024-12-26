@@ -56,7 +56,6 @@ public class CustomerManagementMenuController implements Initializable {
     private TextField field_platform;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();

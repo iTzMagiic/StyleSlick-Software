@@ -33,8 +33,9 @@ public class ArticleService {
     }
 
 
-    public void addArticle(Map<String, String> fields) {
+    public boolean addArticle(Map<String, String> fields) {
         //TODO:: addArticle Methode erstellen
+        return true;
     }
 
 
