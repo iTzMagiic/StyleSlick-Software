@@ -3,6 +3,7 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
 <?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
@@ -42,6 +43,7 @@
                         <TextField fx:id="field_farbe" promptText="Farbe*" />
                         <TextField fx:id="field_kaufpreis" promptText="Kaufpreis*" />
                         <TextField fx:id="field_kaufdatum" promptText="Kaufdatum* 2025-01-01" />
+                  <DatePicker fx:id="datePicker_kaufdatum" promptText="Kaufdatum*" />
                     </children>
                 </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">

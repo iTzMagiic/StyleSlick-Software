@@ -8,10 +8,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -32,7 +29,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, Integer> column_article_id;
     @FXML
-    private TableColumn<Article, String> column_category_id;
+    private TableColumn<Article, Integer> column_category_id;
     @FXML
     private TableColumn<Article, String> column_name;
     @FXML
@@ -59,6 +56,8 @@ public class ArticleManagementMenuController implements Initializable {
     private TextField field_kaufpreis;
     @FXML
     private TextField field_kaufdatum;
+    @FXML
+    private DatePicker datePicker_kaufdatum;
     @FXML
     private TextField field_hersteller;
     @FXML
@@ -100,13 +99,14 @@ public class ArticleManagementMenuController implements Initializable {
     private void executeAddArticle() {
         Map<String, String> fields = new HashMap<>();
 
+        //TODO:: Prüfen ob es mit Choice_category_id so passt !! mit getValue() oder doch getId()
+        fields.put("category_id", choice_category_id.getValue().toString());
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
-        fields.put("kaufpreis", field_kaufpreis.getText() );
-        //TODO:: evtl. hier eine Prüfung für "kaufdatum" ob es im richtigen Format angegeben wurde
-        //  Falls möglich in Scene Builder schon abfangen das man "2001-12-01" angeben kann das er nach den ersten
-        //  4 Zahlen ein "-" macht und dann nach den 2 Zahlen "-" und dann stopt
-        fields.put("kaufdatum", field_kaufdatum.getText());
+        fields.put("kaufpreis", field_kaufpreis.getText());
+
+        //fields.put("kaufdatum", field_kaufdatum.getText());
+        fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString() );
         fields.put("hersteller", field_hersteller.getText());
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());

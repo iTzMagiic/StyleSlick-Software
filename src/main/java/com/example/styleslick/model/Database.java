@@ -306,7 +306,53 @@ public class Database {
     }
 
 
-    public
+    public boolean addArticle(Map<String, String> filledFields) {
+        String sql = "INSERT INTO article (";
+        StringBuilder whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append(entry.getKey());
+        }
+        whereClause.append(") VALUES (");
+        sql += whereClause.toString();
+
+        whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append("?");
+        }
+        whereClause.append(")");
+        sql += whereClause.toString();
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            int index = 1;
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("kaufpreis")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+                } else if (entry.getKey().equals("kaufdatum")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                }
+                else {
+                    preparedStatement.setString(index++, entry.getValue());
+                }
+            }
+
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Hinzufügen des Artikels. " + e.getMessage());
+        }
+        return false;
+    }
 
 
     public int getCustomerID(String username, String password) {
