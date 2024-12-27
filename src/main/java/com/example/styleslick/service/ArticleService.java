@@ -2,6 +2,8 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
+
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -34,6 +36,13 @@ public class ArticleService {
 
 
     public boolean addArticle(Map<String, String> fields) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> field : fields.entrySet()) {
+            if (field.getValue() == null || field.getValue().isEmpty()) {continue;}
+            filledFields.put(field.getKey(), field.getValue());
+        }
+
         //TODO:: addArticle Methode erstellen
         return true;
     }
