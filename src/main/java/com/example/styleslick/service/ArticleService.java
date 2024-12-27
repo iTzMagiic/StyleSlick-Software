@@ -42,8 +42,14 @@ public class ArticleService {
             if (field.getValue() == null || field.getValue().isEmpty()) {continue;}
             filledFields.put(field.getKey(), field.getValue());
         }
+        //TODO:: paar Prüfungen machen was den wirklich eingegeben wurden ist in filledFields.value();
 
-        //TODO:: addArticle Methode erstellen
+//        if (!database.addArticle(filledFields)) {
+//            RulesService.showErrorAlert("Fehler beim hinzufügen in die Datenbank.");
+//            return false;
+//        }
+
+        RulesService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
         return true;
     }
 

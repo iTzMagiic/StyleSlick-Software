@@ -100,13 +100,17 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         //TODO:: Prüfen ob es mit Choice_category_id so passt !! mit getValue() oder doch getId()
-        fields.put("category_id", choice_category_id.getValue().toString());
+        //  choice_category_id führt ein nullpoint Exception aus wenn es Leer ist!
+        //fields.put("category_id", choice_category_id.getValue().toString());
+        fields.put("category_id", choice_category_id.getId());
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText());
 
         //fields.put("kaufdatum", field_kaufdatum.getText());
-        fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString() );
+        fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
+        //TODO:: bei datePicker_kaufdatum gibt es ein nullpoint Exception da getValue == null sein kann
+
         fields.put("hersteller", field_hersteller.getText());
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
