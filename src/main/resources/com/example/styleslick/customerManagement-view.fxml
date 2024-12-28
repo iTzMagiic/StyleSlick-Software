@@ -14,6 +14,7 @@
    <center>
       <TableView fx:id="tableView_customer" prefHeight="545.0" prefWidth="1288.0" BorderPane.alignment="CENTER">
         <columns>
+            <TableColumn fx:id="column_customer_id" prefWidth="75.0" text="Kunden-Nr" />
           <TableColumn fx:id="column_username" prefWidth="75.0" text="Benutzername" />
           <TableColumn fx:id="column_name" prefWidth="75.0" text="Name" />
             <TableColumn fx:id="column_lastName" prefWidth="75.0" text="Nachname" />

@@ -41,6 +41,8 @@ public class CustomerManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Customer, String> column_platform;
     @FXML
+    private TableColumn<Customer, Integer> column_customer_id;
+    @FXML
     private TextField field_username;
     @FXML
     private TextField field_name;
@@ -64,6 +66,7 @@ public class CustomerManagementMenuController implements Initializable {
 
 
     private void executeShowAllCustomers() {
+        //TODO:: Kundennummer mit ausgeben lassen!!
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -71,6 +74,7 @@ public class CustomerManagementMenuController implements Initializable {
         column_ort.setCellValueFactory(new PropertyValueFactory<>("ort"));
         column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
         column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
+        column_customer_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
@@ -96,6 +100,7 @@ public class CustomerManagementMenuController implements Initializable {
             field_ort.clear();
             field_platform.clear();
             field_plz.clear();
+            executeShowAllCustomers();
         }
     }
 

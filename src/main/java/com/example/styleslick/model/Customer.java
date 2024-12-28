@@ -1,6 +1,7 @@
 package com.example.styleslick.model;
 
 public class Customer {
+    private final int customer_id;
     private final String username;
     private final String name;
     private final String lastName;
@@ -9,7 +10,7 @@ public class Customer {
     private final String ort;
     private final String platform;
 
-    public Customer(String username, String name, String lastName, String street, int plz, String ort, String platform) {
+    public Customer(String username, String name, String lastName, String street, int plz, String ort, String platform, int customer_id) {
         this.username = username;
         this.name = name;
         this.lastName = lastName;
@@ -17,10 +18,15 @@ public class Customer {
         this.plz = plz;
         this.ort = ort;
         this.platform = platform;
+        this.customer_id = customer_id;
     }
 
     public String getUsername() {
         return username;
+    }
+
+    public int getCustomer_id() {
+        return customer_id;
     }
 
     public String getName() {

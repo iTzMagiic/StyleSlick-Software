@@ -120,8 +120,9 @@ public class Database {
                     int plz = resultSet.getInt("plz");
                     String ort = resultSet.getString("ort");
                     String platform = resultSet.getString("gekauft_ueber");
+                    int customer_id = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
+                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform, customer_id);
                     listOfCustomers.add(customer);
                 }
             }
@@ -180,8 +181,9 @@ public class Database {
                     int plz = resultSet.getInt("plz");
                     String ort = resultSet.getString("ort");
                     String platform = resultSet.getString("gekauft_ueber");
+                    int customer_id = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, lastName, adresse, plz, ort, platform);
+                    Customer customer = new Customer(username, name, lastName, adresse, plz, ort, platform, customer_id);
                     listOfCustomers.add(customer);
                 }
                 return listOfCustomers;
@@ -220,8 +222,9 @@ public class Database {
                     int plz = resultSet.getInt("plz");
                     String ort = resultSet.getString("ort");
                     String platform = resultSet.getString("gekauft_ueber");
+                    int customer_id = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform);
+                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform, customer_id);
                     listOfCustomers.add(customer);
                 }
             }
@@ -316,7 +319,7 @@ public class Database {
             }
             whereClause.append(entry.getKey());
         }
-        whereClause.append(") VALUES (");
+        whereClause.append(", bestand) VALUES (");
         sql += whereClause.toString();
 
         whereClause = new StringBuilder();
@@ -327,7 +330,7 @@ public class Database {
             }
             whereClause.append("?");
         }
-        whereClause.append(")");
+        whereClause.append(", ?)");
         sql += whereClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -345,6 +348,8 @@ public class Database {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
+            int bestand = Integer.parseInt(filledFields.get("menge"));
+            preparedStatement.setInt(index, bestand);
 
             preparedStatement.executeUpdate();
             return true;

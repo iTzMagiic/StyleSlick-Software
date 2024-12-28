@@ -43,11 +43,11 @@ public class CustomerService {
         }
 
         // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
+        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").trim().isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
         }
-        if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
+        if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").trim().isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
         }

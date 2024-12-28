@@ -128,6 +128,7 @@ public class ArticleManagementMenuController implements Initializable {
             field_gekauft_ueber.clear();
             field_verarbeitung.clear();
             field_menge.clear();
+            executeShowAllArticles();
         }
     }
 
