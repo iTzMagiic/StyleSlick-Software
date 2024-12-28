@@ -103,7 +103,28 @@ public class ArticleService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        listOfArticles = database.searchArticleLike(fields);
+        if (filledFields.containsKey("kaufpreis")) {
+            filledFields.replace("kaufpreis", filledFields.get("kaufpreis").trim().replace(",", "."));
+            try {
+                Double.parseDouble(filledFields.get("kaufpreis"));
+            } catch (NumberFormatException e) {
+                RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+                return listOfArticles;
+            }
+        }
+
+        if (filledFields.containsKey("menge")) {
+            try {
+                Integer.parseInt(filledFields.get("menge"));
+            } catch (NumberFormatException e) {
+                RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+                return listOfArticles;
+            }
+        }
+
+        if (!filledFields.isEmpty()) {
+            listOfArticles = database.searchArticleLike(filledFields);
+        }
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
             RulesService.showErrorAlert("Es wurde kein Artikel gefunden.");

@@ -74,7 +74,6 @@ public class ArticleManagementMenuController implements Initializable {
 
         List<Category> listOfCategories = categoryService.getAllCategories();
         choiceBox_category_id.getItems().addAll(listOfCategories);
-        choiceBox_category_id.setValue(listOfCategories.getFirst());
 
         // Beobachten, welche Zeile ausgewählt ist
         tableView_articles.getSelectionModel().selectedItemProperty();
@@ -84,6 +83,8 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeShowAllArticles() {
+        choiceBox_category_id.setValue(null);
+
         column_article_id.setCellValueFactory(new PropertyValueFactory<>("article_id"));
         column_category_id.setCellValueFactory(new PropertyValueFactory<>("category_id"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
@@ -106,6 +107,11 @@ public class ArticleManagementMenuController implements Initializable {
 
         if (datePicker_kaufdatum.getValue() == null) {
             RulesService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            return;
+        }
+
+        if (choiceBox_category_id.getValue() == null) {
+            RulesService.showErrorAlert("Kategorie darf nicht Leer sein.");
             return;
         }
 
@@ -156,7 +162,10 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
 
-        fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        if (choiceBox_category_id.getValue() != null) {
+            fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        }
+
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText());
@@ -178,6 +187,7 @@ public class ArticleManagementMenuController implements Initializable {
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
 
+        choiceBox_category_id.setValue(null);
         field_name.clear();
         field_farbe.clear();
         field_kaufpreis.clear();

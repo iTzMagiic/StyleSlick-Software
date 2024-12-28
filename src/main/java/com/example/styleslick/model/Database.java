@@ -355,30 +355,58 @@ public class Database {
     public List<Article> searchArticleLike(Map<String, String> filledFields) {
         List<Article> listOfFoundetArticles = new ArrayList<>();
         // SELECT name, farbe, kaufpreis FROM article WHERE name LIKE "%abc%" AND farbe LIKE "%Blau%" AND kaufpreis LIKE "%2.3%";
-        String sql = "SELECT ";
+        String sql = "SELECT * FROM article WHERE ";
         StringBuilder whereClause = new StringBuilder();
-
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (whereClause.length() > 0) {
-                whereClause.append(", ");
-            }
-            whereClause.append(entry.getKey());
-        }
-        whereClause.append(" FROM article WHERE ");
-
-        sql += whereClause.toString();
-        whereClause = new StringBuilder();
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (whereClause.length() > 0) {
                 whereClause.append(" AND ");
             }
-            whereClause.append(entry.getKey()).append(" LIKE \"%").append(entry.getValue()).append("%\"");
+            whereClause.append(entry.getKey()).append(" LIKE ?");
         }
 
         sql += whereClause.toString();
 
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
+
+            int index = 1;
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("kaufpreis")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+                } else if (entry.getKey().equals("kaufdatum")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                }
+                else {
+                    preparedStatement.setString(index++, "%" + entry.getValue() + "%");
+                }
+            }
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int article_id = resultSet.getInt("article_id");
+                    int category_id = resultSet.getInt("category_id");
+                    String name = resultSet.getString("name");
+                    String farbe = resultSet.getString("farbe");
+                    double kaufpreis = resultSet.getDouble("kaufpreis");
+                    LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
+                    String hersteller = resultSet.getString("hersteller");
+                    String gekauft_ueber = resultSet.getString("gekauft_ueber");
+                    String verarbeitung = resultSet.getString("verarbeitung");
+                    int menge = resultSet.getInt("menge");
+                    int bestand = resultSet.getInt("bestand");
+
+                    listOfFoundetArticles.add(new Article(article_id, category_id, name, farbe, kaufpreis, kaufdatum, hersteller, gekauft_ueber, verarbeitung, menge, bestand));
+                }
+                return listOfFoundetArticles;
+            }
+
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Suchen des Artikels. " + e.getMessage());
+        }
 
         return listOfFoundetArticles;
     }
