@@ -2,7 +2,6 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Category;
-import com.example.styleslick.model.Database;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.service.RulesService;
@@ -23,11 +22,9 @@ import java.util.*;
 public class ArticleManagementMenuController implements Initializable {
 
     private ArticleService articleService;
-    private CategoryService categoryService;
-    private List<Category> listOfCategories = new ArrayList<>();
 
     @FXML
-    private ChoiceBox<Category> choice_category_id;
+    private ChoiceBox<Category> choiceBox_category_id;
     @FXML
     private TableView<Article> tableView_articles;
     @FXML
@@ -73,12 +70,14 @@ public class ArticleManagementMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         articleService = ArticleService.getInstance();
-        //TODO:: Es muss noch was mit Category gemacht werden, damit man statt Zahlen die wirkliche Kategorie sieht
-        categoryService = CategoryService.getInstance();
+        CategoryService categoryService = CategoryService.getInstance();
 
-        listOfCategories = categoryService.getAllCategories();
-        choice_category_id.getItems().addAll(listOfCategories);
-        choice_category_id.setValue(listOfCategories.getFirst());
+        List<Category> listOfCategories = categoryService.getAllCategories();
+        choiceBox_category_id.getItems().addAll(listOfCategories);
+        choiceBox_category_id.setValue(listOfCategories.getFirst());
+
+        // Beobachten, welche Zeile ausgewählt ist
+        tableView_articles.getSelectionModel().selectedItemProperty();
 
         executeShowAllArticles();
     }
@@ -110,7 +109,7 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        fields.put("category_id", String.valueOf(choice_category_id.getValue().getID()));
+        fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText());
@@ -130,6 +129,31 @@ public class ArticleManagementMenuController implements Initializable {
             field_menge.clear();
             executeShowAllArticles();
         }
+    }
+
+
+    private void executeDeleteArticle() {
+        // Abrufen des ausgewählten Artikels
+        Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+        if (selectedArticle == null) {
+            RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
+            return;
+        }
+
+        int articleID = selectedArticle.getArticle_id(); // ID des Artikels
+
+        // Artikel aus der Datenbank löschen
+        if (articleService.deleteArticle(articleID)) {
+            RulesService.showConfirmAlert("Artikel erfolgreich gelöscht.");
+            executeShowAllArticles();
+        } else {
+            RulesService.showErrorAlert("Artikel wurde nicht gelöscht.");
+        }
+    }
+
+
+    private void executeSearchArticle() {
+
     }
 
 
@@ -155,7 +179,9 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onKeyPressedDeleteArticle(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteArticle();
+        }
     }
 
 
@@ -175,7 +201,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onMouseCLickedDeleteArticle(MouseEvent event) {
-
+        executeDeleteArticle();
     }
 
 

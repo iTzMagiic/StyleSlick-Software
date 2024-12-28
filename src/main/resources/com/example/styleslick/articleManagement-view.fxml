@@ -38,7 +38,7 @@
             <children>
                 <HBox alignment="CENTER" prefHeight="93.0" prefWidth="1280.0" spacing="10.0">
                     <children>
-                  <ChoiceBox fx:id="choice_category_id" prefWidth="150.0" />
+                  <ChoiceBox fx:id="choiceBox_category_id" prefWidth="150.0" />
                         <TextField fx:id="field_name" promptText="Artikel Name*" />
                         <TextField fx:id="field_farbe" promptText="Farbe*" />
                         <TextField fx:id="field_kaufpreis" promptText="Kaufpreis*" />

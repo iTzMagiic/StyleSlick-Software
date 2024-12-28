@@ -43,8 +43,8 @@ public class ArticleService {
             }
             filledFields.put(field.getKey(), field.getValue());
         }
-        //TODO:: paar Prüfungen machen was den wirklich eingegeben wurden ist in filledFields.value();
 
+        // Prüfungen ob die Pflichtfelder ausgefüllt sind
         if (!filledFields.containsKey("name") || filledFields.get("name") == null || filledFields.get("name").trim().isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
             return false;
@@ -60,7 +60,7 @@ public class ArticleService {
 
         filledFields.replace("kaufpreis", filledFields.get("kaufpreis").trim().replace(",", "."));
         try {
-            double kaufpreisTest = Double.parseDouble(filledFields.get("kaufpreis"));
+            Double.parseDouble(filledFields.get("kaufpreis"));
         } catch (NumberFormatException e) {
             RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
             return false;
@@ -76,7 +76,7 @@ public class ArticleService {
         }
 
         try {
-            int mengeTest = Integer.parseInt(filledFields.get("menge"));
+            Integer.parseInt(filledFields.get("menge"));
         } catch (NumberFormatException e) {
             RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
             return false;
@@ -91,9 +91,16 @@ public class ArticleService {
     }
 
 
+    public boolean deleteArticle(int articleID) {
+        if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel Nummer '" + articleID + "' löschen?")) {
+            return database.deleteArticle(articleID);
+        }
+        return false;
+    }
+
+
     public void clearSession() {
         articleService = null;
         database = null;
     }
-
 }

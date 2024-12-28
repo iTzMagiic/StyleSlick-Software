@@ -2,6 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.CustomerService;
+import com.example.styleslick.service.RulesService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -61,12 +62,14 @@ public class CustomerManagementMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
+
+        tableView_customer.getSelectionModel().selectedIndexProperty();
+
         executeShowAllCustomers();
     }
 
 
     private void executeShowAllCustomers() {
-        //TODO:: Kundennummer mit ausgeben lassen!!
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -105,15 +108,12 @@ public class CustomerManagementMenuController implements Initializable {
     }
 
 
+    /*TODO:: die Methode executeSearchCustomer muss verbessert werden!
+        Wenn ich Name "a" nachname "b" mache zeigt er mir alle Kunden mit dem Namen a und alle Kunden mit nur den Nachnamen
+        "b" an er soll aber kunden die "a" und "b" haben anzeigen und nicht die nur "a" oder "b" haben
+        außerdem ist der Code relativ Redundant CustomerService soll ein Boolean zurück geben ob ein Kunde gefunden worden ist.
+     */
     private void executeSearchCustomer() {
-        column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
-        column_ort.setCellValueFactory(new PropertyValueFactory<>("ort"));
-        column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
-        column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
-
         Map<String, String> fields = new HashMap<>();
 
         fields.put("benutzername", field_username.getText());
@@ -132,31 +132,28 @@ public class CustomerManagementMenuController implements Initializable {
             return;
         }
 
-        // Packt die Liste von Customers in die Tabllenansicht
+        // Packt die Liste von Customers in die Tabellenansicht
         ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
         tableView_customer.setItems(observableList);
     }
 
 
-    private void executeDeleteCustomer() {
-        Map<String, String> fields = new HashMap<>();
+    public void executeDeleteCustomer() {
+        // Abrufen des ausgewählten Kunden
+        Customer selectedArticle = tableView_customer.getSelectionModel().getSelectedItem();
+        if (selectedArticle == null) {
+            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu löschen.");
+            return;
+        }
 
-        fields.put("benutzername", field_username.getText());
-        fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
+        int articleID = selectedArticle.getCustomer_id(); // ID des Kunden
 
-        if (customerService.deleteCustomer(fields)) {
-            field_username.clear();
-            field_name.clear();
-            field_lastName.clear();
-            field_street.clear();
-            field_ort.clear();
-            field_platform.clear();
-            field_plz.clear();
+        // Artikel aus der Datenbank löschen
+        if (customerService.deleteCustomer(articleID)) {
+            RulesService.showConfirmAlert("Kunde erfolgreich gelöscht.");
+            executeShowAllCustomers();
+        } else {
+            RulesService.showErrorAlert("Kunde wurde nicht gelöscht.");
         }
     }
 

@@ -235,20 +235,12 @@ public class Database {
     }
 
 
-    public boolean deleteCustomer(Map<String, String> filledFields) {
-        String sql = "DELETE FROM customer WHERE ";
-        StringBuilder whereClause = new StringBuilder();
-
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (whereClause.length() > 0) {
-                whereClause.append(" AND ");
-            }
-            whereClause.append(entry.getKey()).append(" = \"").append(entry.getValue()).append("\"");
-        }
-        sql += whereClause.toString();
+    public boolean deleteCustomer(int customerID) {
+        String sql = "DELETE FROM customer WHERE customer_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, customerID);
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
@@ -357,6 +349,21 @@ public class Database {
             System.out.println("Fehler beim Hinzufügen des Artikels. " + e.getMessage());
         }
         return false;
+    }
+
+
+    public boolean deleteArticle(int articleID) {
+        String sql = "DELETE FROM article WHERE article_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, articleID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.out.println("Fehler beim Löschen des Artikels. " + e.getMessage());
+            return false;
+        }
     }
 
 

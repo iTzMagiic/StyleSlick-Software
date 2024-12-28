@@ -38,7 +38,6 @@ public class CustomerService {
             if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
                 continue;
             }
-
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
@@ -54,10 +53,10 @@ public class CustomerService {
         if (filledFields.containsKey("plz")) {
             try {
                 Integer.parseInt(filledFields.get("plz")); // Versuche nur, den Wert zu parsen
-                return true; // Es ist ein Integer
+                return true;
             } catch (NumberFormatException e) {
                 RulesService.showErrorAlert("Postleitzahl darf nur aus Zahlen bestehen.");
-                return false; // Kein gültiger Integer
+                return false;
             }
         }
 
@@ -73,7 +72,6 @@ public class CustomerService {
     }
 
 
-    // Sucht nach den Kunden und gibt eine Liste von Customer wieder
     public List<Customer> searchCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
         List<Customer> listOfCustomers;
@@ -91,7 +89,7 @@ public class CustomerService {
 
         listOfCustomers = database.searchCustomer(filledFields);
 
-        // Sucht in der Datenbank alles, was mit der Eingabe anfängt wenn kein Kunde gefunden wurden ist.
+        // Sucht in der Datenbank alles, was mit der Eingabe anfängt, wenn kein Kunde gefunden worden ist.
         //      WHERE (column) LIKE "B%";
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             listOfCustomers = database.searchCustomerLike(filledFields);
@@ -104,44 +102,14 @@ public class CustomerService {
     }
 
 
-    public boolean deleteCustomer(Map<String, String> fields) {
-        Map<String, String> filledFields = new HashMap<>();
-
-        for (Map.Entry<String, String> entry : fields.entrySet()) {
-            if (entry.getValue() == null || entry.getValue().isEmpty()) {
-                continue;
-            }
-            filledFields.put(entry.getKey(), entry.getValue());
+    public boolean deleteCustomer(int customerID) {
+        if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden Nummer '" + customerID + "' löschen?")) {
+            return database.deleteCustomer(customerID);
         }
-
-        // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").isEmpty()) {
-            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
-            return false;
-        } else if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").isEmpty()) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
-            return false;
-        }
-
-        if (!database.isUsernameExist(filledFields.get("benutzername"))) {
-            RulesService.showErrorAlert("Benutzername existiert nicht.");
-            return false;
-        }
-
-        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich '" + filledFields.get("benutzername") + "' Löschen??")) {
-            return false;
-        }
-
-        if (!database.deleteCustomer(filledFields)) {
-            RulesService.showErrorAlert("Bitte überprüfen Sie ihre Eingaben. Kunde konnte nicht gelöscht werden.");
-            return false;
-        }
-
-        return true;
+        return false;
     }
 
     
-    // Liste aller Customers wiedergeben
     public List<Customer> getCustomers() {
         return database.getAllCustomers();
     }
@@ -151,6 +119,4 @@ public class CustomerService {
         database = null;
         customerService = null;
     }
-
-
 }
