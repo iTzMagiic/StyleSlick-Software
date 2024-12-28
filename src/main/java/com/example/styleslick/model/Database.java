@@ -326,7 +326,7 @@ public class Database {
         sql += whereClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 if (entry.getKey().equals("kaufpreis")) {
@@ -335,8 +335,7 @@ public class Database {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
                 } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
-                }
-                else {
+                } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
@@ -368,7 +367,7 @@ public class Database {
         sql += whereClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
 
             int index = 1;
@@ -379,8 +378,7 @@ public class Database {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
                 } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
-                }
-                else {
+                } else {
                     preparedStatement.setString(index++, "%" + entry.getValue() + "%");
                 }
             }
@@ -403,7 +401,6 @@ public class Database {
                 }
                 return listOfFoundetArticles;
             }
-
         } catch (SQLException e) {
             System.out.println("Fehler beim Suchen des Artikels. " + e.getMessage());
         }
@@ -416,7 +413,7 @@ public class Database {
         String sql = "DELETE FROM article WHERE article_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, articleID);
             preparedStatement.executeUpdate();
             return true;
