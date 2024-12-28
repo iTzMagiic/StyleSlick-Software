@@ -5,6 +5,7 @@ import com.example.styleslick.model.Category;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
+import com.example.styleslick.service.RulesService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -58,8 +59,6 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TextField field_kaufpreis;
     @FXML
-    private TextField field_kaufdatum;
-    @FXML
     private DatePicker datePicker_kaufdatum;
     @FXML
     private TextField field_hersteller;
@@ -69,8 +68,6 @@ public class ArticleManagementMenuController implements Initializable {
     private TextField field_verarbeitung;
     @FXML
     private TextField field_menge;
-
-
 
 
     @Override
@@ -108,17 +105,16 @@ public class ArticleManagementMenuController implements Initializable {
     private void executeAddArticle() {
         Map<String, String> fields = new HashMap<>();
 
-        //TODO:: Prüfen ob es mit Choice_category_id so passt !! mit getValue() oder doch getId()
-        //  choice_category_id führt ein nullpoint Exception aus wenn es Leer ist!
+        if (datePicker_kaufdatum.getValue() == null) {
+            RulesService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            return;
+        }
+
         fields.put("category_id", String.valueOf(choice_category_id.getValue().getID()));
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText());
-
-        //fields.put("kaufdatum", field_kaufdatum.getText());
         fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
-        //TODO:: bei datePicker_kaufdatum gibt es ein nullpoint Exception da getValue == null sein kann
-
         fields.put("hersteller", field_hersteller.getText());
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
@@ -128,7 +124,6 @@ public class ArticleManagementMenuController implements Initializable {
             field_name.clear();
             field_farbe.clear();
             field_kaufpreis.clear();
-            field_kaufdatum.clear();
             field_hersteller.clear();
             field_gekauft_ueber.clear();
             field_verarbeitung.clear();

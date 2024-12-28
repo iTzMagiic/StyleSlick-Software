@@ -42,16 +42,15 @@
                         <TextField fx:id="field_name" promptText="Artikel Name*" />
                         <TextField fx:id="field_farbe" promptText="Farbe*" />
                         <TextField fx:id="field_kaufpreis" promptText="Kaufpreis*" />
-                        <TextField fx:id="field_kaufdatum" promptText="Kaufdatum* 2025-01-01" />
                   <DatePicker fx:id="datePicker_kaufdatum" promptText="Kaufdatum*" />
                     </children>
                 </HBox>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                         <TextField fx:id="field_hersteller" promptText="Hersteller" />
-                        <TextField fx:id="field_gekauft_ueber" promptText="Gekauft über" />
+                        <TextField fx:id="field_gekauft_ueber" promptText="Gekauft über*" />
                   <TextField fx:id="field_verarbeitung" promptText="Qualität" />
-                  <TextField fx:id="field_menge" promptText="Menge" />
+                  <TextField fx:id="field_menge" promptText="Menge*" />
                </children>
             </HBox>
                 <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">

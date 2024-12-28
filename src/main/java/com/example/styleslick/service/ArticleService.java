@@ -13,7 +13,6 @@ public class ArticleService {
     private Database database;
 
 
-
     private ArticleService() {
     }
 
@@ -39,15 +38,53 @@ public class ArticleService {
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> field : fields.entrySet()) {
-            if (field.getValue() == null || field.getValue().isEmpty()) {continue;}
+            if (field.getValue() == null || field.getValue().isEmpty()) {
+                continue;
+            }
             filledFields.put(field.getKey(), field.getValue());
         }
         //TODO:: paar Prüfungen machen was den wirklich eingegeben wurden ist in filledFields.value();
 
-//        if (!database.addArticle(filledFields)) {
-//            RulesService.showErrorAlert("Fehler beim hinzufügen in die Datenbank.");
-//            return false;
-//        }
+        if (!filledFields.containsKey("name") || filledFields.get("name") == null || filledFields.get("name").trim().isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
+            return false;
+        }
+        if (!filledFields.containsKey("farbe") || filledFields.get("farbe") == null || filledFields.get("farbe").trim().isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Farbe an.");
+            return false;
+        }
+        if (!filledFields.containsKey("kaufpreis") || filledFields.get("kaufpreis") == null || filledFields.get("kaufpreis").trim().isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
+            return false;
+        }
+
+        filledFields.replace("kaufpreis", filledFields.get("kaufpreis").trim().replace(",", "."));
+        try {
+            double kaufpreisTest = Double.parseDouble(filledFields.get("kaufpreis"));
+        } catch (NumberFormatException e) {
+            RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+            return false;
+        }
+
+        if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").trim().isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
+            return false;
+        }
+        if (!filledFields.containsKey("menge") || filledFields.get("menge") == null || filledFields.get("menge").trim().isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie die Menge an.");
+            return false;
+        }
+
+        try {
+            int mengeTest = Integer.parseInt(filledFields.get("menge"));
+        } catch (NumberFormatException e) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+            return false;
+        }
+        if (!database.addArticle(filledFields)) {
+            RulesService.showErrorAlert("Fehler beim hinzufügen in die Datenbank.");
+            return false;
+        }
 
         RulesService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
         return true;
