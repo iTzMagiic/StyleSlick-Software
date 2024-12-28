@@ -11,22 +11,23 @@ public class LoggedInMenuController {
 
     @FXML
     private void executeCustomerManagement() {
-        SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
         CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
     }
 
 
     @FXML
     private void executeArticleManagement() {
-        SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
         ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
     }
 
 
     @FXML
     private void executeOrderManagement() {
-        SceneManager.switchScene("/com/example/styleslick/orderManagement-view.fxml", "Bestellung verwaltung");
         OrderService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        SceneManager.switchScene("/com/example/styleslick/orderManagement-view.fxml", "Bestellung verwaltung");
     }
 
 
@@ -38,8 +39,8 @@ public class LoggedInMenuController {
 
     @FXML
     private void executeLogout() {
-        SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
         UserSession.getInstance().clearSession();
+        SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
     }
 
 

@@ -59,6 +59,7 @@ public class CustomerManagementMenuController implements Initializable {
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
+        executeShowAllCustomers();
     }
 
 

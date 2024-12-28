@@ -1,6 +1,8 @@
 package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
+import com.example.styleslick.model.Category;
+import com.example.styleslick.model.Database;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.utils.SceneManager;
@@ -21,9 +23,10 @@ public class ArticleManagementMenuController implements Initializable {
 
     private ArticleService articleService;
     private CategoryService categoryService;
+    private List<Category> listOfCategories = new ArrayList<>();
 
     @FXML
-    private ChoiceBox<?> choice_category_id;
+    private ChoiceBox<Category> choice_category_id;
     @FXML
     private TableView<Article> tableView_articles;
     @FXML
@@ -75,6 +78,12 @@ public class ArticleManagementMenuController implements Initializable {
         articleService = ArticleService.getInstance();
         //TODO:: Es muss noch was mit Category gemacht werden, damit man statt Zahlen die wirkliche Kategorie sieht
         categoryService = CategoryService.getInstance();
+
+        listOfCategories = categoryService.getAllCategories();
+        choice_category_id.getItems().addAll(listOfCategories);
+        choice_category_id.setValue(listOfCategories.getFirst());
+
+        executeShowAllArticles();
     }
 
 
@@ -101,8 +110,7 @@ public class ArticleManagementMenuController implements Initializable {
 
         //TODO:: Prüfen ob es mit Choice_category_id so passt !! mit getValue() oder doch getId()
         //  choice_category_id führt ein nullpoint Exception aus wenn es Leer ist!
-        //fields.put("category_id", choice_category_id.getValue().toString());
-        fields.put("category_id", choice_category_id.getId());
+        fields.put("category_id", String.valueOf(choice_category_id.getValue().getID()));
         fields.put("name", field_name.getText());
         fields.put("farbe", field_farbe.getText());
         fields.put("kaufpreis", field_kaufpreis.getText());
