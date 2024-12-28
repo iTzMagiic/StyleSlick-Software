@@ -352,6 +352,38 @@ public class Database {
     }
 
 
+    public List<Article> searchArticleLike(Map<String, String> filledFields) {
+        List<Article> listOfFoundetArticles = new ArrayList<>();
+        // SELECT name, farbe, kaufpreis FROM article WHERE name LIKE "%abc%" AND farbe LIKE "%Blau%" AND kaufpreis LIKE "%2.3%";
+        String sql = "SELECT ";
+        StringBuilder whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append(entry.getKey());
+        }
+        whereClause.append(" FROM article WHERE ");
+
+        sql += whereClause.toString();
+        whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(" AND ");
+            }
+            whereClause.append(entry.getKey()).append(" LIKE \"%").append(entry.getValue()).append("%\"");
+        }
+
+        sql += whereClause.toString();
+
+
+
+        return listOfFoundetArticles;
+    }
+
+
     public boolean deleteArticle(int articleID) {
         String sql = "DELETE FROM article WHERE article_id = ?";
 

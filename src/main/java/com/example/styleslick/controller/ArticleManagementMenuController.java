@@ -24,8 +24,6 @@ public class ArticleManagementMenuController implements Initializable {
     private ArticleService articleService;
 
     @FXML
-    private ChoiceBox<Category> choiceBox_category_id;
-    @FXML
     private TableView<Article> tableView_articles;
     @FXML
     private TableColumn<Article, Integer> column_article_id;
@@ -49,6 +47,8 @@ public class ArticleManagementMenuController implements Initializable {
     private TableColumn<Article, Integer> column_menge;
     @FXML
     private TableColumn<Article, Integer> column_bestand;
+    @FXML
+    private ChoiceBox<Category> choiceBox_category_id;
     @FXML
     private TextField field_name;
     @FXML
@@ -153,6 +153,38 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeSearchArticle() {
+        Map<String, String> fields = new HashMap<>();
+
+
+        fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        fields.put("name", field_name.getText());
+        fields.put("farbe", field_farbe.getText());
+        fields.put("kaufpreis", field_kaufpreis.getText());
+        if (datePicker_kaufdatum.getValue() != null) {
+            fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
+        }
+        fields.put("hersteller", field_hersteller.getText());
+        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("verarbeitung", field_verarbeitung.getText());
+        fields.put("menge", field_menge.getText());
+
+        List<Article> listOfArticles = articleService.searchArticle(fields);
+
+        if (listOfArticles == null || listOfArticles.isEmpty()) {
+            return;
+        }
+
+
+        ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
+        tableView_articles.setItems(observableList);
+
+        field_name.clear();
+        field_farbe.clear();
+        field_kaufpreis.clear();
+        field_hersteller.clear();
+        field_gekauft_ueber.clear();
+        field_verarbeitung.clear();
+        field_menge.clear();
 
     }
 
@@ -195,7 +227,9 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onKeyPressedEnterSearchArticle(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeSearchArticle();
+        }
     }
 
 
@@ -213,7 +247,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     @FXML
     void onMouseClickedSearchArticle(MouseEvent event) {
-
+        executeSearchArticle();
     }
 
 

@@ -3,6 +3,7 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -38,7 +39,7 @@ public class ArticleService {
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> field : fields.entrySet()) {
-            if (field.getValue() == null || field.getValue().isEmpty()) {
+            if (field.getValue() == null || field.getValue().trim().isEmpty()) {
                 continue;
             }
             filledFields.put(field.getKey(), field.getValue());
@@ -88,6 +89,28 @@ public class ArticleService {
 
         RulesService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
         return true;
+    }
+
+
+    public List<Article> searchArticle(Map<String, String> fields) {
+        Map<String, String> filledFields = new HashMap<>();
+        List<Article> listOfArticles = new ArrayList<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+                continue;
+            }
+            filledFields.put(entry.getKey(), entry.getValue());
+        }
+
+        listOfArticles = database.searchArticleLike(fields);
+
+        if (listOfArticles == null || listOfArticles.isEmpty()) {
+            RulesService.showErrorAlert("Es wurde kein Artikel gefunden.");
+            return listOfArticles;
+        }
+
+        return listOfArticles;
     }
 
 
