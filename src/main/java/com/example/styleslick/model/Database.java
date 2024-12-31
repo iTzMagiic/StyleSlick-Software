@@ -134,85 +134,35 @@ public class Database {
     }
 
 
-    // Gibt eine Liste der Zutreffenden Kunden wieder wen, nur eine Eingabe getätigt wurde
-    public List<Customer> searchCustomer(Map<String, String> filledFields) {
-        // Liste in der Die gefundenen Kunden eingetragen werden
-        List<Customer> listOfCustomers = new ArrayList<>();
-
-        // SQL Abfrage für die Datenbank
-        String sql = "SELECT * FROM customer WHERE ";
-
-        // WHERE-Bedingungen zum hinzufügen
-        StringBuilder whereClause = new StringBuilder();
-
-        // WHERE-Bedingung aus der Map filledFields einfügen und mit(" AND " &" = ?")trennen;
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            String columnName = entry.getKey();
-
-            if (whereClause.length() > 0) {
-                whereClause.append(" AND ");
-            }
-            whereClause.append(columnName).append(" = ?");
-        }
-
-        // die sql Abfrage wird mit den WHERE-Bedingungen erweitern
-        sql += whereClause.toString();
-
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
-            //
-            for (String value : filledFields.values()) {
-                if (value.equals("plz")) {
-                    preparedStatement.setInt(index++, Integer.parseInt(value));
-                } else {
-                    preparedStatement.setString(index++, value);
-                }
-            }
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String username = resultSet.getString("benutzername");
-                    String name = resultSet.getString("name");
-                    String lastName = resultSet.getString("nachname");
-                    String adresse = resultSet.getString("strasse");
-                    int plz = resultSet.getInt("plz");
-                    String ort = resultSet.getString("ort");
-                    String platform = resultSet.getString("gekauft_ueber");
-                    int customer_id = resultSet.getInt("customer_id");
-
-                    Customer customer = new Customer(username, name, lastName, adresse, plz, ort, platform, customer_id);
-                    listOfCustomers.add(customer);
-                }
-                return listOfCustomers;
-            } catch (SQLException e) {
-                System.err.println("Fehler beim schließen des ResultSets: " + e.getMessage());
-            }
-        } catch (SQLException e) {
-            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
-        }
-        return listOfCustomers;
-    }
-
-
     public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer WHERE ";
+        StringBuilder whereClause = new StringBuilder();
+        // SELECT * FROM customer WHERE benutzername LIKE "?"
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (sql.contains("LIKE")) {
-                //TODO:: das += gegen einen StringBuilder austauschen damit nicht immer neue Kopien aus dem Objekt
-                // erzeugt werden!
-                sql += " OR ";
+            if (whereClause.length() > 0) {
+                whereClause.append(" AND ");
             }
-
-            sql += entry.getKey() + " LIKE '" + entry.getValue() + "%'";
+            whereClause.append(entry.getKey()).append(" LIKE ?");
         }
+        sql += whereClause.toString();
+        System.out.println("Test " + sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            int index = 1;
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("plz")) {
+
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                } else {
+                    System.out.println("test 123");
+                    preparedStatement.setString(index++,  entry.getValue() + "%");
+                }
+            }
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String username = resultSet.getString("benutzername");
@@ -227,6 +177,7 @@ public class Database {
                     Customer customer = new Customer(username, name, lastName, street, plz, ort, platform, customer_id);
                     listOfCustomers.add(customer);
                 }
+                return listOfCustomers;
             }
         } catch (SQLException e) {
             System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
@@ -368,7 +319,6 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
 
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {

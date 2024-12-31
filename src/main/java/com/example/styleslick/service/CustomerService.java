@@ -86,14 +86,9 @@ public class CustomerService {
             RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
             return null;
         }
+        System.out.println("Test debugg " + filledFields.size());
 
-        listOfCustomers = database.searchCustomer(filledFields);
-
-        // Sucht in der Datenbank alles, was mit der Eingabe anfängt, wenn kein Kunde gefunden worden ist.
-        //      WHERE (column) LIKE "B%";
-        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            listOfCustomers = database.searchCustomerLike(filledFields);
-        }
+        listOfCustomers = database.searchCustomerLike(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             RulesService.showErrorAlert("Kein Kunden gefunden.");
