@@ -42,23 +42,24 @@ public class CustomerService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
+        if (filledFields.isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie was ein.");
+            return false;
+        }
+
         // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("benutzername") || filledFields.get("benutzername") == null || filledFields.get("benutzername").trim().isEmpty()) {
+        if (!filledFields.containsKey("benutzername")) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
         }
-        if (!filledFields.containsKey("gekauft_ueber") || filledFields.get("gekauft_ueber") == null || filledFields.get("gekauft_ueber").trim().isEmpty()) {
+        if (!filledFields.containsKey("gekauft_ueber")) {
             RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
         }
-        if (filledFields.containsKey("plz")) {
-            try {
-                Integer.parseInt(filledFields.get("plz")); // Versuche nur, den Wert zu parsen
-                return true;
-            } catch (NumberFormatException e) {
-                RulesService.showErrorAlert("Postleitzahl darf nur aus Zahlen bestehen.");
-                return false;
-            }
+        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+            return false;
+
         }
 
         if (database.isUsernameExist(filledFields.get("benutzername"))) {
@@ -88,7 +89,12 @@ public class CustomerService {
             return listOfCustomers;
         }
 
-        listOfCustomers = database.searchCustomerLike(filledFields);
+        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+            return listOfCustomers;
+        }
+
+        listOfCustomers = database.searchCustomer(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             RulesService.showErrorAlert("Kein Kunden gefunden.");
@@ -104,7 +110,7 @@ public class CustomerService {
         return false;
     }
 
-    
+
     public List<Customer> getCustomers() {
         return database.getAllCustomers();
     }

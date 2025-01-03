@@ -134,7 +134,7 @@ public class Database {
     }
 
 
-    public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
+    public List<Customer> searchCustomer(Map<String, String> filledFields) {
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer WHERE ";
         StringBuilder whereClause = new StringBuilder();

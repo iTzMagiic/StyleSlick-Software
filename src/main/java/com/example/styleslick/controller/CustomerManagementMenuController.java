@@ -108,7 +108,6 @@ public class CustomerManagementMenuController implements Initializable {
     }
 
 
-
     private void executeSearchCustomer() {
         Map<String, String> fields = new HashMap<>();
 
@@ -119,6 +118,7 @@ public class CustomerManagementMenuController implements Initializable {
         fields.put("plz", field_plz.getText());
         fields.put("ort", field_ort.getText());
         fields.put("gekauft_ueber", field_platform.getText());
+
 
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
 
