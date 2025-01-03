@@ -96,7 +96,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("Fehler beim abrufen ob der Benutzername schon existiert. " + e.getMessage());
+            System.err.println("Fehler beim abrufen ob der Benutzername schon existiert. " + e.getMessage());
             return false;
         }
         return false;
@@ -138,7 +138,6 @@ public class Database {
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer WHERE ";
         StringBuilder whereClause = new StringBuilder();
-        // SELECT * FROM customer WHERE benutzername LIKE "?"
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (whereClause.length() > 0) {
@@ -147,7 +146,6 @@ public class Database {
             whereClause.append(entry.getKey()).append(" LIKE ?");
         }
         sql += whereClause.toString();
-        System.out.println("Test " + sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -158,8 +156,7 @@ public class Database {
 
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
-                    System.out.println("test 123");
-                    preparedStatement.setString(index++,  entry.getValue() + "%");
+                    preparedStatement.setString(index++, entry.getValue() + "%");
                 }
             }
 
@@ -195,7 +192,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Fehler beim Löschen des Kunden. " + e.getMessage());
+            System.err.println("Fehler beim Löschen des Kunden. " + e.getMessage());
             return false;
         }
     }
@@ -216,7 +213,7 @@ public class Database {
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            System.out.println("Fehler beim abrufen der Kategorien. " + e.getMessage());
+            System.err.println("Fehler beim abrufen der Kategorien. " + e.getMessage());
         }
         return listOfCategories;
     }
@@ -246,7 +243,7 @@ public class Database {
                 return listOfArticle;
             }
         } catch (SQLException e) {
-            System.out.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
+            System.err.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
         }
         return listOfArticle;
     }
@@ -296,7 +293,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Fehler beim Hinzufügen des Artikels. " + e.getMessage());
+            System.err.println("Fehler beim Hinzufügen des Artikels. " + e.getMessage());
         }
         return false;
     }
@@ -352,7 +349,7 @@ public class Database {
                 return listOfFoundetArticles;
             }
         } catch (SQLException e) {
-            System.out.println("Fehler beim Suchen des Artikels. " + e.getMessage());
+            System.err.println("Fehler beim Suchen des Artikels. " + e.getMessage());
         }
 
         return listOfFoundetArticles;
@@ -368,7 +365,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.out.println("Fehler beim Löschen des Artikels. " + e.getMessage());
+            System.err.println("Fehler beim Löschen des Artikels. " + e.getMessage());
             return false;
         }
     }
@@ -394,13 +391,13 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            System.out.println("Fehler beim Abrufen der userID: " + e.getMessage());
+            System.err.println("Fehler beim Abrufen der userID: " + e.getMessage());
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
-                    System.out.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
+                    System.err.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
                 }
             }
         }
@@ -436,13 +433,13 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            System.out.println("Fehler bei Abrufen des Namens: " + e.getMessage());
+            System.err.println("Fehler bei Abrufen des Namens: " + e.getMessage());
         } finally {
             if (resultSet != null) {
                 try {
                     resultSet.close();
                 } catch (SQLException e) {
-                    System.out.println("Fehler bei Schließen des ResultSets: " + e.getMessage());
+                    System.err.println("Fehler bei Schließen des ResultSets: " + e.getMessage());
                 }
             }
         }

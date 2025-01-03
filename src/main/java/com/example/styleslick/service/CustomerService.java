@@ -3,6 +3,7 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -74,7 +75,7 @@ public class CustomerService {
 
     public List<Customer> searchCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
-        List<Customer> listOfCustomers;
+        List<Customer> listOfCustomers = new ArrayList<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
@@ -84,9 +85,8 @@ public class CustomerService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
-            return null;
+            return listOfCustomers;
         }
-        System.out.println("Test debugg " + filledFields.size());
 
         listOfCustomers = database.searchCustomerLike(filledFields);
 

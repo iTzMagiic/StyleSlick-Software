@@ -108,11 +108,7 @@ public class CustomerManagementMenuController implements Initializable {
     }
 
 
-    /*TODO:: die Methode executeSearchCustomer muss verbessert werden!
-        Wenn ich Name "a" nachname "b" mache zeigt er mir alle Kunden mit dem Namen a und alle Kunden mit nur den Nachnamen
-        "b" an er soll aber kunden die "a" und "b" haben anzeigen und nicht die nur "a" oder "b" haben
-        außerdem ist der Code relativ Redundant CustomerService soll ein Boolean zurück geben ob ein Kunde gefunden worden ist.
-     */
+
     private void executeSearchCustomer() {
         Map<String, String> fields = new HashMap<>();
 
@@ -124,7 +120,6 @@ public class CustomerManagementMenuController implements Initializable {
         fields.put("ort", field_ort.getText());
         fields.put("gekauft_ueber", field_platform.getText());
 
-        // Bekommt eine Liste aller gefundenen Customer
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
 
         // Wenn kein Customer gefunden wurde abbrechen
