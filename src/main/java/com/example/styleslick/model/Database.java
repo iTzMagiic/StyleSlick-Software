@@ -18,7 +18,6 @@ public class Database {
     public Database(String USER, String PASSWORD) {
         this.USER = USER;
         this.PASSWORD = PASSWORD;
-
     }
 
 
@@ -85,7 +84,7 @@ public class Database {
 
 
     public boolean isUsernameExist(String username) {
-        String sql = "SELECT * FROM customer WHERE benutzername = ?";
+        String sql = "SELECT benutzername FROM customer WHERE benutzername = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -126,7 +125,6 @@ public class Database {
                     listOfCustomers.add(customer);
                 }
             }
-
         } catch (SQLException e) {
             System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
         }
@@ -153,7 +151,6 @@ public class Database {
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 if (entry.getKey().equals("plz")) {
-
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue() + "%");
@@ -301,7 +298,6 @@ public class Database {
 
     public List<Article> searchArticleLike(Map<String, String> filledFields) {
         List<Article> listOfFoundetArticles = new ArrayList<>();
-        // SELECT name, farbe, kaufpreis FROM article WHERE name LIKE "%abc%" AND farbe LIKE "%Blau%" AND kaufpreis LIKE "%2.3%";
         String sql = "SELECT * FROM article WHERE ";
         StringBuilder whereClause = new StringBuilder();
 
@@ -368,82 +364,6 @@ public class Database {
             System.err.println("Fehler beim Löschen des Artikels. " + e.getMessage());
             return false;
         }
-    }
-
-
-    public int getCustomerID(String username, String password) {
-        String sql = "SELECT idbenutzer FROM benutzer WHERE benutzername = ? AND passwort = ?";
-        int userID = 0;
-        ResultSet resultSet = null;
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)
-        ) {
-            preparedStatement.setString(1, username);
-            preparedStatement.setString(2, password);
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                userID = resultSet.getInt("idbenutzer");
-                return userID;
-            } else {
-                return -1;
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Fehler beim Abrufen der userID: " + e.getMessage());
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    System.err.println("Fehler beim Schließen des ResultSets: " + e.getMessage());
-                }
-            }
-        }
-        return -1;
-    }
-
-
-    public String getName(int userID) {
-        String sql = "SELECT name FROM benutzer WHERE idbenutzer = ?";
-        String name;
-        ResultSet resultSet = null;
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setInt(1, userID);
-            // executeQuery() wird verwendet, um Daten abzufragen (SELECT-Anweisung)
-            resultSet = preparedStatement.executeQuery();
-
-            if (resultSet.next()) {
-                // ResultSet kann man sich wie ein Assoziatives Array Vorstellen, was alle Zeilen meiner Abfrage
-                // von preparedStatement.executeQuery() abspeichert und man mit dem key "name" das, Value dort drin
-                // ausgibt, unten ein beispiel wie es aussieht in einem ResultSet
-                /*
-                idbenutzer	    name	        email
-                1	            Alice	    alice@mail.com
-                2	            Bob	        bob@mail.com
-                 */
-                name = resultSet.getString("name");
-
-//                // Ersten Buchstaben des Namen in groß umwandeln
-//                name = name.substring(0, 1).toUpperCase() + name.substring(1);
-                return name;
-            }
-
-        } catch (SQLException e) {
-            System.err.println("Fehler bei Abrufen des Namens: " + e.getMessage());
-        } finally {
-            if (resultSet != null) {
-                try {
-                    resultSet.close();
-                } catch (SQLException e) {
-                    System.err.println("Fehler bei Schließen des ResultSets: " + e.getMessage());
-                }
-            }
-        }
-        return "no user";
     }
 
 

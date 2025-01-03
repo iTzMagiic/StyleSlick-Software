@@ -135,16 +135,14 @@ public class CustomerManagementMenuController implements Initializable {
 
     public void executeDeleteCustomer() {
         // Abrufen des ausgewählten Kunden
-        Customer selectedArticle = tableView_customer.getSelectionModel().getSelectedItem();
-        if (selectedArticle == null) {
+        Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+        if (selectedCustomer == null) {
             RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu löschen.");
             return;
         }
 
-        int articleID = selectedArticle.getCustomer_id(); // ID des Kunden
-
-        // Artikel aus der Datenbank löschen
-        if (customerService.deleteCustomer(articleID)) {
+        // Kunden aus der Datenbank löschen
+        if (customerService.deleteCustomer(selectedCustomer.getCustomer_id())) {
             RulesService.showConfirmAlert("Kunde erfolgreich gelöscht.");
             executeShowAllCustomers();
         } else {

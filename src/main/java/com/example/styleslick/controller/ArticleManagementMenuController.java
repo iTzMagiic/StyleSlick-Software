@@ -183,7 +183,6 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
 
@@ -195,7 +194,6 @@ public class ArticleManagementMenuController implements Initializable {
         field_gekauft_ueber.clear();
         field_verarbeitung.clear();
         field_menge.clear();
-
     }
 
 

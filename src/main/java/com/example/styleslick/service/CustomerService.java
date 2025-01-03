@@ -21,7 +21,6 @@ public class CustomerService {
     public static synchronized CustomerService getInstance() {
         if (customerService == null) {
             customerService = new CustomerService();
-
         }
         return customerService;
     }
@@ -59,7 +58,6 @@ public class CustomerService {
         if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
             RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return false;
-
         }
 
         if (database.isUsernameExist(filledFields.get("benutzername"))) {
