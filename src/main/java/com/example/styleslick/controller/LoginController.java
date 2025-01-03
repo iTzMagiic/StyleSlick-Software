@@ -5,6 +5,7 @@ import com.example.styleslick.service.RulesService;
 import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
+import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -14,7 +15,7 @@ public class LoginController {
     @FXML
     private TextField field_username;
     @FXML
-    private TextField field_password;
+    private PasswordField field_password;
 
 
     public void initialize() {

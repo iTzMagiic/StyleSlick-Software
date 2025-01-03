@@ -19,6 +19,8 @@ import java.net.URL;
 import java.time.LocalDate;
 import java.util.*;
 
+//TODO:: Noch eine Möglichkeit ein Artikel zu bearbeiten.
+
 public class ArticleManagementMenuController implements Initializable {
 
     private ArticleService articleService;
