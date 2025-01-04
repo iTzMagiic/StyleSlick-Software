@@ -33,6 +33,66 @@ public class Database {
     }
 
 
+    public String getTotalSales() {
+        String gesamt_einnahmen = "NULL";
+        String sql = "SELECT SUM(betrag - versand_kosten) AS gesamt_einnahmen FROM `order`";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    gesamt_einnahmen = String.valueOf(resultSet.getDouble("gesamt_einnahmen"));
+                    gesamt_einnahmen = gesamt_einnahmen.replace(".", ",");
+                    gesamt_einnahmen += "€";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
+        }
+        return gesamt_einnahmen;
+    }
+
+
+    public String getTotalExpenditure() {
+        String gesamt_ausgaben = "NULL";
+        String sql = "SELECT SUM(kaufpreis * menge) AS gesamt_ausgaben FROM article";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    gesamt_ausgaben = String.valueOf(resultSet.getDouble("gesamt_ausgaben"));
+                    gesamt_ausgaben = gesamt_ausgaben.replace(".", ",");
+                    gesamt_ausgaben += "€";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
+        }
+        return gesamt_ausgaben;
+    }
+
+
+    public String getTotalProfit() {
+        String gewinn = "NULL";
+        String sql = "SELECT (SELECT SUM(betrag - versand_kosten) FROM `order`) - (SELECT SUM(kaufpreis * menge) FROM article) AS gewinn";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    gewinn = String.valueOf(resultSet.getDouble("gewinn"));
+                    gewinn = gewinn.replace(".", ",");
+                    gewinn += "€";
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
+        }
+        return gewinn;
+    }
+
+
     public void addCustomer(Map<String, String> filledFields) {
         String sql = "INSERT INTO customer (";
         StringBuilder whereClause = new StringBuilder();

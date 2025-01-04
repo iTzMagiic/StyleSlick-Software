@@ -4,10 +4,38 @@ package com.example.styleslick.controller;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
+import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class LoggedInMenuController {
+import java.net.URL;
+import java.util.ResourceBundle;
+
+public class LoggedInMenuController implements Initializable {
+
+    UserSession userSession;
+    @FXML
+    private Label label_gesamtumsatz;
+    @FXML
+    private Label label_gesamtausgaben;
+    @FXML
+    private Label label_gewinn;
+    @FXML
+    private Label label_anzahlKunden;
+
+
+
+    @Override
+    public void initialize(URL url, ResourceBundle resourceBundle) {
+        userSession = UserSession.getInstance();
+
+        label_gesamtumsatz.setText(userSession.getDatabase().getTotalSales());
+        label_gesamtausgaben.setText(userSession.getDatabase().getTotalExpenditure());
+        label_gewinn.setText(userSession.getDatabase().getTotalProfit());
+    }
+
+
 
     @FXML
     private void executeCustomerManagement() {
@@ -40,7 +68,7 @@ public class LoggedInMenuController {
     @FXML
     private void executeLogout() {
         UserSession.getInstance().clearSession();
-        SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
     }
 
 
@@ -132,4 +160,6 @@ public class LoggedInMenuController {
             executeExit();
         }
     }
+
+
 }
