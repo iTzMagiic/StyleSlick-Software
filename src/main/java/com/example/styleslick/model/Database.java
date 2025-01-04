@@ -369,9 +369,16 @@ public class Database {
             }
             whereClause.append(entry.getKey());
         }
-        whereClause.append(", bestand) VALUES (");
-        sql += whereClause.toString();
 
+        if (!filledFields.containsKey("bestand")) {
+            whereClause.append(", bestand) VALUES (");
+            System.out.println("test kein bestand vorhanden ");
+        } else {
+            whereClause.append(") VALUES (");
+            System.out.println("Bestand vorhanden " + filledFields.get("bestand"));
+        }
+
+        sql += whereClause.toString();
         whereClause = new StringBuilder();
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
@@ -380,7 +387,13 @@ public class Database {
             }
             whereClause.append("?");
         }
-        whereClause.append(", ?)");
+
+        if (!filledFields.containsKey("bestand")) {
+            whereClause.append(", ?)");
+        } else {
+            whereClause.append(")");
+        }
+
         sql += whereClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -391,14 +404,16 @@ public class Database {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
                 } else if (entry.getKey().equals("kaufdatum")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
+                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
-            int bestand = Integer.parseInt(filledFields.get("menge"));
-            preparedStatement.setInt(index, bestand);
+            if (!filledFields.containsKey("bestand")) {
+                int bestand = Integer.parseInt(filledFields.get("menge"));
+                preparedStatement.setInt(index, bestand);
+            }
 
             preparedStatement.executeUpdate();
             return true;

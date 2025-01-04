@@ -129,6 +129,7 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
         fields.put("menge", field_menge.getText());
+        fields.put("bestand", field_bestand.getText());
 
         if (articleService.addArticle(fields)) {
             field_name.clear();
@@ -138,6 +139,7 @@ public class ArticleManagementMenuController implements Initializable {
             field_gekauft_ueber.clear();
             field_verarbeitung.clear();
             field_menge.clear();
+            field_bestand.clear();
             executeShowAllArticles();
         }
     }

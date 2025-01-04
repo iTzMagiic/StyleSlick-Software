@@ -84,6 +84,10 @@ public class ArticleService {
             RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
             return false;
         }
+        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
+            return false;
+        }
 
         if (!database.addArticle(filledFields)) {
             RulesService.showErrorAlert("Fehler beim hinzufügen in die Datenbank.");
