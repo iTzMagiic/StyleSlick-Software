@@ -1,37 +1,90 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import javafx.geometry.Insets?>
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.DatePicker?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<AnchorPane prefHeight="720.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.OrderManagementMenuController">
-    <children>
-        <ImageView fitWidth="1300.0" pickOnBounds="true" preserveRatio="true">
-            <image>
-                <Image url="@../../../image/loggedIn_background.jpg" />
-            </image>
-        </ImageView>
-        <Button layoutX="489.0" layoutY="112.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" prefHeight="96.0" prefWidth="323.0" style="-fx-background-radius: 15;" text="Kunde hinzufügen">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-        <Button layoutX="489.0" layoutY="247.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowCustomer" onMouseClicked="#onMouseClickedShowCustomer" prefHeight="96.0" prefWidth="323.0" style="-fx-background-radius: 15;" text="Kunden anzeigen">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-        <Button layoutX="489.0" layoutY="387.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" prefHeight="96.0" prefWidth="323.0" style="-fx-background-radius: 15;" text="Kunde Suchen">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-        <Button layoutX="489.0" layoutY="521.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitOrderManagement" onMouseClicked="#onMouseClickedExitOrderManagement" prefHeight="96.0" prefWidth="323.0" style="-fx-background-radius: 15;" text="Abbrechen">
-            <font>
-                <Font size="24.0" />
-            </font>
-        </Button>
-    </children>
-</AnchorPane>
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.ArticleManagementMenuController">
+    <center>
+        <TableView fx:id="tableView_articles" prefHeight="545.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
+            <columns>
+                <TableColumn fx:id="column_article_id" prefWidth="75.0" text="Artikel Nummer" />
+                <TableColumn fx:id="column_category_id" prefWidth="75.0" text="Kategorie ID" />
+                <TableColumn fx:id="column_name" prefWidth="75.0" text="Artikel Name" />
+                <TableColumn fx:id="column_farbe" prefWidth="75.0" text="Farbe" />
+                <TableColumn fx:id="column_kaufpreis" prefWidth="75.0" text="Kaufpreis" />
+                <TableColumn fx:id="column_kaufdatum" prefWidth="75.0" text="Kaufdatum" />
+                <TableColumn fx:id="column_hersteller" prefWidth="75.0" text="Hersteller" />
+                <TableColumn fx:id="column_gekauft_ueber" prefWidth="75.0" text="Gekauft über" />
+                <TableColumn fx:id="column_verarbeitung" prefWidth="75.0" text="Qualität" />
+                <TableColumn fx:id="column_menge" prefWidth="75.0" text="Menge" />
+                <TableColumn fx:id="column_bestand" prefWidth="75.0" text="Bestand" />
+            </columns>
+            <columnResizePolicy>
+                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+            </columnResizePolicy>
+        </TableView>
+    </center>
+    <top>
+        <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
+            <children>
+                <HBox alignment="CENTER" prefHeight="93.0" prefWidth="1280.0" spacing="10.0">
+                    <children>
+                        <ChoiceBox fx:id="choiceBox_category_id" prefWidth="150.0" />
+                        <TextField fx:id="field_name" promptText="Artikel Name*" />
+                        <TextField fx:id="field_farbe" promptText="Farbe*" />
+                        <TextField fx:id="field_kaufpreis" promptText="Kaufpreis*" />
+                        <DatePicker fx:id="datePicker_kaufdatum" promptText="Kaufdatum*" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+                    <children>
+                        <TextField fx:id="field_hersteller" promptText="Hersteller" />
+                        <TextField fx:id="field_gekauft_ueber" promptText="Gekauft über*" />
+                        <TextField fx:id="field_verarbeitung" promptText="Qualität" />
+                        <TextField fx:id="field_menge" promptText="Menge*" />
+                    </children>
+                </HBox>
+                <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
+                    <children>
+                        <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" text="Alle Artikel anzeigen">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddArticle" onMouseClicked="#onMouseClickedAddArticle" text="Artikel Speichern">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedDeleteArticle" onMouseClicked="#onMouseCLickedDeleteArticle" text="Artikel Löschen" textFill="RED">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font>
+                        </Button>
+                        <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSearchArticle" onMouseClicked="#onMouseClickedSearchArticle" text="Artikel Suchen">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></Button>
+                        <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitArticleManagement" onMouseClicked="#onMouseClickedExitArticleManagement" text="Abbrechen">
+                            <font>
+                                <Font name="System Bold" size="12.0" />
+                            </font></Button>
+                    </children>
+                </HBox>
+            </children>
+            <opaqueInsets>
+                <Insets />
+            </opaqueInsets>
+            <padding>
+                <Insets bottom="10.0" />
+            </padding>
+        </VBox>
+    </top>
+</BorderPane>

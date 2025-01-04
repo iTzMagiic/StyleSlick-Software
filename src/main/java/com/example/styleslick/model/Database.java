@@ -98,12 +98,12 @@ public class Database {
         String sql = "SELECT COUNT(*) AS anzahl_kunden FROM customer";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-                try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                    if (resultSet.next()) {
-                        numberOfCustomers = String.valueOf(resultSet.getInt("anzahl_kunden"));
-                    }
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    numberOfCustomers = String.valueOf(resultSet.getInt("anzahl_kunden"));
                 }
+            }
         } catch (SQLException e) {
             System.err.println("Fehler beim abrufen der gesamten anzahl der Kunden. " + e.getMessage());
         }
@@ -180,7 +180,6 @@ public class Database {
     }
 
 
-    // Gibt alle bestehenden Kunden in einer Liste wieder
     public List<Customer> getAllCustomers() {
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer";

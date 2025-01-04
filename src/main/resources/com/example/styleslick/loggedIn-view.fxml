@@ -22,12 +22,12 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="35.0" layoutY="111.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="380.0" text="Bestellungsverwaltung">
+            <Button layoutX="35.0" layoutY="111.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterOrdereManagement" onMouseClicked="#onMousePressedOrderManagement" prefHeight="50.0" prefWidth="380.0" text="Bestellungsverwaltung">
                <font>
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="35.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="380.0" text="Button">
+            <Button layoutX="35.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="380.0" text="Einstellung">
                <font>
                   <Font size="24.0" />
                </font>
@@ -102,7 +102,7 @@
                   <Insets left="100.0" right="100.0" />
                </VBox.margin>
             </HBox>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="60.0">
+            <HBox alignment="CENTER" prefHeight="105.0" prefWidth="1280.0" spacing="60.0">
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
