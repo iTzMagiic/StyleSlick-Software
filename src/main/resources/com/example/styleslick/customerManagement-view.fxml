@@ -52,6 +52,11 @@
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></Button>
+                  <Button layoutX="505.0" layoutY="25.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedUpdateCustomer" onMouseClicked="#onMouseClickedUpdateCustomer" text="Kunden bearbeiten">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
                   <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedDeleteCustomer" onMouseClicked="#onMouseCLickedDeleteCustomer" text="Kunde Löschen" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />

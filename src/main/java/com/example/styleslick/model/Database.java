@@ -272,6 +272,42 @@ public class Database {
     }
 
 
+    public boolean updateCustomer(Map<String, String> filledFields, int customerID) {
+        String sql = "UPDATE customer SET ";
+        StringBuilder setClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (setClause.length() > 0) {
+                setClause.append(", ");
+            }
+            setClause.append(entry.getKey()).append(" = ?");
+        }
+        setClause.append(" WHERE customer_id = ?");
+
+        sql += setClause.toString();
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            int index = 1;
+
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("plz")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                } else {
+                    preparedStatement.setString(index++, entry.getValue());
+                }
+            }
+
+            preparedStatement.setInt(index, customerID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Fehler beim bearbeiten des Kunden. " + e.getMessage());
+            return false;
+        }
+    }
+
+
     public List<Category> getAllCategories() {
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";

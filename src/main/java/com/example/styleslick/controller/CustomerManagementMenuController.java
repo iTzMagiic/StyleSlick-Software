@@ -108,6 +108,38 @@ public class CustomerManagementMenuController implements Initializable {
     }
 
 
+    private void executeUpdateCustomer() {
+        Map<String, String> fields = new HashMap<>();
+
+        // Abrufen des ausgewählten Kunden
+        Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+        if (selectedCustomer == null) {
+            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu bearbeiten.");
+            return;
+        }
+
+        fields.put("benutzername", field_username.getText());
+        fields.put("name", field_name.getText());
+        fields.put("nachname", field_lastName.getText());
+        fields.put("strasse", field_street.getText());
+        fields.put("plz", field_plz.getText());
+        fields.put("ort", field_ort.getText());
+        fields.put("gekauft_ueber", field_platform.getText());
+
+        // Kunden aus der Datenbank löschen
+        if (customerService.updateCustomer(fields, selectedCustomer.getCustomer_id())) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_plz.clear();
+            field_ort.clear();
+            field_platform.clear();
+            executeShowAllCustomers();
+        }
+    }
+
+
     private void executeSearchCustomer() {
         Map<String, String> fields = new HashMap<>();
 
@@ -124,6 +156,7 @@ public class CustomerManagementMenuController implements Initializable {
 
         // Wenn kein Customer gefunden wurde abbrechen
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            executeShowAllCustomers();
             return;
         }
 
@@ -154,6 +187,19 @@ public class CustomerManagementMenuController implements Initializable {
     private void executeExitCustomerManagement() {
         CustomerService.getInstance().clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+    }
+
+    @FXML
+    private void onKeyPressedUpdateCustomer(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeUpdateCustomer();
+        }
+    }
+
+
+    @FXML
+    private void onMouseClickedUpdateCustomer(MouseEvent event) {
+        executeUpdateCustomer();
     }
 
 

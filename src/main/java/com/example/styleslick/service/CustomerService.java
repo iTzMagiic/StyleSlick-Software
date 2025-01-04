@@ -101,6 +101,40 @@ public class CustomerService {
     }
 
 
+    public boolean updateCustomer(Map<String, String> fields, int customerID) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
+                filledFields.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        if (filledFields.isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie etwas an um den Kunden zu bearbeiten.");
+            return false;
+        }
+
+        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr " + customerID + " bearbeiten?")){
+            RulesService.showErrorAlert("Kunde wird nicht bearbeitet.");
+            return false;
+        }
+
+        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+            return false;
+        }
+
+        if (!database.updateCustomer(filledFields, customerID)) {
+            RulesService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
+            return false;
+        }
+
+        RulesService.showConfirmAlert("Der Kunde wurde erfolgreich bearbeitet.");
+        return true;
+    }
+
+
     public boolean deleteCustomer(int customerID) {
         if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden Nummer '" + customerID + "' löschen?")) {
             return database.deleteCustomer(customerID);
