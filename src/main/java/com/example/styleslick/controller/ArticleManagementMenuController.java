@@ -2,6 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Category;
+import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.service.RulesService;
@@ -67,6 +68,8 @@ public class ArticleManagementMenuController implements Initializable {
     private TextField field_verarbeitung;
     @FXML
     private TextField field_menge;
+    @FXML
+    private TextField field_bestand;
 
 
     @Override
@@ -140,6 +143,46 @@ public class ArticleManagementMenuController implements Initializable {
     }
 
 
+    private void executeUpdateArticle() {
+        Map<String, String> fields = new HashMap<>();
+
+        Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+        if (selectedArticle == null) {
+            RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
+            return;
+        }
+
+        if (choiceBox_category_id.getValue() != null) {
+            fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        }
+
+        fields.put("name", field_name.getText());
+        fields.put("farbe", field_farbe.getText());
+        fields.put("kaufpreis", field_kaufpreis.getText());
+        if (datePicker_kaufdatum.getValue() != null) {
+            fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
+        }
+        fields.put("hersteller", field_hersteller.getText());
+        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("verarbeitung", field_verarbeitung.getText());
+        fields.put("menge", field_menge.getText());
+        fields.put("bestand", field_bestand.getText());
+
+        if (articleService.updateArticle(fields, selectedArticle.getArticle_id())) {
+            choiceBox_category_id.setValue(null);
+            field_name.clear();
+            field_farbe.clear();
+            field_kaufpreis.clear();
+            field_hersteller.clear();
+            field_gekauft_ueber.clear();
+            field_verarbeitung.clear();
+            field_menge.clear();
+            field_bestand.clear();
+            executeShowAllArticles();
+        }
+    }
+
+
     private void executeDeleteArticle() {
         // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
@@ -178,24 +221,26 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("gekauft_ueber", field_gekauft_ueber.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
         fields.put("menge", field_menge.getText());
+        fields.put("bestand", field_bestand.getText());
 
         List<Article> listOfArticles = articleService.searchArticle(fields);
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
+            choiceBox_category_id.setValue(null);
+            field_name.clear();
+            field_farbe.clear();
+            field_kaufpreis.clear();
+            field_hersteller.clear();
+            field_gekauft_ueber.clear();
+            field_verarbeitung.clear();
+            field_menge.clear();
+            field_bestand.clear();
+            executeShowAllArticles();
             return;
         }
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
-
-        choiceBox_category_id.setValue(null);
-        field_name.clear();
-        field_farbe.clear();
-        field_kaufpreis.clear();
-        field_hersteller.clear();
-        field_gekauft_ueber.clear();
-        field_verarbeitung.clear();
-        field_menge.clear();
     }
 
 
@@ -216,6 +261,20 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private void onMouseClickedShowAllArticles(MouseEvent event) {
         executeShowAllArticles();
+    }
+
+
+    @FXML
+    private void onKeyPressedUpdateArticle(KeyEvent event) {
+        if (event.getCode().toString().equals("Enter")) {
+            executeUpdateArticle();
+        }
+    }
+
+
+    @FXML
+    private void onMouseClickedUpdateArticle(MouseEvent event) {
+        executeUpdateArticle();
     }
 
 

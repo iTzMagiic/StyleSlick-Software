@@ -95,6 +95,54 @@ public class ArticleService {
     }
 
 
+    public boolean updateArticle(Map<String, String> fields, int articleID) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
+                filledFields.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        if (filledFields.isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie etwas an um den Artikel zu bearbeiten.");
+            return false;
+        }
+
+        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")){
+            RulesService.showErrorAlert("Artikel wird nicht bearbeitet.");
+            return false;
+        }
+
+        if (filledFields.containsKey("kaufpreis")) {
+            filledFields.replace("kaufpreis", filledFields.get("kaufpreis").replace(",", "."));
+            try {
+                Double.parseDouble(filledFields.get("kaufpreis"));
+            } catch (NumberFormatException e) {
+                RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+                return false;
+            }
+        }
+
+        if (filledFields.containsKey("menge") && !filledFields.get("menge").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+            return false;
+        }
+        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
+            return false;
+        }
+
+        if (!database.updateArticle(filledFields, articleID)) {
+            RulesService.showErrorAlert("Fehler beim bearbeiten des Artikels.");
+            return false;
+        }
+
+        RulesService.showConfirmAlert("Der Artikel wurde erfolgreich bearbeitet.");
+        return true;
+    }
+
+
     public List<Article> searchArticle(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
         List<Article> listOfArticles = new ArrayList<>();
@@ -123,6 +171,10 @@ public class ArticleService {
 
         if (filledFields.containsKey("menge") && !filledFields.get("menge").matches("\\d+")) {
             RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+            return listOfArticles;
+        }
+        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
             return listOfArticles;
         }
 

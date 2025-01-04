@@ -10,7 +10,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class LoginController {
+public class LoginManagementController {
 
     @FXML
     private TextField field_username;

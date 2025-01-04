@@ -12,7 +12,7 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.util.ResourceBundle;
 
-public class LoggedInMenuController implements Initializable {
+public class LoggedInManagementController implements Initializable {
 
     UserSession userSession;
     @FXML
@@ -42,6 +42,13 @@ public class LoggedInMenuController implements Initializable {
     private void executeCustomerManagement() {
         CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
         SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+    }
+
+
+    @FXML
+    private void executeCategoryManagement() {
+        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie verwaltung");
     }
 
 
@@ -79,6 +86,21 @@ public class LoggedInMenuController implements Initializable {
             executeCustomerManagement();
         }
     }
+
+
+    @FXML
+    private void onKeyPressedEnterCategoryManagement(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeCategoryManagement();
+        }
+    }
+
+
+    @FXML
+    private void onMousePressedCategoryManagement(MouseEvent event) {
+        executeCategoryManagement();
+    }
+
 
 
     @FXML

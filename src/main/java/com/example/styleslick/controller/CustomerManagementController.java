@@ -21,7 +21,7 @@ import java.util.List;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-public class CustomerManagementMenuController implements Initializable {
+public class CustomerManagementController implements Initializable {
 
     private CustomerService customerService;
 
@@ -156,6 +156,13 @@ public class CustomerManagementMenuController implements Initializable {
 
         // Wenn kein Customer gefunden wurde abbrechen
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+            field_username.clear();
+            field_name.clear();
+            field_lastName.clear();
+            field_street.clear();
+            field_ort.clear();
+            field_platform.clear();
+            field_plz.clear();
             executeShowAllCustomers();
             return;
         }

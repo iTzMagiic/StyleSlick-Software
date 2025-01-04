@@ -1,4 +1,4 @@
 package com.example.styleslick.controller;
 
-public class SettingsMenuController {
+public class SettingsManagementController {
 }

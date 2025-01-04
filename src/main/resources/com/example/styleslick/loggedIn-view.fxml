@@ -8,11 +8,16 @@
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoggedInMenuController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoggedInManagementController">
    <center>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="1280.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
             <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterCustomerManagement" onMouseClicked="#onMousePressedCustomerManagement" prefHeight="50.0" prefWidth="380.0" text="Kundenverwaltung">
+               <font>
+                  <Font size="24.0" />
+               </font>
+            </Button>
+            <Button layoutX="473.0" layoutY="166.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterCategoryManagement" onMouseClicked="#onMousePressedCategoryManagement" prefHeight="50.0" prefWidth="380.0" text="Kategorieverwaltung">
                <font>
                   <Font size="24.0" />
                </font>
@@ -106,14 +111,28 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
+                        <Label text="Gewinn" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_gewinn" text="0" textFill="#0fc305">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
                         <Label text="Gesamtumsatz" underline="true">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="label_gesamtumsatz" text="0">
+                        <Label fx:id="label_gesamtumsatz" text="0" textFill="#ff8600">
                            <font>
-                              <Font size="17.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -125,23 +144,9 @@
                               <Font name="System Bold" size="19.0" />
                            </font>
                         </Label>
-                        <Label fx:id="label_gesamtausgaben" text="0">
+                        <Label fx:id="label_gesamtausgaben" text="0" textFill="RED">
                            <font>
-                              <Font size="17.0" />
-                           </font>
-                        </Label>
-                     </children>
-                  </VBox>
-                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
-                     <children>
-                        <Label text="Gewinn" underline="true">
-                           <font>
-                              <Font name="System Bold" size="19.0" />
-                           </font>
-                        </Label>
-                        <Label fx:id="label_gewinn" text="0">
-                           <font>
-                              <Font size="17.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>
@@ -155,7 +160,7 @@
                         </Label>
                         <Label fx:id="label_anzahlKunden" text="0">
                            <font>
-                              <Font size="17.0" />
+                              <Font size="20.0" />
                            </font>
                         </Label>
                      </children>

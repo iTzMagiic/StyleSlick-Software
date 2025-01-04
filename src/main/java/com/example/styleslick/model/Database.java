@@ -287,7 +287,7 @@ public class Database {
         sql += setClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
@@ -409,6 +409,47 @@ public class Database {
     }
 
 
+    public boolean updateArticle(Map<String, String> filledFields, int articleID) {
+        String sql = "UPDATE article SET ";
+        StringBuilder setClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (setClause.length() > 0) {
+                setClause.append(", ");
+            }
+            setClause.append(entry.getKey()).append(" = ?");
+        }
+        setClause.append(" WHERE article_id = ?");
+
+        sql += setClause.toString();
+
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            int index = 1;
+
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("kaufpreis")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+                } else if (entry.getKey().equals("kaufdatum")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                } else {
+                    preparedStatement.setString(index++, entry.getValue());
+                }
+            }
+
+            preparedStatement.setInt(index, articleID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            System.err.println("Fehler beim bearbeiten des Artikels. " + e.getMessage());
+            return false;
+        }
+    }
+
+
     public List<Article> searchArticleLike(Map<String, String> filledFields) {
         List<Article> listOfFoundetArticles = new ArrayList<>();
         String sql = "SELECT * FROM article WHERE ";
@@ -432,7 +473,7 @@ public class Database {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
                 } else if (entry.getKey().equals("kaufdatum")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id")) {
+                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, "%" + entry.getValue() + "%");
