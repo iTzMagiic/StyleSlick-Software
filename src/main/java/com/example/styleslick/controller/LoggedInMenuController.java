@@ -33,6 +33,7 @@ public class LoggedInMenuController implements Initializable {
         label_gesamtumsatz.setText(userSession.getDatabase().getTotalSales());
         label_gesamtausgaben.setText(userSession.getDatabase().getTotalExpenditure());
         label_gewinn.setText(userSession.getDatabase().getTotalProfit());
+        label_anzahlKunden.setText(userSession.getDatabase().getTotalCustomer());
     }
 
 

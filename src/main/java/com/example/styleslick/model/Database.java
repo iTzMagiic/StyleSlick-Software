@@ -38,7 +38,7 @@ public class Database {
         String sql = "SELECT SUM(betrag - versand_kosten) AS gesamt_einnahmen FROM `order`";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
                     gesamt_einnahmen = String.valueOf(resultSet.getDouble("gesamt_einnahmen"));
@@ -47,7 +47,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
+            System.err.println("Fehler beim abrufen der gesamt Einnahmen. " + e.getMessage());
         }
         return gesamt_einnahmen;
     }
@@ -67,7 +67,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
+            System.err.println("Fehler beim abrufen der gesamt Ausgaben. " + e.getMessage());
         }
         return gesamt_ausgaben;
     }
@@ -90,6 +90,24 @@ public class Database {
             System.err.println("Fehler beim abrufen der gesamt gewinne. " + e.getMessage());
         }
         return gewinn;
+    }
+
+
+    public String getTotalCustomer() {
+        String numberOfCustomers = "NULL";
+        String sql = "SELECT COUNT(*) AS anzahl_kunden FROM customer";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+                try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                    if (resultSet.next()) {
+                        numberOfCustomers = String.valueOf(resultSet.getInt("anzahl_kunden"));
+                    }
+                }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim abrufen der gesamten anzahl der Kunden. " + e.getMessage());
+        }
+        return numberOfCustomers;
     }
 
 
