@@ -318,10 +318,51 @@ public class Database {
     }
 
 
+    public boolean addCategory(Map<String, String> filledFields) {
+        logger.info("Methode addCategory START. Parameter: filledFields = {}", filledFields);
+        String sql = "INSERT INTO category (";
+        StringBuilder whereClause = new StringBuilder();
 
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append(entry.getKey());
+        }
+        whereClause.append(") VALUES (");
+        sql += whereClause.toString();
+
+        whereClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (whereClause.length() > 0) {
+                whereClause.append(", ");
+            }
+            whereClause.append("?");
+        }
+        whereClause.append(")");
+        sql += whereClause.toString();
+
+        logger.info("Erstellte SQL Query: sql = {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            int index = 1;
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                preparedStatement.setString(index++, entry.getValue());
+            }
+            preparedStatement.executeUpdate();
+            logger.info("Kategorie wurde erfolgreich in die Datenbank geschrieben.");
+            return true;
+        } catch (SQLException e) {
+            logger.error("Fehler beim hinzufügen der Kategorie in die Datenbank SQL query: sql = {}, FEHLER: {}", sql, e.getMessage(), e);
+            return false;
+        }
+    }
 
 
     public List<Category> getAllCategories() {
+        logger.info("Methode getAllCategories START.");
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
@@ -333,10 +374,11 @@ public class Database {
                     int id = resultSet.getInt("category_id");
                     listOfCategories.add(new Category(name, id));
                 }
+                logger.info("Kategorien wurden erfolgreich aus der Datenbank exportiert.");
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen der Kategorien. " + e.getMessage());
+            logger.error("Fehlber beim abrufen der Kategorien SQL query: sql = {}, listOfCategories = {}, FEHELER: {}", sql, listOfCategories, e.getMessage(), e);
         }
         return listOfCategories;
     }

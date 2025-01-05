@@ -31,7 +31,7 @@ public class CategoryService {
 
 
     public boolean addCategory(Map<String, String> fields) {
-        logger.info("Methode addCategory() START. Parameter: fields länge : {}", fields.size());
+        logger.info("Methode addCategory() START. Parameter: fields = {}", fields);
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -46,21 +46,34 @@ public class CategoryService {
             return false;
         }
 
+        if (!database.addCategory(filledFields)) {
+            RulesService.showErrorAlert("Fehler beim erstellen.");
+            logger.warn("Methode addCategory() ENDE.");
+            return false;
+        }
 
-        RulesService.showConfirmAlert("Kategorie wurde erfolgreich erstellt.");
-        logger.info("Methode addCategory() ENDE.");
+        RulesService.showConfirmAlert("Die Kategorie wurde erfolgreich erstellt.");
+        logger.info("Methode addCategory() erfolgreich ENDE.");
         return true;
-
     }
 
 
     public List<Category> getAllCategories() {
+        logger.info("Methode getAllCategories() START.");
+        List<Category> listOfCategories = database.getAllCategories();
+        if (listOfCategories == null || listOfCategories.isEmpty()) {
+            RulesService.showErrorAlert("Fehler beim Laden der Kategorien.");
+            logger.warn("Fehler beim Laden der Kategorien. listOfCategories = {}", listOfCategories);
+        }
+        logger.info("Methode getAllCategories() ENDE.");
         return database.getAllCategories();
     }
 
 
     public void clearSession() {
+        logger.info("Methode clearSession() START.");
         categoryService = null;
         database = null;
+        logger.info("Methode ClearSession() erfolgreich ENDE.");
     }
 }

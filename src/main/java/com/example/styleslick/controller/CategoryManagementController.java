@@ -61,7 +61,10 @@ public class CategoryManagementController implements Initializable {
 
         fields.put("name", field_categoryName.getText());
 
-        categoryService.addCategory(fields);
+        if (categoryService.addCategory(fields)) {
+            field_categoryName.clear();
+            executeShowAllCategories();
+        }
     }
 
 
@@ -74,7 +77,9 @@ public class CategoryManagementController implements Initializable {
 
     @FXML
     void onKeyPressedEnterAddCategory(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeAddCategory();
+        }
     }
 
     @FXML
@@ -103,7 +108,7 @@ public class CategoryManagementController implements Initializable {
 
     @FXML
     void onMouseClickedAddCategory(MouseEvent event) {
-
+        executeAddCategory();
     }
 
     @FXML

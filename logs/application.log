@@ -1,108 +1,28 @@
-2025-01-05 17:13:16 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Das Programm ist in der Klasse Database.
-2025-01-05 17:13:16 [JavaFX Application Thread] WARN  c.example.styleslick.model.Database - Das Programm warnt in der Database Klasse
-2025-01-05 17:13:16 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Das Programm hat ein error in der Database Klasse
-2025-01-05 17:13:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Das Programm ist in der Klasse Database.
-2025-01-05 17:13:46 [JavaFX Application Thread] WARN  c.example.styleslick.model.Database - Das Programm warnt in der Database Klasse
-2025-01-05 17:13:46 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Das Programm hat ein error in der Database Klasse
-2025-01-05 17:16:45 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Verbindung zur Datenbank fehlgeschlagen! Access denied for user 'USER'@'localhost' (using password: YES)
-java.sql.SQLException: Access denied for user 'USER'@'localhost' (using password: YES)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:845)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
-	at com.example.styleslick/com.example.styleslick.model.Database.isConnected(Database.java:35)
-	at com.example.styleslick/com.example.styleslick.controller.LoginManagementController.executeLogin(LoginManagementController.java:31)
-	at com.example.styleslick/com.example.styleslick.controller.LoginManagementController.onMouseClickedLogin(LoginManagementController.java:53)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
-	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
-	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
-	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
-	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
-	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
-	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-2025-01-05 17:16:45 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Verbindung zur Datenbank fehlgeschlagen! Access denied for user 'USER'@'localhost' (using password: YES)
-java.sql.SQLException: Access denied for user 'USER'@'localhost' (using password: YES)
-	at com.mysql.cj.jdbc.exceptions.SQLError.createSQLException(SQLError.java:121)
-	at com.mysql.cj.jdbc.exceptions.SQLExceptionsMapping.translateException(SQLExceptionsMapping.java:114)
-	at com.mysql.cj.jdbc.ConnectionImpl.createNewIO(ConnectionImpl.java:845)
-	at com.mysql.cj.jdbc.ConnectionImpl.<init>(ConnectionImpl.java:420)
-	at com.mysql.cj.jdbc.ConnectionImpl.getInstance(ConnectionImpl.java:238)
-	at com.mysql.cj.jdbc.NonRegisteringDriver.connect(NonRegisteringDriver.java:180)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:682)
-	at java.sql/java.sql.DriverManager.getConnection(DriverManager.java:230)
-	at com.example.styleslick/com.example.styleslick.model.Database.isConnected(Database.java:35)
-	at com.example.styleslick/com.example.styleslick.controller.LoginManagementController.executeLogin(LoginManagementController.java:33)
-	at com.example.styleslick/com.example.styleslick.controller.LoginManagementController.onMouseClickedLogin(LoginManagementController.java:53)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
-	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
-	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
-	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
-	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
-	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
-	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
-	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
-	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
-	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
-	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
-	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
-	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
-	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
-	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
-	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
-	at java.base/java.lang.Thread.run(Thread.java:1570)
-2025-01-05 17:18:00 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Verbindung zur Datenbank fehlgeschlagen! Access denied for user 'USER'@'localhost' (using password: YES)
-2025-01-05 17:18:00 [JavaFX Application Thread] ERROR c.example.styleslick.model.Database - Verbindung zur Datenbank fehlgeschlagen! Access denied for user 'USER'@'localhost' (using password: YES)
+2025-01-06 00:36:24 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() START. Parameter: fields = {name=}
+2025-01-06 00:36:25 [JavaFX Application Thread] WARN  c.e.s.service.CategoryService - Liste ist leer.
+2025-01-06 00:37:12 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() START. Parameter: fields = {name=test}
+2025-01-06 00:37:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode addCategory START. Parameter: filledFields länge = 1
+2025-01-06 00:37:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Erstellte SQL Query: sql = INSERT INTO category (name) VALUES (?)
+2025-01-06 00:37:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorie wurde erfolgreich in die Datenbank geschrieben.
+2025-01-06 00:37:13 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() ENDE.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() ENDE.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 00:55:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 00:55:36 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() START. Parameter: fields = {name=test2}
+2025-01-06 00:55:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode addCategory START. Parameter: filledFields = {name=test2}
+2025-01-06 00:55:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Erstellte SQL Query: sql = INSERT INTO category (name) VALUES (?)
+2025-01-06 00:55:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorie wurde erfolgreich in die Datenbank geschrieben.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() erfolgreich ENDE.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() ENDE.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 00:55:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 00:55:39 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode addCategory() START. Parameter: fields = {name=}
+2025-01-06 00:55:39 [JavaFX Application Thread] WARN  c.e.s.service.CategoryService - Liste ist leer.
+2025-01-06 00:55:41 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode clearSession() START.
+2025-01-06 00:55:41 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode ClearSession() erfolgreich ENDE.
