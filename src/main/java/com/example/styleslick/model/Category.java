@@ -3,7 +3,6 @@ package com.example.styleslick.model;
 public class Category {
 
     private final String name;
-
     private final int ID;
 
 

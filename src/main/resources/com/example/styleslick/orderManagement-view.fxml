@@ -16,8 +16,8 @@
     <center>
         <TableView fx:id="tableView_articles" prefHeight="545.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
             <columns>
-                <TableColumn fx:id="column_article_id" prefWidth="75.0" text="Artikel Nummer" />
-                <TableColumn fx:id="column_category_id" prefWidth="75.0" text="Kategorie ID" />
+                <TableColumn fx:id="column_articleID" prefWidth="75.0" text="Artikel Nummer" />
+                <TableColumn fx:id="column_categoryID" prefWidth="75.0" text="Kategorie ID" />
                 <TableColumn fx:id="column_name" prefWidth="75.0" text="Artikel Name" />
                 <TableColumn fx:id="column_color" prefWidth="75.0" text="color" />
                 <TableColumn fx:id="column_purchase_price" prefWidth="75.0" text="purchase_price" />

@@ -48,7 +48,7 @@ public class LoggedInManagementController implements Initializable {
     @FXML
     private void executeCategoryManagement() {
         CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie verwaltung");
+        SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
     }
 
 

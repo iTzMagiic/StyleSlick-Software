@@ -45,7 +45,7 @@ public class Database {
 
     public String getTotalSales() {
         String gesamt_einnahmen = "NULL";
-        String sql = "SELECT SUM(amount - shipping_cost) AS gesamt_einnahmen FROM `order`";
+        String sql = "SELECT SUM(paid - shipping_cost) AS gesamt_einnahmen FROM `order`";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class Database {
 
     public String getTotalProfit() {
         String gewinn = "NULL";
-        String sql = "SELECT (SELECT SUM(amount - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS gewinn";
+        String sql = "SELECT (SELECT SUM(paid - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS gewinn";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -206,9 +206,9 @@ public class Database {
                     int postal_code = resultSet.getInt("postal_code");
                     String city = resultSet.getString("city");
                     String purchased_from = resultSet.getString("purchased_from");
-                    int customer_id = resultSet.getInt("customer_id");
+                    int customerID = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customer_id);
+                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customerID);
                     listOfCustomers.add(customer);
                 }
             }
@@ -253,9 +253,9 @@ public class Database {
                     int postal_code = resultSet.getInt("postal_code");
                     String city = resultSet.getString("city");
                     String purchased_from = resultSet.getString("purchased_from");
-                    int customer_id = resultSet.getInt("customer_id");
+                    int customerID = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customer_id);
+                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customerID);
                     listOfCustomers.add(customer);
                 }
                 return listOfCustomers;
@@ -318,6 +318,9 @@ public class Database {
     }
 
 
+
+
+
     public List<Category> getAllCategories() {
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
@@ -347,18 +350,18 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int article_id = resultSet.getInt("article_id");
-                    int category_id = resultSet.getInt("category_id");
+                    int articleID = resultSet.getInt("article_id");
+                    int categoryID = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
                     double preis = resultSet.getDouble("purchase_price");
                     LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
                     String manufacturer = resultSet.getString("manufacturer");
-                    String gekauft_bei = resultSet.getString("purchased_from");
+                    String purchased_from = resultSet.getString("purchased_from");
                     String quality = resultSet.getString("quality");
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
-                    listOfArticle.add(new Article(article_id, category_id, name, color, preis, purchase_date, manufacturer, gekauft_bei, quality, amount, stock));
+                    listOfArticle.add(new Article(articleID, categoryID, name, color, preis, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
                 return listOfArticle;
             }
@@ -507,8 +510,8 @@ public class Database {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    int article_id = resultSet.getInt("article_id");
-                    int category_id = resultSet.getInt("category_id");
+                    int articleID = resultSet.getInt("article_id");
+                    int categoryID = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
                     double purchase_price = resultSet.getDouble("purchase_price");
@@ -519,7 +522,7 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-                    listOfFoundetArticles.add(new Article(article_id, category_id, name, color, purchase_price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfFoundetArticles.add(new Article(articleID, categoryID, name, color, purchase_price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
                 return listOfFoundetArticles;
             }

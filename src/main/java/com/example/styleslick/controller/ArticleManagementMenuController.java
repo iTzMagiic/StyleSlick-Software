@@ -2,7 +2,6 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Category;
-import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.service.RulesService;
@@ -29,9 +28,9 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableView<Article> tableView_articles;
     @FXML
-    private TableColumn<Article, Integer> column_article_id;
+    private TableColumn<Article, Integer> column_articleID;
     @FXML
-    private TableColumn<Article, Integer> column_category_id;
+    private TableColumn<Article, Integer> column_categoryID;
     @FXML
     private TableColumn<Article, String> column_name;
     @FXML
@@ -90,8 +89,8 @@ public class ArticleManagementMenuController implements Initializable {
     private void executeShowAllArticles() {
         choiceBox_category_id.setValue(null);
 
-        column_article_id.setCellValueFactory(new PropertyValueFactory<>("article_id"));
-        column_category_id.setCellValueFactory(new PropertyValueFactory<>("category_id"));
+        column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+        column_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryID"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
         column_purchase_price.setCellValueFactory(new PropertyValueFactory<>("purchase_price"));
@@ -170,7 +169,7 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("amount", field_amount.getText());
         fields.put("stock", field_stock.getText());
 
-        if (articleService.updateArticle(fields, selectedArticle.getArticle_id())) {
+        if (articleService.updateArticle(fields, selectedArticle.getArticleID())) {
             choiceBox_category_id.setValue(null);
             field_name.clear();
             field_color.clear();
@@ -193,7 +192,7 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        int articleID = selectedArticle.getArticle_id(); // ID des Artikels
+        int articleID = selectedArticle.getArticleID(); // ID des Artikels
 
         // Artikel aus der Datenbank löschen
         if (articleService.deleteArticle(articleID)) {
