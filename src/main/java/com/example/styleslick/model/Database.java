@@ -1,6 +1,8 @@
 package com.example.styleslick.model;
 
 import com.example.styleslick.service.RulesService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.sql.*;
 import java.time.LocalDate;
@@ -13,6 +15,14 @@ public class Database {
     private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
     private final String USER;
     private final String PASSWORD;
+    /*
+        Log-Level:
+            info:   Zeigt allgemeine Informationen (z. B. Statusmeldungen)
+            debug:  Detaillierte Debugging-Informationen (nur für Entwickler)
+            warn:   Warnungen (z. B. mögliche Probleme, aber das Programm läuft weiter)
+            error:  Schwere Fehler, die oft das Programm beeinflussen
+     */
+    private static final Logger logger = LoggerFactory.getLogger(Database.class);
 
 
     public Database(String USER, String PASSWORD) {
@@ -27,7 +37,7 @@ public class Database {
                 return true; // Verbindung erfolgreich
             }
         } catch (SQLException e) {
-            System.err.println("Verbindung zur Datenbank fehlgeschlagen! " + e.getMessage());
+            logger.error("Verbindung zur Datenbank fehlgeschlagen! " + e.getMessage(), e);
         }
         return false; // Verbindung fehlgeschlagen
     }
@@ -143,10 +153,10 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            int index = 1; // <- index verweist auf die Fragezeichen in der SQL Abfrage (?, ?, ?, ?)
+            int index = 1;
 
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
-                if (field.getKey().equals("plz")) {
+                if (field.getKey().equals("postal_code")) {
                     preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
                 } else {
                     preparedStatement.setString(index++, field.getValue());
@@ -156,13 +166,13 @@ public class Database {
 
         } catch (SQLException e) {
             RulesService.showErrorAlert("Fehler beim hinzufügen des Kunden.");
-            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+            System.out.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
     }
 
 
     public boolean isUsernameExist(String username) {
-        String sql = "SELECT benutzername FROM customer WHERE benutzername = ?";
+        String sql = "SELECT username FROM customer WHERE username = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -173,7 +183,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen ob der Benutzername schon existiert. " + e.getMessage());
+            System.err.println("Fehler beim abrufen ob der username schon existiert. " + e.getMessage());
             return false;
         }
         return false;
@@ -189,16 +199,16 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    String username = resultSet.getString("benutzername");
+                    String username = resultSet.getString("username");
                     String name = resultSet.getString("name");
-                    String lastName = resultSet.getString("nachname");
-                    String street = resultSet.getString("strasse");
-                    int plz = resultSet.getInt("plz");
-                    String ort = resultSet.getString("ort");
-                    String platform = resultSet.getString("gekauft_ueber");
+                    String last_name = resultSet.getString("last_name");
+                    String street = resultSet.getString("street");
+                    int postal_code = resultSet.getInt("postal_code");
+                    String city = resultSet.getString("city");
+                    String purchased_from = resultSet.getString("purchased_from");
                     int customer_id = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform, customer_id);
+                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customer_id);
                     listOfCustomers.add(customer);
                 }
             }
@@ -227,7 +237,7 @@ public class Database {
 
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("plz")) {
+                if (entry.getKey().equals("postal_code")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue() + "%");
@@ -236,16 +246,16 @@ public class Database {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
-                    String username = resultSet.getString("benutzername");
+                    String username = resultSet.getString("username");
                     String name = resultSet.getString("name");
-                    String lastName = resultSet.getString("nachname");
-                    String street = resultSet.getString("strasse");
-                    int plz = resultSet.getInt("plz");
-                    String ort = resultSet.getString("ort");
-                    String platform = resultSet.getString("gekauft_ueber");
+                    String last_name = resultSet.getString("last_name");
+                    String street = resultSet.getString("street");
+                    int postal_code = resultSet.getInt("postal_code");
+                    String city = resultSet.getString("city");
+                    String purchased_from = resultSet.getString("purchased_from");
                     int customer_id = resultSet.getInt("customer_id");
 
-                    Customer customer = new Customer(username, name, lastName, street, plz, ort, platform, customer_id);
+                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customer_id);
                     listOfCustomers.add(customer);
                 }
                 return listOfCustomers;
@@ -291,7 +301,7 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("plz")) {
+                if (entry.getKey().equals("postal_code")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
@@ -344,7 +354,7 @@ public class Database {
                     double preis = resultSet.getDouble("kaufpreis");
                     LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
                     String hersteller = resultSet.getString("hersteller");
-                    String gekauft_bei = resultSet.getString("gekauft_ueber");
+                    String gekauft_bei = resultSet.getString("purchased_from");
                     String verarbeitung = resultSet.getString("verarbeitung");
                     int menge = resultSet.getInt("menge");
                     int bestand = resultSet.getInt("bestand");
@@ -504,12 +514,12 @@ public class Database {
                     double kaufpreis = resultSet.getDouble("kaufpreis");
                     LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
                     String hersteller = resultSet.getString("hersteller");
-                    String gekauft_ueber = resultSet.getString("gekauft_ueber");
+                    String purchased_from = resultSet.getString("purchased_from");
                     String verarbeitung = resultSet.getString("verarbeitung");
                     int menge = resultSet.getInt("menge");
                     int bestand = resultSet.getInt("bestand");
 
-                    listOfFoundetArticles.add(new Article(article_id, category_id, name, farbe, kaufpreis, kaufdatum, hersteller, gekauft_ueber, verarbeitung, menge, bestand));
+                    listOfFoundetArticles.add(new Article(article_id, category_id, name, farbe, kaufpreis, kaufdatum, hersteller, purchased_from, verarbeitung, menge, bestand));
                 }
                 return listOfFoundetArticles;
             }

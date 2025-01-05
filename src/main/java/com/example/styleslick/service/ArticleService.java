@@ -72,7 +72,7 @@ public class ArticleService {
             return false;
         }
 
-        if (!filledFields.containsKey("gekauft_ueber")) {
+        if (!filledFields.containsKey("purchased_from")) {
             RulesService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
             return false;
         }

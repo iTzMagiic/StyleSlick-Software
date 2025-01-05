@@ -30,7 +30,7 @@ public class LoginManagementController {
         Database database = new Database(username, password);
 
         if (!database.isConnected()) {
-            RulesService.showErrorAlert("Benutzername oder Passwort falsch.");
+            RulesService.showErrorAlert("username oder Passwort falsch.");
             return;
         }
 

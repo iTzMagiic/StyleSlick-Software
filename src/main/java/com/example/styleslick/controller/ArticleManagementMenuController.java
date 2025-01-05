@@ -43,7 +43,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, String> column_hersteller;
     @FXML
-    private TableColumn<Article, String> column_gekauft_ueber;
+    private TableColumn<Article, String> column_purchased_from;
     @FXML
     private TableColumn<Article, String> column_verarbeitung;
     @FXML
@@ -63,7 +63,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TextField field_hersteller;
     @FXML
-    private TextField field_gekauft_ueber;
+    private TextField field_purchased_from;
     @FXML
     private TextField field_verarbeitung;
     @FXML
@@ -97,7 +97,7 @@ public class ArticleManagementMenuController implements Initializable {
         column_kaufpreis.setCellValueFactory(new PropertyValueFactory<>("kaufpreis"));
         column_kaufdatum.setCellValueFactory(new PropertyValueFactory<>("kaufdatum"));
         column_hersteller.setCellValueFactory(new PropertyValueFactory<>("hersteller"));
-        column_gekauft_ueber.setCellValueFactory(new PropertyValueFactory<>("gekauft_ueber"));
+        column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
         column_verarbeitung.setCellValueFactory(new PropertyValueFactory<>("verarbeitung"));
         column_menge.setCellValueFactory(new PropertyValueFactory<>("menge"));
         column_bestand.setCellValueFactory(new PropertyValueFactory<>("bestand"));
@@ -126,7 +126,7 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("kaufpreis", field_kaufpreis.getText());
         fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
         fields.put("hersteller", field_hersteller.getText());
-        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
         fields.put("menge", field_menge.getText());
         fields.put("bestand", field_bestand.getText());
@@ -136,7 +136,7 @@ public class ArticleManagementMenuController implements Initializable {
             field_farbe.clear();
             field_kaufpreis.clear();
             field_hersteller.clear();
-            field_gekauft_ueber.clear();
+            field_purchased_from.clear();
             field_verarbeitung.clear();
             field_menge.clear();
             field_bestand.clear();
@@ -165,7 +165,7 @@ public class ArticleManagementMenuController implements Initializable {
             fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
         }
         fields.put("hersteller", field_hersteller.getText());
-        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
         fields.put("menge", field_menge.getText());
         fields.put("bestand", field_bestand.getText());
@@ -176,7 +176,7 @@ public class ArticleManagementMenuController implements Initializable {
             field_farbe.clear();
             field_kaufpreis.clear();
             field_hersteller.clear();
-            field_gekauft_ueber.clear();
+            field_purchased_from.clear();
             field_verarbeitung.clear();
             field_menge.clear();
             field_bestand.clear();
@@ -220,7 +220,7 @@ public class ArticleManagementMenuController implements Initializable {
             fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
         }
         fields.put("hersteller", field_hersteller.getText());
-        fields.put("gekauft_ueber", field_gekauft_ueber.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
         fields.put("verarbeitung", field_verarbeitung.getText());
         fields.put("menge", field_menge.getText());
         fields.put("bestand", field_bestand.getText());
@@ -233,7 +233,7 @@ public class ArticleManagementMenuController implements Initializable {
             field_farbe.clear();
             field_kaufpreis.clear();
             field_hersteller.clear();
-            field_gekauft_ueber.clear();
+            field_purchased_from.clear();
             field_verarbeitung.clear();
             field_menge.clear();
             field_bestand.clear();

@@ -47,21 +47,21 @@ public class CustomerService {
         }
 
         // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("benutzername")) {
+        if (!filledFields.containsKey("username")) {
             RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
             return false;
         }
-        if (!filledFields.containsKey("gekauft_ueber")) {
+        if (!filledFields.containsKey("purchased_from")) {
             RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
             return false;
         }
-        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
-            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return false;
         }
 
-        if (database.isUsernameExist(filledFields.get("benutzername"))) {
-            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("benutzername") + "'")) {
+        if (database.isUsernameExist(filledFields.get("username"))) {
+            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
                 return false;
             }
         }
@@ -87,8 +87,8 @@ public class CustomerService {
             return listOfCustomers;
         }
 
-        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
-            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return listOfCustomers;
         }
 
@@ -115,13 +115,13 @@ public class CustomerService {
             return false;
         }
 
-        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr " + customerID + " bearbeiten?")){
+        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerID + " bearbeiten?")) {
             RulesService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }
 
-        if (filledFields.containsKey("plz") && !filledFields.get("plz").matches("\\d{5}")) {
-            RulesService.showErrorAlert("Die PLZ darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
+            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return false;
         }
 
@@ -136,7 +136,7 @@ public class CustomerService {
 
 
     public boolean deleteCustomer(int customerID) {
-        if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden Nummer '" + customerID + "' löschen?")) {
+        if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerID + "' löschen?")) {
             return database.deleteCustomer(customerID);
         }
         return false;

@@ -32,15 +32,15 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TableColumn<Customer, String> column_name;
     @FXML
-    private TableColumn<Customer, String> column_lastName;
+    private TableColumn<Customer, String> column_last_name;
     @FXML
     private TableColumn<Customer, String> column_street;
     @FXML
-    private TableColumn<Customer, Integer> column_plz;
+    private TableColumn<Customer, Integer> column_postal_code;
     @FXML
-    private TableColumn<Customer, String> column_ort;
+    private TableColumn<Customer, String> column_city;
     @FXML
-    private TableColumn<Customer, String> column_platform;
+    private TableColumn<Customer, String> column_purchased_from;
     @FXML
     private TableColumn<Customer, Integer> column_customer_id;
     @FXML
@@ -48,15 +48,15 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TextField field_name;
     @FXML
-    private TextField field_lastName;
+    private TextField field_last_name;
     @FXML
     private TextField field_street;
     @FXML
-    private TextField field_plz;
+    private TextField field_postal_code;
     @FXML
-    private TextField field_ort;
+    private TextField field_city;
     @FXML
-    private TextField field_platform;
+    private TextField field_purchased_from;
 
 
     @Override
@@ -72,12 +72,12 @@ public class CustomerManagementController implements Initializable {
     private void executeShowAllCustomers() {
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        column_lastName.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
-        column_ort.setCellValueFactory(new PropertyValueFactory<>("ort"));
-        column_plz.setCellValueFactory(new PropertyValueFactory<>("plz"));
-        column_platform.setCellValueFactory(new PropertyValueFactory<>("platform"));
-        column_customer_id.setCellValueFactory(new PropertyValueFactory<>("customer_id"));
+        column_city.setCellValueFactory(new PropertyValueFactory<>("city"));
+        column_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
+        column_customer_id.setCellValueFactory(new PropertyValueFactory<>("customerID"));
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
@@ -87,22 +87,22 @@ public class CustomerManagementController implements Initializable {
     private void executeAddCustomer() {
         Map<String, String> fields = new HashMap<>();
 
-        fields.put("benutzername", field_username.getText());
+        fields.put("username", field_username.getText());
         fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
+        fields.put("last_name", field_last_name.getText());
+        fields.put("street", field_street.getText());
+        fields.put("postal_code", field_postal_code.getText());
+        fields.put("city", field_city.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
 
         if (customerService.addCustomer(fields)) {
             field_username.clear();
             field_name.clear();
-            field_lastName.clear();
+            field_last_name.clear();
             field_street.clear();
-            field_ort.clear();
-            field_platform.clear();
-            field_plz.clear();
+            field_city.clear();
+            field_purchased_from.clear();
+            field_postal_code.clear();
             executeShowAllCustomers();
         }
     }
@@ -118,23 +118,23 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
-        fields.put("benutzername", field_username.getText());
+        fields.put("username", field_username.getText());
         fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
+        fields.put("last_name", field_last_name.getText());
+        fields.put("street", field_street.getText());
+        fields.put("postal_code", field_postal_code.getText());
+        fields.put("city", field_city.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
 
         // Kunden aus der Datenbank löschen
-        if (customerService.updateCustomer(fields, selectedCustomer.getCustomer_id())) {
+        if (customerService.updateCustomer(fields, selectedCustomer.getCustomerID())) {
             field_username.clear();
             field_name.clear();
-            field_lastName.clear();
+            field_last_name.clear();
             field_street.clear();
-            field_plz.clear();
-            field_ort.clear();
-            field_platform.clear();
+            field_postal_code.clear();
+            field_city.clear();
+            field_purchased_from.clear();
             executeShowAllCustomers();
         }
     }
@@ -143,13 +143,13 @@ public class CustomerManagementController implements Initializable {
     private void executeSearchCustomer() {
         Map<String, String> fields = new HashMap<>();
 
-        fields.put("benutzername", field_username.getText());
+        fields.put("username", field_username.getText());
         fields.put("name", field_name.getText());
-        fields.put("nachname", field_lastName.getText());
-        fields.put("strasse", field_street.getText());
-        fields.put("plz", field_plz.getText());
-        fields.put("ort", field_ort.getText());
-        fields.put("gekauft_ueber", field_platform.getText());
+        fields.put("last_name", field_last_name.getText());
+        fields.put("street", field_street.getText());
+        fields.put("postal_code", field_postal_code.getText());
+        fields.put("city", field_city.getText());
+        fields.put("purchased_from", field_purchased_from.getText());
 
 
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
@@ -158,11 +158,11 @@ public class CustomerManagementController implements Initializable {
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             field_username.clear();
             field_name.clear();
-            field_lastName.clear();
+            field_last_name.clear();
             field_street.clear();
-            field_ort.clear();
-            field_platform.clear();
-            field_plz.clear();
+            field_city.clear();
+            field_purchased_from.clear();
+            field_postal_code.clear();
             executeShowAllCustomers();
             return;
         }
@@ -182,7 +182,7 @@ public class CustomerManagementController implements Initializable {
         }
 
         // Kunden aus der Datenbank löschen
-        if (customerService.deleteCustomer(selectedCustomer.getCustomer_id())) {
+        if (customerService.deleteCustomer(selectedCustomer.getCustomerID())) {
             RulesService.showConfirmAlert("Kunde erfolgreich gelöscht.");
             executeShowAllCustomers();
         } else {

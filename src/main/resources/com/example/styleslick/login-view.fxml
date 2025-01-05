@@ -21,7 +21,7 @@
             </ImageView>
          </children>
       </AnchorPane>
-      <TextField fx:id="field_username" layoutX="644.0" layoutY="248.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="Benutzername" />
+      <TextField fx:id="field_username" layoutX="644.0" layoutY="248.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="username" />
       <Label layoutX="663.0" layoutY="130.0" text="Logge dich ein!">
          <font>
             <Font size="30.0" />

@@ -23,7 +23,7 @@
                 <TableColumn fx:id="column_kaufpreis" prefWidth="75.0" text="Kaufpreis" />
                 <TableColumn fx:id="column_kaufdatum" prefWidth="75.0" text="Kaufdatum" />
                 <TableColumn fx:id="column_hersteller" prefWidth="75.0" text="Hersteller" />
-            <TableColumn fx:id="column_gekauft_ueber" prefWidth="75.0" text="Gekauft über" />
+            <TableColumn fx:id="column_purchased_from" prefWidth="75.0" text="Gekauft über" />
             <TableColumn fx:id="column_verarbeitung" prefWidth="75.0" text="Qualität" />
             <TableColumn fx:id="column_menge" prefWidth="75.0" text="Menge" />
             <TableColumn fx:id="column_bestand" prefWidth="75.0" text="Bestand" />
@@ -57,7 +57,7 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                         <TextField fx:id="field_hersteller" promptText="Hersteller" />
-                        <TextField fx:id="field_gekauft_ueber" promptText="Gekauft über*">
+                        <TextField fx:id="field_purchased_from" promptText="Gekauft über*">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font></TextField>
