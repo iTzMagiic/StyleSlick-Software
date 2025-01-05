@@ -45,7 +45,7 @@ public class Database {
 
     public String getTotalSales() {
         String gesamt_einnahmen = "NULL";
-        String sql = "SELECT SUM(betrag - versand_kosten) AS gesamt_einnahmen FROM `order`";
+        String sql = "SELECT SUM(amount - shipping_cost) AS gesamt_einnahmen FROM `order`";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class Database {
 
     public String getTotalProfit() {
         String gewinn = "NULL";
-        String sql = "SELECT (SELECT SUM(betrag - versand_kosten) FROM `order`) - (SELECT SUM(kaufpreis * menge) FROM article) AS gewinn";
+        String sql = "SELECT (SELECT SUM(amount - shipping_cost) FROM `order`) - (SELECT SUM(kaufpreis * menge) FROM article) AS gewinn";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
