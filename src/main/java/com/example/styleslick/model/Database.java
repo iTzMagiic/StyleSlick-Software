@@ -65,7 +65,7 @@ public class Database {
 
     public String getTotalExpenditure() {
         String gesamt_ausgaben = "NULL";
-        String sql = "SELECT SUM(kaufpreis * menge) AS gesamt_ausgaben FROM article";
+        String sql = "SELECT SUM(purchase_price * amount) AS gesamt_ausgaben FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -85,7 +85,7 @@ public class Database {
 
     public String getTotalProfit() {
         String gewinn = "NULL";
-        String sql = "SELECT (SELECT SUM(amount - shipping_cost) FROM `order`) - (SELECT SUM(kaufpreis * menge) FROM article) AS gewinn";
+        String sql = "SELECT (SELECT SUM(amount - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS gewinn";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -350,15 +350,15 @@ public class Database {
                     int article_id = resultSet.getInt("article_id");
                     int category_id = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
-                    String farbe = resultSet.getString("farbe");
-                    double preis = resultSet.getDouble("kaufpreis");
-                    LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
-                    String hersteller = resultSet.getString("hersteller");
+                    String color = resultSet.getString("color");
+                    double preis = resultSet.getDouble("purchase_price");
+                    LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
+                    String manufacturer = resultSet.getString("manufacturer");
                     String gekauft_bei = resultSet.getString("purchased_from");
-                    String verarbeitung = resultSet.getString("verarbeitung");
-                    int menge = resultSet.getInt("menge");
-                    int bestand = resultSet.getInt("bestand");
-                    listOfArticle.add(new Article(article_id, category_id, name, farbe, preis, kaufdatum, hersteller, gekauft_bei, verarbeitung, menge, bestand));
+                    String quality = resultSet.getString("quality");
+                    int amount = resultSet.getInt("amount");
+                    int stock = resultSet.getInt("stock");
+                    listOfArticle.add(new Article(article_id, category_id, name, color, preis, purchase_date, manufacturer, gekauft_bei, quality, amount, stock));
                 }
                 return listOfArticle;
             }
@@ -380,12 +380,12 @@ public class Database {
             whereClause.append(entry.getKey());
         }
 
-        if (!filledFields.containsKey("bestand")) {
-            whereClause.append(", bestand) VALUES (");
-            System.out.println("test kein bestand vorhanden ");
+        if (!filledFields.containsKey("stock")) {
+            whereClause.append(", stock) VALUES (");
+            System.out.println("test kein stock vorhanden ");
         } else {
             whereClause.append(") VALUES (");
-            System.out.println("Bestand vorhanden " + filledFields.get("bestand"));
+            System.out.println("stock vorhanden " + filledFields.get("stock"));
         }
 
         sql += whereClause.toString();
@@ -398,7 +398,7 @@ public class Database {
             whereClause.append("?");
         }
 
-        if (!filledFields.containsKey("bestand")) {
+        if (!filledFields.containsKey("stock")) {
             whereClause.append(", ?)");
         } else {
             whereClause.append(")");
@@ -410,19 +410,19 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("kaufpreis")) {
+                if (entry.getKey().equals("purchase_price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
-                } else if (entry.getKey().equals("kaufdatum")) {
+                } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
+                } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
-            if (!filledFields.containsKey("bestand")) {
-                int bestand = Integer.parseInt(filledFields.get("menge"));
-                preparedStatement.setInt(index, bestand);
+            if (!filledFields.containsKey("stock")) {
+                int stock = Integer.parseInt(filledFields.get("amount"));
+                preparedStatement.setInt(index, stock);
             }
 
             preparedStatement.executeUpdate();
@@ -454,11 +454,11 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("kaufpreis")) {
+                if (entry.getKey().equals("purchase_price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
-                } else if (entry.getKey().equals("kaufdatum")) {
+                } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
+                } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
@@ -494,11 +494,11 @@ public class Database {
 
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("kaufpreis")) {
+                if (entry.getKey().equals("purchase_price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
-                } else if (entry.getKey().equals("kaufdatum")) {
+                } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-                } else if (entry.getKey().equals("menge") || entry.getKey().equals("category_id") || entry.getKey().equals("bestand")) {
+                } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
                 } else {
                     preparedStatement.setString(index++, "%" + entry.getValue() + "%");
@@ -510,16 +510,16 @@ public class Database {
                     int article_id = resultSet.getInt("article_id");
                     int category_id = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
-                    String farbe = resultSet.getString("farbe");
-                    double kaufpreis = resultSet.getDouble("kaufpreis");
-                    LocalDate kaufdatum = resultSet.getDate("kaufdatum").toLocalDate();
-                    String hersteller = resultSet.getString("hersteller");
+                    String color = resultSet.getString("color");
+                    double purchase_price = resultSet.getDouble("purchase_price");
+                    LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
+                    String manufacturer = resultSet.getString("manufacturer");
                     String purchased_from = resultSet.getString("purchased_from");
-                    String verarbeitung = resultSet.getString("verarbeitung");
-                    int menge = resultSet.getInt("menge");
-                    int bestand = resultSet.getInt("bestand");
+                    String quality = resultSet.getString("quality");
+                    int amount = resultSet.getInt("amount");
+                    int stock = resultSet.getInt("stock");
 
-                    listOfFoundetArticles.add(new Article(article_id, category_id, name, farbe, kaufpreis, kaufdatum, hersteller, purchased_from, verarbeitung, menge, bestand));
+                    listOfFoundetArticles.add(new Article(article_id, category_id, name, color, purchase_price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
                 return listOfFoundetArticles;
             }

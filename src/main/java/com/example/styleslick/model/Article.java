@@ -7,27 +7,27 @@ public class Article {
     private final int article_id;
     private final int category_id;
     private final String name;
-    private final String farbe;
-    private final double kaufpreis;
-    private final LocalDate kaufdatum;
-    private final String hersteller;
+    private final String color;
+    private final double purchase_price;
+    private final LocalDate purchase_date;
+    private final String manufacturer;
     private final String purchased_from;
-    private final String verarbeitung;
-    private final int menge;
-    private final int bestand;
+    private final String quality;
+    private final int amount;
+    private final int stock;
 
-    public Article(int article_id, int category_id, String name, String farbe, double kaufpreis, LocalDate kaufdatum, String hersteller, String purchased_from, String verarbeitung, int menge, int bestand) {
+    public Article(int article_id, int category_id, String name, String color, double purchase_price, LocalDate purchase_date, String manufacturer, String purchased_from, String quality, int amount, int stock) {
         this.article_id = article_id;
         this.category_id = category_id;
         this.name = name;
-        this.farbe = farbe;
-        this.kaufpreis = kaufpreis;
-        this.kaufdatum = kaufdatum;
-        this.hersteller = hersteller;
+        this.color = color;
+        this.purchase_price = purchase_price;
+        this.purchase_date = purchase_date;
+        this.manufacturer = manufacturer;
         this.purchased_from = purchased_from;
-        this.verarbeitung = verarbeitung;
-        this.menge = menge;
-        this.bestand = bestand;
+        this.quality = quality;
+        this.amount = amount;
+        this.stock = stock;
     }
 
     public int getArticle_id() {
@@ -42,35 +42,35 @@ public class Article {
         return name;
     }
 
-    public String getFarbe() {
-        return farbe;
+    public String getColor() {
+        return color;
     }
 
-    public double getKaufpreis() {
-        return kaufpreis;
+    public double getPurchase_price() {
+        return purchase_price;
     }
 
-    public LocalDate getKaufdatum() {
-        return kaufdatum;
+    public LocalDate getPurchase_date() {
+        return purchase_date;
     }
 
-    public String getHersteller() {
-        return hersteller;
+    public String getManufacturer() {
+        return manufacturer;
     }
 
-    public String getpurchased_from() {
+    public String getPurchased_from() {
         return purchased_from;
     }
 
-    public String getVerarbeitung() {
-        return verarbeitung;
+    public String getQuality() {
+        return quality;
     }
 
-    public int getMenge() {
-        return menge;
+    public int getAmount() {
+        return amount;
     }
 
-    public int getBestand() {
-        return bestand;
+    public int getStock() {
+        return stock;
     }
 }

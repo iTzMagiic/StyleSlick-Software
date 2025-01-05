@@ -55,20 +55,20 @@ public class ArticleService {
             RulesService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
             return false;
         }
-        if (!filledFields.containsKey("farbe")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Farbe an.");
+        if (!filledFields.containsKey("color")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine color an.");
             return false;
         }
-        if (!filledFields.containsKey("kaufpreis")) {
-            RulesService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
+        if (!filledFields.containsKey("purchase_price")) {
+            RulesService.showErrorAlert("Bitte geben Sie ein purchase_price an.");
             return false;
         }
 
-        filledFields.replace("kaufpreis", filledFields.get("kaufpreis").replace(",", "."));
+        filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
         try {
-            Double.parseDouble(filledFields.get("kaufpreis"));
+            Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
-            RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+            RulesService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
             return false;
         }
 
@@ -76,16 +76,16 @@ public class ArticleService {
             RulesService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
             return false;
         }
-        if (!filledFields.containsKey("menge")) {
-            RulesService.showErrorAlert("Bitte geben Sie die Menge an.");
+        if (!filledFields.containsKey("amount")) {
+            RulesService.showErrorAlert("Bitte geben Sie die amount an.");
             return false;
         }
-        if (!filledFields.get("menge").matches("\\d+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+        if (!filledFields.get("amount").matches("\\d+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige amount an.");
             return false;
         }
-        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
+        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige stock an.");
             return false;
         }
 
@@ -118,22 +118,22 @@ public class ArticleService {
             return false;
         }
 
-        if (filledFields.containsKey("kaufpreis")) {
-            filledFields.replace("kaufpreis", filledFields.get("kaufpreis").replace(",", "."));
+        if (filledFields.containsKey("purchase_price")) {
+            filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
             try {
-                Double.parseDouble(filledFields.get("kaufpreis"));
+                Double.parseDouble(filledFields.get("purchase_price"));
             } catch (NumberFormatException e) {
-                RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+                RulesService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
                 return false;
             }
         }
 
-        if (filledFields.containsKey("menge") && !filledFields.get("menge").matches("[0-9]+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+        if (filledFields.containsKey("amount") && !filledFields.get("amount").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige amount an.");
             return false;
         }
-        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
+        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige stock an.");
             return false;
         }
 
@@ -163,22 +163,22 @@ public class ArticleService {
             return listOfArticles;
         }
 
-        if (filledFields.containsKey("kaufpreis")) {
-            filledFields.replace("kaufpreis", filledFields.get("kaufpreis").replace(",", "."));
+        if (filledFields.containsKey("purchase_price")) {
+            filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
             try {
-                Double.parseDouble(filledFields.get("kaufpreis"));
+                Double.parseDouble(filledFields.get("purchase_price"));
             } catch (NumberFormatException e) {
-                RulesService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
+                RulesService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
                 return listOfArticles;
             }
         }
 
-        if (filledFields.containsKey("menge") && !filledFields.get("menge").matches("\\d+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+        if (filledFields.containsKey("amount") && !filledFields.get("amount").matches("\\d+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige amount an.");
             return listOfArticles;
         }
-        if (filledFields.containsKey("bestand") && !filledFields.get("bestand").matches("[0-9]+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
+        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige stock an.");
             return listOfArticles;
         }
 

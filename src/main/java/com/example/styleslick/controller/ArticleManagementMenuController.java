@@ -35,41 +35,41 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, String> column_name;
     @FXML
-    private TableColumn<Article, String> column_farbe;
+    private TableColumn<Article, String> column_color;
     @FXML
-    private TableColumn<Article, String> column_kaufpreis;
+    private TableColumn<Article, String> column_purchase_price;
     @FXML
-    private TableColumn<Article, LocalDate> column_kaufdatum;
+    private TableColumn<Article, LocalDate> column_purchase_date;
     @FXML
-    private TableColumn<Article, String> column_hersteller;
+    private TableColumn<Article, String> column_manufacturer;
     @FXML
     private TableColumn<Article, String> column_purchased_from;
     @FXML
-    private TableColumn<Article, String> column_verarbeitung;
+    private TableColumn<Article, String> column_quality;
     @FXML
-    private TableColumn<Article, Integer> column_menge;
+    private TableColumn<Article, Integer> column_amount;
     @FXML
-    private TableColumn<Article, Integer> column_bestand;
+    private TableColumn<Article, Integer> column_stock;
     @FXML
     private ChoiceBox<Category> choiceBox_category_id;
     @FXML
     private TextField field_name;
     @FXML
-    private TextField field_farbe;
+    private TextField field_color;
     @FXML
-    private TextField field_kaufpreis;
+    private TextField field_purchase_price;
     @FXML
-    private DatePicker datePicker_kaufdatum;
+    private DatePicker datePicker_purchase_date;
     @FXML
-    private TextField field_hersteller;
+    private TextField field_manufacturer;
     @FXML
     private TextField field_purchased_from;
     @FXML
-    private TextField field_verarbeitung;
+    private TextField field_quality;
     @FXML
-    private TextField field_menge;
+    private TextField field_amount;
     @FXML
-    private TextField field_bestand;
+    private TextField field_stock;
 
 
     @Override
@@ -93,14 +93,14 @@ public class ArticleManagementMenuController implements Initializable {
         column_article_id.setCellValueFactory(new PropertyValueFactory<>("article_id"));
         column_category_id.setCellValueFactory(new PropertyValueFactory<>("category_id"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        column_farbe.setCellValueFactory(new PropertyValueFactory<>("farbe"));
-        column_kaufpreis.setCellValueFactory(new PropertyValueFactory<>("kaufpreis"));
-        column_kaufdatum.setCellValueFactory(new PropertyValueFactory<>("kaufdatum"));
-        column_hersteller.setCellValueFactory(new PropertyValueFactory<>("hersteller"));
+        column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
+        column_purchase_price.setCellValueFactory(new PropertyValueFactory<>("purchase_price"));
+        column_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+        column_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
-        column_verarbeitung.setCellValueFactory(new PropertyValueFactory<>("verarbeitung"));
-        column_menge.setCellValueFactory(new PropertyValueFactory<>("menge"));
-        column_bestand.setCellValueFactory(new PropertyValueFactory<>("bestand"));
+        column_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+        column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        column_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
         tableView_articles.setItems(observableList);
@@ -110,8 +110,8 @@ public class ArticleManagementMenuController implements Initializable {
     private void executeAddArticle() {
         Map<String, String> fields = new HashMap<>();
 
-        if (datePicker_kaufdatum.getValue() == null) {
-            RulesService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+        if (datePicker_purchase_date.getValue() == null) {
+            RulesService.showErrorAlert("purchase_date darf nicht Leer sein.");
             return;
         }
 
@@ -122,24 +122,24 @@ public class ArticleManagementMenuController implements Initializable {
 
         fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
         fields.put("name", field_name.getText());
-        fields.put("farbe", field_farbe.getText());
-        fields.put("kaufpreis", field_kaufpreis.getText());
-        fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
-        fields.put("hersteller", field_hersteller.getText());
+        fields.put("color", field_color.getText());
+        fields.put("purchase_price", field_purchase_price.getText());
+        fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
+        fields.put("manufacturer", field_manufacturer.getText());
         fields.put("purchased_from", field_purchased_from.getText());
-        fields.put("verarbeitung", field_verarbeitung.getText());
-        fields.put("menge", field_menge.getText());
-        fields.put("bestand", field_bestand.getText());
+        fields.put("quality", field_quality.getText());
+        fields.put("amount", field_amount.getText());
+        fields.put("stock", field_stock.getText());
 
         if (articleService.addArticle(fields)) {
             field_name.clear();
-            field_farbe.clear();
-            field_kaufpreis.clear();
-            field_hersteller.clear();
+            field_color.clear();
+            field_purchase_price.clear();
+            field_manufacturer.clear();
             field_purchased_from.clear();
-            field_verarbeitung.clear();
-            field_menge.clear();
-            field_bestand.clear();
+            field_quality.clear();
+            field_amount.clear();
+            field_stock.clear();
             executeShowAllArticles();
         }
     }
@@ -159,27 +159,27 @@ public class ArticleManagementMenuController implements Initializable {
         }
 
         fields.put("name", field_name.getText());
-        fields.put("farbe", field_farbe.getText());
-        fields.put("kaufpreis", field_kaufpreis.getText());
-        if (datePicker_kaufdatum.getValue() != null) {
-            fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
+        fields.put("color", field_color.getText());
+        fields.put("purchase_price", field_purchase_price.getText());
+        if (datePicker_purchase_date.getValue() != null) {
+            fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
-        fields.put("hersteller", field_hersteller.getText());
+        fields.put("manufacturer", field_manufacturer.getText());
         fields.put("purchased_from", field_purchased_from.getText());
-        fields.put("verarbeitung", field_verarbeitung.getText());
-        fields.put("menge", field_menge.getText());
-        fields.put("bestand", field_bestand.getText());
+        fields.put("quality", field_quality.getText());
+        fields.put("amount", field_amount.getText());
+        fields.put("stock", field_stock.getText());
 
         if (articleService.updateArticle(fields, selectedArticle.getArticle_id())) {
             choiceBox_category_id.setValue(null);
             field_name.clear();
-            field_farbe.clear();
-            field_kaufpreis.clear();
-            field_hersteller.clear();
+            field_color.clear();
+            field_purchase_price.clear();
+            field_manufacturer.clear();
             field_purchased_from.clear();
-            field_verarbeitung.clear();
-            field_menge.clear();
-            field_bestand.clear();
+            field_quality.clear();
+            field_amount.clear();
+            field_stock.clear();
             executeShowAllArticles();
         }
     }
@@ -214,29 +214,29 @@ public class ArticleManagementMenuController implements Initializable {
         }
 
         fields.put("name", field_name.getText());
-        fields.put("farbe", field_farbe.getText());
-        fields.put("kaufpreis", field_kaufpreis.getText());
-        if (datePicker_kaufdatum.getValue() != null) {
-            fields.put("kaufdatum", datePicker_kaufdatum.getValue().toString());
+        fields.put("color", field_color.getText());
+        fields.put("purchase_price", field_purchase_price.getText());
+        if (datePicker_purchase_date.getValue() != null) {
+            fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
-        fields.put("hersteller", field_hersteller.getText());
+        fields.put("manufacturer", field_manufacturer.getText());
         fields.put("purchased_from", field_purchased_from.getText());
-        fields.put("verarbeitung", field_verarbeitung.getText());
-        fields.put("menge", field_menge.getText());
-        fields.put("bestand", field_bestand.getText());
+        fields.put("quality", field_quality.getText());
+        fields.put("amount", field_amount.getText());
+        fields.put("stock", field_stock.getText());
 
         List<Article> listOfArticles = articleService.searchArticle(fields);
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
             choiceBox_category_id.setValue(null);
             field_name.clear();
-            field_farbe.clear();
-            field_kaufpreis.clear();
-            field_hersteller.clear();
+            field_color.clear();
+            field_purchase_price.clear();
+            field_manufacturer.clear();
             field_purchased_from.clear();
-            field_verarbeitung.clear();
-            field_menge.clear();
-            field_bestand.clear();
+            field_quality.clear();
+            field_amount.clear();
+            field_stock.clear();
             executeShowAllArticles();
             return;
         }
