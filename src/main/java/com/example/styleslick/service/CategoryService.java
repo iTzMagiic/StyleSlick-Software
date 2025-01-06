@@ -42,18 +42,50 @@ public class CategoryService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte tragen Sie was ein.");
-            logger.warn("Liste ist leer.");
+            logger.warn("Liste mit ausgefüllten Feldern ist leer. filledFields = {}", filledFields);
             return false;
         }
 
         if (!database.addCategory(filledFields)) {
             RulesService.showErrorAlert("Fehler beim erstellen.");
-            logger.warn("Methode addCategory() ENDE.");
+            logger.warn("Kategorie wurde nicht erfolgreich in die Datenbank geschieben. ENDE.");
             return false;
         }
 
         RulesService.showConfirmAlert("Die Kategorie wurde erfolgreich erstellt.");
         logger.info("Methode addCategory() erfolgreich ENDE.");
+        return true;
+    }
+
+
+    public boolean updateCategory(Map<String, String> fields, int categoryID) {
+        logger.info("Methode updateCategory() START. Parameter: fields = {}, categoryID = {}", fields, categoryID);
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
+                filledFields.put(entry.getKey(), entry.getValue());
+            }
+        }
+
+        if (filledFields.isEmpty()) {
+            RulesService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
+            logger.warn("Liste mit ausgefüllten Feldern ist leer. filledFields = {}", filledFields);
+            return false;
+        }
+
+        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")){
+            RulesService.showErrorAlert("Artikel wird nicht bearbeitet.");
+            logger.warn("Kategorie bearbeitung wurde durch Benutzer beendet ENDE.");
+            return false;
+        }
+
+        if (!database.updateCategory(filledFields, categoryID)) {
+            RulesService.showErrorAlert("Fehler beim bearbeiten der Kategorie.");
+            logger.warn("Kategorie wurde nicht in die Datenbank geschrieben. ENDE.");
+            return false;
+        }
+
         return true;
     }
 

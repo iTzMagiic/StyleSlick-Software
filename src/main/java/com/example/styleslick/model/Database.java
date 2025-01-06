@@ -32,14 +32,17 @@ public class Database {
 
 
     public boolean isConnected() {
+        logger.info("Methode isConnected() START");
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
             if (connection != null) {
-                return true; // Verbindung erfolgreich
+                logger.info("Methode isConnected() erfolgreich ENDE.");
+                return true;
             }
         } catch (SQLException e) {
-            logger.error("Verbindung zur Datenbank fehlgeschlagen! " + e.getMessage(), e);
+            logger.error("Verbindung zur Datenbank fehlgeschlagen! FEHLER: {} ", e.getMessage(), e);
         }
-        return false; // Verbindung fehlgeschlagen
+        logger.warn("Keine Verbindung zur Datenbank Falscher Benutzer.");
+        return false;
     }
 
 
@@ -343,7 +346,7 @@ public class Database {
         whereClause.append(")");
         sql += whereClause.toString();
 
-        logger.info("Erstellte SQL Query: sql = {}", sql);
+        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -352,10 +355,57 @@ public class Database {
                 preparedStatement.setString(index++, entry.getValue());
             }
             preparedStatement.executeUpdate();
-            logger.info("Kategorie wurde erfolgreich in die Datenbank geschrieben.");
             return true;
         } catch (SQLException e) {
-            logger.error("Fehler beim hinzufügen der Kategorie in die Datenbank SQL query: sql = {}, FEHLER: {}", sql, e.getMessage(), e);
+            logger.error("Fehler beim hinzufügen der Kategorie FEHLER: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
+
+    public boolean updateCategory(Map<String, String> filledFields, int categoryID) {
+        logger.info("Methode updateCategory() START. Parameter: filledFields = {}", filledFields);
+        String sql = "UPDATE category SET ";
+        StringBuilder setClause = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (setClause.length() > 0) {
+                setClause.append(", ");
+            }
+            setClause.append(entry.getKey()).append(" = ?");
+        }
+        setClause.append(" WHERE category_id = ?");
+        sql += setClause.toString();
+
+        logger.debug("SQL Query: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            int index = 1;
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                preparedStatement.setString(index++, entry.getValue());
+            }
+            preparedStatement.setInt(index, categoryID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.error("Fehler beim bearbeiten der Kategorie. FEHLER: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
+
+    public boolean deleteCategory(int categoryID) {
+        logger.info("Methode deleteCategory() START.");
+        String sql = "DELETE FROM category WHERE category_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, categoryID);
+            preparedStatement.executeUpdate();
+            return true;
+        } catch (SQLException e) {
+            logger.error("Fehler beim löschen der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -374,11 +424,10 @@ public class Database {
                     int id = resultSet.getInt("category_id");
                     listOfCategories.add(new Category(name, id));
                 }
-                logger.info("Kategorien wurden erfolgreich aus der Datenbank exportiert.");
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            logger.error("Fehlber beim abrufen der Kategorien SQL query: sql = {}, listOfCategories = {}, FEHELER: {}", sql, listOfCategories, e.getMessage(), e);
+            logger.error("Fehlber beim abrufen der Kategorien. FEHELER: {}", e.getMessage(), e);
         }
         return listOfCategories;
     }

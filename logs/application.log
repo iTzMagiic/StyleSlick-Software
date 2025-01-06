@@ -26,3 +26,45 @@
 2025-01-06 00:55:39 [JavaFX Application Thread] WARN  c.e.s.service.CategoryService - Liste ist leer.
 2025-01-06 00:55:41 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode clearSession() START.
 2025-01-06 00:55:41 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode ClearSession() erfolgreich ENDE.
+2025-01-06 01:29:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-06 01:29:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize START.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() ENDE.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+2025-01-06 01:29:52 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize erfolgreich END.
+2025-01-06 01:30:00 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode clearSession() START.
+2025-01-06 01:30:00 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode ClearSession() erfolgreich ENDE.
+2025-01-06 01:30:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-06 01:30:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize START.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() ENDE.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+2025-01-06 01:30:42 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize erfolgreich END.
+2025-01-06 01:30:46 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeUpdateCategory() START.
+2025-01-06 01:30:46 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode updateCategory() START. Parameter: fields = {name=test}, categoryID = 8
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode updateCategory() START. filledFields = {name=test}, categoryID = 8
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Erstellte SQL Query: sql = UPDATE category SET name = ? WHERE category_id = ?
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorie wurde erfolgreich in der Datenbank bearbeitet.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() ENDE.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Kategorien wurden erfolgreich aus der Datenbank exportiert.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+2025-01-06 01:30:49 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeUpdateCategory() erfolgreich ENDE.
+2025-01-06 01:31:07 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode clearSession() START.
+2025-01-06 01:31:07 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode ClearSession() erfolgreich ENDE.
