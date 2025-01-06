@@ -113,7 +113,9 @@ public class CategoryManagementController implements Initializable {
             return;
         }
 
-        if (categoryService.)
+        if (categoryService.deleteCategory(selectedCategory.getID())) {
+            executeShowAllCategories();
+        }
     }
 
 
@@ -133,7 +135,9 @@ public class CategoryManagementController implements Initializable {
 
     @FXML
     void onKeyPressedEnterDeleteCategory(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteCategory();
+        }
     }
 
     @FXML
@@ -164,7 +168,7 @@ public class CategoryManagementController implements Initializable {
 
     @FXML
     void onMouseClickedDeleteCategory(MouseEvent event) {
-
+        executeDeleteCategory();
     }
 
     @FXML
