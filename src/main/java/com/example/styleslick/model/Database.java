@@ -349,7 +349,7 @@ public class Database {
         logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 preparedStatement.setString(index++, entry.getValue());

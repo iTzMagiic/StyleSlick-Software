@@ -40,7 +40,6 @@ public class CategoryManagementController implements Initializable {
     private TableView<Category> tableView_categories;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logger.info("Methode initialize START.");
@@ -50,7 +49,6 @@ public class CategoryManagementController implements Initializable {
         executeShowAllCategories();
         logger.info("Methode initialize erfolgreich END.");
     }
-
 
 
     private void executeShowAllCategories() {
@@ -114,6 +112,7 @@ public class CategoryManagementController implements Initializable {
         }
 
         if (categoryService.deleteCategory(selectedCategory.getID())) {
+            logger.info("Methode executeDeleteCategory() erfolgreich ENDE.");
             executeShowAllCategories();
         }
     }
@@ -123,7 +122,6 @@ public class CategoryManagementController implements Initializable {
         categoryService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
-
 
 
     @FXML

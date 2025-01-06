@@ -24,7 +24,6 @@ public class CategoryService {
     private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
 
 
-
     private CategoryService() {
     }
 
@@ -38,7 +37,6 @@ public class CategoryService {
     public void setDatabase(Database database) {
         this.database = database;
     }
-
 
 
     public boolean addCategory(Map<String, String> fields) {
