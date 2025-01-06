@@ -18,9 +18,11 @@ import java.util.Map;
  */
 
 public class CategoryService {
+
     private static CategoryService categoryService;
     private Database database;
     private static final Logger logger = LoggerFactory.getLogger(CategoryService.class);
+
 
 
     private CategoryService() {
@@ -38,8 +40,9 @@ public class CategoryService {
     }
 
 
+
     public boolean addCategory(Map<String, String> fields) {
-        logger.info("Methode addCategory() START. Parameter: fields = {}", fields);
+        logger.info("Methode addCategory() START.");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -50,7 +53,7 @@ public class CategoryService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte tragen Sie was ein.");
-            logger.warn("Liste mit ausgefüllten Feldern ist leer. filledFields = {}", filledFields);
+            logger.warn("Liste mit ausgefüllten Feldern ist leer.");
             return false;
         }
 
@@ -67,7 +70,7 @@ public class CategoryService {
 
 
     public boolean updateCategory(Map<String, String> fields, int categoryID) {
-        logger.info("Methode updateCategory() START. Parameter: fields = {}, categoryID = {}", fields, categoryID);
+        logger.info("Methode updateCategory() START.");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -78,13 +81,13 @@ public class CategoryService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
-            logger.warn("Liste mit ausgefüllten Feldern ist leer. filledFields = {}", filledFields);
+            logger.warn("Liste mit ausgefüllten Feldern ist leer.");
             return false;
         }
 
         if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
             RulesService.showErrorAlert("Artikel wird nicht bearbeitet.");
-            logger.warn("Kategorie bearbeitung wurde durch Benutzer beendet ENDE.");
+            logger.debug("Kategorie bearbeitung wurde durch Benutzer beendet ENDE.");
             return false;
         }
 
@@ -94,19 +97,23 @@ public class CategoryService {
             return false;
         }
 
+        logger.info("Methode updateCategory() erfolgreich ENDE.");
         return true;
     }
+
 
     public boolean deleteCategory(int categoryID) {
         logger.info("Methode deleteCategory() START.");
 
         if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
             RulesService.showErrorAlert("Kategorie wird nicht gelöscht.");
+            logger.debug("Kategorie löschen wurde durch Benutzer beendet ENDE.");
             return false;
         }
 
         if (!database.deleteCategory(categoryID)) {
             RulesService.showErrorAlert("Fehler beim löschen der Kategorie.");
+            logger.warn("Kategorie wurde nicht in der Datenbank gelöscht ENDE.");
             return false;
         }
 
@@ -115,22 +122,23 @@ public class CategoryService {
         return true;
     }
 
+
     public List<Category> getAllCategories() {
         logger.info("Methode getAllCategories() START.");
         List<Category> listOfCategories = database.getAllCategories();
         if (listOfCategories == null || listOfCategories.isEmpty()) {
             RulesService.showErrorAlert("Fehler beim Laden der Kategorien.");
-            logger.warn("Fehler beim Laden der Kategorien. listOfCategories = {}", listOfCategories);
+            logger.warn("Fehler beim Laden der Kategorien Liste ist leer ENDE.");
+            return listOfCategories;
         }
-        logger.info("Methode getAllCategories() ENDE.");
-        return database.getAllCategories();
+
+        logger.info("Methode getAllCategories() erfolgreich ENDE.");
+        return listOfCategories;
     }
 
 
     public void clearSession() {
-        logger.info("Methode clearSession() START.");
         categoryService = null;
         database = null;
-        logger.info("Methode ClearSession() erfolgreich ENDE.");
     }
 }

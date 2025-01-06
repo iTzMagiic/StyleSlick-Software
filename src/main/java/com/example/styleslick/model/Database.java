@@ -322,7 +322,7 @@ public class Database {
 
 
     public boolean addCategory(Map<String, String> filledFields) {
-        logger.info("Methode addCategory START. Parameter: filledFields = {}", filledFields);
+        logger.info("Methode addCategory START.");
         String sql = "INSERT INTO category (";
         StringBuilder whereClause = new StringBuilder();
 
@@ -357,14 +357,14 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("Fehler beim hinzufügen der Kategorie FEHLER: {}", e.getMessage(), e);
+            logger.error("Fehler beim hinzufügen der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
 
 
     public boolean updateCategory(Map<String, String> filledFields, int categoryID) {
-        logger.info("Methode updateCategory() START. Parameter: filledFields = {}", filledFields);
+        logger.info("Methode updateCategory() START.");
         String sql = "UPDATE category SET ";
         StringBuilder setClause = new StringBuilder();
 
