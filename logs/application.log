@@ -1,0 +1,6 @@
+2025-01-08 00:40:25 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-08 00:40:25 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-08 00:45:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-08 00:45:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-08 00:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-08 00:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.

@@ -47,7 +47,7 @@ public class Database {
 
 
     public String getTotalSales() {
-        String gesamt_einnahmen = "NULL";
+        String gesamt_einnahmen = "0,00€";
         String sql = "SELECT SUM(paid - shipping_cost) AS gesamt_einnahmen FROM `order`";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -67,7 +67,7 @@ public class Database {
 
 
     public String getTotalExpenditure() {
-        String gesamt_ausgaben = "NULL";
+        String gesamt_ausgaben = "0,00€";
         String sql = "SELECT SUM(purchase_price * amount) AS gesamt_ausgaben FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -87,7 +87,7 @@ public class Database {
 
 
     public String getTotalProfit() {
-        String gewinn = "NULL";
+        String gewinn = "0,00€";
         String sql = "SELECT (SELECT SUM(paid - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS gewinn";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -107,7 +107,7 @@ public class Database {
 
 
     public String getTotalCustomer() {
-        String numberOfCustomers = "NULL";
+        String numberOfCustomers = "0";
         String sql = "SELECT COUNT(*) AS anzahl_kunden FROM customer";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
