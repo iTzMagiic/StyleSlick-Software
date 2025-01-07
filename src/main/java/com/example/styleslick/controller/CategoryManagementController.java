@@ -50,7 +50,6 @@ public class CategoryManagementController implements Initializable {
         logger.info("Methode initialize erfolgreich END.\n\n");
     }
 
-
     private void executeShowAllCategories() {
         logger.info("Methode executeShowAllCategories() START.");
         column_categoryID.setCellValueFactory(new PropertyValueFactory<>("ID"));
@@ -86,7 +85,7 @@ public class CategoryManagementController implements Initializable {
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
         if (selectedCategory == null) {
             RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu bearbeiten.");
-            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE", selectedCategory);
+            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 
@@ -98,7 +97,7 @@ public class CategoryManagementController implements Initializable {
 
         field_categoryName.clear();
         executeShowAllCategories();
-        logger.info("Methode executeUpdateCategory() erfolgreich ENDE.");
+        logger.info("Methode executeUpdateCategory() erfolgreich ENDE.\n\n");
     }
 
 
@@ -108,12 +107,12 @@ public class CategoryManagementController implements Initializable {
 
         if (selectedCategory == null) {
             RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu löschen.");
-            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE", selectedCategory);
+            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 
         if (categoryService.deleteCategory(selectedCategory.getID())) {
-            logger.info("Methode executeDeleteCategory() erfolgreich ENDE.");
+            logger.info("Methode executeDeleteCategory() erfolgreich ENDE.\n\n");
             executeShowAllCategories();
         }
     }
@@ -122,6 +121,7 @@ public class CategoryManagementController implements Initializable {
     private void executeExitCategoryManagement() {
         categoryService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        logger.info("Benutzer hat CategoryManagement() Verlassen BEENDET.--------------\n\n");
     }
 
 

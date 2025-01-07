@@ -62,7 +62,7 @@ public class CategoryService {
         }
 
         RulesService.showConfirmAlert("Die Kategorie wurde erfolgreich erstellt.");
-        logger.info("Methode addCategory() erfolgreich ENDE.");
+        logger.info("Methode addCategory() erfolgreich ENDE.\n");
         return true;
     }
 
@@ -79,23 +79,23 @@ public class CategoryService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
-            logger.warn("Liste mit ausgefüllten Feldern ist leer.");
+            logger.warn("Liste mit ausgefüllten Feldern ist leer ENDE\n");
             return false;
         }
 
         if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
             RulesService.showErrorAlert("Artikel wird nicht bearbeitet.");
-            logger.debug("Kategorie bearbeitung wurde durch Benutzer beendet ENDE.");
+            logger.debug("Kategorie bearbeitung wurde durch den Benutzer beendet ENDE.\n");
             return false;
         }
 
         if (!database.updateCategory(filledFields, categoryID)) {
             RulesService.showErrorAlert("Fehler beim bearbeiten der Kategorie.");
-            logger.warn("Kategorie wurde nicht in die Datenbank geschrieben. ENDE.");
+            logger.warn("Kategorie wurde nicht in die Datenbank geschrieben ENDE.\n");
             return false;
         }
 
-        logger.info("Methode updateCategory() erfolgreich ENDE.");
+        logger.info("Methode updateCategory() erfolgreich ENDE.\n");
         return true;
     }
 
@@ -105,18 +105,18 @@ public class CategoryService {
 
         if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
             RulesService.showErrorAlert("Kategorie wird nicht gelöscht.");
-            logger.debug("Kategorie löschen wurde durch Benutzer beendet ENDE.");
+            logger.debug("Kategorie löschen wurde durch Benutzer beendet ENDE.\n");
             return false;
         }
 
         if (!database.deleteCategory(categoryID)) {
             RulesService.showErrorAlert("Fehler beim löschen der Kategorie.");
-            logger.warn("Kategorie wurde nicht in der Datenbank gelöscht ENDE.");
+            logger.warn("Kategorie wurde nicht in der Datenbank gelöscht ENDE.\n");
             return false;
         }
 
         RulesService.showConfirmAlert("Kategorie wurde erfolgreich gelöscht.");
-        logger.info("Methode deleteCategory() erfolgreich ENDE.");
+        logger.info("Methode deleteCategory() erfolgreich ENDE.\n");
         return true;
     }
 
@@ -126,11 +126,11 @@ public class CategoryService {
         List<Category> listOfCategories = database.getAllCategories();
         if (listOfCategories == null || listOfCategories.isEmpty()) {
             RulesService.showErrorAlert("Fehler beim Laden der Kategorien.");
-            logger.warn("Fehler beim Laden der Kategorien Liste ist leer ENDE.");
+            logger.warn("Fehler beim Laden der Kategorien Liste ist leer ENDE.\n");
             return listOfCategories;
         }
 
-        logger.info("Methode getAllCategories() erfolgreich ENDE.");
+        logger.info("Methode getAllCategories() erfolgreich ENDE.\n");
         return listOfCategories;
     }
 
