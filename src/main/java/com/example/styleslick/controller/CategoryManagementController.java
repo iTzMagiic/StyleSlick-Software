@@ -47,7 +47,7 @@ public class CategoryManagementController implements Initializable {
 
         tableView_categories.getSelectionModel().selectedItemProperty();
         executeShowAllCategories();
-        logger.info("Methode initialize erfolgreich END.");
+        logger.info("Methode initialize erfolgreich END.\n\n");
     }
 
 
@@ -58,7 +58,7 @@ public class CategoryManagementController implements Initializable {
 
         ObservableList<Category> observableList = FXCollections.observableArrayList(categoryService.getAllCategories());
         tableView_categories.setItems(observableList);
-        logger.info("Methode executeShowAllCategories() erfolgreich ENDE.");
+        logger.info("Methode executeShowAllCategories() erfolgreich ENDE.\n\n");
     }
 
 
@@ -69,12 +69,13 @@ public class CategoryManagementController implements Initializable {
         fields.put("name", field_categoryName.getText());
 
         if (!categoryService.addCategory(fields)) {
+            logger.warn("Methode executeAddCategory() durch CategoryService fehlgeschlagen ENDE.\n\n");
             return;
         }
 
         field_categoryName.clear();
         executeShowAllCategories();
-        logger.info("Methode executeAddCategory() erfolgreich ENDE.");
+        logger.info("Methode executeAddCategory() erfolgreich ENDE.\n\n");
     }
 
 

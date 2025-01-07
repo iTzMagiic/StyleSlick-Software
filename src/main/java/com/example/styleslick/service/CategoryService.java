@@ -51,13 +51,13 @@ public class CategoryService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte tragen Sie was ein.");
-            logger.warn("Liste mit ausgefüllten Feldern ist leer.");
+            logger.warn("Liste mit ausgefüllten Feldern ist leer ENDE.\n");
             return false;
         }
 
         if (!database.addCategory(filledFields)) {
             RulesService.showErrorAlert("Fehler beim erstellen.");
-            logger.warn("Kategorie wurde nicht erfolgreich in die Datenbank geschieben. ENDE.");
+            logger.warn("Fehler, Kategorie wurde nicht in die Datenbank geschieben ENDE.\n");
             return false;
         }
 

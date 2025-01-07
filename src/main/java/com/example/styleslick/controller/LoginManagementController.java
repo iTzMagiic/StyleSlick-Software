@@ -9,8 +9,12 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 public class LoginManagementController {
+
+    Logger logger = LoggerFactory.getLogger(LoginManagementController.class);
 
     @FXML
     private TextField field_username;
