@@ -10,6 +10,8 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+// TODO:: Methoden müssen noch geloggt werden !!
+
 public class Database {
 
     private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
