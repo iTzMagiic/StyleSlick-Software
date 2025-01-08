@@ -14,6 +14,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -23,6 +25,7 @@ import java.util.*;
 
 public class ArticleManagementMenuController implements Initializable {
 
+    private static final Logger logger = LoggerFactory.getLogger(ArticleManagementMenuController.class);
     private ArticleService articleService;
 
     @FXML
@@ -73,6 +76,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.info("Methode initialize() START.");
         articleService = ArticleService.getInstance();
         CategoryService categoryService = CategoryService.getInstance();
 
@@ -83,10 +87,12 @@ public class ArticleManagementMenuController implements Initializable {
         tableView_articles.getSelectionModel().selectedItemProperty();
 
         executeShowAllArticles();
+        logger.info("Methode initialize() erfolgreich ENDE.\n\n");
     }
 
 
     private void executeShowAllArticles() {
+        logger.info("Methode executeShowAllArticles() START.");
         choiceBox_category_id.setValue(null);
 
         column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -103,19 +109,23 @@ public class ArticleManagementMenuController implements Initializable {
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
         tableView_articles.setItems(observableList);
+        logger.info("Methode executeShowAllArticles() erfolgreich ENDE.\n\n");
     }
 
 
     private void executeAddArticle() {
+        logger.info("Methode executeAddArticle() START.");
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
-            RulesService.showErrorAlert("purchase_date darf nicht Leer sein.");
+            RulesService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            logger.warn("Benutzer hat kein Kaufdatum angegeben ENDE.\n\n");
             return;
         }
 
         if (choiceBox_category_id.getValue() == null) {
             RulesService.showErrorAlert("Kategorie darf nicht Leer sein.");
+            logger.warn("Benutzer hat keine Kategorie angegeben ENDE.\n\n");
             return;
         }
 
@@ -130,26 +140,32 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("amount", field_amount.getText());
         fields.put("stock", field_stock.getText());
 
-        if (articleService.addArticle(fields)) {
-            field_name.clear();
-            field_color.clear();
-            field_purchase_price.clear();
-            field_manufacturer.clear();
-            field_purchased_from.clear();
-            field_quality.clear();
-            field_amount.clear();
-            field_stock.clear();
-            executeShowAllArticles();
+        if (!articleService.addArticle(fields)) {
+            logger.warn("FEHLER Artikel wurde nicht in die Datenbank geschrieben. ENDE\n\n");
+            return;
         }
+
+        field_name.clear();
+        field_color.clear();
+        field_purchase_price.clear();
+        field_manufacturer.clear();
+        field_purchased_from.clear();
+        field_quality.clear();
+        field_amount.clear();
+        field_stock.clear();
+        executeShowAllArticles();
+        logger.info("Methode executeAddArticle() erfolgreich ENDE.\n\n");
     }
 
 
     private void executeUpdateArticle() {
+        logger.info("Methode executeUpdateArticle() START.");
         Map<String, String> fields = new HashMap<>();
 
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
             RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
+            logger.warn("Benutzer hat kein Artikel aus der Tabelle ausgewählt ENDE.\n\n");
             return;
         }
 
@@ -169,38 +185,47 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("amount", field_amount.getText());
         fields.put("stock", field_stock.getText());
 
-        if (articleService.updateArticle(fields, selectedArticle.getArticleID())) {
-            choiceBox_category_id.setValue(null);
-            field_name.clear();
-            field_color.clear();
-            field_purchase_price.clear();
-            field_manufacturer.clear();
-            field_purchased_from.clear();
-            field_quality.clear();
-            field_amount.clear();
-            field_stock.clear();
-            executeShowAllArticles();
+        if (!articleService.updateArticle(fields, selectedArticle.getArticleID())) {
+            logger.warn("Artikel wurde nicht bearbeitet ENDE.\n\n");
+            return;
         }
+
+        choiceBox_category_id.setValue(null);
+        field_name.clear();
+        field_color.clear();
+        field_purchase_price.clear();
+        field_manufacturer.clear();
+        field_purchased_from.clear();
+        field_quality.clear();
+        field_amount.clear();
+        field_stock.clear();
+        executeShowAllArticles();
+        logger.info("Methode executeUpdateArticle() erfolgreich ENDE.\n\n");
     }
 
 
     private void executeDeleteArticle() {
+        logger.info("Methode executeDeleteArticle START.");
         // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
             RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
+            logger.warn("Benutzer hat kein Artikel aus der Tabelle ausgewählt ENDE.\n\n");
             return;
         }
 
         int articleID = selectedArticle.getArticleID(); // ID des Artikels
 
         // Artikel aus der Datenbank löschen
-        if (articleService.deleteArticle(articleID)) {
-            RulesService.showConfirmAlert("Artikel erfolgreich gelöscht.");
-            executeShowAllArticles();
-        } else {
+        if (!articleService.deleteArticle(articleID)) {
             RulesService.showErrorAlert("Artikel wurde nicht gelöscht.");
+            logger.warn("Artikel wurde nicht gelöscht ENDE.\n\n");
+            return;
         }
+
+        RulesService.showConfirmAlert("Artikel erfolgreich gelöscht.");
+        executeShowAllArticles();
+        logger.info("Methode executeDeleteArticle() erfolgreich ENDE.\n\n");
     }
 
 

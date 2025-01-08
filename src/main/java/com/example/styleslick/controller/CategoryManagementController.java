@@ -42,12 +42,12 @@ public class CategoryManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logger.info("Methode initialize START.");
+        logger.info("Methode initialize() START.");
         categoryService = CategoryService.getInstance();
 
         tableView_categories.getSelectionModel().selectedItemProperty();
         executeShowAllCategories();
-        logger.info("Methode initialize erfolgreich END.\n\n");
+        logger.info("Methode initialize() erfolgreich ENDE.\n\n");
     }
 
     private void executeShowAllCategories() {
@@ -85,7 +85,7 @@ public class CategoryManagementController implements Initializable {
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
         if (selectedCategory == null) {
             RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu bearbeiten.");
-            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
+            logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 
@@ -107,7 +107,7 @@ public class CategoryManagementController implements Initializable {
 
         if (selectedCategory == null) {
             RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu löschen.");
-            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
+            logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 

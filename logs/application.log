@@ -4,3 +4,38 @@
 2025-01-08 00:45:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
 2025-01-08 00:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
 2025-01-08 00:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-08 21:45:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-08 21:45:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() START.
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() erfolgreich ENDE.
+
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+
+
+2025-01-08 21:45:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() erfolgreich ENDE.
+
+
+2025-01-08 21:50:53 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeUpdateCategory() START.
+2025-01-08 21:50:53 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode updateCategory() START.
+2025-01-08 21:50:54 [JavaFX Application Thread] WARN  c.e.s.service.CategoryService - Liste mit ausgefüllten Feldern ist leer ENDE
+
+2025-01-08 21:51:32 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Benutzer hat CategoryManagement() Verlassen BEENDET.--------------
+
+
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() START.
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() erfolgreich ENDE.
+
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+
+
+2025-01-08 21:51:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() erfolgreich ENDE.
+
+
+2025-01-08 21:51:34 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeUpdateCategory() START.
+2025-01-08 21:52:13 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeUpdateCategory() START.
