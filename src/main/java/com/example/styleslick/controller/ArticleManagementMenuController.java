@@ -230,6 +230,7 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeSearchArticle() {
+        logger.info("Methode executeSearchArticle() START.");
         Map<String, String> fields = new HashMap<>();
 
 
@@ -262,17 +263,20 @@ public class ArticleManagementMenuController implements Initializable {
             field_amount.clear();
             field_stock.clear();
             executeShowAllArticles();
+            logger.warn("Es wurden keine Artikel gefunden ENDE.\n\n");
             return;
         }
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
+        logger.info("Methode executeSearchArticle() erfolgreich ENDE.\n\n");
     }
 
 
     private void executeExitArticleManagement() {
         articleService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        logger.info("Benutzer hat ArticleManagementMenu Verlassen BEENDET.--------------\n\n");
     }
 
 

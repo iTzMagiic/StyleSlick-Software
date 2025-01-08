@@ -121,7 +121,7 @@ public class CategoryManagementController implements Initializable {
     private void executeExitCategoryManagement() {
         categoryService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-        logger.info("Benutzer hat CategoryManagement() Verlassen BEENDET.--------------\n\n");
+        logger.info("Benutzer hat CategoryManagementMenu Verlassen BEENDET.--------------\n\n");
     }
 
 

@@ -2,6 +2,8 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,6 +12,7 @@ import java.util.Map;
 
 public class ArticleService {
 
+    private static final Logger logger = LoggerFactory.getLogger(ArticleService.class);
     private static ArticleService articleService;
     private Database database;
 
@@ -36,6 +39,7 @@ public class ArticleService {
 
 
     public boolean addArticle(Map<String, String> fields) {
+        logger.info("Methode addArticle() START.");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> field : fields.entrySet()) {
@@ -47,20 +51,24 @@ public class ArticleService {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie etwas ein.");
+            logger.warn("Liste leer ENDE.\n");
             return false;
         }
 
         // Prüfungen ob die Pflichtfelder ausgefüllt sind
         if (!filledFields.containsKey("name")) {
             RulesService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
+            logger.warn("Benutzer hat kein Artikelnamen eingegeben ENDE.\n");
             return false;
         }
         if (!filledFields.containsKey("color")) {
             RulesService.showErrorAlert("Bitte geben Sie eine color an.");
+            logger.warn("Benutzer hat keine Artikelfarbe eingegeben ENDE.\n");
             return false;
         }
         if (!filledFields.containsKey("purchase_price")) {
-            RulesService.showErrorAlert("Bitte geben Sie ein purchase_price an.");
+            RulesService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
+            logger.warn("Benutzer hat kein Kaufpreis eingegeben ENDE.\n");
             return false;
         }
 
@@ -69,19 +77,22 @@ public class ArticleService {
             Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
             RulesService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
+            logger.error("Benutzer hat keine Gültige Zahl eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
             return false;
         }
 
         if (!filledFields.containsKey("purchased_from")) {
             RulesService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
+            logger.warn("Keine Eingabe wo es gekauft wurde ENDE.\n");
             return false;
         }
         if (!filledFields.containsKey("amount")) {
-            RulesService.showErrorAlert("Bitte geben Sie die amount an.");
+            RulesService.showErrorAlert("Bitte geben Sie die Menge an.");
+            logger.warn("Es wurde keine Menge angegeben ENDE.\n");
             return false;
         }
         if (!filledFields.get("amount").matches("\\d+")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Gültige amount an.");
+            RulesService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
             return false;
         }
         if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
