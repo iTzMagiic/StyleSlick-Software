@@ -23,4 +23,12 @@ public class ArticleRules {
         return true;
     }
 
+    public static boolean isValidAmount(Map<String, String> filledFields) {
+        return filledFields.containsKey("amount") && filledFields.get("amount").matches("\\d+");
+    }
+
+    public static boolean isValidStock(Map<String, String> filledFields) {
+        return filledFields.containsKey("stock") && filledFields.get("stock").matches("[0-9]+");
+    }
+
 }
