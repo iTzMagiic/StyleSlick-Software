@@ -113,7 +113,6 @@ public class ArticleService {
         }
 
         RulesService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
-        logger.info("Methode addArticle() END.");
         logger.info("Methode addArticle() erfolgreich END.\n");
         return true;
     }
