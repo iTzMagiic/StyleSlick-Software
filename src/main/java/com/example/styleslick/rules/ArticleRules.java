@@ -12,7 +12,6 @@ public class ArticleRules {
 
 
     public static boolean isValidPurchasePrice(Map<String, String> filledFields) {
-        filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
         try {
             Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
