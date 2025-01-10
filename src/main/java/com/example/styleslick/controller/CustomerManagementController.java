@@ -36,7 +36,7 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TableColumn<Customer, String> column_street;
     @FXML
-    private TableColumn<Customer, Integer> column_postal_code;
+    private TableColumn<Customer, String> column_postal_code;
     @FXML
     private TableColumn<Customer, String> column_city;
     @FXML

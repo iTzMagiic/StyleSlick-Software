@@ -7,7 +7,7 @@ import java.util.Map;
 public class CustomerRules {
 
 
-    public static boolean isValidToAddCustomer(Map<String, String> filledFields) {
+    public boolean isAllowedToAddCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
             RulesService.showErrorAlert("Bitte geben Sie was ein.");
@@ -38,11 +38,34 @@ public class CustomerRules {
             return false;
         }
 
+        return true;
+    }
+
+    public boolean isAllowedToSearchCustomer(Map<String, String> filledFields) {
+
+        if (filledFields.isEmpty()) {
+            RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
+            return false;
+        }
+
+        if (filledFields.containsKey("postal_code") && !isValidPostalCode(filledFields.get("postal_code"))) {
+            return false;
+        }
+
+        if (filledFields.containsKey("country") && !isValidCountry(filledFields.get("country"))) {
+            return false;
+        }
 
         return true;
     }
 
-    private static boolean isValidPostalCode(String postalCode) {
+
+
+    private  boolean isValidPostalCode(String postalCode) {
+        /*
+        TODO:: PLZ in der Datenbank auf VARCHAR() ändern da PLZ auch mit 0 anfangen kann und führende 0 werden bei SQL
+            ignoriert.
+         */
         if (!postalCode.matches("\\d{5}")) {
             RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return false;
@@ -50,7 +73,7 @@ public class CustomerRules {
         return true;
     }
 
-    public static boolean isValidCountry(String country) {
+    private  boolean isValidCountry(String country) {
         if(!country.matches("^[a-zA-Z]+$")) {
             RulesService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");
             return false;

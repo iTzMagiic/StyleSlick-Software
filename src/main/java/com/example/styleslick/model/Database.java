@@ -162,12 +162,7 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
-                if (field.getKey().equals("postal_code")) {
-                    preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
-                } else {
-                    preparedStatement.setString(index++, field.getValue());
-                    System.out.println(sql + " " + field.getValue());
-                }
+                preparedStatement.setString(index++, field.getValue());
             }
             preparedStatement.setString(index, createCustomerNumber());
             preparedStatement.executeUpdate();
@@ -214,7 +209,7 @@ public class Database {
                     String first_name = resultSet.getString("first_name");
                     String last_name = resultSet.getString("last_name");
                     String street = resultSet.getString("street");
-                    int postal_code = resultSet.getInt("postal_code");
+                    String postal_code = resultSet.getString("postal_code");
                     String city = resultSet.getString("city");
                     String country = resultSet.getString("country");
                     String purchased_from = resultSet.getString("purchased_from");
@@ -235,8 +230,10 @@ public class Database {
     public List<Customer> searchCustomer(Map<String, String> filledFields) {
         logger.debug("START searchCustomer() Parameter Länger: {}", filledFields.size());
         List<Customer> listOfCustomers = new ArrayList<>();
-        String sql = "SELECT * FROM customer WHERE ";
         StringBuilder whereClause = new StringBuilder();
+
+        String sql = "SELECT * FROM customer WHERE ";
+
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (whereClause.length() > 0) {
@@ -252,11 +249,7 @@ public class Database {
 
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("postal_code")) {
-                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
-                } else {
-                    preparedStatement.setString(index++, entry.getValue() + "%");
-                }
+                preparedStatement.setString(index++, entry.getValue() + "%");
             }
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -265,7 +258,7 @@ public class Database {
                     String first_name = resultSet.getString("first_name");
                     String last_name = resultSet.getString("last_name");
                     String street = resultSet.getString("street");
-                    int postal_code = resultSet.getInt("postal_code");
+                    String postal_code = resultSet.getString("postal_code");
                     String city = resultSet.getString("city");
                     String country = resultSet.getString("country");
                     String purchased_from = resultSet.getString("purchased_from");
@@ -319,11 +312,7 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("postal_code")) {
-                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
-                } else {
-                    preparedStatement.setString(index++, entry.getValue());
-                }
+                preparedStatement.setString(index++, entry.getValue());
             }
 
             preparedStatement.setInt(index, customerID);

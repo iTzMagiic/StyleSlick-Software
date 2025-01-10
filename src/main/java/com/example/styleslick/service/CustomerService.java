@@ -11,6 +11,7 @@ import java.util.Map;
 
 public class CustomerService {
 
+    private final CustomerRules customerRules = new CustomerRules();
     private static CustomerService customerService;
     private Database database;
 
@@ -32,52 +33,6 @@ public class CustomerService {
     }
 
 
-//    public boolean addCustomer(Map<String, String> fields) {
-//        Map<String, String> filledFields = new HashMap<>();
-//
-//        for (Map.Entry<String, String> entry : fields.entrySet()) {
-//            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
-//                continue;
-//            }
-//            filledFields.put(entry.getKey(), entry.getValue());
-//        }
-//
-//        if (filledFields.isEmpty()) {
-//            RulesService.showErrorAlert("Bitte geben Sie was ein.");
-//            return false;
-//        }
-//
-//        // Prüft, ob die pflicht Felder nicht leer sind.
-//        if (!filledFields.containsKey("username")) {
-//            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
-//            return false;
-//        }
-//        if (!filledFields.containsKey("purchased_from")) {
-//            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
-//            return false;
-//        }
-//        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
-//            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
-//            return false;
-//        }
-//        if (!filledFields.containsKey("country") || filledFields.containsKey("country") && !filledFields.get("country").matches("^[a-zA-Z]+$")) {
-//            RulesService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");
-//            return false;
-//        }
-//
-//        if (database.isUsernameExist(filledFields.get("username"))) {
-//            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
-//                return false;
-//            }
-//        }
-//
-//        if (!database.addCustomer(filledFields)) {
-//            RulesService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
-//            return false;
-//        }
-//        RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
-//        return true;
-//    }
 
     public boolean addCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
@@ -89,7 +44,7 @@ public class CustomerService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        if(!CustomerRules.isValidToAddCustomer(filledFields)) {
+        if(!customerRules.isAllowedToAddCustomer(filledFields)) {
             return false;
         }
 
@@ -109,6 +64,34 @@ public class CustomerService {
     }
 
 
+//    public List<Customer> searchCustomer(Map<String, String> fields) {
+//        Map<String, String> filledFields = new HashMap<>();
+//        List<Customer> listOfCustomers = new ArrayList<>();
+//
+//        for (Map.Entry<String, String> entry : fields.entrySet()) {
+//            if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
+//                filledFields.put(entry.getKey(), entry.getValue());
+//            }
+//        }
+//
+//        if (filledFields.isEmpty()) {
+//            RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
+//            return listOfCustomers;
+//        }
+//
+//        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
+//            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+//            return listOfCustomers;
+//        }
+//
+//        listOfCustomers = database.searchCustomer(filledFields);
+//
+//        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+//            RulesService.showErrorAlert("Kein Kunden gefunden.");
+//        }
+//        return listOfCustomers;
+//    }
+
     public List<Customer> searchCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
         List<Customer> listOfCustomers = new ArrayList<>();
@@ -119,21 +102,17 @@ public class CustomerService {
             }
         }
 
-        if (filledFields.isEmpty()) {
-            RulesService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
-            return listOfCustomers;
-        }
 
-        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
-            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+        if (!customerRules.isAllowedToSearchCustomer(filledFields)) {
             return listOfCustomers;
         }
 
         listOfCustomers = database.searchCustomer(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            RulesService.showErrorAlert("Kein Kunden gefunden.");
+            RulesService.showErrorAlert("Es wurde kein Kunden gefunden.");
         }
+
         return listOfCustomers;
     }
 

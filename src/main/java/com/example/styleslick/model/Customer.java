@@ -7,12 +7,12 @@ public class Customer {
     private final String first_name;
     private final String last_name;
     private final String street;
-    private final int postal_code;
+    private final String postal_code;
     private final String city;
     private final String country;
     private final String purchased_from;
 
-    public Customer(String username, String first_name, String last_name, String street, int postal_code, String city, String country, String purchased_from, int customer_id, String customer_number) {
+    public Customer(String username, String first_name, String last_name, String street, String postal_code, String city, String country, String purchased_from, int customer_id, String customer_number) {
         this.username = username;
         this.first_name = first_name;
         this.last_name = last_name;
@@ -54,7 +54,7 @@ public class Customer {
         return street;
     }
 
-    public int getPostalCode() {
+    public String getPostalCode() {
         return postal_code;
     }
 
