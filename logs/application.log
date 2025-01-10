@@ -71,3 +71,32 @@
 2025-01-10 21:48:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
 2025-01-10 22:07:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
 2025-01-10 22:07:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:05:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-10 23:05:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:06:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 0
+2025-01-10 23:06:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 2
+2025-01-10 23:06:11 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 2
+2025-01-10 23:06:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 2
+2025-01-10 23:06:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 2
+2025-01-10 23:06:16 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 2
+2025-01-10 23:06:22 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 0
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() START.
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() START.
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() erfolgreich ENDE.
+
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode executeShowAllCategories() erfolgreich ENDE.
+
+
+2025-01-10 23:06:33 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Methode initialize() erfolgreich ENDE.
+
+
+2025-01-10 23:06:36 [JavaFX Application Thread] INFO  c.e.s.c.CategoryManagementController - Benutzer hat CategoryManagementMenu Verlassen BEENDET.--------------
+
+
+2025-01-10 23:07:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: C20250001
+2025-01-10 23:07:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addCustomer() erfolgreich.
+2025-01-10 23:07:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 1
+2025-01-10 23:07:35 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 11
+2025-01-10 23:07:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 0

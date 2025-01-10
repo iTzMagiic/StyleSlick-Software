@@ -156,6 +156,7 @@ public class CustomerManagementController implements Initializable {
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
         fields.put("city", field_city.getText());
+        fields.put("country", field_country.getText());
         fields.put("purchased_from", field_purchased_from.getText());
 
 
@@ -168,6 +169,7 @@ public class CustomerManagementController implements Initializable {
             field_last_name.clear();
             field_street.clear();
             field_city.clear();
+            field_country.clear();
             field_purchased_from.clear();
             field_postal_code.clear();
             executeShowAllCustomers();

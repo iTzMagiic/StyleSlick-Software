@@ -127,6 +127,7 @@ public class Database {
 
 
     public boolean addCustomer(Map<String, String> filledFields) {
+        logger.debug("START addCustomer() Parameter Länge: {}", filledFields.size());
         String sql = "INSERT INTO customer (";
         StringBuilder whereClause = new StringBuilder();
 
@@ -141,7 +142,6 @@ public class Database {
         whereClause.append(", customer_number) VALUES (");
         sql += whereClause.toString();
 
-
         whereClause = new StringBuilder();
 
         for (Map.Entry<String, String> values : filledFields.entrySet()) {
@@ -153,7 +153,8 @@ public class Database {
 
         whereClause.append(", ?)");
         sql += whereClause.toString();
-        System.out.println(sql);
+
+        logger.debug("DEBUG addCustomer() SQL Query: {}", sql);
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -170,11 +171,12 @@ public class Database {
             }
             preparedStatement.setString(index, createCustomerNumber());
             preparedStatement.executeUpdate();
+            logger.info("ENDE addCustomer() erfolgreich.");
             return true;
 
         } catch (SQLException e) {
             RulesService.showErrorAlert("Fehler beim hinzufügen des Kunden.");
-            System.out.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+            logger.error("ERROR addCustomer() Kunde konnte nicht in die Datenbank geschrieben werden. FEHLER: {}", e.getMessage(), e);
         }
         return false;
     }
@@ -231,6 +233,7 @@ public class Database {
 
 
     public List<Customer> searchCustomer(Map<String, String> filledFields) {
+        logger.debug("START searchCustomer() Parameter Länger: {}", filledFields.size());
         List<Customer> listOfCustomers = new ArrayList<>();
         String sql = "SELECT * FROM customer WHERE ";
         StringBuilder whereClause = new StringBuilder();
@@ -242,6 +245,7 @@ public class Database {
             whereClause.append(entry.getKey()).append(" LIKE ?");
         }
         sql += whereClause.toString();
+        logger.debug("DEBUG searchCustomer() SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -271,10 +275,11 @@ public class Database {
                     Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
                     listOfCustomers.add(customer);
                 }
+                logger.info("ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: {}", listOfCustomers.size());
                 return listOfCustomers;
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
+            logger.error("ERROR searchCustomer() Fehler beim abrufen der Kunden aus der Datenbank. FEHLER: {}", e.getMessage(), e);
         }
         return listOfCustomers;
     }
