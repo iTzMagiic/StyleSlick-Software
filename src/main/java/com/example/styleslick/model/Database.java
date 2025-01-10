@@ -138,7 +138,7 @@ public class Database {
             }
             whereClause.append(key.getKey());
         }
-        whereClause.append(") VALUES (");
+        whereClause.append(", customer_number) VALUES (");
         sql += whereClause.toString();
 
 
@@ -151,7 +151,7 @@ public class Database {
             whereClause.append(" ?");
         }
 
-        whereClause.append(")");
+        whereClause.append(", ?)");
         sql += whereClause.toString();
         System.out.println(sql);
 
@@ -168,6 +168,7 @@ public class Database {
                     System.out.println(sql + " " + field.getValue());
                 }
             }
+            preparedStatement.setString(index, createCustomerNumber());
             preparedStatement.executeUpdate();
             return true;
 
@@ -649,7 +650,7 @@ public class Database {
     }
 
 
-    public String createCustomerNumber() {
+    private String createCustomerNumber() {
         // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
                 "FROM customer " +
@@ -669,7 +670,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.out.println("ERROR es konnte keine neue Kundennummer generiert werden.");
+            System.out.println("ERROR es konnte keine neue Kundennummer generiert werden. ERROR: %S".formatted(e.getMessage()));
         }
         return "ERROR";
     }
