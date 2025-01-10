@@ -126,18 +126,17 @@ public class Database {
     }
 
 
-    public void addCustomer(Map<String, String> filledFields) {
+    public boolean addCustomer(Map<String, String> filledFields) {
         String sql = "INSERT INTO customer (";
         StringBuilder whereClause = new StringBuilder();
 
         // WHERE-Bedingung aus der Map filledFields einfügen und mit(" AND " &" = ?")trennen;
         for (Map.Entry<String, String> key : filledFields.entrySet()) {
-            String columnName = key.getKey();
 
             if (whereClause.length() > 0) {
                 whereClause.append(", ");
             }
-            whereClause.append(columnName);
+            whereClause.append(key.getKey());
         }
         whereClause.append(") VALUES (");
         sql += whereClause.toString();
@@ -154,6 +153,7 @@ public class Database {
 
         whereClause.append(")");
         sql += whereClause.toString();
+        System.out.println(sql);
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -165,14 +165,17 @@ public class Database {
                     preparedStatement.setInt(index++, Integer.parseInt(field.getValue()));
                 } else {
                     preparedStatement.setString(index++, field.getValue());
+                    System.out.println(sql + " " + field.getValue());
                 }
             }
             preparedStatement.executeUpdate();
+            return true;
 
         } catch (SQLException e) {
             RulesService.showErrorAlert("Fehler beim hinzufügen des Kunden.");
             System.out.println("Fehler beim Verbinden zur Datenbank. " + e.getMessage());
         }
+        return false;
     }
 
 
@@ -205,15 +208,17 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String username = resultSet.getString("username");
-                    String name = resultSet.getString("name");
+                    String first_name = resultSet.getString("first_name");
                     String last_name = resultSet.getString("last_name");
                     String street = resultSet.getString("street");
                     int postal_code = resultSet.getInt("postal_code");
                     String city = resultSet.getString("city");
+                    String country = resultSet.getString("country");
                     String purchased_from = resultSet.getString("purchased_from");
                     int customerID = resultSet.getInt("customer_id");
+                    String customer_number = resultSet.getString("customer_number");
 
-                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customerID);
+                    Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
                     listOfCustomers.add(customer);
                 }
             }
@@ -252,15 +257,17 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     String username = resultSet.getString("username");
-                    String name = resultSet.getString("name");
+                    String first_name = resultSet.getString("first_name");
                     String last_name = resultSet.getString("last_name");
                     String street = resultSet.getString("street");
                     int postal_code = resultSet.getInt("postal_code");
                     String city = resultSet.getString("city");
+                    String country = resultSet.getString("country");
                     String purchased_from = resultSet.getString("purchased_from");
                     int customerID = resultSet.getInt("customer_id");
+                    String customer_number = resultSet.getString("customer_number");
 
-                    Customer customer = new Customer(username, name, last_name, street, postal_code, city, purchased_from, customerID);
+                    Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
                     listOfCustomers.add(customer);
                 }
                 return listOfCustomers;
@@ -639,6 +646,32 @@ public class Database {
             System.err.println("Fehler beim Löschen des Artikels. " + e.getMessage());
             return false;
         }
+    }
+
+
+    public String createCustomerNumber() {
+        // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
+        String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
+                "FROM customer " +
+                "WHERE SUBSTRING(customer_number, 2, 4) = YEAR(CURDATE())";
+
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int new_customer_number = resultSet.getInt("new_customer_number");
+
+                    // Generieren der Kundennummer: 'C' + Jahr + Nummer mit führenden Nullen
+                    String customerNumber = "C" + java.time.Year.now() + String.format("%04d", new_customer_number);
+                    return customerNumber;
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("ERROR es konnte keine neue Kundennummer generiert werden.");
+        }
+        return "ERROR";
     }
 
 

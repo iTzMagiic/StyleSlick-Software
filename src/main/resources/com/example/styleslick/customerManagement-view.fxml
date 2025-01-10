@@ -14,13 +14,14 @@
    <center>
       <TableView fx:id="tableView_customer" prefHeight="545.0" prefWidth="1288.0" BorderPane.alignment="CENTER">
         <columns>
-            <TableColumn fx:id="column_customer_id" prefWidth="75.0" text="Kunden-Nr" />
+            <TableColumn fx:id="column_customer_number" prefWidth="75.0" text="Kunden-Nr" />
           <TableColumn fx:id="column_username" prefWidth="75.0" text="Benutzername" />
-          <TableColumn fx:id="column_name" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="column_first_name" prefWidth="75.0" text="Name" />
             <TableColumn fx:id="column_last_name" prefWidth="75.0" text="Nachname" />
             <TableColumn fx:id="column_street" prefWidth="75.0" text="Straße" />
             <TableColumn fx:id="column_postal_code" prefWidth="75.0" text="Postleitzahl" />
             <TableColumn fx:id="column_city" prefWidth="75.0" text="Ort" />
+            <TableColumn fx:id="column_country" prefWidth="75.0" text="Land" />
             <TableColumn fx:id="column_purchased_from" prefWidth="75.0" text="Gekauft über" />
         </columns>
          <columnResizePolicy>
@@ -34,12 +35,13 @@
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
                   <TextField fx:id="field_username" promptText="Benutzername*" />
-                  <TextField fx:id="field_name" promptText="Name" />
+                  <TextField fx:id="field_first_name" promptText="Vorname" />
                   <TextField fx:id="field_last_name" promptText="Nachname" />
                   <TextField fx:id="field_street" promptText="Straße" />
                   <TextField fx:id="field_postal_code" promptText="Postleitzahl" />
                   <TextField fx:id="field_city" promptText="Ort" />
                   <TextField fx:id="field_purchased_from" promptText="Gekauft über*" />
+                  <TextField fx:id="field_country" layoutX="1053.0" layoutY="48.0" promptText="Land*" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">

@@ -30,7 +30,7 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TableColumn<Customer, String> column_username;
     @FXML
-    private TableColumn<Customer, String> column_name;
+    private TableColumn<Customer, String> column_first_name;
     @FXML
     private TableColumn<Customer, String> column_last_name;
     @FXML
@@ -42,11 +42,13 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TableColumn<Customer, String> column_purchased_from;
     @FXML
-    private TableColumn<Customer, Integer> column_customer_id;
+    private TableColumn<Customer, Integer> column_customer_number;
+    @FXML
+    private TableColumn<Customer, String> column_country;
     @FXML
     private TextField field_username;
     @FXML
-    private TextField field_name;
+    private TextField field_first_name;
     @FXML
     private TextField field_last_name;
     @FXML
@@ -55,6 +57,8 @@ public class CustomerManagementController implements Initializable {
     private TextField field_postal_code;
     @FXML
     private TextField field_city;
+    @FXML
+    private TextField field_country;
     @FXML
     private TextField field_purchased_from;
 
@@ -71,13 +75,14 @@ public class CustomerManagementController implements Initializable {
 
     private void executeShowAllCustomers() {
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
         column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
         column_city.setCellValueFactory(new PropertyValueFactory<>("city"));
         column_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
         column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
-        column_customer_id.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        column_customer_number.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+        column_country.setCellValueFactory(new PropertyValueFactory<>("country"));
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
@@ -88,19 +93,21 @@ public class CustomerManagementController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
-        fields.put("name", field_name.getText());
+        fields.put("first_name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
         fields.put("city", field_city.getText());
+        fields.put("country", field_country.getText());
         fields.put("purchased_from", field_purchased_from.getText());
 
         if (customerService.addCustomer(fields)) {
             field_username.clear();
-            field_name.clear();
+            field_first_name.clear();
             field_last_name.clear();
             field_street.clear();
             field_city.clear();
+            field_country.clear();
             field_purchased_from.clear();
             field_postal_code.clear();
             executeShowAllCustomers();
@@ -119,7 +126,7 @@ public class CustomerManagementController implements Initializable {
         }
 
         fields.put("username", field_username.getText());
-        fields.put("name", field_name.getText());
+        fields.put("name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
@@ -129,7 +136,7 @@ public class CustomerManagementController implements Initializable {
         // Kunden aus der Datenbank löschen
         if (customerService.updateCustomer(fields, selectedCustomer.getCustomerID())) {
             field_username.clear();
-            field_name.clear();
+            field_first_name.clear();
             field_last_name.clear();
             field_street.clear();
             field_postal_code.clear();
@@ -144,7 +151,7 @@ public class CustomerManagementController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
-        fields.put("name", field_name.getText());
+        fields.put("name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
@@ -157,7 +164,7 @@ public class CustomerManagementController implements Initializable {
         // Wenn kein Customer gefunden wurde abbrechen
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             field_username.clear();
-            field_name.clear();
+            field_first_name.clear();
             field_last_name.clear();
             field_street.clear();
             field_city.clear();
