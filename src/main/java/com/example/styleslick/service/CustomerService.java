@@ -71,7 +71,7 @@ public class CustomerService {
         }
 
         if (!database.addCustomer(filledFields)) {
-            RulesService.showErrorAlert("Fehler beim speichern in die Datenbank.");
+            RulesService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
             return false;
         }
         RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");

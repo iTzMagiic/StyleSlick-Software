@@ -651,6 +651,7 @@ public class Database {
 
 
     private String createCustomerNumber() {
+        logger.debug("START createCustomerNumber()");
         // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
                 "FROM customer " +
@@ -666,11 +667,14 @@ public class Database {
 
                     // Generieren der Kundennummer: 'C' + Jahr + Nummer mit führenden Nullen
                     String customerNumber = "C" + java.time.Year.now() + String.format("%04d", new_customer_number);
+                    logger.info("ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: {}", customerNumber);
                     return customerNumber;
+                } else {
+                    logger.warn("WARN createCustomerNumber() Keine vorhandene Kundennummer für das aktuelle Jahr.");
                 }
             }
         } catch (SQLException e) {
-            System.out.println("ERROR es konnte keine neue Kundennummer generiert werden. ERROR: %S".formatted(e.getMessage()));
+            logger.error("ERROR createCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
         }
         return "ERROR";
     }
