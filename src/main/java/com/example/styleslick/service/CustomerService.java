@@ -2,6 +2,7 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
+import com.example.styleslick.rules.CustomerRules;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -31,6 +32,53 @@ public class CustomerService {
     }
 
 
+//    public boolean addCustomer(Map<String, String> fields) {
+//        Map<String, String> filledFields = new HashMap<>();
+//
+//        for (Map.Entry<String, String> entry : fields.entrySet()) {
+//            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+//                continue;
+//            }
+//            filledFields.put(entry.getKey(), entry.getValue());
+//        }
+//
+//        if (filledFields.isEmpty()) {
+//            RulesService.showErrorAlert("Bitte geben Sie was ein.");
+//            return false;
+//        }
+//
+//        // Prüft, ob die pflicht Felder nicht leer sind.
+//        if (!filledFields.containsKey("username")) {
+//            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
+//            return false;
+//        }
+//        if (!filledFields.containsKey("purchased_from")) {
+//            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
+//            return false;
+//        }
+//        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
+//            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
+//            return false;
+//        }
+//        if (!filledFields.containsKey("country") || filledFields.containsKey("country") && !filledFields.get("country").matches("^[a-zA-Z]+$")) {
+//            RulesService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");
+//            return false;
+//        }
+//
+//        if (database.isUsernameExist(filledFields.get("username"))) {
+//            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
+//                return false;
+//            }
+//        }
+//
+//        if (!database.addCustomer(filledFields)) {
+//            RulesService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
+//            return false;
+//        }
+//        RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
+//        return true;
+//    }
+
     public boolean addCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
 
@@ -41,26 +89,7 @@ public class CustomerService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        if (filledFields.isEmpty()) {
-            RulesService.showErrorAlert("Bitte geben Sie was ein.");
-            return false;
-        }
-
-        // Prüft, ob die pflicht Felder nicht leer sind.
-        if (!filledFields.containsKey("username")) {
-            RulesService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
-            return false;
-        }
-        if (!filledFields.containsKey("purchased_from")) {
-            RulesService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
-            return false;
-        }
-        if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
-            RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
-            return false;
-        }
-        if (!filledFields.containsKey("country") || filledFields.containsKey("country") && !filledFields.get("country").matches("^[a-zA-Z]+$")) {
-            RulesService.showErrorAlert("Bitte geben Sie ein Land ein.");
+        if(!CustomerRules.isValidToAddCustomer(filledFields)) {
             return false;
         }
 
@@ -74,6 +103,7 @@ public class CustomerService {
             RulesService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
             return false;
         }
+
         RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
         return true;
     }
@@ -130,6 +160,10 @@ public class CustomerService {
         if (filledFields.containsKey("postal_code") && !filledFields.get("postal_code").matches("\\d{5}")) {
             RulesService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
             return false;
+        }
+
+        if(filledFields.containsKey("country") && !filledFields.get("country").matches("^[a-zA-Z]+$")) {
+            RulesService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");
         }
 
         if (!database.updateCustomer(filledFields, customerID)) {

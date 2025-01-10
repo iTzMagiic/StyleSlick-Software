@@ -121,7 +121,7 @@ public class CustomerManagementController implements Initializable {
         // Abrufen des ausgewählten Kunden
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu bearbeiten.");
+            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu bearbeiten.");
             return;
         }
 
@@ -131,6 +131,7 @@ public class CustomerManagementController implements Initializable {
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
         fields.put("city", field_city.getText());
+        fields.put("country", field_country.getText());
         fields.put("purchased_from", field_purchased_from.getText());
 
         // Kunden aus der Datenbank löschen
@@ -141,6 +142,7 @@ public class CustomerManagementController implements Initializable {
             field_street.clear();
             field_postal_code.clear();
             field_city.clear();
+            field_country.clear();
             field_purchased_from.clear();
             executeShowAllCustomers();
         }

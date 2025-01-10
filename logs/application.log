@@ -100,3 +100,14 @@
 2025-01-10 23:07:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 1
 2025-01-10 23:07:35 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 11
 2025-01-10 23:07:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 0
+2025-01-10 23:18:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-10 23:18:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:19:24 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: 0
+2025-01-10 23:32:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-10 23:32:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:33:39 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-10 23:33:39 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:35:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() START
+2025-01-10 23:35:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode isConnected() erfolgreich ENDE.
+2025-01-10 23:35:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: C20250002
+2025-01-10 23:35:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addCustomer() erfolgreich.
