@@ -1,6 +1,6 @@
 package com.example.styleslick.rules;
 
-import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.AlertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -15,7 +15,7 @@ public class ArticleRules {
         try {
             Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
-            RulesService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
+            AlertService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
             logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
             return false;
         }

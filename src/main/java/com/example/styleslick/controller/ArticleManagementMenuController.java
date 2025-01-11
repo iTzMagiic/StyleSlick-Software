@@ -4,7 +4,7 @@ import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Category;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
-import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -118,13 +118,13 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
-            RulesService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
             logger.warn("Benutzer hat kein Kaufdatum angegeben ENDE.\n\n");
             return;
         }
 
         if (choiceBox_category_id.getValue() == null) {
-            RulesService.showErrorAlert("Kategorie darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kategorie darf nicht Leer sein.");
             logger.warn("Benutzer hat keine Kategorie angegeben ENDE.\n\n");
             return;
         }
@@ -164,7 +164,7 @@ public class ArticleManagementMenuController implements Initializable {
 
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
+            AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
             logger.warn("Benutzer hat kein Artikel aus der Tabelle ausgewählt ENDE.\n\n");
             return;
         }
@@ -209,7 +209,7 @@ public class ArticleManagementMenuController implements Initializable {
         // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
+            AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
             logger.warn("Benutzer hat kein Artikel aus der Tabelle ausgewählt ENDE.\n\n");
             return;
         }
@@ -218,12 +218,12 @@ public class ArticleManagementMenuController implements Initializable {
 
         // Artikel aus der Datenbank löschen
         if (!articleService.deleteArticle(articleID)) {
-            RulesService.showErrorAlert("Artikel wurde nicht gelöscht.");
+            AlertService.showErrorAlert("Artikel wurde nicht gelöscht.");
             logger.warn("Artikel wurde nicht gelöscht ENDE.\n\n");
             return;
         }
 
-        RulesService.showConfirmAlert("Artikel erfolgreich gelöscht.");
+        AlertService.showConfirmAlert("Artikel erfolgreich gelöscht.");
         executeShowAllArticles();
         logger.info("Methode executeDeleteArticle() erfolgreich ENDE.\n\n");
     }

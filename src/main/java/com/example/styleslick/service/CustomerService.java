@@ -31,6 +31,7 @@ public class CustomerService {
     }
 
 
+
     public boolean addCustomer(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
 
@@ -46,17 +47,17 @@ public class CustomerService {
         }
 
         if (database.isUsernameExist(filledFields.get("username"))) {
-            if (!RulesService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
+            if (!AlertService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
                 return false;
             }
         }
 
         if (!database.addCustomer(filledFields)) {
-            RulesService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
+            AlertService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
             return false;
         }
 
-        RulesService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
+        AlertService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
         return true;
     }
 
@@ -79,7 +80,7 @@ public class CustomerService {
         listOfCustomers = database.searchCustomer(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            RulesService.showErrorAlert("Es wurde kein Kunden gefunden.");
+            AlertService.showErrorAlert("Es wurde kein Kunden gefunden.");
         }
 
         return listOfCustomers;
@@ -99,23 +100,23 @@ public class CustomerService {
             return false;
         }
 
-        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerID + " bearbeiten?")) {
-            RulesService.showErrorAlert("Kunde wird nicht bearbeitet.");
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerID + " bearbeiten?")) {
+            AlertService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }
 
         if (!database.updateCustomer(filledFields, customerID)) {
-            RulesService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
+            AlertService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
             return false;
         }
 
-        RulesService.showConfirmAlert("Der Kunde wurde erfolgreich bearbeitet.");
+        AlertService.showConfirmAlert("Der Kunde wurde erfolgreich bearbeitet.");
         return true;
     }
 
 
     public boolean deleteCustomer(int customerID) {
-        if (RulesService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerID + "' löschen?")) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerID + "' löschen?")) {
             return database.deleteCustomer(customerID);
         }
         return false;

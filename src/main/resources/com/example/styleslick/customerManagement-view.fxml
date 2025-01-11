@@ -16,7 +16,7 @@
         <columns>
             <TableColumn fx:id="column_customer_number" prefWidth="75.0" text="Kunden-Nr" />
           <TableColumn fx:id="column_username" prefWidth="75.0" text="Benutzername" />
-          <TableColumn fx:id="column_first_name" prefWidth="75.0" text="Name" />
+          <TableColumn fx:id="column_first_name" prefWidth="75.0" text="Vorname" />
             <TableColumn fx:id="column_last_name" prefWidth="75.0" text="Nachname" />
             <TableColumn fx:id="column_street" prefWidth="75.0" text="Straße" />
             <TableColumn fx:id="column_postal_code" prefWidth="75.0" text="Postleitzahl" />
@@ -40,8 +40,8 @@
                   <TextField fx:id="field_street" promptText="Straße" />
                   <TextField fx:id="field_postal_code" promptText="Postleitzahl" />
                   <TextField fx:id="field_city" promptText="Ort" />
-                  <TextField fx:id="field_purchased_from" promptText="Gekauft über*" />
                   <TextField fx:id="field_country" layoutX="1053.0" layoutY="48.0" promptText="Land*" />
+                  <TextField fx:id="field_purchased_from" promptText="Gekauft über*" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">

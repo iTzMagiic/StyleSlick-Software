@@ -2,7 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Category;
 import com.example.styleslick.service.CategoryService;
-import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -84,7 +84,7 @@ public class CategoryManagementController implements Initializable {
 
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
         if (selectedCategory == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu bearbeiten.");
+            AlertService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu bearbeiten.");
             logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
@@ -106,7 +106,7 @@ public class CategoryManagementController implements Initializable {
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
 
         if (selectedCategory == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu löschen.");
+            AlertService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu löschen.");
             logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }

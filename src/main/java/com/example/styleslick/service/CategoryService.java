@@ -2,7 +2,6 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Category;
 import com.example.styleslick.model.Database;
-import javafx.css.Rule;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -50,18 +49,18 @@ public class CategoryService {
         }
 
         if (filledFields.isEmpty()) {
-            RulesService.showErrorAlert("Bitte tragen Sie was ein.");
+            AlertService.showErrorAlert("Bitte tragen Sie was ein.");
             logger.warn("Liste mit ausgefüllten Feldern ist leer ENDE.\n");
             return false;
         }
 
         if (!database.addCategory(filledFields)) {
-            RulesService.showErrorAlert("Fehler beim erstellen.");
+            AlertService.showErrorAlert("Fehler beim erstellen.");
             logger.warn("Fehler, Kategorie wurde nicht in die Datenbank geschieben ENDE.\n");
             return false;
         }
 
-        RulesService.showConfirmAlert("Die Kategorie wurde erfolgreich erstellt.");
+        AlertService.showConfirmAlert("Die Kategorie wurde erfolgreich erstellt.");
         logger.info("Methode addCategory() erfolgreich ENDE.\n");
         return true;
     }
@@ -78,19 +77,19 @@ public class CategoryService {
         }
 
         if (filledFields.isEmpty()) {
-            RulesService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
+            AlertService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
             logger.warn("Liste mit ausgefüllten Feldern ist leer ENDE\n");
             return false;
         }
 
-        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
-            RulesService.showErrorAlert("Artikel wird nicht bearbeitet.");
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
+            AlertService.showErrorAlert("Artikel wird nicht bearbeitet.");
             logger.debug("Kategorie bearbeitung wurde durch den Benutzer beendet ENDE.\n");
             return false;
         }
 
         if (!database.updateCategory(filledFields, categoryID)) {
-            RulesService.showErrorAlert("Fehler beim bearbeiten der Kategorie.");
+            AlertService.showErrorAlert("Fehler beim bearbeiten der Kategorie.");
             logger.warn("Kategorie wurde nicht in die Datenbank geschrieben ENDE.\n");
             return false;
         }
@@ -103,19 +102,19 @@ public class CategoryService {
     public boolean deleteCategory(int categoryID) {
         logger.info("Methode deleteCategory() START.");
 
-        if (!RulesService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
-            RulesService.showErrorAlert("Kategorie wird nicht gelöscht.");
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
+            AlertService.showErrorAlert("Kategorie wird nicht gelöscht.");
             logger.debug("Kategorie löschen wurde durch Benutzer beendet ENDE.\n");
             return false;
         }
 
         if (!database.deleteCategory(categoryID)) {
-            RulesService.showErrorAlert("Fehler beim löschen der Kategorie.");
+            AlertService.showErrorAlert("Fehler beim löschen der Kategorie.");
             logger.warn("Kategorie wurde nicht in der Datenbank gelöscht ENDE.\n");
             return false;
         }
 
-        RulesService.showConfirmAlert("Kategorie wurde erfolgreich gelöscht.");
+        AlertService.showConfirmAlert("Kategorie wurde erfolgreich gelöscht.");
         logger.info("Methode deleteCategory() erfolgreich ENDE.\n");
         return true;
     }
@@ -125,7 +124,7 @@ public class CategoryService {
         logger.info("Methode getAllCategories() START.");
         List<Category> listOfCategories = database.getAllCategories();
         if (listOfCategories == null || listOfCategories.isEmpty()) {
-            RulesService.showErrorAlert("Fehler beim Laden der Kategorien.");
+            AlertService.showErrorAlert("Fehler beim Laden der Kategorien.");
             logger.warn("Fehler beim Laden der Kategorien Liste ist leer ENDE.\n");
             return listOfCategories;
         }

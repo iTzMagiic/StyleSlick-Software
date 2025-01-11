@@ -2,7 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.CustomerService;
-import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -121,7 +121,7 @@ public class CustomerManagementController implements Initializable {
         // Abrufen des ausgewählten Kunden
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu bearbeiten.");
+            AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu bearbeiten.");
             return;
         }
 
@@ -188,16 +188,16 @@ public class CustomerManagementController implements Initializable {
         // Abrufen des ausgewählten Kunden
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
-            RulesService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu löschen.");
+            AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu löschen.");
             return;
         }
 
         // Kunden aus der Datenbank löschen
         if (customerService.deleteCustomer(selectedCustomer.getCustomerID())) {
-            RulesService.showConfirmAlert("Kunde erfolgreich gelöscht.");
+            AlertService.showConfirmAlert("Kunde erfolgreich gelöscht.");
             executeShowAllCustomers();
         } else {
-            RulesService.showErrorAlert("Kunde wurde nicht gelöscht.");
+            AlertService.showErrorAlert("Kunde wurde nicht gelöscht.");
         }
     }
 

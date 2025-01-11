@@ -1,7 +1,7 @@
 package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Database;
-import com.example.styleslick.service.RulesService;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import javafx.fxml.FXML;
@@ -34,7 +34,7 @@ public class LoginManagementController {
         Database database = new Database(username, password);
 
         if (!database.isConnected()) {
-            RulesService.showErrorAlert("username oder Passwort falsch.");
+            AlertService.showErrorAlert("username oder Passwort falsch.");
             return;
         }
 
