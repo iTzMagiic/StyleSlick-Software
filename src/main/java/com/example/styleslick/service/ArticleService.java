@@ -43,7 +43,7 @@ public class ArticleService {
 
 
     public boolean addArticle(Map<String, String> fields) {
-        logger.info("Methode addArticle() START.");
+        logger.debug("START Methode addArticle().");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> field : fields.entrySet()) {
@@ -113,13 +113,13 @@ public class ArticleService {
         }
 
         AlertService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
-        logger.info("Methode addArticle() erfolgreich END.\n");
+        logger.debug("Methode addArticle() erfolgreich END.\n");
         return true;
     }
 
 
     public boolean updateArticle(Map<String, String> fields, int articleID) {
-        logger.info("Methode updateArticle() START.");
+        logger.debug("Methode updateArticle() START.");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -169,13 +169,13 @@ public class ArticleService {
         }
 
         AlertService.showConfirmAlert("Der Artikel wurde erfolgreich bearbeitet.");
-        logger.info("Methode updateArticle() erfolgreich ENDE.\n");
+        logger.debug("Methode updateArticle() erfolgreich ENDE.\n");
         return true;
     }
 
 
     public List<Article> searchArticle(Map<String, String> fields) {
-        logger.info("Methode searchArticle() START.");
+        logger.debug("Methode searchArticle() START.");
         Map<String, String> filledFields = new HashMap<>();
         List<Article> listOfArticles = new ArrayList<>();
 
@@ -224,7 +224,7 @@ public class ArticleService {
             return listOfArticles;
         }
 
-        logger.info("Methode searchArticle() erfolgreich END.\n");
+        logger.debug("Methode searchArticle() erfolgreich END.\n");
         return listOfArticles;
     }
 

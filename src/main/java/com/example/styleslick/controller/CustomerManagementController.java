@@ -14,6 +14,8 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.util.HashMap;
@@ -23,6 +25,7 @@ import java.util.ResourceBundle;
 
 public class CustomerManagementController implements Initializable {
 
+    private static final Logger logger = LoggerFactory.getLogger(CustomerManagementController.class);
     private CustomerService customerService;
 
     @FXML
@@ -65,15 +68,18 @@ public class CustomerManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        logger.debug("\n\nSTART initialize().");
         customerService = CustomerService.getInstance();
 
         tableView_customer.getSelectionModel().selectedIndexProperty();
 
         executeShowAllCustomers();
+        logger.debug("ENDE initialize() erfolgreich.");
     }
 
 
     private void executeShowAllCustomers() {
+        logger.debug("\n\nSTART executeShowAllCustomers().");
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -86,10 +92,12 @@ public class CustomerManagementController implements Initializable {
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
+        logger.debug("ENDE executeShowAllCustomers().");
     }
 
 
     private void executeAddCustomer() {
+        logger.debug("\n\nSTART executeAddCustomer().");
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
@@ -111,11 +119,16 @@ public class CustomerManagementController implements Initializable {
             field_purchased_from.clear();
             field_postal_code.clear();
             executeShowAllCustomers();
+            logger.debug("ENDE executeAddCustomer() erfolgreich.");
+            return;
         }
+
+        logger.debug("ENDE executeAddCustomer() fehlgeschlagen.");
     }
 
 
     private void executeUpdateCustomer() {
+        logger.debug("\n\nSTART executeUpdateCustomer().");
         Map<String, String> fields = new HashMap<>();
 
         // Abrufen des ausgewählten Kunden
@@ -145,11 +158,16 @@ public class CustomerManagementController implements Initializable {
             field_country.clear();
             field_purchased_from.clear();
             executeShowAllCustomers();
+            logger.debug("ENDE executeUpdateCustomer() erfolgreich.");
+            return;
         }
+
+        logger.debug("ENDE executeUpdateCustomer() fehlgeschlagen.");
     }
 
 
     private void executeSearchCustomer() {
+        logger.debug("\n\nSTART executeSearchCustomer().");
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
@@ -175,16 +193,19 @@ public class CustomerManagementController implements Initializable {
             field_purchased_from.clear();
             field_postal_code.clear();
             executeShowAllCustomers();
+            logger.debug("ENDE executeSearchCustomer() Kein Kunde gefunden.");
             return;
         }
 
         // Packt die Liste von Customers in die Tabellenansicht
         ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
         tableView_customer.setItems(observableList);
+        logger.debug("ENDE executeSearchCustomer() erfolgreich.");
     }
 
 
     public void executeDeleteCustomer() {
+        logger.debug("\n\nSTART executeDeleteCustomer().");
         // Abrufen des ausgewählten Kunden
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
@@ -205,6 +226,7 @@ public class CustomerManagementController implements Initializable {
     private void executeExitCustomerManagement() {
         CustomerService.getInstance().clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        logger.info("\n\nBEENDET CustomerManagementMenu\n\n\n");
     }
 
     @FXML
