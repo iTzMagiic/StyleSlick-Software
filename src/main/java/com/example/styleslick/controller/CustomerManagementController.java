@@ -226,7 +226,7 @@ public class CustomerManagementController implements Initializable {
     private void executeExitCustomerManagement() {
         CustomerService.getInstance().clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-        logger.info("\n\nBEENDET CustomerManagementMenu\n\n\n");
+        logger.info("\n\nBEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------\n\n\n");
     }
 
     @FXML

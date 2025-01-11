@@ -42,50 +42,48 @@ public class CategoryManagementController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logger.info("Methode initialize() START.");
+        logger.debug("\n\nSTART initialize().");
         categoryService = CategoryService.getInstance();
 
         tableView_categories.getSelectionModel().selectedItemProperty();
         executeShowAllCategories();
-        logger.info("Methode initialize() erfolgreich ENDE.\n\n");
+        logger.debug("ENDE initialize() erfolgreich.");
     }
 
     private void executeShowAllCategories() {
-        logger.info("Methode executeShowAllCategories() START.");
+        logger.debug("\n\nSTART executeShowAllCategories().");
         column_categoryID.setCellValueFactory(new PropertyValueFactory<>("ID"));
         column_categoryName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
         ObservableList<Category> observableList = FXCollections.observableArrayList(categoryService.getAllCategories());
         tableView_categories.setItems(observableList);
-        logger.info("Methode executeShowAllCategories() erfolgreich ENDE.\n\n");
+        logger.debug("ENDE executeShowAllCategories() erfolgreich.");
     }
 
 
     private void executeAddCategory() {
-        logger.info("Methode executeAddCategory() START.");
+        logger.debug("\n\nSTART executeAddCategory().");
         Map<String, String> fields = new HashMap<>();
 
         fields.put("name", field_categoryName.getText());
 
         if (!categoryService.addCategory(fields)) {
-            logger.warn("Methode executeAddCategory() durch CategoryService fehlgeschlagen ENDE.\n\n");
             return;
         }
 
         field_categoryName.clear();
         executeShowAllCategories();
-        logger.info("Methode executeAddCategory() erfolgreich ENDE.\n\n");
+        logger.debug("ENDE executeAddCategory() erfolgreich.");
     }
 
 
     private void executeUpdateCategory() {
-        logger.info("Methode executeUpdateCategory() START.");
+        logger.debug("\n\nSTART executeUpdateCategory().");
         Map<String, String> fields = new HashMap<>();
 
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
         if (selectedCategory == null) {
             AlertService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu bearbeiten.");
-            logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 
@@ -97,23 +95,23 @@ public class CategoryManagementController implements Initializable {
 
         field_categoryName.clear();
         executeShowAllCategories();
-        logger.info("Methode executeUpdateCategory() erfolgreich ENDE.\n\n");
+        logger.debug("ENDE executeUpdateCategory() erfolgreich.");
     }
 
 
     private void executeDeleteCategory() {
-        logger.info("Methode executeDeleteCategory() START.");
+        logger.debug("\n\nSTART executeDeleteCategory().");
         Category selectedCategory = tableView_categories.getSelectionModel().getSelectedItem();
 
         if (selectedCategory == null) {
             AlertService.showErrorAlert("Bitte wählen Sie eine Kategorie aus der Tabelle aus, um ihn zu löschen.");
-            logger.info("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
+            logger.debug("Keine Kategorie aus der Tabelle ausgewählt. selectedCategory = {} ENDE.\n\n", selectedCategory);
             return;
         }
 
         if (categoryService.deleteCategory(selectedCategory.getID())) {
-            logger.info("Methode executeDeleteCategory() erfolgreich ENDE.\n\n");
             executeShowAllCategories();
+            logger.debug("ENDE executeDeleteCategory() erfolgreich.");
         }
     }
 
@@ -121,7 +119,7 @@ public class CategoryManagementController implements Initializable {
     private void executeExitCategoryManagement() {
         categoryService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-        logger.info("Benutzer hat CategoryManagementMenu Verlassen BEENDET.--------------\n\n");
+        logger.debug("\n\nBEENDET Benutzer hat CategoryManagementMenu Verlassen.--------------\n\n\n");
     }
 
 
