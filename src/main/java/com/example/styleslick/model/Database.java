@@ -3,7 +3,6 @@ package com.example.styleslick.model;
 import com.example.styleslick.service.AlertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -68,18 +67,18 @@ public class Database {
 
     public String getTotalExpenditure() {
         logger.debug("START getTotalExpenditure()");
-        String gesamt_ausgaben = "0,00€";
-        String sql = "SELECT SUM(purchase_price * amount) AS gesamt_ausgaben FROM article";
+        String TotalExpenditure = "0,00€";
+        String sql = "SELECT SUM(purchase_price * amount) AS TotalExpenditure FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    gesamt_ausgaben = String.valueOf(resultSet.getDouble("gesamt_ausgaben"));
-                    gesamt_ausgaben = gesamt_ausgaben.replace(".", ",");
-                    gesamt_ausgaben += "€";
+                    TotalExpenditure = String.valueOf(resultSet.getDouble("TotalExpenditure"));
+                    TotalExpenditure = TotalExpenditure.replace(".", ",");
+                    TotalExpenditure += "€";
                     logger.info("ENDE getTotalExpenditure() erfolgreich.");
-                    return gesamt_ausgaben;
+                    return TotalExpenditure;
                 } else {
                     logger.warn("WARN getTotalSales() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
                 }
@@ -87,24 +86,24 @@ public class Database {
         } catch (SQLException e) {
             logger.error("ERROR getTotalExpenditure() fehlgeschlagen beim abrufen der gesamtausgaben. FEHLER: {}", e.getMessage(), e);
         }
-        return gesamt_ausgaben;
+        return TotalExpenditure;
     }
 
 
     public String getTotalProfit() {
         logger.debug("START getTotalProfit()");
-        String gewinn = "0,00€";
-        String sql = "SELECT (SELECT SUM(paid - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS gewinn";
+        String TotalProfit = "0,00€";
+        String sql = "SELECT (SELECT SUM(paid - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS TotalProfit";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    gewinn = String.valueOf(resultSet.getDouble("gewinn"));
-                    gewinn = gewinn.replace(".", ",");
-                    gewinn += "€";
+                    TotalProfit = String.valueOf(resultSet.getDouble("TotalProfit"));
+                    TotalProfit = TotalProfit.replace(".", ",");
+                    TotalProfit += "€";
                     logger.info("ENDE getTotalProfit() erfolgreich.");
-                    return gewinn;
+                    return TotalProfit;
                 } else {
                     logger.warn("WARN getTotalProfit() Es gibt keinen Gewinn. SQL Query: {}", sql);
                 }
@@ -112,7 +111,7 @@ public class Database {
         } catch (SQLException e) {
             logger.error("ERROR fehlgeschlagen beim abrufen des Gewinns. FEHLER: {}", e.getMessage(), e);
         }
-        return gewinn;
+        return TotalProfit;
     }
 
 
