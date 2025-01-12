@@ -487,7 +487,6 @@ public class Database {
 
         if (!filledFields.containsKey("stock")) {
             whereClause.append(", stock) VALUES (");
-            System.out.println("test kein stock vorhanden ");
         } else {
             whereClause.append(") VALUES (");
             System.out.println("stock vorhanden " + filledFields.get("stock"));
@@ -531,9 +530,10 @@ public class Database {
             }
 
             preparedStatement.executeUpdate();
+            logger.info("ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.");
             return true;
         } catch (SQLException e) {
-            System.err.println("Fehler beim Hinzufügen des Artikels. " + e.getMessage());
+            logger.error("ERROR addArticle() Artikel konnte nicht in die Datenbank importiert werden! FEHLER: {}", e.getMessage(), e);
         }
         return false;
     }

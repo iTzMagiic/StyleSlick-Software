@@ -18,16 +18,17 @@ public class ArticleRules {
         }
 
         if (!filledFields.containsKey("name")) {
-            AlertService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
+            AlertService.showErrorAlert("Bitte geben Sie ein Artikelname ein.");
             return false;
         }
 
         if (!filledFields.containsKey("color")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Farbe an.");
+            AlertService.showErrorAlert("Bitte geben Sie eine Farbe ein.");
+            return false;
         }
 
         if (!filledFields.containsKey("purchase_price")) {
-            AlertService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
+            AlertService.showErrorAlert("Bitte geben Sie den Kaufpreis ein.");
             return false;
         }
 
@@ -60,7 +61,7 @@ public class ArticleRules {
         try {
             Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
-            AlertService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
+            AlertService.showErrorAlert("Bitte geben Sie ein Gültigen Kaufpreis ein.");
             logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
             return false;
         }

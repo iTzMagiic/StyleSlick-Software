@@ -152,6 +152,7 @@ public class ArticleManagementMenuController implements Initializable {
         field_quality.clear();
         field_amount.clear();
         field_stock.clear();
+        datePicker_purchase_date.setValue(null);
         executeShowAllArticles();
         logger.debug("ENDE executeAddArticle() erfolgreich.\n\n");
     }
@@ -198,6 +199,7 @@ public class ArticleManagementMenuController implements Initializable {
         field_quality.clear();
         field_amount.clear();
         field_stock.clear();
+        datePicker_purchase_date.setValue(null);
         executeShowAllArticles();
         logger.debug("ENDE executeUpdateArticle() erfolgreich.\n\n");
     }

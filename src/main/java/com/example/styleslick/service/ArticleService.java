@@ -129,7 +129,7 @@ public class ArticleService {
             filledFields.put(field.getKey(), field.getValue());
         }
 
-        if (articleRules.isAllowedToAddArticle(filledFields)) {
+        if (!articleRules.isAllowedToAddArticle(filledFields)) {
             return false;
         }
 
