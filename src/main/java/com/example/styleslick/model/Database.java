@@ -588,7 +588,7 @@ public class Database {
     }
 
 
-    public List<Article> searchArticleLike(Map<String, String> filledFields) {
+    public List<Article> searchArticlesLike(Map<String, String> filledFields) {
         List<Article> listOfFoundetArticles = new ArrayList<>();
         String sql = "SELECT * FROM article WHERE ";
         StringBuilder whereClause = new StringBuilder();

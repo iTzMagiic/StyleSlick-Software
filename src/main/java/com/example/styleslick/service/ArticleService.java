@@ -54,7 +54,7 @@ public class ArticleService {
             filledFields.put(field.getKey(), field.getValue());
         }
 
-        if (!articleRules.isAllowedToAddArticle(filledFields)) {
+        if (articleRules.isNotAllowedToAddArticle(filledFields)) {
             return false;
         }
 
@@ -81,7 +81,7 @@ public class ArticleService {
             }
         }
 
-        if (!articleRules.isAllowedToUpdateArticle(filledFields)) {
+        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
             return false;
         }
 
@@ -105,7 +105,7 @@ public class ArticleService {
 
 
     public List<Article> searchArticle(Map<String, String> fields) {
-        logger.debug("Methode searchArticle() START.");
+        logger.debug("START searchArticle().");
         Map<String, String> filledFields = new HashMap<>();
         List<Article> listOfArticles = new ArrayList<>();
 
@@ -116,45 +116,22 @@ public class ArticleService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        if (filledFields.isEmpty()) {
-            AlertService.showErrorAlert("Bitte geben Sie etwas ein.");
-            logger.warn("Liste leer ENDE.\n");
+        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
             return listOfArticles;
         }
 
         if (filledFields.containsKey("purchase_price")) {
             filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
-            try {
-                Double.parseDouble(filledFields.get("purchase_price"));
-            } catch (NumberFormatException e) {
-                AlertService.showErrorAlert("Bitte ein Gültigen Kaufpreis eingeben.");
-                logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
-                return listOfArticles;
-            }
         }
 
-        if (filledFields.containsKey("amount") && !filledFields.get("amount").matches("\\d+")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
-            logger.warn("Es wurde keine Gültige Mengen angegeben ENDE.\n");
-            return listOfArticles;
-        }
-        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
-            logger.warn("Es wurde kein gültiger Bestand angegeben ENDE.\n");
-            return listOfArticles;
-        }
-
-
-        listOfArticles = database.searchArticleLike(filledFields);
-
+        listOfArticles = database.searchArticlesLike(filledFields);
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
             AlertService.showErrorAlert("Es wurde kein passender Artikel gefunden.");
-            logger.warn("Es wurde kein passender Artikel gefunden ENDE.\n");
             return listOfArticles;
         }
 
-        logger.debug("Methode searchArticle() erfolgreich END.\n");
+        logger.debug("ENDE searchArticle() erfolgreich.");
         return listOfArticles;
     }
 
