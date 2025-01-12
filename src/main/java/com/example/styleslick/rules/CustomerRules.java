@@ -4,89 +4,90 @@ import com.example.styleslick.service.AlertService;
 
 import java.util.Map;
 
+
 public class CustomerRules {
 
 
-    public boolean isAllowedToAddCustomer(Map<String, String> filledFields) {
+    public boolean isNotAllowedToAddCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte geben Sie was ein.");
-            return false;
+            return true;
         }
 
         if (!filledFields.containsKey("username")) {
             AlertService.showErrorAlert("Bitte geben Sie einen Benutzernamen an.");
-            return false;
+            return true;
         }
 
         if (!filledFields.containsKey("purchased_from")) {
             AlertService.showErrorAlert("Bitte geben Sie eine Platform über der Gekauft wurden ist an.");
-            return false;
+            return true;
         }
 
-        if (filledFields.containsKey("postal_code") && !isValidPostalCode(filledFields.get("postal_code"))) {
-            return false;
+        if (filledFields.containsKey("postal_code") && isNotValidPostalCode(filledFields.get("postal_code"))) {
+            return true;
         }
 
 
         if (!filledFields.containsKey("country")) {
             AlertService.showErrorAlert("Bitte geben Sie ein Land an.");
-            return false;
+            return true;
         }
 
-        if (!isValidCountry(filledFields.get("country"))) {
-            return false;
+        if (isNotValidCountry(filledFields.get("country"))) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    public boolean isAllowedToSearchCustomer(Map<String, String> filledFields) {
+    public boolean isNotAllowedToSearchCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
-            return false;
+            return true;
         }
 
-        if (filledFields.containsKey("country") && !isValidCountry(filledFields.get("country"))) {
-            return false;
+        if (filledFields.containsKey("country") && isNotValidCountry(filledFields.get("country"))) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    public boolean isAllowedToUpdateCustomer(Map<String, String> filledFields) {
+    public boolean isNotAllowedToUpdateCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte geben Sie etwas an um den Kunden zu bearbeiten.");
-            return false;
+            return true;
         }
 
-        if (filledFields.containsKey("postal_code") && !isValidPostalCode(filledFields.get("postal_code"))) {
-            return false;
+        if (filledFields.containsKey("postal_code") && isNotValidPostalCode(filledFields.get("postal_code"))) {
+            return true;
         }
 
-        if (filledFields.containsKey("country") && !isValidCountry(filledFields.get("country"))) {
-            return false;
+        if (filledFields.containsKey("country") && isNotValidCountry(filledFields.get("country"))) {
+            return true;
         }
 
-        return true;
+        return false;
     }
 
-    private boolean isValidPostalCode(String postalCode) {
+    private boolean isNotValidPostalCode(String postalCode) {
         if (!postalCode.matches("\\d{5}")) {
             AlertService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
-    private boolean isValidCountry(String country) {
+    private boolean isNotValidCountry(String country) {
         if (!country.matches("^[a-zA-Z]+$")) {
             AlertService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");
-            return false;
+            return true;
         }
-        return true;
+        return false;
     }
 
 }

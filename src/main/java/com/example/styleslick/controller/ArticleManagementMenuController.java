@@ -2,9 +2,9 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Category;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
-import com.example.styleslick.service.AlertService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -19,7 +19,10 @@ import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.*;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.ResourceBundle;
 
 
 public class ArticleManagementMenuController implements Initializable {

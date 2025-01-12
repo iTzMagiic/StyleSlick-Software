@@ -50,6 +50,7 @@ public class CategoryManagementController implements Initializable {
         logger.debug("ENDE initialize() erfolgreich.");
     }
 
+    
     private void executeShowAllCategories() {
         logger.debug("\n\nSTART executeShowAllCategories().");
         column_categoryID.setCellValueFactory(new PropertyValueFactory<>("ID"));

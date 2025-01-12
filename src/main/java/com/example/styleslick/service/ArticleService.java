@@ -3,21 +3,15 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.rules.ArticleRules;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*
-    TODO:: Redundante Methoden auslagen, in eine seperate ArticleRules Klasse!!!!
- */
 
 public class ArticleService {
 
-    private static final Logger logger = LoggerFactory.getLogger(ArticleService.class);
     private static final ArticleRules articleRules = new ArticleRules();
     private static ArticleService articleService;
     private Database database;
@@ -72,7 +66,6 @@ public class ArticleService {
 
 
     public boolean updateArticle(Map<String, String> fields, int articleID) {
-        logger.debug("\n\nSTART updateArticle().");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -105,7 +98,6 @@ public class ArticleService {
 
 
     public List<Article> searchArticle(Map<String, String> fields) {
-        logger.debug("START searchArticle().");
         Map<String, String> filledFields = new HashMap<>();
         List<Article> listOfArticles = new ArrayList<>();
 
@@ -131,7 +123,6 @@ public class ArticleService {
             return listOfArticles;
         }
 
-        logger.debug("ENDE searchArticle() erfolgreich.");
         return listOfArticles;
     }
 

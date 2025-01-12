@@ -3,13 +3,12 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.rules.CustomerRules;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+
 
 public class CustomerService {
 
@@ -33,8 +32,8 @@ public class CustomerService {
     }
 
 
-
     public boolean addCustomer(Map<String, String> fields) {
+
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -44,7 +43,7 @@ public class CustomerService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        if (!customerRules.isAllowedToAddCustomer(filledFields)) {
+        if (customerRules.isNotAllowedToAddCustomer(filledFields)) {
             return false;
         }
 
@@ -75,7 +74,7 @@ public class CustomerService {
         }
 
 
-        if (!customerRules.isAllowedToSearchCustomer(filledFields)) {
+        if (customerRules.isNotAllowedToSearchCustomer(filledFields)) {
             return listOfCustomers;
         }
 
@@ -98,7 +97,7 @@ public class CustomerService {
             }
         }
 
-        if (!customerRules.isAllowedToUpdateCustomer(filledFields)) {
+        if (customerRules.isNotAllowedToUpdateCustomer(filledFields)) {
             return false;
         }
 
@@ -117,8 +116,8 @@ public class CustomerService {
     }
 
 
-    public boolean deleteCustomer(int customerID) {
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerID + "' löschen?")) {
+    public boolean deleteCustomer(int customerID, String customerNumber) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerNumber + "' löschen?")) {
             return database.deleteCustomer(customerID);
         }
         return false;

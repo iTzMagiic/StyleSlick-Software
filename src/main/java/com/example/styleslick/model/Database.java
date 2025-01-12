@@ -134,6 +134,56 @@ public class Database {
     }
 
 
+    public List<Customer> getAllCustomers() {
+        List<Customer> listOfCustomers = new ArrayList<>();
+        String sql = "SELECT * FROM customer";
+
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String username = resultSet.getString("username");
+                    String first_name = resultSet.getString("first_name");
+                    String last_name = resultSet.getString("last_name");
+                    String street = resultSet.getString("street");
+                    String postal_code = resultSet.getString("postal_code");
+                    String city = resultSet.getString("city");
+                    String country = resultSet.getString("country");
+                    String purchased_from = resultSet.getString("purchased_from");
+                    int customerID = resultSet.getInt("customer_id");
+                    String customer_number = resultSet.getString("customer_number");
+
+                    Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
+                    listOfCustomers.add(customer);
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
+        }
+        return listOfCustomers;
+    }
+
+
+    public boolean isUsernameExist(String username) {
+        String sql = "SELECT username FROM customer WHERE username = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setString(1, username);
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            System.err.println("Fehler beim abrufen ob der username schon existiert. " + e.getMessage());
+            return false;
+        }
+        return false;
+    }
+
+
     public boolean addCustomer(Map<String, String> filledFields) {
         logger.debug("START addCustomer() Parameter Länge: {}", filledFields.size());
         String sql = "INSERT INTO customer (";
@@ -185,53 +235,65 @@ public class Database {
     }
 
 
-    public boolean isUsernameExist(String username) {
-        String sql = "SELECT username FROM customer WHERE username = ?";
+    private String createCustomerNumber() {
+        logger.debug("START createCustomerNumber()");
+        // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
+        String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
+                "FROM customer " +
+                "WHERE SUBSTRING(customer_number, 2, 4) = YEAR(CURDATE())";
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            preparedStatement.setString(1, username);
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
-                    return true;
+                    int new_customer_number = resultSet.getInt("new_customer_number");
+
+                    // Generieren der Kundennummer: 'C' + Jahr + Nummer mit führenden Nullen
+                    String customerNumber = "C" + java.time.Year.now() + String.format("%04d", new_customer_number);
+                    logger.info("ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: {}", customerNumber);
+                    return customerNumber;
+                } else {
+                    logger.warn("WARN createCustomerNumber() Keine vorhandene Kundennummer für das aktuelle Jahr.");
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen ob der username schon existiert. " + e.getMessage());
-            return false;
+            logger.error("ERROR createCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
         }
-        return false;
+        return "ERROR";
     }
 
 
-    public List<Customer> getAllCustomers() {
-        List<Customer> listOfCustomers = new ArrayList<>();
-        String sql = "SELECT * FROM customer";
+    public boolean updateCustomer(Map<String, String> filledFields, int customerID) {
+        String sql = "UPDATE customer SET ";
+        StringBuilder setClause = new StringBuilder();
 
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (setClause.length() > 0) {
+                setClause.append(", ");
+            }
+            setClause.append(entry.getKey()).append(" = ?");
+        }
+        setClause.append(" WHERE customer_id = ?");
+
+        sql += setClause.toString();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String username = resultSet.getString("username");
-                    String first_name = resultSet.getString("first_name");
-                    String last_name = resultSet.getString("last_name");
-                    String street = resultSet.getString("street");
-                    String postal_code = resultSet.getString("postal_code");
-                    String city = resultSet.getString("city");
-                    String country = resultSet.getString("country");
-                    String purchased_from = resultSet.getString("purchased_from");
-                    int customerID = resultSet.getInt("customer_id");
-                    String customer_number = resultSet.getString("customer_number");
+            int index = 1;
 
-                    Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
-                    listOfCustomers.add(customer);
-                }
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                preparedStatement.setString(index++, entry.getValue());
             }
+
+            preparedStatement.setInt(index, customerID);
+            preparedStatement.executeUpdate();
+            return true;
         } catch (SQLException e) {
-            System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
+            System.err.println("Fehler beim bearbeiten des Kunden. " + e.getMessage());
+            return false;
         }
-        return listOfCustomers;
     }
 
 
@@ -301,35 +363,25 @@ public class Database {
     }
 
 
-    public boolean updateCustomer(Map<String, String> filledFields, int customerID) {
-        String sql = "UPDATE customer SET ";
-        StringBuilder setClause = new StringBuilder();
-
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (setClause.length() > 0) {
-                setClause.append(", ");
-            }
-            setClause.append(entry.getKey()).append(" = ?");
-        }
-        setClause.append(" WHERE customer_id = ?");
-
-        sql += setClause.toString();
+    public List<Category> getAllCategories() {
+        logger.info("Methode getAllCategories START.");
+        List<Category> listOfCategories = new ArrayList<>();
+        String sql = "SELECT * FROM category";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            int index = 1;
-
-            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                preparedStatement.setString(index++, entry.getValue());
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    String name = resultSet.getString("name");
+                    int id = resultSet.getInt("category_id");
+                    listOfCategories.add(new Category(name, id));
+                }
+                return listOfCategories;
             }
-
-            preparedStatement.setInt(index, customerID);
-            preparedStatement.executeUpdate();
-            return true;
         } catch (SQLException e) {
-            System.err.println("Fehler beim bearbeiten des Kunden. " + e.getMessage());
-            return false;
+            logger.error("Fehlber beim abrufen der Kategorien. FEHELER: {}", e.getMessage(), e);
         }
+        return listOfCategories;
     }
 
 
@@ -420,28 +472,6 @@ public class Database {
             logger.error("Fehler beim löschen der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
-    }
-
-
-    public List<Category> getAllCategories() {
-        logger.info("Methode getAllCategories START.");
-        List<Category> listOfCategories = new ArrayList<>();
-        String sql = "SELECT * FROM category";
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                while (resultSet.next()) {
-                    String name = resultSet.getString("name");
-                    int id = resultSet.getInt("category_id");
-                    listOfCategories.add(new Category(name, id));
-                }
-                return listOfCategories;
-            }
-        } catch (SQLException e) {
-            logger.error("Fehlber beim abrufen der Kategorien. FEHELER: {}", e.getMessage(), e);
-        }
-        return listOfCategories;
     }
 
 
@@ -661,36 +691,6 @@ public class Database {
 
         logger.info("ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.");
         return true;
-    }
-
-
-    private String createCustomerNumber() {
-        logger.debug("START createCustomerNumber()");
-        // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
-        String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
-                "FROM customer " +
-                "WHERE SUBSTRING(customer_number, 2, 4) = YEAR(CURDATE())";
-
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    int new_customer_number = resultSet.getInt("new_customer_number");
-
-                    // Generieren der Kundennummer: 'C' + Jahr + Nummer mit führenden Nullen
-                    String customerNumber = "C" + java.time.Year.now() + String.format("%04d", new_customer_number);
-                    logger.info("ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: {}", customerNumber);
-                    return customerNumber;
-                } else {
-                    logger.warn("WARN createCustomerNumber() Keine vorhandene Kundennummer für das aktuelle Jahr.");
-                }
-            }
-        } catch (SQLException e) {
-            logger.error("ERROR createCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
-        }
-        return "ERROR";
     }
 
 

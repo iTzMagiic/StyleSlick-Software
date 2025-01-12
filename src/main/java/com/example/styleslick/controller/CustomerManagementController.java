@@ -214,7 +214,7 @@ public class CustomerManagementController implements Initializable {
         }
 
         // Kunden aus der Datenbank löschen
-        if (customerService.deleteCustomer(selectedCustomer.getCustomerID())) {
+        if (customerService.deleteCustomer(selectedCustomer.getCustomerID(), selectedCustomer.getCustomerNumber())) {
             AlertService.showConfirmAlert("Kunde erfolgreich gelöscht.");
             executeShowAllCustomers();
         } else {
