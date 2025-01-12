@@ -57,7 +57,12 @@ public class ArticleRules {
         return true;
     }
 
-    public static boolean isValidPurchasePrice(Map<String, String> filledFields) {
+    public boolean isAllowedToUpdateArticle(Map<String, String> filledFields) {
+        // TODO:: Methode ausarbeiten!
+        return true;
+    }
+
+    private boolean isValidPurchasePrice(Map<String, String> filledFields) {
         try {
             Double.parseDouble(filledFields.get("purchase_price"));
         } catch (NumberFormatException e) {
@@ -76,7 +81,7 @@ public class ArticleRules {
         return true;
     }
 
-    public static boolean isValidStock(Map<String, String> filledFields) {
+    private boolean isValidStock(Map<String, String> filledFields) {
         if (!filledFields.get("stock").matches("[0-9]+")) {
             AlertService.showErrorAlert("Bitte geben Sie ein Gültigen Bestand an.");
             return false;

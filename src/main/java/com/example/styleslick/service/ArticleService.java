@@ -44,82 +44,7 @@ public class ArticleService {
     }
 
 
-//    public boolean addArticle(Map<String, String> fields) {
-//        logger.debug("START Methode addArticle().");
-//        Map<String, String> filledFields = new HashMap<>();
-//
-//        for (Map.Entry<String, String> field : fields.entrySet()) {
-//            if (field.getValue() == null || field.getValue().trim().isEmpty()) {
-//                continue;
-//            }
-//            filledFields.put(field.getKey(), field.getValue());
-//        }
-//
-//        if (filledFields.isEmpty()) {
-//            AlertService.showErrorAlert("Bitte geben Sie etwas ein.");
-//            return false;
-//        }
-//
-//        // Prüfungen ob die Pflichtfelder ausgefüllt sind
-//        if (!filledFields.containsKey("name")) {
-//            AlertService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
-//            logger.warn("Benutzer hat kein Artikelnamen eingegeben ENDE.\n");
-//            return false;
-//        }
-//        if (!filledFields.containsKey("color")) {
-//            AlertService.showErrorAlert("Bitte geben Sie eine color an.");
-//            logger.warn("Benutzer hat keine Artikelfarbe eingegeben ENDE.\n");
-//            return false;
-//        }
-//        if (!filledFields.containsKey("purchase_price")) {
-//            AlertService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
-//            logger.warn("Benutzer hat kein Kaufpreis eingegeben ENDE.\n");
-//            return false;
-//        }
-//
-//        filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
-//        try {
-//            Double.parseDouble(filledFields.get("purchase_price"));
-//        } catch (NumberFormatException e) {
-//            AlertService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
-//            logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
-//            return false;
-//        }
-//
-//        if (!filledFields.containsKey("purchased_from")) {
-//            AlertService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
-//            logger.warn("Keine Eingabe wo es gekauft wurde ENDE.\n");
-//            return false;
-//        }
-//        if (!filledFields.containsKey("amount")) {
-//            AlertService.showErrorAlert("Bitte geben Sie die Menge an.");
-//            logger.warn("Es wurde keine Menge angegeben ENDE.\n");
-//            return false;
-//        }
-//        if (!filledFields.get("amount").matches("\\d+")) {
-//            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
-//            logger.warn("Es wurde keine Gültige Mengen angegeben ENDE.\n");
-//            return false;
-//        }
-//        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
-//            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
-//            logger.warn("Es wurde kein gültiger Bestand angegeben ENDE.\n");
-//            return false;
-//        }
-//
-//        if (!database.addArticle(filledFields)) {
-//            AlertService.showErrorAlert("Fehler beim hinzufügen in die Datenbank.");
-//            logger.warn("Artikel wurde nicht in die Datenbank importiert ENDE.\n");
-//            return false;
-//        }
-//
-//        AlertService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
-//        logger.debug("Methode addArticle() erfolgreich END.\n");
-//        return true;
-//    }
-
     public boolean addArticle(Map<String, String> fields) {
-        logger.debug("START Methode addArticle().");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> field : fields.entrySet()) {
@@ -138,12 +63,10 @@ public class ArticleService {
 
         if (!database.addArticle(filledFields)) {
             AlertService.showErrorAlert("Artikel konnte nicht hinzugefügt werden.");
-            logger.warn("Artikel wurde nicht in die Datenbank importiert ENDE.\n");
             return false;
         }
 
         AlertService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
-        logger.debug("Methode addArticle() erfolgreich END.\n");
         return true;
     }
 
@@ -164,7 +87,7 @@ public class ArticleService {
             return false;
         }
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")){
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
             AlertService.showErrorAlert("Artikel wird nicht bearbeitet.");
             logger.warn("Benutzer bricht Artikel bearbeitung ab ENDE.\n");
             return false;

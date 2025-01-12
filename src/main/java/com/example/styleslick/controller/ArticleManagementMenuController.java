@@ -75,23 +75,23 @@ public class ArticleManagementMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logger.debug("START initialize().");
+        logger.debug("\n\nSTART initialize().");
         articleService = ArticleService.getInstance();
         CategoryService categoryService = CategoryService.getInstance();
 
         List<Category> listOfCategories = categoryService.getAllCategories();
         choiceBox_category_id.getItems().addAll(listOfCategories);
 
-        // Beobachten, welche Zeile ausgewählt ist
+        // Beobachten, welche Zeile in der Tabelle ausgewählt ist
         tableView_articles.getSelectionModel().selectedItemProperty();
 
         executeShowAllArticles();
-        logger.debug("ENDE initialize() erfolgreich.\n\n");
+        logger.debug("ENDE initialize() erfolgreich.");
     }
 
 
     private void executeShowAllArticles() {
-        logger.debug("START executeShowAllArticles().");
+        logger.debug("\n\nSTART executeShowAllArticles().");
         choiceBox_category_id.setValue(null);
 
         column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -108,23 +108,21 @@ public class ArticleManagementMenuController implements Initializable {
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
         tableView_articles.setItems(observableList);
-        logger.debug("ENDE executeShowAllArticles() erfolgreich.\n\n");
+        logger.debug("ENDE executeShowAllArticles() erfolgreich.");
     }
 
 
     private void executeAddArticle() {
-        logger.debug("START executeAddArticle().");
+        logger.debug("\n\nSTART executeAddArticle().");
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
             AlertService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
-            logger.warn("ENDE Benutzer hat kein Kaufdatum angegeben.\n\n");
             return;
         }
 
         if (choiceBox_category_id.getValue() == null) {
             AlertService.showErrorAlert("Kategorie darf nicht Leer sein.");
-            logger.warn("ENDE Benutzer hat keine Kategorie angegeben.\n\n");
             return;
         }
 
@@ -140,7 +138,6 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("stock", field_stock.getText());
 
         if (!articleService.addArticle(fields)) {
-            logger.warn("WARN Artikel wurde nicht in die Datenbank geschrieben.\n\n");
             return;
         }
 
@@ -154,18 +151,17 @@ public class ArticleManagementMenuController implements Initializable {
         field_stock.clear();
         datePicker_purchase_date.setValue(null);
         executeShowAllArticles();
-        logger.debug("ENDE executeAddArticle() erfolgreich.\n\n");
+        logger.debug("ENDE executeAddArticle() erfolgreich.");
     }
 
 
     private void executeUpdateArticle() {
-        logger.debug("START executeUpdateArticle().");
+        logger.debug("\n\nSTART executeUpdateArticle().");
         Map<String, String> fields = new HashMap<>();
 
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
-            logger.warn("WARN Benutzer hat kein Artikel aus der Tabelle ausgewählt.\n\n");
             return;
         }
 
@@ -186,7 +182,6 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("stock", field_stock.getText());
 
         if (!articleService.updateArticle(fields, selectedArticle.getArticleID())) {
-            logger.warn("WARN Artikel wurde nicht bearbeitet.\n\n");
             return;
         }
 
@@ -201,7 +196,7 @@ public class ArticleManagementMenuController implements Initializable {
         field_stock.clear();
         datePicker_purchase_date.setValue(null);
         executeShowAllArticles();
-        logger.debug("ENDE executeUpdateArticle() erfolgreich.\n\n");
+        logger.debug("ENDE executeUpdateArticle() erfolgreich.");
     }
 
 

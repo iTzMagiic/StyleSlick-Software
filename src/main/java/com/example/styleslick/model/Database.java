@@ -3,6 +3,7 @@ package com.example.styleslick.model;
 import com.example.styleslick.service.AlertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.sql.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
@@ -475,6 +476,7 @@ public class Database {
 
 
     public boolean addArticle(Map<String, String> filledFields) {
+        logger.debug("\n\nSTART addArticle()");
         String sql = "INSERT INTO article (";
         StringBuilder whereClause = new StringBuilder();
 
