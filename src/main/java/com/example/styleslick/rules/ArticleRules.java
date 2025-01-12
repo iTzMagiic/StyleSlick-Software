@@ -58,7 +58,24 @@ public class ArticleRules {
     }
 
     public boolean isAllowedToUpdateArticle(Map<String, String> filledFields) {
-        // TODO:: Methode ausarbeiten!
+
+        if (filledFields.isEmpty()) {
+            AlertService.showErrorAlert("Bitte geben Sie etwas an um den Artikel zu bearbeiten.");
+            return false;
+        }
+
+        if (filledFields.containsKey("purchase_price") && !isValidPurchasePrice(filledFields)) {
+            return false;
+        }
+
+        if (filledFields.containsKey("amount") && !isValidAmount(filledFields)) {
+            return false;
+        }
+
+        if (filledFields.containsKey("stock") && !isValidStock(filledFields)) {
+            return false;
+        }
+
         return true;
     }
 

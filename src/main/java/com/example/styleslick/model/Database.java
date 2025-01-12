@@ -466,10 +466,10 @@ public class Database {
                     int stock = resultSet.getInt("stock");
                     listOfArticle.add(new Article(articleID, categoryID, name, color, preis, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
-                return listOfArticle;
             }
         } catch (SQLException e) {
             System.err.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
+            return listOfArticle;
         }
         return listOfArticle;
     }
@@ -511,6 +511,7 @@ public class Database {
         }
 
         sql += whereClause.toString();
+        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -532,16 +533,19 @@ public class Database {
             }
 
             preparedStatement.executeUpdate();
-            logger.info("ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.");
-            return true;
+
         } catch (SQLException e) {
             logger.error("ERROR addArticle() Artikel konnte nicht in die Datenbank importiert werden! FEHLER: {}", e.getMessage(), e);
+            return false;
         }
-        return false;
+
+        logger.info("ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.");
+        return true;
     }
 
 
     public boolean updateArticle(Map<String, String> filledFields, int articleID) {
+        logger.debug("\n\nSTART updateArticle()");
         String sql = "UPDATE article SET ";
         StringBuilder setClause = new StringBuilder();
 
@@ -554,7 +558,7 @@ public class Database {
         setClause.append(" WHERE article_id = ?");
 
         sql += setClause.toString();
-
+        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -571,14 +575,16 @@ public class Database {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
-
             preparedStatement.setInt(index, articleID);
             preparedStatement.executeUpdate();
-            return true;
+
         } catch (SQLException e) {
-            System.err.println("Fehler beim bearbeiten des Artikels. " + e.getMessage());
+            logger.error("ERROR updateArticle() Fehler beim bearbeiten der Artikel. FEHLER: {}", e.getMessage(), e);
             return false;
         }
+
+        logger.info("ENDE updateArticle() Der Artikel wurde erfolgreich in der Datenbank bearbeitet.");
+        return true;
     }
 
 
@@ -639,17 +645,22 @@ public class Database {
 
 
     public boolean deleteArticle(int articleID) {
+        logger.debug("START deleteArticle().");
         String sql = "DELETE FROM article WHERE article_id = ?";
+        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, articleID);
             preparedStatement.executeUpdate();
-            return true;
+
         } catch (SQLException e) {
-            System.err.println("Fehler beim Löschen des Artikels. " + e.getMessage());
+            logger.error("ERROR deleteArticle() Fehler beim löschen des Artikels aus der Datenbank. FEHLER: {}", e.getMessage(), e);
             return false;
         }
+
+        logger.info("ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.");
+        return true;
     }
 
 

@@ -201,32 +201,30 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeDeleteArticle() {
-        logger.debug("START executeDeleteArticle.");
+        logger.debug("\n\nSTART executeDeleteArticle.");
+
         // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
         if (selectedArticle == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
-            logger.warn("WARN Benutzer hat kein Artikel aus der Tabelle ausgewählt.\n\n");
             return;
         }
 
-        int articleID = selectedArticle.getArticleID(); // ID des Artikels
+        int articleID = selectedArticle.getArticleID();
 
-        // Artikel aus der Datenbank löschen
         if (!articleService.deleteArticle(articleID)) {
             AlertService.showErrorAlert("Artikel wurde nicht gelöscht.");
-            logger.warn("WARN Artikel wurde nicht gelöscht.\n\n");
             return;
         }
 
         AlertService.showConfirmAlert("Artikel erfolgreich gelöscht.");
         executeShowAllArticles();
-        logger.debug("ENDE executeDeleteArticle() erfolgreich.\n\n");
+        logger.debug("ENDE executeDeleteArticle() erfolgreich.");
     }
 
 
     private void executeSearchArticle() {
-        logger.debug("START executeSearchArticle().");
+        logger.debug("\n\nSTART executeSearchArticle().");
         Map<String, String> fields = new HashMap<>();
 
 
@@ -259,13 +257,12 @@ public class ArticleManagementMenuController implements Initializable {
             field_amount.clear();
             field_stock.clear();
             executeShowAllArticles();
-            logger.warn("ENDE Es wurden keine Artikel gefunden.\n\n");
             return;
         }
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
-        logger.debug("ENDE executeSearchArticle() erfolgreich.\n\n");
+        logger.debug("ENDE executeSearchArticle() erfolgreich.");
     }
 
 

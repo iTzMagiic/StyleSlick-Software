@@ -72,7 +72,7 @@ public class ArticleService {
 
 
     public boolean updateArticle(Map<String, String> fields, int articleID) {
-        logger.debug("Methode updateArticle() START.");
+        logger.debug("\n\nSTART updateArticle().");
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -81,48 +81,25 @@ public class ArticleService {
             }
         }
 
-        if (filledFields.isEmpty()) {
-            AlertService.showErrorAlert("Bitte geben Sie etwas an um den Artikel zu bearbeiten.");
-            logger.warn("Liste leer ENDE.\n");
-            return false;
-        }
-
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
-            AlertService.showErrorAlert("Artikel wird nicht bearbeitet.");
-            logger.warn("Benutzer bricht Artikel bearbeitung ab ENDE.\n");
+        if (!articleRules.isAllowedToUpdateArticle(filledFields)) {
             return false;
         }
 
         if (filledFields.containsKey("purchase_price")) {
             filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
-            try {
-                Double.parseDouble(filledFields.get("purchase_price"));
-            } catch (NumberFormatException e) {
-                AlertService.showErrorAlert("Bitte ein Gültigen purchase_price eingeben.");
-                logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
-                return false;
-            }
         }
 
-        if (filledFields.containsKey("amount") && !filledFields.get("amount").matches("[0-9]+")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
-            logger.warn("Es wurde keine Gültige Mengen angegeben ENDE.\n");
-            return false;
-        }
-        if (filledFields.containsKey("stock") && !filledFields.get("stock").matches("[0-9]+")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Bestand an.");
-            logger.warn("Es wurde kein gültiger Bestand angegeben ENDE.\n");
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
+            AlertService.showErrorAlert("Der Artikel wird nicht bearbeitet.");
             return false;
         }
 
         if (!database.updateArticle(filledFields, articleID)) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Artikels.");
-            logger.warn("Artikel wurde nicht bearbeitet ENDE.\n");
             return false;
         }
 
         AlertService.showConfirmAlert("Der Artikel wurde erfolgreich bearbeitet.");
-        logger.debug("Methode updateArticle() erfolgreich ENDE.\n");
         return true;
     }
 
@@ -183,7 +160,7 @@ public class ArticleService {
 
 
     public boolean deleteArticle(int articleID) {
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel Nummer '" + articleID + "' löschen?")) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + articleID + "' löschen?")) {
             return database.deleteArticle(articleID);
         }
         return false;
