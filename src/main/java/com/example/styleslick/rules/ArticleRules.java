@@ -10,6 +10,51 @@ public class ArticleRules {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleRules.class);
 
+    public boolean isAllowedToAddArticle(Map<String, String> filledFields) {
+
+        if (filledFields.isEmpty()) {
+            AlertService.showErrorAlert("Bitte geben Sie etwas ein.");
+            return false;
+        }
+
+        if (!filledFields.containsKey("name")) {
+            AlertService.showErrorAlert("Bitte geben Sie ein Artikel Namen ein.");
+            return false;
+        }
+
+        if (!filledFields.containsKey("color")) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Farbe an.");
+        }
+
+        if (!filledFields.containsKey("purchase_price")) {
+            AlertService.showErrorAlert("Bitte geben Sie ein Kaufpreis an.");
+            return false;
+        }
+
+        if (!isValidPurchasePrice(filledFields)) {
+            return false;
+        }
+
+        if (!filledFields.containsKey("purchased_from")) {
+            AlertService.showErrorAlert("Bitte geben Sie an, wo Sie es gekauft haben.");
+            return false;
+        }
+
+        if (!filledFields.containsKey("amount")) {
+            AlertService.showErrorAlert("Bitte geben Sie die Menge an.");
+            return false;
+        }
+
+        if (!isValidAmount(filledFields)) {
+            return false;
+        }
+
+        if (filledFields.containsKey("stock") && !isValidStock(filledFields)) {
+            return false;
+        }
+
+        return true;
+    }
 
     public static boolean isValidPurchasePrice(Map<String, String> filledFields) {
         try {
@@ -22,12 +67,20 @@ public class ArticleRules {
         return true;
     }
 
-    public static boolean isValidAmount(Map<String, String> filledFields) {
-        return filledFields.containsKey("amount") && filledFields.get("amount").matches("\\d+");
+    private boolean isValidAmount(Map<String, String> filledFields) {
+        if (!filledFields.get("amount").matches("\\d+")) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+            return false;
+        }
+        return true;
     }
 
     public static boolean isValidStock(Map<String, String> filledFields) {
-        return filledFields.containsKey("stock") && filledFields.get("stock").matches("[0-9]+");
+        if (!filledFields.get("stock").matches("[0-9]+")) {
+            AlertService.showErrorAlert("Bitte geben Sie ein Gültigen Bestand an.");
+            return false;
+        }
+        return true;
     }
 
 }

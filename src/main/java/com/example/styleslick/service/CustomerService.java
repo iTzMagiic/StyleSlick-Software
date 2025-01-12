@@ -3,6 +3,8 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.rules.CustomerRules;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -11,7 +13,7 @@ import java.util.Map;
 
 public class CustomerService {
 
-    private final CustomerRules customerRules = new CustomerRules();
+    private static final CustomerRules customerRules = new CustomerRules();
     private static CustomerService customerService;
     private Database database;
 
