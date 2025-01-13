@@ -27,7 +27,7 @@ CREATE TABLE `article` (
   `category_id` int DEFAULT NULL,
   `name` varchar(150) NOT NULL,
   `color` varchar(150) NOT NULL,
-  `purchase_price` decimal(10,2) NOT NULL,
+  `price` decimal(10,2) NOT NULL,
   `purchase_date` date NOT NULL,
   `manufacturer` varchar(100) DEFAULT NULL,
   `purchased_from` varchar(100) NOT NULL,
@@ -37,7 +37,7 @@ CREATE TABLE `article` (
   PRIMARY KEY (`article_id`),
   KEY `category_id` (`category_id`),
   CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=41 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +49,4 @@ CREATE TABLE `article` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-12 21:44:45
+-- Dump completed on 2025-01-13 21:07:57
