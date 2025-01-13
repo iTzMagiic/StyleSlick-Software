@@ -487,14 +487,14 @@ public class Database {
                     int categoryID = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
-                    double preis = resultSet.getDouble("price");
+                    double price = resultSet.getDouble("price");
                     LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
                     String manufacturer = resultSet.getString("manufacturer");
                     String purchased_from = resultSet.getString("purchased_from");
                     String quality = resultSet.getString("quality");
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
-                    listOfArticle.add(new Article(articleID, categoryID, name, color, preis, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfArticle.add(new Article(articleID, categoryID, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
             }
         } catch (SQLException e) {
