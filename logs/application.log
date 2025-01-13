@@ -50,3 +50,28 @@ BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
 
 
 
+2025-01-13 21:06:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-13 21:06:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-13 21:06:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-13 21:06:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-13 21:06:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-13 21:06:33 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() erfolgreich ENDE.
+
+2025-01-13 21:06:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-13 21:06:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-13 21:06:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-13 21:06:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-13 21:06:36 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-13 21:06:37 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() START.
+2025-01-13 21:06:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode getAllCategories START.
+2025-01-13 21:06:37 [JavaFX Application Thread] INFO  c.e.s.service.CategoryService - Methode getAllCategories() erfolgreich ENDE.
+
+2025-01-13 21:06:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.
+2025-01-13 21:06:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.
+2025-01-13 21:07:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-13 21:07:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.

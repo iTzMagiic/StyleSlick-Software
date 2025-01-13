@@ -52,7 +52,7 @@ public class ArticleService {
             return false;
         }
 
-        filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
+        filledFields.replace("price", filledFields.get("price").replace(",", "."));
 
 
         if (!database.addArticle(filledFields)) {
@@ -78,8 +78,8 @@ public class ArticleService {
             return false;
         }
 
-        if (filledFields.containsKey("purchase_price")) {
-            filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
+        if (filledFields.containsKey("price")) {
+            filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
 
         if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
@@ -112,8 +112,8 @@ public class ArticleService {
             return listOfArticles;
         }
 
-        if (filledFields.containsKey("purchase_price")) {
-            filledFields.replace("purchase_price", filledFields.get("purchase_price").replace(",", "."));
+        if (filledFields.containsKey("price")) {
+            filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
 
         listOfArticles = database.searchArticlesLike(filledFields);

@@ -19,14 +19,14 @@
                 <TableColumn fx:id="column_articleID" prefWidth="75.0" text="Artikel Nummer" />
                 <TableColumn fx:id="column_categoryID" prefWidth="75.0" text="Kategorie ID" />
                 <TableColumn fx:id="column_name" prefWidth="75.0" text="Artikel Name" />
-                <TableColumn fx:id="column_color" prefWidth="75.0" text="color" />
-                <TableColumn fx:id="column_purchase_price" prefWidth="75.0" text="purchase_price" />
-                <TableColumn fx:id="column_purchase_date" prefWidth="75.0" text="purchase_date" />
-                <TableColumn fx:id="column_manufacturer" prefWidth="75.0" text="manufacturer" />
+                <TableColumn fx:id="column_color" prefWidth="75.0" text="Farbe" />
+                <TableColumn fx:id="column_price" prefWidth="75.0" text="Kaufpreis" />
+                <TableColumn fx:id="column_purchase_date" prefWidth="75.0" text="Kaufdatum" />
+                <TableColumn fx:id="column_manufacturer" prefWidth="75.0" text="Hersteller" />
                 <TableColumn fx:id="column_purchased_from" prefWidth="75.0" text="Gekauft über" />
                 <TableColumn fx:id="column_quality" prefWidth="75.0" text="Qualität" />
-                <TableColumn fx:id="column_amount" prefWidth="75.0" text="amount" />
-                <TableColumn fx:id="column_stock" prefWidth="75.0" text="stock" />
+                <TableColumn fx:id="column_amount" prefWidth="75.0" text="Menge" />
+                <TableColumn fx:id="column_stock" prefWidth="75.0" text="Bestand" />
             </columns>
             <columnResizePolicy>
                 <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
@@ -40,8 +40,8 @@
                     <children>
                         <ChoiceBox fx:id="choiceBox_category_id" prefWidth="150.0" />
                         <TextField fx:id="field_name" promptText="Artikel Name*" />
-                        <TextField fx:id="field_color" promptText="color*" />
-                        <TextField fx:id="field_purchase_price" promptText="purchase_price*" />
+                        <TextField fx:id="field_color" promptText="Farbe*" />
+                        <TextField fx:id="field_price" promptText="Kaufpreis*" />
                         <DatePicker fx:id="datePicker_purchase_date" promptText="purchase_date*" />
                     </children>
                 </HBox>

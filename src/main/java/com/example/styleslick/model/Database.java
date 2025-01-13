@@ -45,7 +45,7 @@ public class Database {
     public String getTotalSales() {
         logger.debug("START getTotalSales()");
         String totalSales = "0,00€";
-        String sql = "SELECT SUM(paid - shipping_cost) AS totalSales FROM `order`";
+        String sql = "SELECT SUM(payment_amount - shipping_cost) AS totalSales FROM `order`";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -69,7 +69,7 @@ public class Database {
     public String getTotalExpenditure() {
         logger.debug("START getTotalExpenditure()");
         String TotalExpenditure = "0,00€";
-        String sql = "SELECT SUM(purchase_price * amount) AS TotalExpenditure FROM article";
+        String sql = "SELECT SUM(price * amount) AS TotalExpenditure FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -94,7 +94,7 @@ public class Database {
     public String getTotalProfit() {
         logger.debug("START getTotalProfit()");
         String TotalProfit = "0,00€";
-        String sql = "SELECT (SELECT SUM(paid - shipping_cost) FROM `order`) - (SELECT SUM(purchase_price * amount) FROM article) AS TotalProfit";
+        String sql = "SELECT (SELECT SUM(payment_amount - shipping_cost) FROM `order`) - (SELECT SUM(price * amount) FROM article) AS TotalProfit";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -487,7 +487,7 @@ public class Database {
                     int categoryID = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
-                    double preis = resultSet.getDouble("purchase_price");
+                    double preis = resultSet.getDouble("price");
                     LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
                     String manufacturer = resultSet.getString("manufacturer");
                     String purchased_from = resultSet.getString("purchased_from");
@@ -547,7 +547,7 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("purchase_price")) {
+                if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
@@ -595,7 +595,7 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("purchase_price")) {
+                if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
@@ -637,7 +637,7 @@ public class Database {
 
             int index = 1;
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("purchase_price")) {
+                if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
@@ -654,7 +654,7 @@ public class Database {
                     int categoryID = resultSet.getInt("category_id");
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
-                    double purchase_price = resultSet.getDouble("purchase_price");
+                    double price = resultSet.getDouble("price");
                     LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
                     String manufacturer = resultSet.getString("manufacturer");
                     String purchased_from = resultSet.getString("purchased_from");
@@ -662,7 +662,7 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-                    listOfFoundetArticles.add(new Article(articleID, categoryID, name, color, purchase_price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfFoundetArticles.add(new Article(articleID, categoryID, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
                 return listOfFoundetArticles;
             }

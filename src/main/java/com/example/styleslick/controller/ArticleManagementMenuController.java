@@ -41,7 +41,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, String> column_color;
     @FXML
-    private TableColumn<Article, String> column_purchase_price;
+    private TableColumn<Article, String> column_price;
     @FXML
     private TableColumn<Article, LocalDate> column_purchase_date;
     @FXML
@@ -61,7 +61,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TextField field_color;
     @FXML
-    private TextField field_purchase_price;
+    private TextField field_price;
     @FXML
     private DatePicker datePicker_purchase_date;
     @FXML
@@ -101,7 +101,7 @@ public class ArticleManagementMenuController implements Initializable {
         column_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryID"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
-        column_purchase_price.setCellValueFactory(new PropertyValueFactory<>("purchase_price"));
+        column_price.setCellValueFactory(new PropertyValueFactory<>("price"));
         column_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
         column_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
         column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
@@ -132,7 +132,7 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
         fields.put("name", field_name.getText());
         fields.put("color", field_color.getText());
-        fields.put("purchase_price", field_purchase_price.getText());
+        fields.put("price", field_price.getText());
         fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         fields.put("manufacturer", field_manufacturer.getText());
         fields.put("purchased_from", field_purchased_from.getText());
@@ -146,7 +146,7 @@ public class ArticleManagementMenuController implements Initializable {
 
         field_name.clear();
         field_color.clear();
-        field_purchase_price.clear();
+        field_price.clear();
         field_manufacturer.clear();
         field_purchased_from.clear();
         field_quality.clear();
@@ -174,7 +174,7 @@ public class ArticleManagementMenuController implements Initializable {
 
         fields.put("name", field_name.getText());
         fields.put("color", field_color.getText());
-        fields.put("purchase_price", field_purchase_price.getText());
+        fields.put("price", field_price.getText());
         if (datePicker_purchase_date.getValue() != null) {
             fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
@@ -191,7 +191,7 @@ public class ArticleManagementMenuController implements Initializable {
         choiceBox_category_id.setValue(null);
         field_name.clear();
         field_color.clear();
-        field_purchase_price.clear();
+        field_price.clear();
         field_manufacturer.clear();
         field_purchased_from.clear();
         field_quality.clear();
@@ -237,7 +237,7 @@ public class ArticleManagementMenuController implements Initializable {
 
         fields.put("name", field_name.getText());
         fields.put("color", field_color.getText());
-        fields.put("purchase_price", field_purchase_price.getText());
+        fields.put("price", field_price.getText());
         if (datePicker_purchase_date.getValue() != null) {
             fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
@@ -253,7 +253,7 @@ public class ArticleManagementMenuController implements Initializable {
             choiceBox_category_id.setValue(null);
             field_name.clear();
             field_color.clear();
-            field_purchase_price.clear();
+            field_price.clear();
             field_manufacturer.clear();
             field_purchased_from.clear();
             field_quality.clear();

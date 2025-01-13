@@ -27,7 +27,7 @@ public class ArticleRules {
             return true;
         }
 
-        if (!filledFields.containsKey("purchase_price")) {
+        if (!filledFields.containsKey("price")) {
             AlertService.showErrorAlert("Bitte geben Sie den Kaufpreis ein.");
             return true;
         }
@@ -64,7 +64,7 @@ public class ArticleRules {
             return true;
         }
 
-        if (filledFields.containsKey("purchase_price") && isNotValidPurchasePrice(filledFields)) {
+        if (filledFields.containsKey("price") && isNotValidPurchasePrice(filledFields)) {
             return true;
         }
 
@@ -81,7 +81,7 @@ public class ArticleRules {
 
     private boolean isNotValidPurchasePrice(Map<String, String> filledFields) {
         try {
-            Double.parseDouble(filledFields.get("purchase_price"));
+            Double.parseDouble(filledFields.get("price"));
         } catch (NumberFormatException e) {
             AlertService.showErrorAlert("Bitte geben Sie ein Gültigen Kaufpreis ein.");
             logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);

@@ -20,7 +20,7 @@
                 <TableColumn fx:id="column_categoryID" prefWidth="75.0" text="Kategorie ID" />
                 <TableColumn fx:id="column_name" prefWidth="75.0" text="Name" />
                 <TableColumn fx:id="column_color" prefWidth="75.0" text="Farbe" />
-                <TableColumn fx:id="column_purchase_price" prefWidth="75.0" text="Kaufpreis" />
+                <TableColumn fx:id="column_price" prefWidth="75.0" text="Kaufpreis" />
                 <TableColumn fx:id="column_purchase_date" prefWidth="75.0" text="Kaufdatum" />
                 <TableColumn fx:id="column_manufacturer" prefWidth="75.0" text="Hersteller" />
             <TableColumn fx:id="column_purchased_from" prefWidth="75.0" text="Gekauft über" />
@@ -41,7 +41,7 @@
                   <ChoiceBox fx:id="choiceBox_category_id" prefWidth="150.0" />
                         <TextField fx:id="field_name" promptText="Artikel Name*" />
                         <TextField fx:id="field_color" promptText="Farbe*" />
-                        <TextField fx:id="field_purchase_price" promptText="Kaufpreis*" />
+                        <TextField fx:id="field_price" promptText="Kaufpreis*" />
                   <DatePicker fx:id="datePicker_purchase_date" promptText="Kaufdatum*" />
                     </children>
                 </HBox>
