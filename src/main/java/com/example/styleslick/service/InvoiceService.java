@@ -2,22 +2,22 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Database;
 
-public class OrderService {
+public class InvoiceService {
 
-    private static OrderService orderService;
+    private static InvoiceService invoiceService;
     private Database database;
 
 
 
-    private OrderService() {}
+    private InvoiceService() {}
 
 
 
-    public static OrderService getInstance() {
-        if (orderService == null) {
-            orderService = new OrderService();
+    public static InvoiceService getInstance() {
+        if (invoiceService == null) {
+            invoiceService = new InvoiceService();
         }
-        return orderService;
+        return invoiceService;
     }
 
 
@@ -32,6 +32,6 @@ public class OrderService {
 
     public void clearSession() {
         database = null;
-        orderService = null;
+        invoiceService = null;
     }
 }

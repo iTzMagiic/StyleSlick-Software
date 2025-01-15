@@ -43,7 +43,7 @@ public class Database {
 
 
     public String getTotalSales() {
-        logger.debug("START getTotalSales()");
+        logger.debug("\n\nSTART getTotalSales()");
         String totalSales = "0,00€";
         String sql = "SELECT SUM(payment_amount - shipping_cost) AS totalSales FROM invoice";
 
@@ -54,6 +54,7 @@ public class Database {
                     totalSales = String.valueOf(resultSet.getDouble("totalSales"));
                     totalSales = totalSales.replace(".", ",");
                     totalSales += "€";
+                    logger.info("ENDE erfolgreich den Gesamtumsatz berechnet.");
                     return totalSales;
                 } else {
                     logger.warn("WARN getTotalSales() Es gibt keinen Gesamtumsatz. SQL Query: {}", sql);
@@ -364,7 +365,7 @@ public class Database {
 
 
     public List<Category> getAllCategories() {
-        logger.info("Methode getAllCategories START.");
+        logger.info("START getAllCategories.");
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
@@ -421,14 +422,14 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("Fehler beim hinzufügen der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR beim hinzufügen der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
 
 
     public boolean updateCategory(Map<String, String> filledFields, int categoryID) {
-        logger.info("Methode updateCategory() START.");
+        logger.info("START updateCategory().");
         String sql = "UPDATE category SET ";
         StringBuilder setClause = new StringBuilder();
 
@@ -453,14 +454,14 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("Fehler beim bearbeiten der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR beim bearbeiten der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
 
 
     public boolean deleteCategory(int categoryID) {
-        logger.info("Methode deleteCategory() START.");
+        logger.info("START deleteCategory().");
         String sql = "DELETE FROM category WHERE category_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -469,7 +470,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("Fehler beim löschen der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR beim löschen der Kategorie. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }

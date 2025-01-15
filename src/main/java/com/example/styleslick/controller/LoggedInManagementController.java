@@ -61,9 +61,9 @@ public class LoggedInManagementController implements Initializable {
 
 
     @FXML
-    private void executeOrderManagement() {
-        OrderService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/orderManagement-view.fxml", "Bestellung verwaltung");
+    private void executeInvoiceManagement() {
+        InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
     }
 
 
@@ -126,14 +126,14 @@ public class LoggedInManagementController implements Initializable {
     @FXML
     private void onKeyPressedEnterOrdereManagement(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
-            executeOrderManagement();
+            executeInvoiceManagement();
         }
     }
 
 
     @FXML
     private void onMousePressedOrderManagement(MouseEvent event) {
-        executeOrderManagement();
+        executeInvoiceManagement();
     }
 
 
