@@ -45,7 +45,7 @@ public class Database {
     public String getTotalSales() {
         logger.debug("START getTotalSales()");
         String totalSales = "0,00€";
-        String sql = "SELECT SUM(payment_amount - shipping_cost) AS totalSales FROM `order`";
+        String sql = "SELECT SUM(payment_amount - shipping_cost) AS totalSales FROM invoice";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -94,7 +94,7 @@ public class Database {
     public String getTotalProfit() {
         logger.debug("START getTotalProfit()");
         String TotalProfit = "0,00€";
-        String sql = "SELECT (SELECT SUM(payment_amount - shipping_cost) FROM `order`) - (SELECT SUM(price * amount) FROM article) AS TotalProfit";
+        String sql = "SELECT (SELECT SUM(payment_amount - shipping_cost) FROM invoice) - (SELECT SUM(price * amount) FROM article) AS TotalProfit";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {

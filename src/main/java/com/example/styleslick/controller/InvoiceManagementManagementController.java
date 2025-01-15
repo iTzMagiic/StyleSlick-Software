@@ -5,21 +5,21 @@ import javafx.fxml.FXML;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
-public class OrderManagementManagementController {
+public class InvoiceManagementManagementController {
 
 
     @FXML
-    private void executeExitOrderManagement(){
+    private void executeExitInvoiceManagement(){
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
     @FXML
-    private void onKeyPressedEnterExitOrderManagement(KeyEvent event){
+    private void onKeyPressedEnterExitInvoiceManagement(KeyEvent event){
         if(event.getCode().toString().equals("ENTER")){
-            executeExitOrderManagement();
+            executeExitInvoiceManagement();
         }
     }
     @FXML
-    private void onMouseClickedExitOrderManagement(MouseEvent event){
-        executeExitOrderManagement();
+    private void onMouseClickedExitInvoiceManagement(MouseEvent event){
+        executeExitInvoiceManagement();
     }
 }
