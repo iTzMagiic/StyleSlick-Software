@@ -16,28 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `article`
+-- Table structure for table `invoice_item`
 --
 
-DROP TABLE IF EXISTS `article`;
+DROP TABLE IF EXISTS `invoice_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `article` (
-  `article_id` int NOT NULL AUTO_INCREMENT,
-  `category_id` int DEFAULT NULL,
-  `name` varchar(150) NOT NULL,
-  `color` varchar(150) NOT NULL,
-  `price` decimal(10,2) NOT NULL,
-  `purchase_date` date NOT NULL,
-  `manufacturer` varchar(100) DEFAULT NULL,
-  `purchased_from` varchar(100) NOT NULL,
-  `quality` varchar(50) DEFAULT NULL,
+CREATE TABLE `invoice_item` (
+  `order_item_id` int NOT NULL AUTO_INCREMENT,
+  `order_id` int NOT NULL,
+  `article_id` int NOT NULL,
   `amount` int NOT NULL,
-  `stock` int DEFAULT NULL,
-  PRIMARY KEY (`article_id`),
-  KEY `category_id` (`category_id`),
-  CONSTRAINT `article_ibfk_1` FOREIGN KEY (`category_id`) REFERENCES `category` (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=42 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+  PRIMARY KEY (`order_item_id`),
+  KEY `order_id` (`order_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `invoice_item_ibfk_1` FOREIGN KEY (`order_id`) REFERENCES `invoice` (`order_id`),
+  CONSTRAINT `invoice_item_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -49,4 +44,4 @@ CREATE TABLE `article` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-13 21:07:57
+-- Dump completed on 2025-01-15 21:33:55
