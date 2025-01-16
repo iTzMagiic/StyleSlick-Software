@@ -423,3 +423,22 @@ java.sql.SQLException: No suitable driver found for jdbc:mysql://localhost:3306/
 2025-01-16 10:25:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
 2025-01-16 10:25:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
 2025-01-16 10:25:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-16 12:51:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-16 12:51:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-16 12:51:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-16 12:51:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-16 12:51:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: C20250001
+2025-01-16 12:51:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addCustomer() erfolgreich.
+2025-01-16 12:51:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: C20250002
+2025-01-16 12:51:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addCustomer() erfolgreich.
+2025-01-16 12:51:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: C20250003
+2025-01-16 12:51:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addCustomer() erfolgreich.
+2025-01-16 12:51:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-16 12:51:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-16 12:51:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-16 12:51:31 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
