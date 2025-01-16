@@ -695,4 +695,68 @@ public class Database {
     }
 
 
+    public List<Invoice> getAllInvoices() {
+        logger.debug("START getAllInvoices()");
+        String sql = "SELECT * FROM invoice";
+        List<Invoice> listOfInvoices = new ArrayList<>();
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int invoiceID = resultSet.getInt("invoice_id");
+                    int customerID = resultSet.getInt("customer_id");
+                    String invoice_number = resultSet.getString("invoice_number");
+                    LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
+                    String payment_method = resultSet.getString("payment_method");
+                    String transaction_number = resultSet.getString("transaction_number");
+                    double payment_amount = resultSet.getDouble("payment_amount");
+                    double shipping_cost = resultSet.getDouble("shipping_cost");
+                    String shipping_receipt = resultSet.getString("shipping_receipt");
+                    String shipping_method = resultSet.getString("shipping_method");
+
+                    listOfInvoices.add(new Invoice(invoiceID, customerID, invoice_number, purchase_date, payment_method,
+                            transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
+                }
+                logger.info("ENDE erfolgreich alle Rechnungen geladen.");
+                return listOfInvoices;
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR Fehler beim exportieren der Rechnungen. FEHLER: {}", e.getMessage(), e);
+        }
+        return listOfInvoices;
+    }
+
+
+    private String createInvoiceNumber() {
+        logger.debug("START createInvoiceNumber()");
+        // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden
+        String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(invoice_number, 6) AS UNSIGNED)), 0) + 1 AS new_invoice_number " +
+                "FROM invoice " +
+                "WHERE SUBSTRING(invoice_number, 2, 4) = YEAR(CURDATE())";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int new_invoice_number = resultSet.getInt("new_invoice_number");
+
+                    // Generieren der Rechnungsnummer: 'I' + Jahr + Nummer mit führenden Nullen
+                    String invoiceNumber = "I" + java.time.Year.now() + String.format("%04d", new_invoice_number);
+                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Rechnungsnummer: {}", invoiceNumber);
+                    return invoiceNumber;
+                } else {
+                    logger.warn("WARN createInvoiceNumber() Keine vorhandene Rechnungsnummer für das aktuelle Jahr.");
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR createInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
+        }
+        return "ERROR";
+    }
+
+
+
 }
