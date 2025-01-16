@@ -25,7 +25,6 @@ public class LoggedInManagementController implements Initializable {
     private Label label_anzahlKunden;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         userSession = UserSession.getInstance();
@@ -35,7 +34,6 @@ public class LoggedInManagementController implements Initializable {
         label_gewinn.setText(userSession.getDatabase().getTotalProfit());
         label_anzahlKunden.setText(userSession.getDatabase().getTotalCustomer());
     }
-
 
 
     @FXML
@@ -100,7 +98,6 @@ public class LoggedInManagementController implements Initializable {
     private void onMousePressedCategoryManagement(MouseEvent event) {
         executeCategoryManagement();
     }
-
 
 
     @FXML
