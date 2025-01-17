@@ -543,3 +543,10 @@ BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
 2025-01-16 21:27:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
 2025-01-16 21:27:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
 2025-01-16 21:27:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-17 10:34:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-17 10:34:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-17 10:34:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-17 10:34:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.

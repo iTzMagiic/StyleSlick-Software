@@ -729,10 +729,40 @@ public class Database {
     }
 
 
-    public boolean addInvoice(Map<String, String> filledFields) {
-        String sqlQuery = generateInsertIntoQuery("invoice", filledFields);
+    public int addInvoice(Map<String, String> filledFields) {
+        logger.debug("START addInvoice().");
+        String sqlQuery = generateInsertIntoQueryWithNumber("invoice", filledFields);
 
-        return false;
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            int index = 1;
+
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("customerID")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+                } else if (entry.getKey().equals("purchase_date")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+                } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+                } else {
+                    preparedStatement.setString(index++, entry.getValue());
+                }
+            }
+
+            preparedStatement.executeUpdate();
+
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    return resultSet.getInt(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR fehler beim erstellen der Bestellung. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return -1;
     }
 
 
@@ -767,11 +797,32 @@ public class Database {
 
 
     private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
-
         String columnList = generateColumnList(filledFields);
         String placeHolderList = generatePlaceHolderList(filledFields.size());
 
         return "INSERT INTO " + table + " (" + columnList + ") VALUES (" + placeHolderList + ")";
+    }
+
+    private String generateInsertIntoQueryWithNumber(String table, Map<String, String> filledFields) {
+        String columnList = generateColumnListWithNumber(table, filledFields);
+        String placeHolderList = generatePlaceHolderList(filledFields.size() + 1);
+
+
+        return "INSERT INTO " + table + " (" + columnList + ") VALUES (" + placeHolderList + ")";
+    }
+
+    private String generateColumnListWithNumber(String table, Map<String, String> filledFields) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            stringBuilder.append(entry.getKey());
+
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+        }
+
+        return stringBuilder.append(table).append("_number").toString();
     }
 
     private String generateColumnList(Map<String, String> filledFields) {
