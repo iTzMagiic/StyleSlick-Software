@@ -719,13 +719,15 @@ public class Database {
                     listOfInvoices.add(new Invoice(invoiceID, customerID, invoice_number, purchase_date, payment_method,
                             transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
                 }
-                logger.info("ENDE erfolgreich alle Bestellungen geladen.");
+
+                logger.info("ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.");
                 return listOfInvoices;
             }
         } catch (SQLException e) {
-            logger.error("ERROR Fehler beim exportieren der Bestellungen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getAllInvoices() fehlgeschlagen. Fehler beim exportieren der Bestellungen. FEHLER: {}", e.getMessage(), e);
         }
-        logger.warn("WARN Bestellungen konnten nicht geladen werden.");
+
+        logger.warn("WARN getAllInvoices() fehlgeschlagen. Bestellungen konnten nicht geladen werden.");
         return listOfInvoices;
     }
 
@@ -758,16 +760,17 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
                     int invoiceID = resultSet.getInt(1);
-                    logger.info("ENDE Bestellung erfolgreich hinzuefügt mit der ID: {}", invoiceID);
+                    logger.info("ENDE addInvoice() erfolgreich. Bestellung wurde in die Datenbank importiert" +
+                            " mit der ID: {}", invoiceID);
                     return invoiceID;
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR fehler beim importieren der Bestellung. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addInvoice() fehlgeschlagen. Fehler beim importieren der Bestellung. FEHLER: {}", e.getMessage(), e);
         }
 
-        logger.warn("WARN Bestellung konnte nicht erstellt werden.");
+        logger.warn("WARN addInvoice() fehlgeschlagen. Bestellung konnte nicht erstellt werden.");
         return -1;
     }
 
@@ -779,6 +782,8 @@ public class Database {
                 "FROM invoice " +
                 "WHERE SUBSTRING(invoice_number, 2, 4) = YEAR(CURDATE())";
 
+        logger.debug("SQL Query: {}", sql);
+
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
@@ -788,15 +793,16 @@ public class Database {
 
                     // Generieren der Rechnungsnummer: 'I' + Jahr + Nummer mit führenden Nullen
                     String invoiceNumber = "I" + java.time.Year.now() + String.format("%04d", new_invoice_number);
-                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Rechnungsnummer: {}", invoiceNumber);
+
+                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Bestell-Nr: {}", invoiceNumber);
                     return invoiceNumber;
-                } else {
-                    logger.warn("WARN createInvoiceNumber() Keine vorhandene Rechnungsnummer für das aktuelle Jahr.");
                 }
             }
         } catch (SQLException e) {
             logger.error("ERROR createInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
         }
+
+        logger.warn("WARN createInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
         return "ERROR";
     }
 
