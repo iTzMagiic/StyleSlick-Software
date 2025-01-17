@@ -767,8 +767,15 @@ public class Database {
 
 
     private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
+
+        String columnList = generateColumnList(filledFields);
+        String placeHolderList = generatePlaceHolderList(filledFields.size());
+
+        return "INSERT INTO " + table + " (" + columnList + ") VALUES (" + placeHolderList + ")";
+    }
+
+    private String generateColumnList(Map<String, String> filledFields) {
         StringBuilder stringBuilder = new StringBuilder();
-        String sqlQuery = "INSERT INTO " + table + " (";
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (stringBuilder.length() > 0) {
@@ -776,21 +783,21 @@ public class Database {
             }
             stringBuilder.append(entry.getKey());
         }
-        stringBuilder.append(") VALUES (");
-        sqlQuery += stringBuilder.toString();
 
-        stringBuilder.setLength(0);
+        return stringBuilder.toString();
+    }
 
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+    private String generatePlaceHolderList(int numberOfPlaceHolders) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < numberOfPlaceHolders; i++) {
             if (stringBuilder.length() > 0) {
                 stringBuilder.append(", ");
             }
             stringBuilder.append("?");
         }
-        stringBuilder.append(")");
-        sqlQuery += stringBuilder.toString();
 
-        return sqlQuery;
+        return stringBuilder.toString();
     }
 
 }
