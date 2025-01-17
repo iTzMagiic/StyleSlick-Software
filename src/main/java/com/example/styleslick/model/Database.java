@@ -719,12 +719,13 @@ public class Database {
                     listOfInvoices.add(new Invoice(invoiceID, customerID, invoice_number, purchase_date, payment_method,
                             transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
                 }
-                logger.info("ENDE erfolgreich alle Rechnungen geladen.");
+                logger.info("ENDE erfolgreich alle Bestellungen geladen.");
                 return listOfInvoices;
             }
         } catch (SQLException e) {
-            logger.error("ERROR Fehler beim exportieren der Rechnungen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR Fehler beim exportieren der Bestellungen. FEHLER: {}", e.getMessage(), e);
         }
+        logger.warn("WARN Bestellungen konnten nicht geladen werden.");
         return listOfInvoices;
     }
 
@@ -732,6 +733,7 @@ public class Database {
     public int addInvoice(Map<String, String> filledFields) {
         logger.debug("START addInvoice().");
         String sqlQuery = generateInsertIntoQueryWithNumber("invoice", filledFields);
+        logger.debug("Generierter SQL Query: {}", sqlQuery);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
         PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
@@ -750,18 +752,22 @@ public class Database {
                 }
             }
 
+            logger.info("SQL Query wurde erfolgreich ausgeführt.");
             preparedStatement.executeUpdate();
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
-                    return resultSet.getInt(1);
+                    int invoiceID = resultSet.getInt(1);
+                    logger.info("ENDE Bestellung erfolgreich hinzuefügt mit der ID: {}", invoiceID);
+                    return invoiceID;
                 }
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR fehler beim erstellen der Bestellung. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR fehler beim importieren der Bestellung. FEHLER: {}", e.getMessage(), e);
         }
 
+        logger.warn("WARN Bestellung konnte nicht erstellt werden.");
         return -1;
     }
 
@@ -793,6 +799,9 @@ public class Database {
         }
         return "ERROR";
     }
+
+
+
 
 
 
