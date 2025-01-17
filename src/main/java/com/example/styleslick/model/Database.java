@@ -729,6 +729,13 @@ public class Database {
     }
 
 
+    public boolean addInvoice(Map<String, String> filledFields) {
+        String sqlQuery = generateInsertIntoQuery("invoice", filledFields);
+
+        return false;
+    }
+
+
     private String createInvoiceNumber() {
         logger.debug("START createInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden
@@ -758,5 +765,32 @@ public class Database {
     }
 
 
+
+    private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
+        StringBuilder stringBuilder = new StringBuilder();
+        String sqlQuery = "INSERT INTO " + table + " (";
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append(entry.getKey());
+        }
+        stringBuilder.append(") VALUES (");
+        sqlQuery += stringBuilder.toString();
+
+        stringBuilder.setLength(0);
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append("?");
+        }
+        stringBuilder.append(")");
+        sqlQuery += stringBuilder.toString();
+
+        return sqlQuery;
+    }
 
 }
