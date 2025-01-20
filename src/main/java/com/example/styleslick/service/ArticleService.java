@@ -69,6 +69,8 @@ public class ArticleService {
     }
 
 
+
+
     public boolean updateArticle(Map<String, String> fields, int articleID) {
         Map<String, String> filledFields = new HashMap<>();
 

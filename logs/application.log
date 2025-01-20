@@ -1820,3 +1820,488 @@ START getTotalSales()
 2025-01-20 13:28:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
 2025-01-20 13:28:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
 2025-01-20 13:28:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:03:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:03:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:03:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:03:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:03:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:03:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:03:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:03:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:03:53 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:03:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:04:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:04:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:04:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:04:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:04:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:04:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:04:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:04:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:04:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:04:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:09:49 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:09:50 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:09:50 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:09:50 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:09:50 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:09:50 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:09:50 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:09:50 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:09:51 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:09:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:11:42 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:11:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:11:42 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:11:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:11:42 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:11:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:11:42 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:11:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:11:43 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:11:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:12:06 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: empty String 
+java.lang.NumberFormatException: empty String
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1842)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:65)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:62)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:12:35 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: empty String 
+java.lang.NumberFormatException: empty String
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1842)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:65)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:62)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:13:27 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:13:27 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:13:27 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:13:27 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:13:27 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:13:27 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:13:27 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:13:27 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:13:28 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:13:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:13:33 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: empty String 
+java.lang.NumberFormatException: empty String
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1842)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:65)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:64)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:14:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:14:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:14:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:14:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:14:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:14:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:14:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:14:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:14:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:14:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:14:09 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: empty String 
+java.lang.NumberFormatException: empty String
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1842)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:65)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:64)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:14:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:14:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:14:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:14:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:14:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:14:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:14:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:14:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:14:59 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:14:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:15:06 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: empty String 
+java.lang.NumberFormatException: empty String
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:1842)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:65)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:65)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:15:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:15:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:15:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:15:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:15:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:15:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:15:48 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:15:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:15:49 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:15:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:15:49 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:15:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:15:49 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:15:49 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:15:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:15:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:16:15 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Betrag angegeben. FEHLER: For input string: "daw" 
+java.lang.NumberFormatException: For input string: "daw"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:75)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:63)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:16:20 [JavaFX Application Thread] ERROR c.e.styleslick.rules.InvoiceRules - ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Betrag angegeben. FEHLER: For input string: "daw" 
+java.lang.NumberFormatException: For input string: "daw"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotValidPrice(InvoiceRules.java:75)
+	at com.example.styleslick/com.example.styleslick.rules.InvoiceRules.isNotAllowedToAddInvoice(InvoiceRules.java:36)
+	at com.example.styleslick/com.example.styleslick.service.InvoiceService.addInvoice(InvoiceService.java:63)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.executeAddInvoice(InvoiceManagementController.java:254)
+	at com.example.styleslick/com.example.styleslick.controller.InvoiceManagementController.onMouseClickedAddInvoice(InvoiceManagementController.java:332)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 14:17:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:17:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:17:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:17:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:17:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:17:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:17:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:17:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:17:41 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:17:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:18:24 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:18:24 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:18:24 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:18:24 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:18:24 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:18:24 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:20:02 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:20:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:20:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:20:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:20:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:20:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:20:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:20:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:20:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:20:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:21:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 14:21:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 14:21:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:21:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:21:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:21:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:21:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:21:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 14:21:05 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 14:21:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 14:21:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 14:21:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 14:21:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 14:21:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 14:21:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 14:21:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
