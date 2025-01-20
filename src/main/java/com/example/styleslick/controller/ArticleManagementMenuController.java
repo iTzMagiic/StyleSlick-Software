@@ -29,6 +29,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleManagementMenuController.class);
     private ArticleService articleService;
+    private CategoryService categoryService;
 
     @FXML
     private TableView<Article> tableView_articles;
@@ -80,7 +81,7 @@ public class ArticleManagementMenuController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         logger.debug("\n\nSTART initialize().");
         articleService = ArticleService.getInstance();
-        CategoryService categoryService = CategoryService.getInstance();
+        categoryService = CategoryService.getInstance();
 
         List<Category> listOfCategories = categoryService.getAllCategories();
         choiceBox_category_id.getItems().addAll(listOfCategories);
@@ -120,12 +121,12 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
-            AlertService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kaufdatum darf nicht leer sein.");
             return;
         }
 
         if (choiceBox_category_id.getValue() == null) {
-            AlertService.showErrorAlert("Kategorie darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kategorie darf nicht leer sein.");
             return;
         }
 

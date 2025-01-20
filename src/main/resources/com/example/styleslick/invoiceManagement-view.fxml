@@ -8,28 +8,11 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.InvoiceManagementController">
-    <center>
-        <TableView fx:id="tableView_Invoice" prefHeight="545.0" prefWidth="1280.0" BorderPane.alignment="CENTER">
-            <columnResizePolicy>
-                <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
-            </columnResizePolicy>
-         <columns>
-            <TableColumn fx:id="column_invoice_number" prefWidth="75.0" text="Rechnung-Nr" />
-            <TableColumn fx:id="column_customerID" prefWidth="40.0" text="Kunden-Nr" />
-            <TableColumn fx:id="column_purchase_date" prefWidth="50.0" text="Kaufdatum" />
-            <TableColumn fx:id="column_payment_method" prefWidth="50.0" text="Zahlungsmethode" />
-            <TableColumn fx:id="column_transaction_number" prefWidth="75.0" text="Transaktions-Nr" />
-            <TableColumn fx:id="column_payment_amount" prefWidth="40.0" text="Betrag" />
-            <TableColumn fx:id="column_shipping_method" prefWidth="50.0" text="Versandmethode" />
-            <TableColumn fx:id="column_shipping_receipt" prefWidth="75.0" text="Versandbeleg" />
-            <TableColumn fx:id="column_shipping_cost" prefWidth="50.0" text="Versandkosten" />
-         </columns>
-        </TableView>
-    </center>
     <top>
         <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
             <children>
@@ -57,12 +40,12 @@
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font></Button>
-                  <Button layoutX="322.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Alle Kunden anzeigen">
+                  <Button layoutX="322.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" text="Alle Kunden anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Alle Artikel anzeigen">
+                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" text="Alle Artikel anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -71,12 +54,12 @@
                 </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
-                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Bestellung anzeigen">
+                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" text="Bestellung anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Bestellung Speichern">
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddInvoice" onMouseClicked="#onMouseClickedAddInvoice" text="Bestellung Speichern">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -112,4 +95,60 @@
             </padding>
         </VBox>
     </top>
+   <center>
+      <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
+         <children>
+            <TableView fx:id="tableView_invoices" prefHeight="700.0" prefWidth="1280.0">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="column_invoice_number" prefWidth="75.0" text="Rechnung-Nr" />
+                  <TableColumn fx:id="column_invoice_customerID" prefWidth="40.0" text="Kunden-Nr" />
+                  <TableColumn fx:id="column_invoice_purchase_date" prefWidth="50.0" text="Kaufdatum" />
+                  <TableColumn fx:id="column_invoice_payment_method" prefWidth="50.0" text="Zahlungsmethode" />
+                  <TableColumn fx:id="column_invoice_transaction_number" prefWidth="75.0" text="Transaktions-Nr" />
+                  <TableColumn fx:id="column_invoice_payment_amount" prefWidth="40.0" text="Betrag" />
+                  <TableColumn fx:id="column_invoice_shipping_method" prefWidth="50.0" text="Versandmethode" />
+                  <TableColumn fx:id="column_invoice_shipping_receipt" prefWidth="75.0" text="Versandbeleg" />
+                  <TableColumn fx:id="column_invoice_shipping_cost" prefWidth="50.0" text="Versandkosten" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableView_articles" prefHeight="700.0" prefWidth="1280.0" visible="false">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="column_article_articleID" prefWidth="40.0" text="Artikel-Nr" />
+                  <TableColumn fx:id="column_article_categoryID" prefWidth="50.0" text="Kategorie ID" />
+                  <TableColumn fx:id="column_article_name" prefWidth="130.0" text="Name" />
+                  <TableColumn fx:id="column_article_color" prefWidth="75.0" text="Farbe" />
+                  <TableColumn fx:id="column_article_price" prefWidth="75.0" text="Kaufpreis" />
+                  <TableColumn fx:id="column_article_purchase_date" prefWidth="75.0" text="Kaufdatum" />
+                  <TableColumn fx:id="column_article_manufacturer" prefWidth="75.0" text="Hersteller" />
+                  <TableColumn fx:id="column_article_purchased_from" prefWidth="75.0" text="Gekauft über" />
+                  <TableColumn fx:id="column_article_quality" prefWidth="75.0" text="Qualität" />
+                  <TableColumn fx:id="column_article_amount" prefWidth="40.0" text="Menge" />
+                  <TableColumn fx:id="column_article_stock" prefWidth="40.0" text="Bestand" />
+               </columns>
+            </TableView>
+            <TableView fx:id="tableView_customers" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1280.0" visible="false">
+               <columnResizePolicy>
+                  <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
+               </columnResizePolicy>
+               <columns>
+                  <TableColumn fx:id="column_customer_number" prefWidth="75.0" text="Kunden-Nr" />
+                  <TableColumn fx:id="column_customer_username" prefWidth="75.0" text="Benutzername" />
+                  <TableColumn fx:id="column_customer_first_name" prefWidth="75.0" text="Vorname" />
+                  <TableColumn fx:id="column_customer_last_name" prefWidth="75.0" text="Nachname" />
+                  <TableColumn fx:id="column_customer_street" prefWidth="75.0" text="Straße" />
+                  <TableColumn fx:id="column_customer_postal_code" prefWidth="75.0" text="Postleitzahl" />
+                  <TableColumn fx:id="column_customer_city" prefWidth="75.0" text="Ort" />
+                  <TableColumn fx:id="column_customer_country" prefWidth="75.0" text="Land" />
+                  <TableColumn fx:id="column_customer_purchased_from" prefWidth="75.0" text="Gekauft über" />
+               </columns>
+            </TableView>
+         </children>
+      </StackPane>
+   </center>
 </BorderPane>

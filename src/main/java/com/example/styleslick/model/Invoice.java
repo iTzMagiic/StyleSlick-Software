@@ -50,7 +50,7 @@ public class Invoice {
         return payment_method;
     }
 
-    public String getTransaction_number() {
+    public String getTransactionNumber() {
         return transaction_number;
     }
 

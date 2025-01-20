@@ -166,6 +166,33 @@ public class Database {
     }
 
 
+    public int getCustomerID(String customer_number) {
+        logger.debug("START getCustomerID().");
+
+        String sqlQuery = "SELECT customer_id FROM customer WHERE customer_number = ?";
+        logger.debug("SQL Query: {}", sqlQuery);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+
+            preparedStatement.setString(1, customer_number);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getCustomerID erfolgreich.");
+                    return resultSet.getInt("customer_id");
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR getCustomerID() FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN getCustomerID() fehlgeschlagen es konnte kein Kunde mit der Kunden-Nr gefunden werden.");
+        return -1;
+    }
+
+
     public boolean isUsernameExist(String username) {
         String sql = "SELECT username FROM customer WHERE username = ?";
 
@@ -365,7 +392,7 @@ public class Database {
 
 
     public List<Category> getAllCategories() {
-        logger.info("START getAllCategories.");
+        logger.info("START getAllCategories().");
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
@@ -377,11 +404,13 @@ public class Database {
                     int id = resultSet.getInt("category_id");
                     listOfCategories.add(new Category(name, id));
                 }
+                logger.info("ENDE erfolgreich getAllCategories().");
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            logger.error("Fehlber beim abrufen der Kategorien. FEHELER: {}", e.getMessage(), e);
+            logger.error("Fehler beim abrufen der Kategorien. FEHLER: {}", e.getMessage(), e);
         }
+        logger.warn("WARN getAllCategories() fehler beim Laden der Kategorien.");
         return listOfCategories;
     }
 
@@ -677,8 +706,10 @@ public class Database {
 
     public boolean deleteArticle(int articleID) {
         logger.debug("START deleteArticle().");
+
         String sql = "DELETE FROM article WHERE article_id = ?";
         logger.debug("SQL Query: {}", sql);
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -719,14 +750,67 @@ public class Database {
                     listOfInvoices.add(new Invoice(invoiceID, customerID, invoice_number, purchase_date, payment_method,
                             transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
                 }
-                logger.info("ENDE erfolgreich alle Rechnungen geladen.");
+
+                logger.info("ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.");
                 return listOfInvoices;
             }
         } catch (SQLException e) {
-            logger.error("ERROR Fehler beim exportieren der Rechnungen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getAllInvoices() fehlgeschlagen. Fehler beim exportieren der Bestellungen. FEHLER: {}", e.getMessage(), e);
         }
+
+        logger.warn("WARN getAllInvoices() fehlgeschlagen. Bestellungen konnten nicht geladen werden.");
         return listOfInvoices;
     }
+
+
+    public int addInvoice(Map<String, String> filledFields) {
+        logger.debug("START addInvoice().");
+        String sqlQuery = generateInsertIntoQueryWithNumber("invoice", filledFields);
+        logger.debug("Generierter SQL Query: {}", sqlQuery);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+
+            int index = 1;
+
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("customerID")) {
+                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+
+                } else if (entry.getKey().equals("purchase_date")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+
+                } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+
+                } else if (entry.getKey().equals("customer_number")) {
+                    preparedStatement.setInt(index++, getCustomerID(entry.getValue()));
+
+                } else {
+                    preparedStatement.setString(index++, entry.getValue());
+                }
+            }
+
+            logger.info("SQL Query wurde erfolgreich ausgeführt.");
+            preparedStatement.executeUpdate();
+
+            try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
+                if (resultSet.next()) {
+                    int invoiceID = resultSet.getInt(1);
+                    logger.info("ENDE addInvoice() erfolgreich. Bestellung wurde in die Datenbank importiert" +
+                            " mit der ID: {}", invoiceID);
+                    return invoiceID;
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR addInvoice() fehlgeschlagen. Fehler beim importieren der Bestellung. FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN addInvoice() fehlgeschlagen. Bestellung konnte nicht erstellt werden.");
+        return -1;
+    }
+
 
 
     private String createInvoiceNumber() {
@@ -735,6 +819,8 @@ public class Database {
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(invoice_number, 6) AS UNSIGNED)), 0) + 1 AS new_invoice_number " +
                 "FROM invoice " +
                 "WHERE SUBSTRING(invoice_number, 2, 4) = YEAR(CURDATE())";
+
+        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -745,18 +831,77 @@ public class Database {
 
                     // Generieren der Rechnungsnummer: 'I' + Jahr + Nummer mit führenden Nullen
                     String invoiceNumber = "I" + java.time.Year.now() + String.format("%04d", new_invoice_number);
-                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Rechnungsnummer: {}", invoiceNumber);
+
+                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Bestell-Nr: {}", invoiceNumber);
                     return invoiceNumber;
-                } else {
-                    logger.warn("WARN createInvoiceNumber() Keine vorhandene Rechnungsnummer für das aktuelle Jahr.");
                 }
             }
         } catch (SQLException e) {
             logger.error("ERROR createInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
         }
+
+        logger.warn("WARN createInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
         return "ERROR";
     }
 
 
+
+
+
+
+    private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
+        String columnList = generateColumnList(filledFields);
+        String placeHolderList = generatePlaceHolderList(filledFields.size());
+
+        return "INSERT INTO " + table + " (" + columnList + ") VALUES (" + placeHolderList + ")";
+    }
+
+    private String generateInsertIntoQueryWithNumber(String table, Map<String, String> filledFields) {
+        String columnList = generateColumnListWithNumber(table, filledFields);
+        String placeHolderList = generatePlaceHolderList(filledFields.size() + 1);
+
+
+        return "INSERT INTO " + table + " (" + columnList + ") VALUES (" + placeHolderList + ")";
+    }
+
+    private String generateColumnListWithNumber(String table, Map<String, String> filledFields) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            stringBuilder.append(entry.getKey());
+
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+        }
+
+        return stringBuilder.append(table).append("_number").toString();
+    }
+
+    private String generateColumnList(Map<String, String> filledFields) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append(entry.getKey());
+        }
+
+        return stringBuilder.toString();
+    }
+
+    private String generatePlaceHolderList(int numberOfPlaceHolders) {
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (int i = 0; i < numberOfPlaceHolders; i++) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append("?");
+        }
+
+        return stringBuilder.toString();
+    }
 
 }
