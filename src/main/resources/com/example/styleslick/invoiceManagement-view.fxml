@@ -40,12 +40,12 @@
                             <font>
                                 <Font name="System Bold" size="12.0" />
                             </font></Button>
-                  <Button layoutX="322.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Alle Kunden anzeigen">
+                  <Button layoutX="322.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" text="Alle Kunden anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Alle Artikel anzeigen">
+                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" text="Alle Artikel anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

@@ -168,6 +168,8 @@ public class InvoiceManagementController implements Initializable {
         categoryService = CategoryService.getInstance();
         customerService = CustomerService.getInstance();
 
+        tableView_invoice.getSelectionModel().selectedItemProperty();
+
         executeShowAllInvoices();
     }
 
@@ -189,6 +191,16 @@ public class InvoiceManagementController implements Initializable {
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customer.setItems(observableList);
+    }
+
+
+    @FXML
+    private void executeShowAllArticles() {
+        tableView_article.setVisible(true);
+        tableView_customer.setVisible(false);
+        tableView_invoice.setVisible(false);
+
+
     }
 
 
@@ -215,6 +227,9 @@ public class InvoiceManagementController implements Initializable {
 
     @FXML
     private void executeExitInvoiceManagement(){
+        articleService.clearSession();
+        customerService.clearSession();
+        invoiceService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
 
@@ -225,6 +240,20 @@ public class InvoiceManagementController implements Initializable {
     private void onKeyPressedEnterShowAllInvoices(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             executeShowAllInvoices();
+        }
+    }
+
+    @FXML
+    private void onKeyPressedEnterShowAllCustomers(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAllCustomers();
+        }
+    }
+
+    @FXML
+    private void onKeyPressedEnterShowAllArticles(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAllArticles();
         }
     }
 
@@ -240,6 +269,13 @@ public class InvoiceManagementController implements Initializable {
     private void onMouseClickedShowAllInvoices(MouseEvent event) {
         executeShowAllInvoices();
     }
+
+    @FXML
+    private void onMouseClickedShowAllCustomers(MouseEvent event) { executeShowAllCustomers(); }
+
+    @FXML
+    private void onMouseClickedShowAllArticles(MouseEvent event) { executeShowAllArticles(); }
+
     @FXML
     private void onMouseClickedExitInvoiceManagement(MouseEvent event){
         executeExitInvoiceManagement();
