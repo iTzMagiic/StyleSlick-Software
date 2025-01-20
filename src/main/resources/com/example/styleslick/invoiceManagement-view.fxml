@@ -98,7 +98,7 @@
    <center>
       <StackPane prefHeight="150.0" prefWidth="200.0" BorderPane.alignment="CENTER">
          <children>
-            <TableView fx:id="tableView_invoice" prefHeight="700.0" prefWidth="1280.0">
+            <TableView fx:id="tableView_invoices" prefHeight="700.0" prefWidth="1280.0">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
@@ -114,7 +114,7 @@
                   <TableColumn fx:id="column_invoice_shipping_cost" prefWidth="50.0" text="Versandkosten" />
                </columns>
             </TableView>
-            <TableView fx:id="tableView_article" prefHeight="700.0" prefWidth="1280.0" visible="false">
+            <TableView fx:id="tableView_articles" prefHeight="700.0" prefWidth="1280.0" visible="false">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
@@ -132,7 +132,7 @@
                   <TableColumn fx:id="column_article_stock" prefWidth="40.0" text="Bestand" />
                </columns>
             </TableView>
-            <TableView fx:id="tableView_customer" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1280.0" visible="false">
+            <TableView fx:id="tableView_customers" layoutX="10.0" layoutY="10.0" prefHeight="700.0" prefWidth="1280.0" visible="false">
                <columnResizePolicy>
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>

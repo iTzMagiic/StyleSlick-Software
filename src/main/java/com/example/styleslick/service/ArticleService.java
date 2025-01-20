@@ -48,11 +48,15 @@ public class ArticleService {
             filledFields.put(field.getKey(), field.getValue());
         }
 
+        if (filledFields.containsKey("price")) {
+            filledFields.replace("price", filledFields.get("price").replace(",", "."));
+        }
+
         if (articleRules.isNotAllowedToAddArticle(filledFields)) {
             return false;
         }
 
-        filledFields.replace("price", filledFields.get("price").replace(",", "."));
+
 
 
         if (!database.addArticle(filledFields)) {

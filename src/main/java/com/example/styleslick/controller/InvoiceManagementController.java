@@ -19,8 +19,6 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -152,13 +150,13 @@ public class InvoiceManagementController implements Initializable {
     private TextField field_transaction_number;
 
     @FXML
-    private TableView<Article> tableView_article;
+    private TableView<Article> tableView_articles;
 
     @FXML
-    private TableView<Customer> tableView_customer;
+    private TableView<Customer> tableView_customers;
 
     @FXML
-    private TableView<Invoice> tableView_invoice;
+    private TableView<Invoice> tableView_invoices;
 
 
     @Override
@@ -168,16 +166,16 @@ public class InvoiceManagementController implements Initializable {
         categoryService = CategoryService.getInstance();
         customerService = CustomerService.getInstance();
 
-        tableView_invoice.getSelectionModel().selectedItemProperty();
+        tableView_invoices.getSelectionModel().selectedItemProperty();
 
         executeShowAllInvoices();
     }
 
 
     private void executeShowAllCustomers() {
-        tableView_customer.setVisible(true);
-        tableView_invoice.setVisible(false);
-        tableView_article.setVisible(false);
+        tableView_customers.setVisible(true);
+        tableView_invoices.setVisible(false);
+        tableView_articles.setVisible(false);
 
         column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_customer_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -190,25 +188,39 @@ public class InvoiceManagementController implements Initializable {
         column_customer_country.setCellValueFactory(new PropertyValueFactory<>("country"));
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
-        tableView_customer.setItems(observableList);
+        tableView_customers.setItems(observableList);
     }
 
 
     @FXML
     private void executeShowAllArticles() {
-        tableView_article.setVisible(true);
-        tableView_customer.setVisible(false);
-        tableView_invoice.setVisible(false);
+        tableView_articles.setVisible(true);
+        tableView_customers.setVisible(false);
+        tableView_invoices.setVisible(false);
 
 
+        column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+        column_article_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryID"));
+        column_article_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+        column_article_color.setCellValueFactory(new PropertyValueFactory<>("color"));
+        column_article_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+        column_article_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+        column_article_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+        column_article_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
+        column_article_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+        column_article_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        column_article_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+        ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
+        tableView_articles.setItems(observableList);
     }
 
 
     @FXML
     private void executeShowAllInvoices() {
-        tableView_invoice.setVisible(true);
-        tableView_article.setVisible(false);
-        tableView_customer.setVisible(false);
+        tableView_invoices.setVisible(true);
+        tableView_articles.setVisible(false);
+        tableView_customers.setVisible(false);
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         column_invoice_customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
@@ -221,7 +233,7 @@ public class InvoiceManagementController implements Initializable {
         column_invoice_shipping_cost.setCellValueFactory(new PropertyValueFactory<>("shippingCost"));
 
         ObservableList<Invoice> observableList = FXCollections.observableArrayList(invoiceService.getAllInvoices());
-        tableView_invoice.setItems(observableList);
+        tableView_invoices.setItems(observableList);
     }
 
 

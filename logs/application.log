@@ -890,3 +890,815 @@ BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
 2025-01-20 11:37:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
 2025-01-20 11:37:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
 2025-01-20 11:37:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:39:29 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:39:31 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:41:54 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 11:41:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:41:55 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:41:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:41:55 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:41:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:41:55 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:41:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:42:00 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:42:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:52:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 11:52:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:52:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:52:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:52:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:52:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:52:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:52:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:53:00 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:53:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:53:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:53:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:53:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:53:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:53:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:53:03 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:53:05 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:53:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:53:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:53:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:53:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:56:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 11:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:56:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:56:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:56:07 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:56:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:56:08 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:56:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:56:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:56:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:56:22 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:56:22 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:56:24 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:56:24 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:56:26 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:56:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:56:26 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:56:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:56:26 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:56:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:57:03 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 11:57:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:57:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:57:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:57:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:57:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:57:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:57:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:57:06 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - 
+
+START initialize().
+2025-01-20 11:57:06 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - 
+
+START executeShowAllCategories().
+2025-01-20 11:57:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 11:57:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 11:57:06 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - ENDE executeShowAllCategories() erfolgreich.
+2025-01-20 11:57:06 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - ENDE initialize() erfolgreich.
+2025-01-20 11:57:12 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - 
+
+START executeAddCategory().
+2025-01-20 11:57:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - Methode addCategory START.
+2025-01-20 11:57:12 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: INSERT INTO category (name) VALUES (?)
+2025-01-20 11:57:13 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - 
+
+START executeShowAllCategories().
+2025-01-20 11:57:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 11:57:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 11:57:13 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - ENDE executeShowAllCategories() erfolgreich.
+2025-01-20 11:57:13 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - ENDE executeAddCategory() erfolgreich.
+2025-01-20 11:57:14 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:57:14 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:57:14 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:57:14 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:57:14 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:57:14 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:57:14 [JavaFX Application Thread] DEBUG c.e.s.c.CategoryManagementController - 
+
+BEENDET Benutzer hat CategoryManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 11:57:15 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START initialize().
+2025-01-20 11:57:15 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START executeShowAllCustomers().
+2025-01-20 11:57:15 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE executeShowAllCustomers().
+2025-01-20 11:57:15 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE initialize() erfolgreich.
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:57:17 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:57:17 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:57:17 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:57:17 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START initialize().
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START executeShowAllCustomers().
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE executeShowAllCustomers().
+2025-01-20 11:57:17 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE initialize() erfolgreich.
+2025-01-20 11:57:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:57:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:57:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:57:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:57:19 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:57:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:57:19 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 11:57:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 11:57:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 11:57:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 11:57:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 11:57:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 11:57:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 11:57:52 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 11:57:56 [JavaFX Application Thread] ERROR c.e.styleslick.rules.ArticleRules - Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: For input string: "2,44" ENDE.
+
+java.lang.NumberFormatException: For input string: "2,44"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotValidPurchasePrice(ArticleRules.java:84)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotAllowedToAddArticle(ArticleRules.java:35)
+	at com.example.styleslick/com.example.styleslick.service.ArticleService.addArticle(ArticleService.java:51)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.executeAddArticle(ArticleManagementMenuController.java:144)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.onMouseClickedAddArticle(ArticleManagementMenuController.java:341)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 11:58:02 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 11:58:02 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START addArticle()
+2025-01-20 11:58:02 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: INSERT INTO article (purchased_from, amount, category_id, color, price, name, purchase_date, manufacturer, quality, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-01-20 11:58:02 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.
+2025-01-20 11:58:03 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 11:58:03 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 11:58:03 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeAddArticle() erfolgreich.
+2025-01-20 11:58:06 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:58:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:58:06 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:58:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:58:06 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:58:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:58:06 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 11:58:08 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 11:58:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 11:58:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 11:58:08 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 11:58:08 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 11:58:08 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 11:58:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:58:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:58:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:58:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:58:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:58:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:58:09 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 11:58:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:58:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:58:10 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:58:10 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:58:13 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getAllInvoices()
+2025-01-20 11:58:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 11:58:15 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:58:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:58:15 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:58:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:58:15 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:58:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:59:20 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 11:59:21 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:59:21 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:59:21 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:59:21 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 11:59:21 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 11:59:21 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 11:59:22 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 11:59:22 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 11:59:37 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 11:59:39 [JavaFX Application Thread] ERROR c.e.styleslick.rules.ArticleRules - Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: For input string: "232,55" ENDE.
+
+java.lang.NumberFormatException: For input string: "232,55"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotValidPurchasePrice(ArticleRules.java:84)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotAllowedToAddArticle(ArticleRules.java:35)
+	at com.example.styleslick/com.example.styleslick.service.ArticleService.addArticle(ArticleService.java:51)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.executeAddArticle(ArticleManagementMenuController.java:144)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.onMouseClickedAddArticle(ArticleManagementMenuController.java:341)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 11:59:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 11:59:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 11:59:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 11:59:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 11:59:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 11:59:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 11:59:40 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:02:04 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 12:02:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 12:02:05 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:02:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:02:05 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:02:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:02:05 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:02:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:02:07 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:02:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:02:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:02:07 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:02:07 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:02:07 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:02:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:02:21 [JavaFX Application Thread] ERROR c.e.styleslick.rules.ArticleRules - Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: For input string: "22,44" ENDE.
+
+java.lang.NumberFormatException: For input string: "22,44"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotValidPurchasePrice(ArticleRules.java:84)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotAllowedToAddArticle(ArticleRules.java:35)
+	at com.example.styleslick/com.example.styleslick.service.ArticleService.addArticle(ArticleService.java:51)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.executeAddArticle(ArticleManagementMenuController.java:144)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.onMouseClickedAddArticle(ArticleManagementMenuController.java:341)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 12:03:42 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 12:03:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 12:03:43 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:03:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:03:43 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:03:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:03:43 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:03:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:03:44 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:03:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:03:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:03:44 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:03:44 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:03:44 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:03:53 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:03:53 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START addArticle()
+2025-01-20 12:03:53 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: INSERT INTO article (purchased_from, amount, category_id, color, price, name, purchase_date, manufacturer, quality, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-01-20 12:03:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.
+2025-01-20 12:03:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:03:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:03:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeAddArticle() erfolgreich.
+2025-01-20 12:04:07 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:04:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:04:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:04:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:04:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:04:09 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:04:09 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:04:09 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:04:44 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 12:04:45 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 12:04:45 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:04:45 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:04:45 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:04:45 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:04:45 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:04:45 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:04:46 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:04:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:04:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:04:46 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:04:46 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:04:46 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:04:57 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:05:02 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:05:05 [JavaFX Application Thread] ERROR c.e.styleslick.rules.ArticleRules - Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: For input string: "w" ENDE.
+
+java.lang.NumberFormatException: For input string: "w"
+	at java.base/jdk.internal.math.FloatingDecimal.readJavaFormatString(FloatingDecimal.java:2054)
+	at java.base/jdk.internal.math.FloatingDecimal.parseDouble(FloatingDecimal.java:110)
+	at java.base/java.lang.Double.parseDouble(Double.java:938)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotValidPurchasePrice(ArticleRules.java:84)
+	at com.example.styleslick/com.example.styleslick.rules.ArticleRules.isNotAllowedToAddArticle(ArticleRules.java:35)
+	at com.example.styleslick/com.example.styleslick.service.ArticleService.addArticle(ArticleService.java:55)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.executeAddArticle(ArticleManagementMenuController.java:144)
+	at com.example.styleslick/com.example.styleslick.controller.ArticleManagementMenuController.onMouseClickedAddArticle(ArticleManagementMenuController.java:341)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at com.sun.javafx.reflect.Trampoline.invoke(MethodUtil.java:72)
+	at java.base/jdk.internal.reflect.DirectMethodHandleAccessor.invoke(DirectMethodHandleAccessor.java:103)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:580)
+	at javafx.base@22.0.1/com.sun.javafx.reflect.MethodUtil.invoke(MethodUtil.java:270)
+	at javafx.fxml@22.0.1/com.sun.javafx.fxml.MethodHelper.invoke(MethodHelper.java:84)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$MethodHandler.invoke(FXMLLoader.java:1858)
+	at javafx.fxml@22.0.1/javafx.fxml.FXMLLoader$ControllerMethodEventHandler.handle(FXMLLoader.java:1731)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventHandler.dispatchBubblingEvent(CompositeEventHandler.java:86)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:232)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventHandlerManager.dispatchBubblingEvent(EventHandlerManager.java:189)
+	at javafx.base@22.0.1/com.sun.javafx.event.CompositeEventDispatcher.dispatchBubblingEvent(CompositeEventDispatcher.java:59)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:58)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.BasicEventDispatcher.dispatchEvent(BasicEventDispatcher.java:56)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventDispatchChainImpl.dispatchEvent(EventDispatchChainImpl.java:114)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEventImpl(EventUtil.java:74)
+	at javafx.base@22.0.1/com.sun.javafx.event.EventUtil.fireEvent(EventUtil.java:54)
+	at javafx.base@22.0.1/javafx.event.Event.fireEvent(Event.java:198)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ClickGenerator.postProcess(Scene.java:3689)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$MouseHandler.process(Scene.java:3994)
+	at javafx.graphics@22.0.1/javafx.scene.Scene.processMouseEvent(Scene.java:1891)
+	at javafx.graphics@22.0.1/javafx.scene.Scene$ScenePeerListener.mouseEvent(Scene.java:2709)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:411)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler$MouseEventNotification.run(GlassViewEventHandler.java:301)
+	at java.base/java.security.AccessController.doPrivileged(AccessController.java:400)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.lambda$handleMouseEvent$2(GlassViewEventHandler.java:450)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.QuantumToolkit.runWithoutRenderLock(QuantumToolkit.java:430)
+	at javafx.graphics@22.0.1/com.sun.javafx.tk.quantum.GlassViewEventHandler.handleMouseEvent(GlassViewEventHandler.java:449)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.handleMouseEvent(View.java:551)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.View.notifyMouse(View.java:937)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication._runLoop(Native Method)
+	at javafx.graphics@22.0.1/com.sun.glass.ui.win.WinApplication.lambda$runLoop$3(WinApplication.java:184)
+	at java.base/java.lang.Thread.run(Thread.java:1570)
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START addArticle()
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: INSERT INTO article (purchased_from, amount, category_id, color, price, name, purchase_date, manufacturer, quality, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-01-20 12:05:11 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:11 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeAddArticle() erfolgreich.
+2025-01-20 12:05:16 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeUpdateArticle().
+2025-01-20 12:05:17 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START updateArticle()
+2025-01-20 12:05:17 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: UPDATE article SET price = ? WHERE article_id = ?
+2025-01-20 12:05:17 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE updateArticle() Der Artikel wurde erfolgreich in der Datenbank bearbeitet.
+2025-01-20 12:05:18 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:18 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:18 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeUpdateArticle() erfolgreich.
+2025-01-20 12:05:20 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:20 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:20 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:20 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:20 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:05:23 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:05:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:05:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:05:23 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:23 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:23 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:05:30 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:30 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:30 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:30 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:30 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:30 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:30 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:05:31 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START initialize().
+2025-01-20 12:05:31 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - 
+
+START executeShowAllCustomers().
+2025-01-20 12:05:31 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE executeShowAllCustomers().
+2025-01-20 12:05:31 [JavaFX Application Thread] DEBUG c.e.s.c.CustomerManagementController - ENDE initialize() erfolgreich.
+2025-01-20 12:05:34 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:34 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:34 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:34 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 12:05:39 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START isConnected()
+2025-01-20 12:05:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 12:05:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:40 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:41 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:05:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:05:41 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:05:41 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:41 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:41 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:05:43 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeDeleteArticle.
+2025-01-20 12:05:44 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START deleteArticle().
+2025-01-20 12:05:44 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: DELETE FROM article WHERE article_id = ?
+2025-01-20 12:05:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.
+2025-01-20 12:05:45 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:45 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:45 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeDeleteArticle() erfolgreich.
+2025-01-20 12:05:46 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:46 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:46 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:46 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:05:47 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:05:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:05:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:05:47 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:47 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:47 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:05:52 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeDeleteArticle.
+2025-01-20 12:05:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START deleteArticle().
+2025-01-20 12:05:52 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: DELETE FROM article WHERE article_id = ?
+2025-01-20 12:05:52 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.
+2025-01-20 12:05:53 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:53 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:53 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeDeleteArticle() erfolgreich.
+2025-01-20 12:05:54 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:54 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:54 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:54 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:05:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:05:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:05:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:05:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:55 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:05:56 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeDeleteArticle.
+2025-01-20 12:05:57 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START deleteArticle().
+2025-01-20 12:05:57 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: DELETE FROM article WHERE article_id = ?
+2025-01-20 12:05:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeDeleteArticle() erfolgreich.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:05:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:05:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:05:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:05:58 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:06:00 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:06:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:06:00 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:06:00 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:06:00 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:06:00 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:06:11 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeAddArticle().
+2025-01-20 12:06:11 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START addArticle()
+2025-01-20 12:06:11 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: INSERT INTO article (purchased_from, amount, category_id, color, price, name, purchase_date, manufacturer, quality, stock) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+2025-01-20 12:06:11 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.
+2025-01-20 12:06:12 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:06:12 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:06:12 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeAddArticle() erfolgreich.
+2025-01-20 12:06:13 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:06:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:06:13 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:06:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:06:13 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:06:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:06:13 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
+2025-01-20 12:06:15 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START initialize().
+2025-01-20 12:06:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 12:06:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 12:06:15 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:06:15 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:06:15 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE initialize() erfolgreich.
+2025-01-20 12:06:21 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeUpdateArticle().
+2025-01-20 12:06:22 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START updateArticle()
+2025-01-20 12:06:22 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - SQL Query: UPDATE article SET price = ? WHERE article_id = ?
+2025-01-20 12:06:22 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE updateArticle() Der Artikel wurde erfolgreich in der Datenbank bearbeitet.
+2025-01-20 12:06:22 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - 
+
+START executeShowAllArticles().
+2025-01-20 12:06:22 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeShowAllArticles() erfolgreich.
+2025-01-20 12:06:22 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - ENDE executeUpdateArticle() erfolgreich.
+2025-01-20 12:06:23 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - 
+
+START getTotalSales()
+2025-01-20 12:06:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 12:06:23 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalExpenditure()
+2025-01-20 12:06:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 12:06:23 [JavaFX Application Thread] DEBUG c.example.styleslick.model.Database - START getTotalProfit()
+2025-01-20 12:06:23 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 12:06:23 [JavaFX Application Thread] DEBUG c.e.s.c.ArticleManagementMenuController - BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------
+
+
