@@ -40,31 +40,68 @@ public class InvoiceService {
         return database.getAllInvoices();
     }
 
-    public boolean addInvoice(Map<String, String> fields) {
-        Map<String, String> filledFields = new HashMap<>();
+    public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
+        Map<String, String> filledInvoiceFields = new HashMap<>();
+        Map<String, String> filledItemFields = new HashMap<>();
 
-        for (Map.Entry<String, String> entry : fields.entrySet()) {
+        for (Map.Entry<String, String> entry : invoiceFields.entrySet()) {
             if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
                 continue;
             }
 
-            filledFields.put(entry.getKey(), entry.getValue());
+            filledInvoiceFields.put(entry.getKey(), entry.getValue());
         }
 
+        for (Map.Entry<String, String> entry : itemFields.entrySet()) {
+            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+                continue;
+            }
 
-        if (filledFields.containsKey("shipping_cost")) {
-            filledFields.replace("shipping_cost", filledFields.get("shipping_cost").replace(",", "."));
+            filledItemFields.put(entry.getKey(), entry.getValue());
         }
 
-        if (filledFields.containsKey("payment_amount")) {
-            filledFields.replace("payment_amount", filledFields.get("payment_amount").replace(",", "."));
-        }
-
-        if (invoiceRules.isNotAllowedToAddInvoice(filledFields)) {
+        if (invoiceRules.isNotAllowedToAddItemToInvoice(filledItemFields)) {
             return false;
         }
 
+        if (filledInvoiceFields.containsKey("shipping_cost")) {
+            filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
+        }
+
+        if (filledInvoiceFields.containsKey("payment_amount")) {
+            filledInvoiceFields.replace("payment_amount", filledInvoiceFields.get("payment_amount").replace(",", "."));
+        }
+
+
+        if (invoiceRules.isNotAllowedToAddInvoice(filledInvoiceFields)) {
+            return false;
+        }
+
+        if (addInvoiceItem(filledItemFields, database.addInvoice(filledInvoiceFields))) {
+            return true;
+        }
+
+
         AlertService.showConfirmAlert("Bestellung wurde erfolgreich aufgenommen.");
+        return true;
+    }
+
+
+    public boolean addInvoiceItem(Map<String, String> itemFields, int invoice_id) {
+        Map<String, String> filledItemFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : itemFields.entrySet()) {
+            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+                continue;
+            }
+            filledItemFields.put(entry.getKey(), entry.getValue());
+        }
+
+        if (invoiceRules.isNotAllowedToAddItemToInvoice(itemFields)) {
+            return false;
+        }
+
+
         return true;
     }
 

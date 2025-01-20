@@ -235,23 +235,30 @@ public class InvoiceManagementController implements Initializable {
 
 
     private void executeAddInvoice() {
-        Map<String, String> fields = new HashMap<>();
+        Map<String, String> invoiceFields = new HashMap<>();
+        Map<String, String> itemFields = new HashMap<>();
+
 
         if (datePicker_purchase_date.getValue() == null) {
             AlertService.showErrorAlert("Bestelldatum darf nicht leer sein.");
             return;
         }
 
-        fields.put("customer_id", field_customerID.getText());
-        fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
-        fields.put("payment_method", field_payment_method.getText());
-        fields.put("transaction_number", field_transaction_number.getText());
-        fields.put("payment_amount", field_payment_amount.getText());
-        fields.put("shipping_method", field_shipping_method.getText());
-        fields.put("shipping_receipt", field_shipping_receipt.getText());
-        fields.put("shipping_cost", field_shipping_cost.getText());
+        invoiceFields.put("customer_id", field_customerID.getText());
+        invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
+        invoiceFields.put("payment_method", field_payment_method.getText());
+        invoiceFields.put("transaction_number", field_transaction_number.getText());
+        invoiceFields.put("payment_amount", field_payment_amount.getText());
+        invoiceFields.put("shipping_method", field_shipping_method.getText());
+        invoiceFields.put("shipping_receipt", field_shipping_receipt.getText());
+        invoiceFields.put("shipping_cost", field_shipping_cost.getText());
 
-        if (!invoiceService.addInvoice(fields)) {
+        itemFields.put("article_id", field_articleID.getText());
+        itemFields.put("amount", field_amount.getText());
+
+
+
+        if (!invoiceService.addInvoice(invoiceFields, itemFields)) {
             return;
         }
 

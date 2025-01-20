@@ -41,6 +41,30 @@ public class InvoiceRules {
         return false;
     }
 
+    public boolean isNotAllowedToAddItemToInvoice(Map<String, String> filledFields) {
+
+        if (filledFields.isEmpty()) {
+            AlertService.showErrorAlert("Geben Sie bitte Artikel-Nr und die Menge an.");
+            return true;
+        }
+
+        if (!filledFields.containsKey("article_id")) {
+            AlertService.showErrorAlert("Bitte geben Sie die Artikel-Nr ein.");
+            return true;
+        }
+
+        if (!filledFields.containsKey("amount")) {
+            AlertService.showErrorAlert("Bitte geben Sie die Menge der Bestellten Artikel an.");
+            return true;
+        }
+
+        if (isNotValidAmount(filledFields)) {
+            return true;
+        }
+
+        return false;
+    }
+
     private boolean isNotValidAmount(Map<String, String> filledFields) {
         if (!filledFields.get("amount").matches("\\d+")) {
             AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
