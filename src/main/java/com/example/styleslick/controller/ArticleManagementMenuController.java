@@ -121,12 +121,12 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
-            AlertService.showErrorAlert("Kaufdatum darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kaufdatum darf nicht leer sein.");
             return;
         }
 
         if (choiceBox_category_id.getValue() == null) {
-            AlertService.showErrorAlert("Kategorie darf nicht Leer sein.");
+            AlertService.showErrorAlert("Kategorie darf nicht leer sein.");
             return;
         }
 

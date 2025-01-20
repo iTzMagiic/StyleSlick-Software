@@ -61,6 +61,8 @@ public class LoggedInManagementController implements Initializable {
     @FXML
     private void executeInvoiceManagement() {
         InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+        ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
         SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
     }
 

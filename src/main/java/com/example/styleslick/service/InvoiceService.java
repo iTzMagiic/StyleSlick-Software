@@ -3,7 +3,9 @@ package com.example.styleslick.service;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.model.Invoice;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 public class InvoiceService {
 
@@ -34,6 +36,21 @@ public class InvoiceService {
 
     public List<Invoice> getAllInvoices() {
         return database.getAllInvoices();
+    }
+
+    public boolean addInvoice(Map<String, String> fields) {
+        Map<String, String> filledFields = new HashMap<String, String>();
+
+        for (Map.Entry<String, String> entry : fields.entrySet()) {
+            if (entry.getValue() == null || !entry.getValue().trim().isEmpty()) {
+                continue;
+            }
+
+            filledFields.put(entry.getKey(), entry.getValue());
+        }
+
+        System.out.println("test");
+        return true;
     }
 
 

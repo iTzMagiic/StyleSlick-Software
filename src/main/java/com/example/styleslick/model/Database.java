@@ -166,6 +166,33 @@ public class Database {
     }
 
 
+    public int getCustomerID(String customer_number) {
+        logger.debug("START getCustomerID().");
+
+        String sqlQuery = "SELECT customer_id FROM customer WHERE customer_number = ?";
+        logger.debug("SQL Query: {}", sqlQuery);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+
+            preparedStatement.setString(1, customer_number);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getCustomerID erfolgreich.");
+                    return resultSet.getInt("customer_id");
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR getCustomerID() FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN getCustomerID() fehlgeschlagen es konnte kein Kunde mit der Kunden-Nr gefunden werden.");
+        return -1;
+    }
+
+
     public boolean isUsernameExist(String username) {
         String sql = "SELECT username FROM customer WHERE username = ?";
 
@@ -679,8 +706,10 @@ public class Database {
 
     public boolean deleteArticle(int articleID) {
         logger.debug("START deleteArticle().");
+
         String sql = "DELETE FROM article WHERE article_id = ?";
         logger.debug("SQL Query: {}", sql);
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -747,10 +776,16 @@ public class Database {
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 if (entry.getKey().equals("customerID")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+
                 } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+
+                } else if (entry.getKey().equals("customer_number")) {
+                    preparedStatement.setInt(index++, getCustomerID(entry.getValue()));
+
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }

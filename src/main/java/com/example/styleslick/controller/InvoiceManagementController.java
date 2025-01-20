@@ -3,10 +3,7 @@ package com.example.styleslick.controller;
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Invoice;
-import com.example.styleslick.service.ArticleService;
-import com.example.styleslick.service.CategoryService;
-import com.example.styleslick.service.CustomerService;
-import com.example.styleslick.service.InvoiceService;
+import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -22,6 +19,8 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
+import java.util.HashMap;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InvoiceManagementController implements Initializable {
@@ -192,7 +191,6 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
-    @FXML
     private void executeShowAllArticles() {
         tableView_articles.setVisible(true);
         tableView_customers.setVisible(false);
@@ -216,7 +214,6 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
-    @FXML
     private void executeShowAllInvoices() {
         tableView_invoices.setVisible(true);
         tableView_articles.setVisible(false);
@@ -237,15 +234,44 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
-    @FXML
-    private void executeExitInvoiceManagement(){
+    private void executeAddInvoice() {
+        Map<String, String> fields = new HashMap<>();
+
+        if (datePicker_purchase_date.getValue() == null) {
+            AlertService.showErrorAlert("Bestelldatum darf nicht leer sein.");
+            return;
+        }
+
+        fields.put("customer_id", field_customerID.getText());
+        fields.put("purchase_date", datePicker_purchase_date.getValue().toString());
+        fields.put("payment_method", field_payment_method.getText());
+        fields.put("transaction_number", field_transaction_number.getText());
+        fields.put("payment_amount", field_payment_amount.getText());
+        fields.put("shipping_method", field_shipping_method.getText());
+        fields.put("shipping_receipt", field_shipping_receipt.getText());
+        fields.put("shipping_cost", field_shipping_cost.getText());
+
+        if (!invoiceService.addInvoice(fields)) {
+            return;
+        }
+
+        field_customerID.clear();
+        datePicker_purchase_date.setValue(null);
+        field_payment_method.clear();
+        field_transaction_number.clear();
+        field_payment_amount.clear();
+        field_shipping_method.clear();
+        field_shipping_receipt.clear();
+        field_shipping_cost.clear();
+    }
+
+
+    private void executeExitInvoiceManagement() {
         articleService.clearSession();
         customerService.clearSession();
         invoiceService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
-
-
 
 
     @FXML
@@ -270,11 +296,20 @@ public class InvoiceManagementController implements Initializable {
     }
 
     @FXML
-    private void onKeyPressedEnterExitInvoiceManagement(KeyEvent event){
-        if(event.getCode().toString().equals("ENTER")){
+    private void onKeyPressedEnterAddInvoice(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeAddInvoice();
+        }
+    }
+
+    @FXML
+    private void onKeyPressedEnterExitInvoiceManagement(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
             executeExitInvoiceManagement();
         }
     }
+
+
 
 
     @FXML
@@ -283,13 +318,22 @@ public class InvoiceManagementController implements Initializable {
     }
 
     @FXML
-    private void onMouseClickedShowAllCustomers(MouseEvent event) { executeShowAllCustomers(); }
+    private void onMouseClickedShowAllCustomers(MouseEvent event) {
+        executeShowAllCustomers();
+    }
 
     @FXML
-    private void onMouseClickedShowAllArticles(MouseEvent event) { executeShowAllArticles(); }
+    private void onMouseClickedShowAllArticles(MouseEvent event) {
+        executeShowAllArticles();
+    }
 
     @FXML
-    private void onMouseClickedExitInvoiceManagement(MouseEvent event){
+    private void onMouseClickedAddInvoice(MouseEvent event) {
+        executeAddInvoice();
+    }
+
+    @FXML
+    private void onMouseClickedExitInvoiceManagement(MouseEvent event) {
         executeExitInvoiceManagement();
     }
 

@@ -54,12 +54,12 @@
                 </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
-                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllInvoices" onMouseClicked="#onMouseClickedShowAllInvoices" text="Bestellung anzeigen">
+                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" text="Bestellung anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Bestellung Speichern">
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddInvoice" onMouseClicked="#onMouseClickedAddInvoice" text="Bestellung Speichern">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
