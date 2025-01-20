@@ -365,7 +365,7 @@ public class Database {
 
 
     public List<Category> getAllCategories() {
-        logger.info("START getAllCategories.");
+        logger.info("START getAllCategories().");
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
@@ -377,11 +377,13 @@ public class Database {
                     int id = resultSet.getInt("category_id");
                     listOfCategories.add(new Category(name, id));
                 }
+                logger.info("ENDE erfolgreich getAllCategories().");
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            logger.error("Fehlber beim abrufen der Kategorien. FEHELER: {}", e.getMessage(), e);
+            logger.error("Fehler beim abrufen der Kategorien. FEHLER: {}", e.getMessage(), e);
         }
+        logger.warn("WARN getAllCategories() fehler beim Laden der Kategorien.");
         return listOfCategories;
     }
 

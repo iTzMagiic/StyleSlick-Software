@@ -109,13 +109,7 @@ public class CategoryService {
 
 
     public List<Category> getAllCategories() {
-        List<Category> listOfCategories = database.getAllCategories();
-        if (listOfCategories == null || listOfCategories.isEmpty()) {
-            AlertService.showErrorAlert("Fehler beim Laden der Kategorien.");
-            return listOfCategories;
-        }
-
-        return listOfCategories;
+        return database.getAllCategories();
     }
 
 

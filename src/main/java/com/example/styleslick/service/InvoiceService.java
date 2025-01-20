@@ -1,6 +1,9 @@
 package com.example.styleslick.service;
 
 import com.example.styleslick.model.Database;
+import com.example.styleslick.model.Invoice;
+
+import java.util.List;
 
 public class InvoiceService {
 
@@ -27,6 +30,10 @@ public class InvoiceService {
 
     public Database getDatabase() {
         return database;
+    }
+
+    public List<Invoice> getAllInvoices() {
+        return database.getAllInvoices();
     }
 
 

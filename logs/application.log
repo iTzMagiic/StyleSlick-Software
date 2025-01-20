@@ -550,3 +550,202 @@ BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
 2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
 2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
 2025-01-17 10:35:59 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:23:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:23:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:23:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:23:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:23:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:23:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:23:54 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:23:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:23:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:23:57 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:23:57 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 08:23:58 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories.
+2025-01-20 08:24:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:24:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:24:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:24:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories.
+2025-01-20 08:24:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:24:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:24:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:24:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories.
+2025-01-20 08:27:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:27:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:27:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:27:32 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:27:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:27:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:28:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:28:01 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:28:10 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:28:10 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:28:10 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:28:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:28:12 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:28:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:28:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:28:15 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:28:16 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:28:16 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:28:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:28:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:28:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:28:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:28:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:29:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:29:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:29:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:29:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:29:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:29:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:29:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:29:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:29:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:29:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:29:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:29:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:29:51 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:30:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:36 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:30:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:30:38 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:30:39 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:39 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:39 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:30:40 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:42 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:53 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:53 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 08:30:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:30:55 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 08:30:56 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:30:56 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:30:56 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:33:02 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:33:02 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:33:02 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:33:02 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:33:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:33:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:33:04 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:33:04 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 08:33:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:33:05 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:33:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:33:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:33:06 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:33:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - START getAllCategories().
+2025-01-20 08:33:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich getAllCategories().
+2025-01-20 08:33:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:33:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:33:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:33:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:33:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:33:13 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:37:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:37:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:37:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:37:37 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 08:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:39:28 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 08:39:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 08:39:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 08:39:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:53:07 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:53:08 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:55:18 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:55:18 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:55:18 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:55:18 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:55:19 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:55:25 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:55:25 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:55:25 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:55:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:55:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:55:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:55:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:55:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:55:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:55:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:55:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:56:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:56:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:56:46 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:56:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:56:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:56:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:56:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:56:55 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:57:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:57:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:57:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:57:26 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:57:27 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:58:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:58:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:58:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:58:44 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:58:45 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:59:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE isConnected() erfolgreich.
+2025-01-20 09:59:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:59:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:59:33 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:59:34 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 09:59:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:59:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:59:43 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:59:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 09:59:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 09:59:47 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
+2025-01-20 09:59:47 [JavaFX Application Thread] INFO  c.e.s.c.CustomerManagementController - 
+
+BEENDET Benutzer hat CustomerManagementMenu Verlassen.--------------
+
+
+
+2025-01-20 09:59:48 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.
+2025-01-20 10:00:48 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE erfolgreich den Gesamtumsatz berechnet.
+2025-01-20 10:00:48 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalExpenditure() erfolgreich.
+2025-01-20 10:00:48 [JavaFX Application Thread] INFO  c.example.styleslick.model.Database - ENDE getTotalProfit() erfolgreich.
