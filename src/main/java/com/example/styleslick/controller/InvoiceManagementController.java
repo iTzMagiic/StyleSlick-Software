@@ -34,64 +34,65 @@ public class InvoiceManagementController implements Initializable {
     private CustomerService customerService;
 
     @FXML
-    private TableColumn<?, ?> column_articleID1;
+    private TableColumn<Article, Double> column_article_amount;
 
     @FXML
-    private TableColumn<?, ?> column_article_amount1;
+    private TableColumn<Article, Integer> column_article_articleID;
 
     @FXML
-    private TableColumn<?, ?> column_article_categoryID1;
+    private TableColumn<Article, Integer> column_article_categoryID;
 
     @FXML
-    private TableColumn<?, ?> column_article_color1;
+    private TableColumn<Article, String> column_article_color;
 
     @FXML
-    private TableColumn<?, ?> column_article_manufacturer1;
+    private TableColumn<Article, String> column_article_manufacturer;
 
     @FXML
-    private TableColumn<?, ?> column_article_name1;
+    private TableColumn<Article, String> column_article_name;
 
     @FXML
-    private TableColumn<?, ?> column_article_price1;
+    private TableColumn<Article, Double> column_article_price;
 
     @FXML
-    private TableColumn<?, ?> column_article_purchase_date11;
+    private TableColumn<Article, LocalDate> column_article_purchase_date;
 
     @FXML
-    private TableColumn<?, ?> column_article_purchased_from1;
+    private TableColumn<Article, String> column_article_purchased_from;
 
     @FXML
-    private TableColumn<?, ?> column_article_quality1;
+    private TableColumn<Article, String> column_article_quality;
 
     @FXML
-    private TableColumn<?, ?> column_article_stock1;
+    private TableColumn<Article, Integer> column_article_stock;
 
     @FXML
-    private TableColumn<?, ?> column_customer_city1;
+    private TableColumn<Customer, String> column_customer_city;
 
     @FXML
-    private TableColumn<?, ?> column_customer_country1;
+    private TableColumn<Customer, String> column_customer_country;
 
     @FXML
-    private TableColumn<?, ?> column_customer_first_name1;
+    private TableColumn<Customer, String> column_customer_first_name;
 
     @FXML
-    private TableColumn<?, ?> column_customer_last_name1;
+    private TableColumn<Customer, String> column_customer_last_name;
 
     @FXML
-    private TableColumn<?, ?> column_customer_number1;
+    private TableColumn<Customer, String> column_customer_number;
 
     @FXML
-    private TableColumn<?, ?> column_customer_postal_code1;
+    private TableColumn<Customer, String> column_customer_postal_code;
 
     @FXML
-    private TableColumn<?, ?> column_customer_purchased_from1;
+    private TableColumn<Customer, String> column_customer_purchased_from;
 
     @FXML
-    private TableColumn<?, ?> column_customer_street1;
+    private TableColumn<Customer, String> column_customer_street;
 
     @FXML
-    private TableColumn<?, ?> column_customer_username1;
+    private TableColumn<Customer, String> column_customer_username;
+
 
     @FXML
     private TableColumn<Invoice, Integer> column_invoice_customerID;
@@ -172,20 +173,22 @@ public class InvoiceManagementController implements Initializable {
 
 
     private void executeShowAllCustomers() {
-//        logger.debug("\n\nSTART executeShowAllCustomers().");
-//        column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-//        column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-//        column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-//        column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
-//        column_city.setCellValueFactory(new PropertyValueFactory<>("city"));
-//        column_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-//        column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
-//        column_customer_number.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
-//        column_country.setCellValueFactory(new PropertyValueFactory<>("country"));
-//
-//        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
-//        tableView_customer.setItems(observableList);
-//        logger.debug("ENDE executeShowAllCustomers().");
+        tableView_customer.setVisible(true);
+        tableView_invoice.setVisible(false);
+        tableView_article.setVisible(false);
+
+        column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+        column_customer_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+        column_customer_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+        column_customer_street.setCellValueFactory(new PropertyValueFactory<>("street"));
+        column_customer_city.setCellValueFactory(new PropertyValueFactory<>("city"));
+        column_customer_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+        column_customer_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
+        column_customer_number.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+        column_customer_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+
+        ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
+        tableView_customer.setItems(observableList);
     }
 
 
@@ -214,6 +217,7 @@ public class InvoiceManagementController implements Initializable {
     private void executeExitInvoiceManagement(){
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
+
 
 
 
