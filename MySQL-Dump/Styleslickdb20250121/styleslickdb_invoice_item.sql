@@ -16,17 +16,23 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `category`
+-- Table structure for table `invoice_item`
 --
 
-DROP TABLE IF EXISTS `category`;
+DROP TABLE IF EXISTS `invoice_item`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `category` (
-  `category_id` int NOT NULL AUTO_INCREMENT,
-  `name` varchar(50) NOT NULL,
-  PRIMARY KEY (`category_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=11 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `invoice_item` (
+  `ìnvoice_item_id` int NOT NULL AUTO_INCREMENT,
+  `ìnvoice_id` int NOT NULL,
+  `article_id` int NOT NULL,
+  `amount` int NOT NULL,
+  PRIMARY KEY (`ìnvoice_item_id`),
+  KEY `order_id` (`ìnvoice_id`),
+  KEY `article_id` (`article_id`),
+  CONSTRAINT `invoice_item_ibfk_1` FOREIGN KEY (`ìnvoice_id`) REFERENCES `invoice` (`invoice_id`),
+  CONSTRAINT `invoice_item_ibfk_2` FOREIGN KEY (`article_id`) REFERENCES `article` (`article_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -38,4 +44,4 @@ CREATE TABLE `category` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-15 21:33:55
+-- Dump completed on 2025-01-21 19:26:00
