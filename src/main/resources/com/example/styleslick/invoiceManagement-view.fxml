@@ -104,8 +104,8 @@
                </columnResizePolicy>
                <columns>
                   <TableColumn fx:id="column_invoice_number" prefWidth="75.0" text="Rechnung-Nr" />
-                  <TableColumn fx:id="column_invoice_customerID" prefWidth="40.0" text="Kunden-Nr" />
-                  <TableColumn fx:id="column_invoice_purchase_date" prefWidth="50.0" text="Kaufdatum" />
+                  <TableColumn fx:id="column_invoice_customerNumber" prefWidth="123.0" text="Kunden-Nr" />
+                  <TableColumn fx:id="column_invoice_purchase_date" prefWidth="105.0" text="Kaufdatum" />
                   <TableColumn fx:id="column_invoice_payment_method" prefWidth="50.0" text="Zahlungsmethode" />
                   <TableColumn fx:id="column_invoice_transaction_number" prefWidth="75.0" text="Transaktions-Nr" />
                   <TableColumn fx:id="column_invoice_payment_amount" prefWidth="40.0" text="Betrag" />
@@ -119,9 +119,9 @@
                   <TableView fx:constant="CONSTRAINED_RESIZE_POLICY" />
                </columnResizePolicy>
                <columns>
-                  <TableColumn fx:id="column_article_articleID" prefWidth="40.0" text="Artikel-Nr" />
-                  <TableColumn fx:id="column_article_categoryID" prefWidth="50.0" text="Kategorie ID" />
-                  <TableColumn fx:id="column_article_name" prefWidth="130.0" text="Name" />
+                  <TableColumn fx:id="column_article_articleID" prefWidth="74.0" text="Artikel-Nr" />
+                  <TableColumn fx:id="column_article_categoryID" prefWidth="146.0" text="Kategorie ID" />
+                  <TableColumn fx:id="column_article_name" prefWidth="196.0" text="Name" />
                   <TableColumn fx:id="column_article_color" prefWidth="75.0" text="Farbe" />
                   <TableColumn fx:id="column_article_price" prefWidth="75.0" text="Kaufpreis" />
                   <TableColumn fx:id="column_article_purchase_date" prefWidth="75.0" text="Kaufdatum" />

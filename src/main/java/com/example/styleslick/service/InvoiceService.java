@@ -15,9 +15,8 @@ public class InvoiceService {
     private Database database;
 
 
-
-    private InvoiceService() {}
-
+    private InvoiceService() {
+    }
 
 
     public static InvoiceService getInstance() {
@@ -32,13 +31,16 @@ public class InvoiceService {
         this.database = database;
     }
 
+
     public Database getDatabase() {
         return database;
     }
 
+
     public List<Invoice> getAllInvoices() {
         return database.getAllInvoices();
     }
+
 
     public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
         Map<String, String> filledInvoiceFields = new HashMap<>();
@@ -60,9 +62,15 @@ public class InvoiceService {
             filledItemFields.put(entry.getKey(), entry.getValue());
         }
 
+
         if (invoiceRules.isNotAllowedToAddItemToInvoice(filledItemFields)) {
             return false;
         }
+
+
+        //TODO:: "article_id" in filledItemFields muss geprüft werden ob es den auch wirklich in der Datenbank gibt
+
+
 
         if (filledInvoiceFields.containsKey("shipping_cost")) {
             filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
@@ -76,6 +84,17 @@ public class InvoiceService {
         if (invoiceRules.isNotAllowedToAddInvoice(filledInvoiceFields)) {
             return false;
         }
+
+        int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
+
+        if (stockOfArticle <= 0) {
+            AlertService.showErrorAlert("Der Bestand des Artikel ist " + stockOfArticle + ".");
+            return false;
+        } else if (stockOfArticle < Integer.parseInt(filledItemFields.get("amount"))) {
+            AlertService.showErrorAlert("Zu wenig Artikel im Bestand.");
+            return false;
+        }
+
 
         if (addInvoiceItem(filledItemFields, database.addInvoice(filledInvoiceFields))) {
             return true;

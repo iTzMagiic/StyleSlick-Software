@@ -27,7 +27,6 @@ public class InvoiceManagementController implements Initializable {
 
     private InvoiceService invoiceService;
     private ArticleService articleService;
-    private CategoryService categoryService;
     private CustomerService customerService;
 
     @FXML
@@ -92,7 +91,7 @@ public class InvoiceManagementController implements Initializable {
 
 
     @FXML
-    private TableColumn<Invoice, Integer> column_invoice_customerID;
+    private TableColumn<Invoice, Integer> column_invoice_customerNumber;
 
     @FXML
     private TableColumn<Invoice, String> column_invoice_number;
@@ -162,7 +161,6 @@ public class InvoiceManagementController implements Initializable {
     public void initialize(URL location, ResourceBundle resources) {
         invoiceService = InvoiceService.getInstance();
         articleService = ArticleService.getInstance();
-        categoryService = CategoryService.getInstance();
         customerService = CustomerService.getInstance();
 
         tableView_invoices.getSelectionModel().selectedItemProperty();
@@ -198,7 +196,7 @@ public class InvoiceManagementController implements Initializable {
 
 
         column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
-        column_article_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryID"));
+        column_article_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         column_article_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_article_color.setCellValueFactory(new PropertyValueFactory<>("color"));
         column_article_price.setCellValueFactory(new PropertyValueFactory<>("price"));
@@ -220,7 +218,7 @@ public class InvoiceManagementController implements Initializable {
         tableView_customers.setVisible(false);
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        column_invoice_customerID.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+        column_invoice_customerNumber.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
         column_invoice_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
         column_invoice_payment_method.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         column_invoice_transaction_number.setCellValueFactory(new PropertyValueFactory<>("transactionNumber"));

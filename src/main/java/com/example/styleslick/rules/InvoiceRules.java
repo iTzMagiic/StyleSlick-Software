@@ -33,13 +33,20 @@ public class InvoiceRules {
             return true;
         }
 
-        if (isNotValidPrice(filledFields)) {
+        if (isNotValidDouble(filledFields.get("payment_amount"))) {
+            AlertService.showErrorAlert("Bitte geben Sie ein gültigen Betrag ein.");
+            return true;
+        }
+
+        if (filledFields.containsKey("shipping_cost") && isNotValidDouble(filledFields.get("shipping_cost"))) {
+            AlertService.showErrorAlert("Bitte geben Sie ein gültigen Versandpreis an.");
             return true;
         }
 
 
         return false;
     }
+
 
     public boolean isNotAllowedToAddItemToInvoice(Map<String, String> filledFields) {
 
@@ -53,21 +60,28 @@ public class InvoiceRules {
             return true;
         }
 
+        if (isNotValidAmountOrArticleID(filledFields.get("article_id"))) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Artikel-Nr an.");
+            return true;
+        }
+
         if (!filledFields.containsKey("amount")) {
             AlertService.showErrorAlert("Bitte geben Sie die Menge der Bestellten Artikel an.");
             return true;
         }
 
-        if (isNotValidAmount(filledFields)) {
+        if (isNotValidAmountOrArticleID(filledFields.get("amount"))) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
             return true;
         }
+
 
         return false;
     }
 
-    private boolean isNotValidAmount(Map<String, String> filledFields) {
-        if (!filledFields.get("amount").matches("\\d+")) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+
+    private boolean isNotValidAmountOrArticleID(String input) {
+        if (!input.matches("[1-9]\\d+")) {
             return true;
         }
         return false;
@@ -78,27 +92,22 @@ public class InvoiceRules {
         return false;
     }
 
-    private boolean isNotValidPrice(Map<String, String> filledFields) {
 
-        if (filledFields.containsKey("shipping_cost")) {
-            try {
-                Double.parseDouble(filledFields.get("shipping_cost"));
-            } catch (NumberFormatException e) {
-                AlertService.showErrorAlert("Bitte geben Sie ein gültigen Versandpreis an.");
-                logger.error("ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Versandpreis angegeben. FEHLER: {} ", e.getMessage(), e);
+
+    private boolean isNotValidDouble(String input) {
+        try {
+            double inputDouble = Double.parseDouble(input);
+
+            if (inputDouble < 0) {
                 return true;
             }
+
+        } catch (NumberFormatException e) {
+            logger.error("ERROR isNotValidDouble() fehlgeschlagen Benutzer hat kein gültigen Wert angegeben der zum Double konvertiert werden konnte" +
+                    " angegeben. FEHLER: {} ", e.getMessage(), e);
+            return true;
         }
 
-        if (filledFields.containsKey("payment_amount")) {
-            try {
-                Double.parseDouble(filledFields.get("payment_amount"));
-            } catch (NumberFormatException e) {
-                AlertService.showErrorAlert("Bitte geben Sie ein gültigen Betrag ein.");
-                logger.error("ERROR isNotValidPrice() fehlgeschlagen Benutzer hat kein gültigen Betrag angegeben. FEHLER: {} ", e.getMessage(), e);
-                return true;
-            }
-        }
 
         return false;
     }

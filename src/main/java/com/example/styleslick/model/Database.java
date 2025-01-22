@@ -171,7 +171,7 @@ public class Database {
         String sql = "SELECT customer_number FROM customer WHERE customer_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, customerID);
 
@@ -445,7 +445,7 @@ public class Database {
         String sql = "SELECT name FROM category WHERE category_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, categoryID);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -755,6 +755,33 @@ public class Database {
 
         return listOfFoundetArticles;
     }
+
+
+    public int getStockOfArticle(int articleID) {
+        logger.debug("START getStockOfArticle()");
+        String sql = "SELECT stock FROM article WHERE article_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, articleID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getStockOfArticle() erfolgreich den Bestand aus der Datenbank exportiert.");
+                    return resultSet.getInt("stock");
+                } else {
+                    logger.warn("WARN getStockOfArticle() fehlgeschlagen, kein passender Artikel mit der ID gefunden.");
+                    return -110;
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getStockOfArticle() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            return -999;
+        }
+    }
+
+
 
 
     public boolean deleteArticle(int articleID) {
