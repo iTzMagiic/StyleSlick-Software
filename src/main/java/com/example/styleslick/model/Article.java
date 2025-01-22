@@ -6,6 +6,7 @@ public class Article {
 
     private final int articleID;
     private final int categoryID;
+    private final String categoryName;
     private final String name;
     private final String color;
     private final double price;
@@ -16,9 +17,10 @@ public class Article {
     private final int amount;
     private final int stock;
 
-    public Article(int articleID, int categoryID, String name, String color, double price, LocalDate purchase_date, String manufacturer, String purchased_from, String quality, int amount, int stock) {
+    public Article(int articleID, int categoryID, String categoryName, String name, String color, double price, LocalDate purchase_date, String manufacturer, String purchased_from, String quality, int amount, int stock) {
         this.articleID = articleID;
         this.categoryID = categoryID;
+        this.categoryName = categoryName;
         this.name = name;
         this.color = color;
         this.price = price;
@@ -36,6 +38,10 @@ public class Article {
 
     public int getCategoryID() {
         return categoryID;
+    }
+
+    public String getCategoryName() {
+        return categoryName;
     }
 
     public String getName() {

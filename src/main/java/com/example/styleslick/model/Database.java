@@ -185,7 +185,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR getCustomerNumber() fehlgeschlagen.");
+            logger.error("ERROR getCustomerNumber() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
             return "ERROR";
         }
     }
@@ -440,6 +440,30 @@ public class Database {
     }
 
 
+    public String getCategoryName(int categoryID) {
+        logger.debug("START getCategoryName().");
+        String sql = "SELECT name FROM category WHERE category_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            preparedStatement.setInt(1, categoryID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getCategoryName() erfolgreich den Kategorie Namen aus der Datenbank exportiert.");
+                    return resultSet.getString("name");
+                } else {
+                    logger.warn("WARN getCategoryName() fehlgeschlagen, es wurde kein Kategorie Name mit der ID gefunden.");
+                    return "NULL";
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getCategoryName() FEHLER: {}", e.getMessage(), e);
+            return "NULL";
+        }
+    }
+
+
     public boolean addCategory(Map<String, String> filledFields) {
         logger.info("Methode addCategory START.");
         String sql = "INSERT INTO category (";
@@ -540,6 +564,7 @@ public class Database {
                 while (resultSet.next()) {
                     int articleID = resultSet.getInt("article_id");
                     int categoryID = resultSet.getInt("category_id");
+                    String category_name = getCategoryName(categoryID);
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
                     double price = resultSet.getDouble("price");
@@ -549,7 +574,9 @@ public class Database {
                     String quality = resultSet.getString("quality");
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
-                    listOfArticle.add(new Article(articleID, categoryID, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+
+
+                    listOfArticle.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
             }
         } catch (SQLException e) {
@@ -707,6 +734,7 @@ public class Database {
                 while (resultSet.next()) {
                     int articleID = resultSet.getInt("article_id");
                     int categoryID = resultSet.getInt("category_id");
+                    String category_name = getCategoryName(categoryID);
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
                     double price = resultSet.getDouble("price");
@@ -717,7 +745,7 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-                    listOfFoundetArticles.add(new Article(articleID, categoryID, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfFoundetArticles.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
                 return listOfFoundetArticles;
             }

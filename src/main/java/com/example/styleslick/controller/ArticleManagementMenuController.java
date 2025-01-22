@@ -36,7 +36,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, Integer> column_articleID;
     @FXML
-    private TableColumn<Article, Integer> column_categoryID;
+    private TableColumn<Article, Integer> column_categoryName;
     @FXML
     private TableColumn<Article, String> column_name;
     @FXML
@@ -99,7 +99,7 @@ public class ArticleManagementMenuController implements Initializable {
         choiceBox_category_id.setValue(null);
 
         column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
-        column_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryID"));
+        column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
         column_price.setCellValueFactory(new PropertyValueFactory<>("price"));
