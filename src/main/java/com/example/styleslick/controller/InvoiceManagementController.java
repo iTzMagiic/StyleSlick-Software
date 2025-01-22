@@ -220,7 +220,7 @@ public class InvoiceManagementController implements Initializable {
         tableView_customers.setVisible(false);
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
-        column_invoice_customerID.setCellValueFactory(new PropertyValueFactory<>("customerID"));
+        column_invoice_customerID.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
         column_invoice_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchaseDate"));
         column_invoice_payment_method.setCellValueFactory(new PropertyValueFactory<>("paymentMethod"));
         column_invoice_transaction_number.setCellValueFactory(new PropertyValueFactory<>("transactionNumber"));

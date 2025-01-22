@@ -6,6 +6,7 @@ public class Invoice {
 
     private final int invoiceID;
     private final int customerID;
+    private final String customer_number;
     private final String invoice_number;
     private final LocalDate purchase_date;
     private final String payment_method;
@@ -15,11 +16,12 @@ public class Invoice {
     private final String shipping_receipt;
     private final String shipping_method;
 
-    public Invoice(int invoiceID, int customerID, String invoice_number, LocalDate purchase_date, String payment_method,
+    public Invoice(String customer_number, int invoiceID, int customerID, String invoice_number, LocalDate purchase_date, String payment_method,
                    String transaction_number, double payment_amount, double shipping_cost, String shipping_receipt,
                    String shipping_method) {
         this.invoiceID = invoiceID;
         this.customerID = customerID;
+        this.customer_number = customer_number;
         this.invoice_number = invoice_number;
         this.purchase_date = purchase_date;
         this.payment_method = payment_method;
@@ -36,6 +38,10 @@ public class Invoice {
 
     public int getCustomerID() {
         return customerID;
+    }
+
+    public String getCustomerNumber() {
+        return customer_number;
     }
 
     public String getInvoiceNumber() {

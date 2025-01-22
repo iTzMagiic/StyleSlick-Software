@@ -166,6 +166,31 @@ public class Database {
     }
 
 
+    public String getCustomerNumber(int customerID) {
+        logger.debug("START getCustomerNumber().");
+        String sql = "SELECT customer_number FROM customer WHERE customer_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, customerID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getCustomerNumber() erfolgreich Kunden-Nr aus der Datenbank exportiert.");
+                    return resultSet.getString("customer_number");
+                } else {
+                    logger.warn("WARN getCustomerNumber() fehlgeschlagen, es wurde kein Kunde mit der Kunden ID gefunden.");
+                    return "NULL";
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getCustomerNumber() fehlgeschlagen.");
+            return "ERROR";
+        }
+    }
+
+
     public int getCustomerID(String customer_number) {
         logger.debug("START getCustomerID().");
 
@@ -738,6 +763,7 @@ public class Database {
                 while (resultSet.next()) {
                     int invoiceID = resultSet.getInt("invoice_id");
                     int customerID = resultSet.getInt("customer_id");
+                    String customer_number = getCustomerNumber(customerID);
                     String invoice_number = resultSet.getString("invoice_number");
                     LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
                     String payment_method = resultSet.getString("payment_method");
@@ -747,7 +773,8 @@ public class Database {
                     String shipping_receipt = resultSet.getString("shipping_receipt");
                     String shipping_method = resultSet.getString("shipping_method");
 
-                    listOfInvoices.add(new Invoice(invoiceID, customerID, invoice_number, purchase_date, payment_method,
+
+                    listOfInvoices.add(new Invoice(customer_number, invoiceID, customerID, invoice_number, purchase_date, payment_method,
                             transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
                 }
 
