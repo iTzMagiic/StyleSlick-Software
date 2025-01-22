@@ -198,7 +198,7 @@ public class Database {
         logger.debug("SQL Query: {}", sqlQuery);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
 
             preparedStatement.setString(1, customer_number);
 
@@ -757,7 +757,7 @@ public class Database {
         List<Invoice> listOfInvoices = new ArrayList<>();
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
@@ -796,7 +796,7 @@ public class Database {
         logger.debug("Generierter SQL Query: {}", sqlQuery);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             int index = 1;
 
@@ -839,7 +839,6 @@ public class Database {
     }
 
 
-
     private String createInvoiceNumber() {
         logger.debug("START createInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden
@@ -870,10 +869,6 @@ public class Database {
         logger.warn("WARN createInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
         return "ERROR";
     }
-
-
-
-
 
 
     private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
