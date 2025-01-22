@@ -4,7 +4,6 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.stage.Stage;
-import javafx.stage.StageStyle;
 
 import java.io.IOException;
 
@@ -15,6 +14,7 @@ public class SceneManager {
     /**
      * Setzt die Hauptbühne (Stage) der Anwendung.
      * Diese Methode muss von der Main-Klasse aufgerufen werden, um den SceneManager mit der Haupt-Stage zu verbinden.
+     *
      * @param primaryStage Die Hauptbühne der Anwendung.
      */
     public static void setStage(Stage primaryStage) {
@@ -24,6 +24,7 @@ public class SceneManager {
 
     /**
      * Wechselt die Szene, indem die angegebene FXML-Datei geladen wird.
+     *
      * @param fxmlPath Der relative Pfad zur FXML-Datei (z. B. "/com/example/view/login-view.fxml").
      */
     public static void switchScene(String fxmlPath, String title) {
