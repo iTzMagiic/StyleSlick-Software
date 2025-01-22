@@ -42,6 +42,7 @@ public class InvoiceService {
     }
 
 
+    //TODO:: In der Methode muss noch eine Prüfung statt finden, ob der Angegebene Kunde auch Existiert.
     public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
         Map<String, String> filledInvoiceFields = new HashMap<>();
         Map<String, String> filledItemFields = new HashMap<>();
@@ -68,10 +69,6 @@ public class InvoiceService {
         }
 
 
-        //TODO:: "article_id" in filledItemFields muss geprüft werden ob es den auch wirklich in der Datenbank gibt
-
-
-
         if (filledInvoiceFields.containsKey("shipping_cost")) {
             filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
         }
@@ -87,25 +84,40 @@ public class InvoiceService {
 
         int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
 
+        if (stockOfArticle == -9999) {
+            AlertService.showErrorAlert("Es konnte kein Artikel mit der Artikel-Nr gefunden werden.");
+            return false;
+        }
+
         if (stockOfArticle <= 0) {
             AlertService.showErrorAlert("Der Bestand des Artikel ist " + stockOfArticle + ".");
             return false;
-        } else if (stockOfArticle < Integer.parseInt(filledItemFields.get("amount"))) {
+        }
+        if (stockOfArticle < Integer.parseInt(filledItemFields.get("amount"))) {
             AlertService.showErrorAlert("Zu wenig Artikel im Bestand.");
             return false;
         }
 
 
-        if (addInvoiceItem(filledItemFields, database.addInvoice(filledInvoiceFields))) {
-            return true;
+        int invoiceID = database.addInvoice(filledInvoiceFields);
+
+        if (invoiceID == -1) {
+            AlertService.showErrorAlert("Bestellung konnte nicht angelegt werden.");
+            return false;
         }
 
-
-        AlertService.showConfirmAlert("Bestellung wurde erfolgreich aufgenommen.");
-        return true;
+        if (database.addItemToInvoice(invoiceID, filledItemFields)) {
+            AlertService.showConfirmAlert("Bestellung wurde erfolgreich aufgenommen.");
+            return true;
+        } else {
+            AlertService.showErrorAlert("Bestellung wurde angelegt aber der Artikel konnte nicht in die Bestellung" +
+                    "hinzugefügt werden.");
+            return false;
+        }
     }
 
 
+    //TODO:: Methode muss noch benutzt werden.
     public boolean addInvoiceItem(Map<String, String> itemFields, int invoice_id) {
         Map<String, String> filledItemFields = new HashMap<>();
 
@@ -120,8 +132,30 @@ public class InvoiceService {
             return false;
         }
 
+        int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
 
-        return true;
+        if (stockOfArticle == -9999) {
+            AlertService.showErrorAlert("Es konnte kein Artikel mit der Artikel-Nr gefunden werden.");
+            return false;
+        }
+
+        if (stockOfArticle <= 0) {
+            AlertService.showErrorAlert("Der Bestand des Artikel ist " + stockOfArticle + ".");
+            return false;
+        }
+        if (stockOfArticle < Integer.parseInt(filledItemFields.get("amount"))) {
+            AlertService.showErrorAlert("Zu wenig Artikel im Bestand.");
+            return false;
+        }
+
+
+        if (database.addItemToInvoice(invoice_id, filledItemFields)) {
+            AlertService.showConfirmAlert("Der Artikel wurde erfolgreich der Bestellung hinzugefügt.");
+            return true;
+        } else {
+            AlertService.showErrorAlert("Der Artikel konnte nicht der Bestellung hinzugefügt werden.");
+            return false;
+        }
     }
 
 

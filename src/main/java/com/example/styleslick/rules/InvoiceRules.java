@@ -81,7 +81,7 @@ public class InvoiceRules {
 
 
     private boolean isNotValidAmountOrArticleID(String input) {
-        if (!input.matches("[1-9]\\d+")) {
+        if (!input.matches("[1-9]\\d*")) {
             return true;
         }
         return false;
@@ -91,7 +91,6 @@ public class InvoiceRules {
     private boolean isNotValidCustomerNumber(Map<String, String> filledFields) {
         return false;
     }
-
 
 
     private boolean isNotValidDouble(String input) {
@@ -107,7 +106,6 @@ public class InvoiceRules {
                     " angegeben. FEHLER: {} ", e.getMessage(), e);
             return true;
         }
-
 
         return false;
     }

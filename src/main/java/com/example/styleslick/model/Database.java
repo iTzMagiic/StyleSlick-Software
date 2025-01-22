@@ -275,7 +275,7 @@ public class Database {
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
                 preparedStatement.setString(index++, field.getValue());
             }
-            preparedStatement.setString(index, createCustomerNumber());
+            preparedStatement.setString(index, generateCustomerNumber());
             preparedStatement.executeUpdate();
             logger.info("ENDE addCustomer() erfolgreich.");
             return true;
@@ -288,8 +288,8 @@ public class Database {
     }
 
 
-    private String createCustomerNumber() {
-        logger.debug("START createCustomerNumber()");
+    private String generateCustomerNumber() {
+        logger.debug("START generateCustomerNumber()");
         // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
                 "FROM customer " +
@@ -305,14 +305,14 @@ public class Database {
 
                     // Generieren der Kundennummer: 'C' + Jahr + Nummer mit führenden Nullen
                     String customerNumber = "C" + java.time.Year.now() + String.format("%04d", new_customer_number);
-                    logger.info("ENDE createCustomerNumber() erfolgreich. Erstellte Kundennummer: {}", customerNumber);
+                    logger.info("ENDE generateCustomerNumber() erfolgreich. Erstellte Kundennummer: {}", customerNumber);
                     return customerNumber;
                 } else {
-                    logger.warn("WARN createCustomerNumber() Keine vorhandene Kundennummer für das aktuelle Jahr.");
+                    logger.warn("WARN generateCustomerNumber() Keine vorhandene Kundennummer für das aktuelle Jahr.");
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR createCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
+            logger.error("ERROR generateCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
         }
         return "ERROR";
     }
@@ -772,16 +772,14 @@ public class Database {
                     return resultSet.getInt("stock");
                 } else {
                     logger.warn("WARN getStockOfArticle() fehlgeschlagen, kein passender Artikel mit der ID gefunden.");
-                    return -110;
+                    return -9999;
                 }
             }
         } catch (SQLException e) {
             logger.error("ERROR getStockOfArticle() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
-            return -999;
+            return -9999;
         }
     }
-
-
 
 
     public boolean deleteArticle(int articleID) {
@@ -854,18 +852,17 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery, PreparedStatement.RETURN_GENERATED_KEYS)) {
 
             int index = 1;
+            int customerID = getCustomerID(filledFields.get("customer"));
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                if (entry.getKey().equals("customerID")) {
-                    preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
 
-                } else if (entry.getKey().equals("purchase_date")) {
+                if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
 
                 } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
 
-                } else if (entry.getKey().equals("customer_number")) {
+                } else if (entry.getKey().equals("customer_id")) {
                     preparedStatement.setInt(index++, getCustomerID(entry.getValue()));
 
                 } else {
@@ -873,8 +870,10 @@ public class Database {
                 }
             }
 
-            logger.info("SQL Query wurde erfolgreich ausgeführt.");
+            preparedStatement.setString(index, generateInvoiceNumber());
+
             preparedStatement.executeUpdate();
+            logger.info("SQL Query wurde erfolgreich ausgeführt.");
 
             try (ResultSet resultSet = preparedStatement.getGeneratedKeys()) {
                 if (resultSet.next()) {
@@ -893,9 +892,42 @@ public class Database {
         return -1;
     }
 
+    //TODO:: In der Methode muss noch eine Methode aufgerufen werden in der die Bestellten Artikel MINUS gerechnet werden
+    // DAMIT DER BESTAND AUCH STIMMT !!!
+    public boolean addItemToInvoice(int invoiceID, Map<String, String> filledFields) {
+        logger.debug("START addItemToInvoice().");
 
-    private String createInvoiceNumber() {
-        logger.debug("START createInvoiceNumber()");
+        String sql = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
+
+        logger.debug("Generated SQL Query: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, invoiceID);
+            preparedStatement.setInt(2, Integer.parseInt(filledFields.get("article_id")));
+            preparedStatement.setInt(3, Integer.parseInt(filledFields.get("amount")));
+
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE addItemToInvoice() erfolgreich Artikel der Bestellung hinzugefügt.");
+                return true;
+            } else {
+                logger.warn("WARN addItemToInvoice() fehlgeschlagen, Artikel konnte nicht der Bestellung " + invoiceID +
+                        " hinzugefügt werden.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR addItemToInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+        }
+        return false;
+    }
+
+
+    private String generateInvoiceNumber() {
+        logger.debug("START generateInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(invoice_number, 6) AS UNSIGNED)), 0) + 1 AS new_invoice_number " +
                 "FROM invoice " +
@@ -913,15 +945,15 @@ public class Database {
                     // Generieren der Rechnungsnummer: 'I' + Jahr + Nummer mit führenden Nullen
                     String invoiceNumber = "I" + java.time.Year.now() + String.format("%04d", new_invoice_number);
 
-                    logger.info("ENDE createInvoiceNumber() erfolgreich. Erstellte Bestell-Nr: {}", invoiceNumber);
+                    logger.info("ENDE generateInvoiceNumber() erfolgreich. Erstellte Bestell-Nr: {}", invoiceNumber);
                     return invoiceNumber;
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR createInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
+            logger.error("ERROR generateInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
         }
 
-        logger.warn("WARN createInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
+        logger.warn("WARN generateInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
         return "ERROR";
     }
 

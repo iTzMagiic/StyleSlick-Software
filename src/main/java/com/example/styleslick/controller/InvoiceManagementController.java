@@ -163,6 +163,10 @@ public class InvoiceManagementController implements Initializable {
         articleService = ArticleService.getInstance();
         customerService = CustomerService.getInstance();
 
+        /*
+        TODO:: Beim Auswählen von einem Kunden oder Artikel soll die Artikel-Nr oder Kunden-Nr automatisch in die
+            Textfelder eingefügt werden.
+         */
         tableView_invoices.getSelectionModel().selectedItemProperty();
 
         executeShowAllInvoices();
