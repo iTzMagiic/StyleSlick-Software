@@ -134,6 +134,9 @@ public class InvoiceManagementController implements Initializable {
     private TextField field_amount;
 
     @FXML
+    private TextField field_invoice_number;
+
+    @FXML
     private TextField field_articleID;
 
     @FXML
@@ -190,6 +193,7 @@ public class InvoiceManagementController implements Initializable {
         tableView_customers.setVisible(true);
         tableView_invoices.setVisible(false);
         tableView_articles.setVisible(false);
+        tableView_invoice_item.setVisible(false);
 
         column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_customer_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -210,6 +214,7 @@ public class InvoiceManagementController implements Initializable {
         tableView_articles.setVisible(true);
         tableView_customers.setVisible(false);
         tableView_invoices.setVisible(false);
+        tableView_invoice_item.setVisible(false);
 
 
         column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -233,6 +238,7 @@ public class InvoiceManagementController implements Initializable {
         tableView_invoices.setVisible(true);
         tableView_articles.setVisible(false);
         tableView_customers.setVisible(false);
+        tableView_invoice_item.setVisible(false);
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         column_invoice_customerNumber.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
@@ -262,6 +268,9 @@ public class InvoiceManagementController implements Initializable {
         tableView_customers.setVisible(false);
         tableView_invoices.setVisible(false);
         tableView_invoice_item.setVisible(true);
+
+        field_invoice_number.setText(selectedInvoice.getInvoiceNumber());
+        //TODO:: field_invoice_number darf solange man in executeShowInvoiceItems ist nicht geändert werden. KONSTANT
 
         column_invoice_item_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
         column_invoice_item_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));

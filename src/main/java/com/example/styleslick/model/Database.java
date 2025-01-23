@@ -926,6 +926,36 @@ public class Database {
     }
 
 
+    public List<InvoiceItem> getInvoiceItems(int invoice_id) {
+        logger.debug("START getInvoiceItems().");
+        List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
+        String sql = "SELECT i.*, a.name FROM invoice_item i INNER JOIN article a ON i.article_id = a.article_id WHERE " +
+                "invoice_id = ?";
+
+        logger.debug("SQL Query: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, invoice_id);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int articleID = resultSet.getInt("article_id");
+                    int amount = resultSet.getInt("amount");
+                    String articleName = resultSet.getString("name");
+
+                    listOfInvoiceItems.add(new InvoiceItem(articleID, amount, articleName));
+                }
+                logger.debug("getInvoiceItems() listOfInvoiceItems größe: {}", listOfInvoiceItems.size());
+                logger.info("ENDE getInvoiceItems erfolgreich.");
+                return listOfInvoiceItems;
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getInvoiceItems() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            return listOfInvoiceItems;
+        }
+    }
 
 
     private String generateInvoiceNumber() {

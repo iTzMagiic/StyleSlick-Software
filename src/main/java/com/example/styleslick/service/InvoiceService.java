@@ -164,6 +164,12 @@ public class InvoiceService {
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
 
+        listOfInvoiceItems = database.getInvoiceItems(invoice_id);
+
+        if (listOfInvoiceItems.isEmpty()) {
+            AlertService.showErrorAlert("Es wurden keine Bestellten Artikel gefunden.");
+        }
+
         return listOfInvoiceItems;
     }
 
