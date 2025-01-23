@@ -3,6 +3,7 @@ package com.example.styleslick.controller;
 import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Invoice;
+import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;
@@ -118,6 +119,15 @@ public class InvoiceManagementController implements Initializable {
     private TableColumn<Invoice, String> column_invoice_transaction_number;
 
     @FXML
+    private TableColumn<InvoiceItem, Integer> column_invoice_item_articleID;
+
+    @FXML
+    private TableColumn<InvoiceItem, Integer> column_invoice_item_amount;
+
+    @FXML
+    private TableColumn<InvoiceItem, Integer> column_invoice_item_articleName;
+
+    @FXML
     private DatePicker datePicker_purchase_date;
 
     @FXML
@@ -155,6 +165,9 @@ public class InvoiceManagementController implements Initializable {
 
     @FXML
     private TableView<Invoice> tableView_invoices;
+
+    @FXML
+    private TableView<InvoiceItem> tableView_invoice_item;
 
 
     @Override
@@ -236,6 +249,31 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
+    private void executeShowInvoiceItems() {
+
+        Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
+
+        if (selectedInvoice == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus der Bestellungstabelle aus.");
+            return;
+        }
+
+        tableView_articles.setVisible(false);
+        tableView_customers.setVisible(false);
+        tableView_invoices.setVisible(false);
+        tableView_invoice_item.setVisible(true);
+
+        column_invoice_item_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+        column_invoice_item_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+        column_invoice_item_articleName.setCellValueFactory(new PropertyValueFactory<>("articleName"));
+
+
+
+        ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID()));
+        tableView_invoice_item.setItems(observableList);
+    }
+
+
     private void executeAddInvoice() {
         Map<String, String> invoiceFields = new HashMap<>();
         Map<String, String> itemFields = new HashMap<>();
@@ -312,6 +350,13 @@ public class InvoiceManagementController implements Initializable {
     }
 
     @FXML
+    private void onKeyPressedEnterShowInvoiceItems(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowInvoiceItems();
+        }
+    }
+
+    @FXML
     private void onKeyPressedEnterExitInvoiceManagement(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             executeExitInvoiceManagement();
@@ -339,6 +384,11 @@ public class InvoiceManagementController implements Initializable {
     @FXML
     private void onMouseClickedAddInvoice(MouseEvent event) {
         executeAddInvoice();
+    }
+
+    @FXML
+    private void onMouseClickedShowInvoiceItems(MouseEvent event) {
+        executeShowInvoiceItems();
     }
 
     @FXML

@@ -926,6 +926,8 @@ public class Database {
     }
 
 
+
+
     private String generateInvoiceNumber() {
         logger.debug("START generateInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden

@@ -2,8 +2,10 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Database;
 import com.example.styleslick.model.Invoice;
+import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.rules.InvoiceRules;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -156,6 +158,13 @@ public class InvoiceService {
             AlertService.showErrorAlert("Der Artikel konnte nicht der Bestellung hinzugefügt werden.");
             return false;
         }
+    }
+
+
+    public List<InvoiceItem> getInvoiceItems(int invoice_id) {
+        List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
+
+        return listOfInvoiceItems;
     }
 
 
