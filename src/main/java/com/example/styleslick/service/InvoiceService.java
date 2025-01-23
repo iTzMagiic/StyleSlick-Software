@@ -162,7 +162,7 @@ public class InvoiceService {
 
 
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
-        List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
+        List<InvoiceItem> listOfInvoiceItems;
 
         listOfInvoiceItems = database.getInvoiceItems(invoice_id);
 

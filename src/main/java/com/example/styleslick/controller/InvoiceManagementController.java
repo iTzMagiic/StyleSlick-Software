@@ -190,10 +190,9 @@ public class InvoiceManagementController implements Initializable {
 
 
     private void executeShowAllCustomers() {
-        tableView_customers.setVisible(true);
-        tableView_invoices.setVisible(false);
-        tableView_articles.setVisible(false);
-        tableView_invoice_item.setVisible(false);
+        setInvoiceItemFieldsEditable(true);
+        setTableViewVisible("customers");
+
 
         column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_customer_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
@@ -211,10 +210,8 @@ public class InvoiceManagementController implements Initializable {
 
 
     private void executeShowAllArticles() {
-        tableView_articles.setVisible(true);
-        tableView_customers.setVisible(false);
-        tableView_invoices.setVisible(false);
-        tableView_invoice_item.setVisible(false);
+        setInvoiceItemFieldsEditable(true);
+        setTableViewVisible("articles");
 
 
         column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -235,10 +232,9 @@ public class InvoiceManagementController implements Initializable {
 
 
     private void executeShowAllInvoices() {
-        tableView_invoices.setVisible(true);
-        tableView_articles.setVisible(false);
-        tableView_customers.setVisible(false);
-        tableView_invoice_item.setVisible(false);
+        setInvoiceItemFieldsEditable(true);
+        setTableViewVisible("invoices");
+
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         column_invoice_customerNumber.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
@@ -263,19 +259,18 @@ public class InvoiceManagementController implements Initializable {
             AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus der Bestellungstabelle aus.");
             return;
         }
+        tableView_invoices.getSelectionModel().clearSelection();
 
-        tableView_articles.setVisible(false);
-        tableView_customers.setVisible(false);
-        tableView_invoices.setVisible(false);
-        tableView_invoice_item.setVisible(true);
+
+        setTableViewVisible("invoice_items");
+
 
         field_invoice_number.setText(selectedInvoice.getInvoiceNumber());
-        //TODO:: field_invoice_number darf solange man in executeShowInvoiceItems ist nicht geändert werden. KONSTANT
+        setInvoiceItemFieldsEditable(false);
 
         column_invoice_item_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
         column_invoice_item_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
         column_invoice_item_articleName.setCellValueFactory(new PropertyValueFactory<>("articleName"));
-
 
 
         ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID()));
@@ -304,7 +299,6 @@ public class InvoiceManagementController implements Initializable {
 
         itemFields.put("article_id", field_articleID.getText());
         itemFields.put("amount", field_amount.getText());
-
 
 
         if (!invoiceService.addInvoice(invoiceFields, itemFields)) {
@@ -373,8 +367,6 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
-
-
     @FXML
     private void onMouseClickedShowAllInvoices(MouseEvent event) {
         executeShowAllInvoices();
@@ -405,5 +397,48 @@ public class InvoiceManagementController implements Initializable {
         executeExitInvoiceManagement();
     }
 
+
+
+    private void setInvoiceItemFieldsEditable(boolean editable) {
+        field_invoice_number.setEditable(editable);
+        field_customerID.setEditable(editable);
+        field_payment_method.setEditable(editable);
+        field_transaction_number.setEditable(editable);
+        field_payment_amount.setEditable(editable);
+        datePicker_purchase_date.setEditable(editable);
+        field_shipping_method.setEditable(editable);
+        field_shipping_receipt.setEditable(editable);
+        field_shipping_cost.setEditable(editable);
+
+        if (editable == true) {
+            field_invoice_number.clear();
+        }
+    }
+
+
+    private void setTableViewVisible(String tableName) {
+        if (tableName.equals("invoices")) {
+            tableView_invoices.setVisible(true);
+            tableView_articles.setVisible(false);
+            tableView_customers.setVisible(false);
+            tableView_invoice_item.setVisible(false);
+        } else if (tableName.equals("invoice_items")) {
+            tableView_articles.setVisible(false);
+            tableView_customers.setVisible(false);
+            tableView_invoices.setVisible(false);
+            tableView_invoice_item.setVisible(true);
+        } else if (tableName.equals("customers")) {
+            tableView_customers.setVisible(true);
+            tableView_invoices.setVisible(false);
+            tableView_articles.setVisible(false);
+            tableView_invoice_item.setVisible(false);
+        } else if (tableName.equals("articles")) {
+            tableView_articles.setVisible(true);
+            tableView_customers.setVisible(false);
+            tableView_invoices.setVisible(false);
+            tableView_invoice_item.setVisible(false);
+        }
+
+    }
 
 }
