@@ -16,27 +16,25 @@
 /*!40111 SET @OLD_SQL_NOTES=@@SQL_NOTES, SQL_NOTES=0 */;
 
 --
--- Table structure for table `invoice`
+-- Table structure for table `customer`
 --
 
-DROP TABLE IF EXISTS `invoice`;
+DROP TABLE IF EXISTS `customer`;
 /*!40101 SET @saved_cs_client     = @@character_set_client */;
 /*!50503 SET character_set_client = utf8mb4 */;
-CREATE TABLE `invoice` (
-  `invoice_id` int NOT NULL AUTO_INCREMENT,
-  `customer_id` int NOT NULL,
-  `purchase_date` date NOT NULL,
-  `payment_method` varchar(30) NOT NULL,
-  `transaction_number` varchar(100) DEFAULT NULL,
-  `payment_amount` decimal(10,2) NOT NULL,
-  `shipping_cost` decimal(10,2) DEFAULT '0.00',
-  `shipping_receipt` varchar(50) DEFAULT NULL,
-  `shipping_method` varchar(50) DEFAULT NULL,
-  `invoice_number` varchar(30) NOT NULL,
-  PRIMARY KEY (`invoice_id`),
-  KEY `customer_id` (`customer_id`),
-  CONSTRAINT `invoice_ibfk_1` FOREIGN KEY (`customer_id`) REFERENCES `customer` (`customer_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=17 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+CREATE TABLE `customer` (
+  `customer_id` int NOT NULL AUTO_INCREMENT,
+  `first_name` varchar(50) DEFAULT NULL,
+  `last_name` varchar(50) DEFAULT NULL,
+  `username` varchar(20) NOT NULL,
+  `postal_code` varchar(10) DEFAULT NULL,
+  `street` varchar(255) DEFAULT NULL,
+  `purchased_from` varchar(50) NOT NULL,
+  `city` varchar(50) DEFAULT NULL,
+  `customer_number` varchar(12) NOT NULL,
+  `country` varchar(50) NOT NULL,
+  PRIMARY KEY (`customer_id`)
+) ENGINE=InnoDB AUTO_INCREMENT=20 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 /*!40103 SET TIME_ZONE=@OLD_TIME_ZONE */;
 
@@ -48,4 +46,4 @@ CREATE TABLE `invoice` (
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-01-21 19:26:00
+-- Dump completed on 2025-01-23 17:49:38
