@@ -140,7 +140,7 @@ public class InvoiceManagementController implements Initializable {
     private TextField field_articleID;
 
     @FXML
-    private TextField field_customerID;
+    private TextField field_customer_number;
 
     @FXML
     private TextField field_payment_amount;
@@ -288,7 +288,7 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        invoiceFields.put("customer_id", field_customerID.getText());
+        invoiceFields.put("customer_id", field_customer_number.getText());
         invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         invoiceFields.put("payment_method", field_payment_method.getText());
         invoiceFields.put("transaction_number", field_transaction_number.getText());
@@ -305,7 +305,7 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        field_customerID.clear();
+        field_customer_number.clear();
         datePicker_purchase_date.setValue(null);
         field_payment_method.clear();
         field_transaction_number.clear();
@@ -313,6 +313,28 @@ public class InvoiceManagementController implements Initializable {
         field_shipping_method.clear();
         field_shipping_receipt.clear();
         field_shipping_cost.clear();
+    }
+
+
+    private void executeAddItemToInvoice() {
+
+        if (field_invoice_number.getLength() == 0 && tableView_invoices.getSelectionModel().getSelectedItem() == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus der Bestellungstabelle oder tragen " +
+                    "Sie eine Rechnung-Nr ein.");
+            return;
+        }
+
+        Map<String, String> articleToAddToInvoice = new HashMap<>();
+
+        articleToAddToInvoice.put("article_id", field_articleID.getText());
+        articleToAddToInvoice.put("amount", field_amount.getText());
+
+
+        /*
+        TODO:: Prüfen ob die invoice_number Eingegeben wurde oder eine Bestellung selektiert wurde.
+            In invoiceService muss noch eine Methode addItemToInvoice(Map<> fields, String invoice_number) erstellt werden
+            falls invoice_number Eingegeben wurde und noch eine Methode in der Datenbank addItemToInvoice(Map<> fields, String invoice_number)
+         */
     }
 
 
@@ -360,6 +382,13 @@ public class InvoiceManagementController implements Initializable {
     }
 
     @FXML
+    private void onKeyPressedEnterAddItemToInvoice(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeAddItemToInvoice();
+        }
+    }
+
+    @FXML
     private void onKeyPressedEnterExitInvoiceManagement(KeyEvent event) {
         if (event.getCode().toString().equals("ENTER")) {
             executeExitInvoiceManagement();
@@ -393,6 +422,11 @@ public class InvoiceManagementController implements Initializable {
     }
 
     @FXML
+    private void onMouseClickedAddItemToInvoice(MouseEvent event) {
+        executeAddItemToInvoice();
+    }
+
+    @FXML
     private void onMouseClickedExitInvoiceManagement(MouseEvent event) {
         executeExitInvoiceManagement();
     }
@@ -401,7 +435,7 @@ public class InvoiceManagementController implements Initializable {
 
     private void setInvoiceItemFieldsEditable(boolean editable) {
         field_invoice_number.setEditable(editable);
-        field_customerID.setEditable(editable);
+        field_customer_number.setEditable(editable);
         field_payment_method.setEditable(editable);
         field_transaction_number.setEditable(editable);
         field_payment_amount.setEditable(editable);
@@ -410,7 +444,7 @@ public class InvoiceManagementController implements Initializable {
         field_shipping_receipt.setEditable(editable);
         field_shipping_cost.setEditable(editable);
 
-        if (editable == true) {
+        if (editable) {
             field_invoice_number.clear();
         }
     }

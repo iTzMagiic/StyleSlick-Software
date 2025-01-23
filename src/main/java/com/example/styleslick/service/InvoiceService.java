@@ -44,7 +44,6 @@ public class InvoiceService {
     }
 
 
-    //TODO:: In der Methode muss noch eine Prüfung statt finden, ob der Angegebene Kunde auch Existiert.
     public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
         Map<String, String> filledInvoiceFields = new HashMap<>();
         Map<String, String> filledItemFields = new HashMap<>();
@@ -84,6 +83,11 @@ public class InvoiceService {
             return false;
         }
 
+        if (database.getCustomerID(filledInvoiceFields.get("customer_id")) == -1) {
+            AlertService.showErrorAlert("Kunden-Nr existiert nicht.");
+            return false;
+        }
+
         int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
 
         if (stockOfArticle == -9999) {
@@ -99,6 +103,7 @@ public class InvoiceService {
             AlertService.showErrorAlert("Zu wenig Artikel im Bestand.");
             return false;
         }
+
 
 
         int invoiceID = database.addInvoice(filledInvoiceFields);

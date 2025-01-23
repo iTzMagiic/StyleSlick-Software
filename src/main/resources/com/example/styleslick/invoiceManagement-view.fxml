@@ -19,7 +19,7 @@
                 <HBox alignment="CENTER" prefHeight="93.0" prefWidth="1280.0" spacing="10.0">
                     <children>
                   <TextField fx:id="field_invoice_number" layoutX="245.0" layoutY="23.0" promptText="Rechnung-Nr" />
-                        <TextField fx:id="field_customerID" promptText="Kunden-Nr*" />
+                        <TextField fx:id="field_customer_number" promptText="Kunden-Nr*" />
                         <TextField fx:id="field_payment_method" promptText="Zahlungsmethode*" />
                   <TextField fx:id="field_transaction_number" layoutX="564.0" layoutY="31.0" promptText="Transaktions-Nr" />
                         <TextField fx:id="field_payment_amount" promptText="Betrag*" />
@@ -53,9 +53,9 @@
                   </Button>
                     </children>
                 </HBox>
-            <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
+            <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
-                  <Button layoutX="411.0" layoutY="12.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowInvoiceItems" onMouseClicked="#onMouseClickedShowInvoiceItems" text="Bestellung anzeigen">
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowInvoiceItems" onMouseClicked="#onMouseClickedShowInvoiceItems" text="Bestellung anzeigen">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
@@ -65,12 +65,26 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button layoutX="466.0" layoutY="10.0" mnemonicParsing="false" text="Bestellung bearbeiten">
+                  <Button mnemonicParsing="false" text="Bestellung bearbeiten">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
                   <Button mnemonicParsing="false" text="Bestellung Suchen">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+               </children>
+            </HBox>
+            <HBox alignment="CENTER" layoutX="10.0" layoutY="171.0" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
+               <children>
+                  <Button layoutX="386.0" layoutY="10.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddItemToInvoice" onMouseClicked="#onMouseClickedAddItemToInvoice" text="Artikel hinzufügen">
+                     <font>
+                        <Font name="System Bold" size="12.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="468.0" layoutY="10.0" mnemonicParsing="false" text="Artikel Löschen" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>
