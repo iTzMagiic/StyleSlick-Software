@@ -978,6 +978,33 @@ public class Database {
     }
 
 
+    public int getInvoiceID(String invoice_number) {
+        logger.debug("START getInvoiceID().");
+        String sql = "SELECT invoice_id FROM invoice WHERE invoice_number = ?";
+
+        logger.debug("SQL Query: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, invoice_number);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE getInvoiceID() erfolgreich.");
+                    return resultSet.getInt("invoice_id");
+                } else {
+                    logger.warn("WARN getInvoiceID() Es wurde keine Bestellung mit der invoice_number gefunden: {}", invoice_number);
+                    return -1;
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getInvoiceID() Fehler: {}", e.getMessage(), e);
+            return -1;
+        }
+    }
+
+
     private String generateInvoiceNumber() {
         logger.debug("START generateInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden

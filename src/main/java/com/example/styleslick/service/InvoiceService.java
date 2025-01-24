@@ -5,7 +5,6 @@ import com.example.styleslick.model.Invoice;
 import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.rules.InvoiceRules;
 
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -125,7 +124,7 @@ public class InvoiceService {
 
 
     //TODO:: Methode muss noch benutzt werden.
-    public boolean addInvoiceItem(Map<String, String> itemFields, int invoice_id) {
+    public boolean addItemToInvoiceWithInvoiceID(Map<String, String> itemFields, int invoice_id) {
         Map<String, String> filledItemFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : itemFields.entrySet()) {
@@ -157,12 +156,29 @@ public class InvoiceService {
 
 
         if (database.addItemToInvoice(invoice_id, filledItemFields)) {
-            AlertService.showConfirmAlert("Der Artikel wurde erfolgreich der Bestellung hinzugefügt.");
+            AlertService.showConfirmAlert("Der Artikel wurde erfolgreich hinzugefügt.");
             return true;
         } else {
-            AlertService.showErrorAlert("Der Artikel konnte nicht der Bestellung hinzugefügt werden.");
+            AlertService.showErrorAlert("Der Artikel konnte nicht zu der Bestellung hinzugefügt werden.");
             return false;
         }
+    }
+
+
+    public boolean addItemToInvoiceWithInvoiceNumber(Map<String, String> filledFields, String invoice_number) {
+
+        int invoiceID = database.getInvoiceID(invoice_number);
+
+        if (invoiceID == -1) {
+            AlertService.showErrorAlert("Es wurde keine Bestellung mit der Bestell-Nr: " + invoice_number + " gefunden.");
+            return false;
+        }
+
+        if (!addItemToInvoiceWithInvoiceID(filledFields, invoiceID)) {
+            return false;
+        }
+
+        return true;
     }
 
 

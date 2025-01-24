@@ -331,12 +331,19 @@ public class InvoiceManagementController implements Initializable {
         articleToAddToInvoice.put("article_id", field_articleID.getText());
         articleToAddToInvoice.put("amount", field_amount.getText());
 
-
-        /*
-        TODO:: Prüfen ob die invoice_number Eingegeben wurde oder eine Bestellung selektiert wurde.
-            In invoiceService muss noch eine Methode addItemToInvoice(Map<> fields, String invoice_number) erstellt werden
-            falls invoice_number Eingegeben wurde und noch eine Methode in der Datenbank addItemToInvoice(Map<> fields, String invoice_number)
-         */
+        if (tableView_invoices.getSelectionModel().getSelectedItem() != null) {
+            if (invoiceService.addItemToInvoiceWithInvoiceID(articleToAddToInvoice, tableView_invoices.getSelectionModel().getSelectedItem().getInvoiceID())) {
+                field_amount.clear();
+                field_articleID.clear();
+                tableView_invoices.getSelectionModel().clearSelection();
+            }
+        } else {
+            if (invoiceService.addItemToInvoiceWithInvoiceNumber(articleToAddToInvoice, field_invoice_number.getText())) {
+                field_amount.clear();
+                field_articleID.clear();
+                field_invoice_number.clear();
+            }
+        }
     }
 
 
