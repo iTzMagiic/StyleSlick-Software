@@ -892,36 +892,56 @@ public class Database {
         return -1;
     }
 
-    //TODO:: In der Methode muss noch eine Methode aufgerufen werden in der die Bestellten Artikel MINUS gerechnet werden
-    // DAMIT DER BESTAND AUCH STIMMT !!!
+
     public boolean addItemToInvoice(int invoiceID, Map<String, String> filledFields) {
         logger.debug("START addItemToInvoice().");
 
-        String sql = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
+        String sqlAddItemToInvoice = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
+        String sqlUpdateArticleStock = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
 
-        logger.debug("Generated SQL Query: {}", sql);
+        logger.debug("sqlAddItemToInvoice Query: {}", sqlAddItemToInvoice);
+        logger.debug("sqlUpdateArticleStock Query: {}", sqlAddItemToInvoice);
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            connection.setAutoCommit(false);
 
-            preparedStatement.setInt(1, invoiceID);
-            preparedStatement.setInt(2, Integer.parseInt(filledFields.get("article_id")));
-            preparedStatement.setInt(3, Integer.parseInt(filledFields.get("amount")));
+            try (PreparedStatement addItemToInvoicePreparedStatement = connection.prepareStatement(sqlAddItemToInvoice);
+                 PreparedStatement updatePreparedStatement = connection.prepareStatement(sqlUpdateArticleStock)) {
 
-            int result = preparedStatement.executeUpdate();
 
-            if (result == 1) {
-                logger.info("ENDE addItemToInvoice() erfolgreich Artikel der Bestellung hinzugefügt.");
-                return true;
-            } else {
-                logger.warn("WARN addItemToInvoice() fehlgeschlagen, Artikel konnte nicht der Bestellung " + invoiceID +
-                        " hinzugefügt werden.");
-                return false;
+                addItemToInvoicePreparedStatement.setInt(1, invoiceID);
+                addItemToInvoicePreparedStatement.setInt(2, Integer.parseInt(filledFields.get("article_id")));
+                addItemToInvoicePreparedStatement.setInt(3, Integer.parseInt(filledFields.get("amount")));
+
+                int addResult = addItemToInvoicePreparedStatement.executeUpdate();
+
+
+                updatePreparedStatement.setInt(1, Integer.parseInt(filledFields.get("amount")));
+                updatePreparedStatement.setInt(2, Integer.parseInt(filledFields.get("article_id")));
+
+                int updateResult = updatePreparedStatement.executeUpdate();
+
+                if (addResult == 1 && updateResult == 1) {
+                    connection.commit();
+                    logger.info("ENDE addItemToInvoice() erfolgreich Artikel zur Bestellung hinzugefügt sowie Bestand geändert.");
+                    return true;
+                } else {
+                    connection.rollback();
+                    logger.warn("WARN addItemToInvoice() fehlgeschlagen, Artikel konnte nicht der Bestellung " + invoiceID +
+                            " hinzugefügt werden.");
+                    return false;
+                }
+
+            } catch (SQLException e) {
+                connection.rollback();
+                logger.error("ERROR addItemToInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            } finally {
+                connection.setAutoCommit(true);
             }
-
         } catch (SQLException e) {
-            logger.error("ERROR addItemToInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addItemToInvoice() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
         }
+
         return false;
     }
 
@@ -935,7 +955,7 @@ public class Database {
         logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, invoice_id);
 

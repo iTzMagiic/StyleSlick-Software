@@ -105,8 +105,8 @@ public class InvoiceService {
         }
 
 
-
         int invoiceID = database.addInvoice(filledInvoiceFields);
+
 
         if (invoiceID == -1) {
             AlertService.showErrorAlert("Bestellung konnte nicht angelegt werden.");

@@ -313,6 +313,8 @@ public class InvoiceManagementController implements Initializable {
         field_shipping_method.clear();
         field_shipping_receipt.clear();
         field_shipping_cost.clear();
+        field_articleID.clear();
+        field_amount.clear();
     }
 
 
@@ -443,10 +445,6 @@ public class InvoiceManagementController implements Initializable {
         field_shipping_method.setEditable(editable);
         field_shipping_receipt.setEditable(editable);
         field_shipping_cost.setEditable(editable);
-
-        if (editable) {
-            field_invoice_number.clear();
-        }
     }
 
 
