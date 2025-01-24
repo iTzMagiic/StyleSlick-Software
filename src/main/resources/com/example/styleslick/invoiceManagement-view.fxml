@@ -89,7 +89,7 @@
                         <Font name="System Bold" size="12.0" />
                      </font>
                   </Button>
-                  <Button mnemonicParsing="false" text="Bestellung Löschen" textFill="RED">
+                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterDeleteInvoice" onMouseClicked="#onMouseClickedDeleteInvoice" text="Bestellung Löschen" textFill="RED">
                      <font>
                         <Font name="System Bold" size="12.0" />
                      </font>

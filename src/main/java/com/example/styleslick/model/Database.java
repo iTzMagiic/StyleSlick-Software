@@ -985,7 +985,7 @@ public class Database {
         logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, invoice_number);
 
@@ -1003,6 +1003,71 @@ public class Database {
             return -1;
         }
     }
+
+
+    public boolean deleteInvoice(int invoiceID) {
+        logger.debug("START deleteInvoice().");
+        String getItemsSql = "SELECT article_id, amount FROM invoice_item WHERE invoice_id = ?";
+        String updateStockSql = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
+        String deleteItemsSql = "DELETE FROM invoice_item WHERE invoice_id = ?";
+        String deleteInvoiceSql = "DELETE FROM invoice WHERE invoice_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+
+            connection.setAutoCommit(false);
+
+            try (PreparedStatement getItemsStmt = connection.prepareStatement(getItemsSql);
+                 PreparedStatement updateStockStmt = connection.prepareStatement(updateStockSql);
+                 PreparedStatement deleteItemsStmt = connection.prepareStatement(deleteItemsSql);
+                 PreparedStatement deleteInvoiceStmt = connection.prepareStatement(deleteInvoiceSql)) {
+
+                getItemsStmt.setInt(1, invoiceID);
+                ResultSet itemsResult = getItemsStmt.executeQuery();
+
+                while (itemsResult.next()) {
+                    int articleID = itemsResult.getInt("article_id");
+                    int amount = itemsResult.getInt("amount");
+
+                    updateStockStmt.setInt(1, amount);
+                    updateStockStmt.setInt(2, articleID);
+                    int updatedRows = updateStockStmt.executeUpdate();
+
+                    if (updatedRows != 1) {
+                        throw new SQLException("Fehler beim Aktualisieren des Bestands für article_id: " + articleID);
+                    }
+                }
+
+                deleteItemsStmt.setInt(1, invoiceID);
+                deleteItemsStmt.executeUpdate();
+
+                deleteInvoiceStmt.setInt(1, invoiceID);
+                int deletedRows = deleteInvoiceStmt.executeUpdate();
+
+                if (deletedRows != 1) {
+                    throw new SQLException("Fehler beim Löschen der Bestellung mit invoice_id: " + invoiceID);
+                }
+
+                connection.commit();
+                logger.info("ENDE deleteInvoice() erfolgreich. Bestellung und Artikel wurden gelöscht, Bestand wurde aktualisiert.");
+                return true;
+
+            } catch (SQLException e) {
+                connection.rollback();
+                logger.error("ERROR deleteInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+                throw e;
+            } finally {
+                connection.setAutoCommit(true);
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR deleteInvoice() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+
+
 
 
     private String generateInvoiceNumber() {
@@ -1035,7 +1100,6 @@ public class Database {
         logger.warn("WARN generateInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");
         return "ERROR";
     }
-
 
     private String generateInsertIntoQuery(String table, Map<String, String> filledFields) {
         String columnList = generateColumnList(filledFields);

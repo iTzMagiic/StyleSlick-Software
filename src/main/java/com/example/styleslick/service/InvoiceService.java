@@ -182,6 +182,17 @@ public class InvoiceService {
     }
 
 
+    public boolean deleteInvoice(int invoiceID) {
+        if (!database.deleteInvoice(invoiceID)) {
+            AlertService.showErrorAlert("Fehler beim Löschen der Bestellung.");
+            return false;
+        }
+
+        AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich gelöscht.");
+        return true;
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         List<InvoiceItem> listOfInvoiceItems;
 

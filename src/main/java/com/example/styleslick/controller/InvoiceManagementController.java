@@ -315,6 +315,7 @@ public class InvoiceManagementController implements Initializable {
         field_shipping_cost.clear();
         field_articleID.clear();
         field_amount.clear();
+        executeShowAllInvoices();
     }
 
 
@@ -347,6 +348,23 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
+    private void executeDeleteInvoice() {
+        if (tableView_invoices.getSelectionModel().getSelectedItem() == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus, die Sie löschen möchten");
+            executeShowAllInvoices();
+            return;
+        }
+
+        int invoiceID = tableView_invoices.getSelectionModel().getSelectedItem().getInvoiceID();
+
+        if(AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + invoiceID + " löschen?")) {
+            if (invoiceService.deleteInvoice(invoiceID)) {
+                executeShowAllInvoices();
+            }
+        }
+    }
+
+
     private void executeExitInvoiceManagement() {
         articleService.clearSession();
         customerService.clearSession();
@@ -354,6 +372,13 @@ public class InvoiceManagementController implements Initializable {
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
 
+
+    @FXML
+    private void onKeyPressedEnterDeleteInvoice(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteInvoice();
+        }
+    }
 
     @FXML
     private void onKeyPressedEnterShowAllInvoices(KeyEvent event) {
@@ -405,6 +430,12 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
+
+    @FXML
+    private void onMouseClickedDeleteInvoice(MouseEvent event) {
+        executeDeleteInvoice();
+    }
+
     @FXML
     private void onMouseClickedShowAllInvoices(MouseEvent event) {
         executeShowAllInvoices();
@@ -439,7 +470,6 @@ public class InvoiceManagementController implements Initializable {
     private void onMouseClickedExitInvoiceManagement(MouseEvent event) {
         executeExitInvoiceManagement();
     }
-
 
 
     private void setInvoiceItemFieldsEditable(boolean editable) {
