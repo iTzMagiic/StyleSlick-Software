@@ -96,7 +96,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     private void executeShowAllArticles() {
         logger.debug("\n\nSTART executeShowAllArticles().");
-        choiceBox_category_id.setValue(null);
+        clearFields();
 
         column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
         column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
@@ -145,15 +145,7 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        field_name.clear();
-        field_color.clear();
-        field_price.clear();
-        field_manufacturer.clear();
-        field_purchased_from.clear();
-        field_quality.clear();
-        field_amount.clear();
-        field_stock.clear();
-        datePicker_purchase_date.setValue(null);
+
         executeShowAllArticles();
         logger.debug("ENDE executeAddArticle() erfolgreich.");
     }
@@ -189,16 +181,7 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        choiceBox_category_id.setValue(null);
-        field_name.clear();
-        field_color.clear();
-        field_price.clear();
-        field_manufacturer.clear();
-        field_purchased_from.clear();
-        field_quality.clear();
-        field_amount.clear();
-        field_stock.clear();
-        datePicker_purchase_date.setValue(null);
+
         executeShowAllArticles();
         logger.debug("ENDE executeUpdateArticle() erfolgreich.");
     }
@@ -251,17 +234,6 @@ public class ArticleManagementMenuController implements Initializable {
         List<Article> listOfArticles = articleService.searchArticle(fields);
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
-            choiceBox_category_id.setValue(null);
-            field_name.clear();
-            field_color.clear();
-            field_price.clear();
-            field_manufacturer.clear();
-            field_purchased_from.clear();
-            field_quality.clear();
-            field_amount.clear();
-            field_stock.clear();
-            datePicker_purchase_date.setValue(null);
-            executeShowAllArticles();
             return;
         }
 
@@ -362,4 +334,19 @@ public class ArticleManagementMenuController implements Initializable {
     }
 
 
+
+
+
+    private void clearFields() {
+        field_name.clear();
+        field_color.clear();
+        field_price.clear();
+        field_manufacturer.clear();
+        field_purchased_from.clear();
+        field_quality.clear();
+        field_amount.clear();
+        field_stock.clear();
+        datePicker_purchase_date.setValue(null);
+        choiceBox_category_id.setValue(null);
+    }
 }
