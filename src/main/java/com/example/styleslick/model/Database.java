@@ -10,7 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
-// TODO:: Methoden müssen noch geloggt werden !!
+
 
 public class Database {
 
@@ -27,14 +27,10 @@ public class Database {
 
 
     public boolean isConnected() {
-        logger.debug("START isConnected()");
+        logger.debug("\n\nSTART isConnected()");
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
-            if (connection != null) {
-                logger.info("ENDE isConnected() erfolgreich.");
-                return true;
-            } else {
-                logger.warn("Keine Verbindung zur Datenbank.");
-            }
+            logger.info("ENDE isConnected() erfolgreich mit der Datenbank verbunden.");
+            return true;
         } catch (SQLException e) {
             logger.error("ERROR Verbindung zur Datenbank fehlgeschlagen! FEHLER: {} ", e.getMessage(), e);
         }
@@ -48,18 +44,20 @@ public class Database {
         String sql = "SELECT SUM(payment_amount - shipping_cost) AS totalSales FROM invoice";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    totalSales = String.valueOf(resultSet.getDouble("totalSales"));
-                    totalSales = totalSales.replace(".", ",");
-                    totalSales += "€";
-                    logger.info("ENDE erfolgreich den Gesamtumsatz berechnet.");
-                    return totalSales;
-                } else {
-                    logger.warn("WARN getTotalSales() Es gibt keinen Gesamtumsatz. SQL Query: {}", sql);
-                }
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
+            if (resultSet.next()) {
+                totalSales = String.valueOf(resultSet.getDouble("totalSales"));
+                totalSales = totalSales.replace(".", ",");
+                totalSales += "€";
+
+                logger.info("ENDE erfolgreich den Gesamtumsatz berechnet {}.", totalSales);
+                return totalSales;
+            } else {
+                logger.warn("WARN getTotalSales() Es gibt keinen Gesamtumsatz. SQL Query: {}", sql);
             }
+
         } catch (SQLException e) {
             logger.error("ERROR getTotalSales() fehler beim abrufen der gesamteinnahmen. FEHLER: {}", e.getMessage(), e);
         }
@@ -68,30 +66,34 @@ public class Database {
 
 
     public String getTotalExpenditure() {
-        logger.debug("START getTotalExpenditure()");
+        logger.debug("\n\nSTART getTotalExpenditure()");
         String TotalExpenditure = "0,00€";
         String sql = "SELECT SUM(price * amount) AS TotalExpenditure FROM article";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql);
+             ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
                     TotalExpenditure = String.valueOf(resultSet.getDouble("TotalExpenditure"));
                     TotalExpenditure = TotalExpenditure.replace(".", ",");
                     TotalExpenditure += "€";
-                    logger.info("ENDE getTotalExpenditure() erfolgreich.");
-                    return TotalExpenditure;
-                } else {
-                    logger.warn("WARN getTotalSales() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
+                    if (resultSet.wasNull()) {
+                        logger.info("ENDE getTotalExpenditure() erfolgreich Gesamtausgaben berechnet {}.", TotalExpenditure);
+
+                    } else {
+                        logger.warn("WARN getTotalSales() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
+                    }
                 }
-            }
         } catch (SQLException e) {
             logger.error("ERROR getTotalExpenditure() fehlgeschlagen beim abrufen der gesamtausgaben. FEHLER: {}", e.getMessage(), e);
         }
+
         return TotalExpenditure;
     }
 
 
+    //TODO:: Ab hier Methode weiter verbessern!
     public String getTotalProfit() {
         logger.debug("START getTotalProfit()");
         String TotalProfit = "0,00€";
@@ -1065,9 +1067,6 @@ public class Database {
 
         return false;
     }
-
-
-
 
 
     private String generateInvoiceNumber() {
