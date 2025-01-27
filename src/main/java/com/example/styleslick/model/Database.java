@@ -50,7 +50,7 @@ public class Database {
                 totalSales = totalSales.replace(".", ",");
                 totalSales += "€";
 
-                logger.info("ENDE erfolgreich den Gesamtumsatz berechnet {}.", totalSales);
+                logger.info("ENDE getTotalSales() erfolgreich den Gesamtumsatz berechnet {}.", totalSales);
                 return totalSales;
             } else {
                 logger.warn("WARN getTotalSales() Es gibt keinen Gesamtumsatz. SQL Query: {}", sql);
@@ -91,9 +91,8 @@ public class Database {
     }
 
 
-    //TODO:: Ab hier Methode weiter verbessern!
     public String getTotalProfit() {
-        logger.debug("START getTotalProfit()");
+        logger.debug("\n\nSTART getTotalProfit()");
         String TotalProfit = "0,00€";
         String sql = "SELECT (SELECT SUM(payment_amount - shipping_cost) FROM invoice) - (SELECT SUM(price * amount) FROM article) AS TotalProfit";
 
@@ -118,14 +117,21 @@ public class Database {
 
 
     public String getTotalCustomer() {
+        logger.debug("START getTotalCustomer()");
+
         String numberOfCustomers = "0";
         String sql = "SELECT COUNT(*) AS anzahl_kunden FROM customer";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
                     numberOfCustomers = String.valueOf(resultSet.getInt("anzahl_kunden"));
+                    logger.info("ENDE getTotalCustomer() erfolgreich die Anzahl der Kunden ermittelt.");
+                } else {
+                    logger.warn("WARN getTotalCustomer() es konnte nicht die Anzahl der Kunden ermittelt werden.");
                 }
             }
         } catch (SQLException e) {
@@ -166,6 +172,8 @@ public class Database {
         } catch (SQLException e) {
             logger.error("ERROR getAllCustomers() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
+
+        logger.info("ENDE getAllCustomers() listOfCustomers Länge: {}", listOfCustomers.size());
         return listOfCustomers;
     }
 
@@ -181,6 +189,7 @@ public class Database {
             preparedStatement.setInt(1, customerID);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
                     logger.info("ENDE getCustomerNumber() erfolgreich Kunden-Nr aus der Datenbank exportiert.");
                     return resultSet.getString("customer_number");
@@ -200,7 +209,6 @@ public class Database {
         logger.debug("\n\nSTART getCustomerID().");
 
         String sqlQuery = "SELECT customer_id FROM customer WHERE customer_number = ?";
-        logger.debug("DEBUG SQL Query: {}", sqlQuery);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
@@ -244,6 +252,8 @@ public class Database {
         } catch (SQLException e) {
             logger.error("ERROR isUsernameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
+
+        logger.info("ENDE isUsernameExist()");
         return false;
     }
 
@@ -290,6 +300,8 @@ public class Database {
                 "FROM customer " +
                 "WHERE SUBSTRING(customer_number, 2, 4) = YEAR(CURDATE())";
 
+        logger.debug("sql: {}", sql);
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -327,6 +339,8 @@ public class Database {
         setClause.append(" WHERE customer_id = ?");
 
         sql += setClause.toString();
+
+        logger.debug("sql: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -370,7 +384,8 @@ public class Database {
         }
 
         sql += whereClause.toString();
-        logger.debug("DEBUG searchCustomer() SQL Query: {}", sql);
+
+        logger.debug("SQL Query: {}", sql);
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -451,13 +466,14 @@ public class Database {
                     listOfCategories.add(new Category(name, id));
                 }
 
-                logger.info("ENDE getAllCategories(). listOfCategories Länge: {}", listOfCategories.size());
                 return listOfCategories;
             }
 
         } catch (SQLException e) {
             logger.error("ERROR getAllCategories() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
+
+        logger.info("ENDE getAllCategories(). listOfCategories Länge: {}", listOfCategories.size());
         return listOfCategories;
     }
 
@@ -571,21 +587,29 @@ public class Database {
 
 
     public boolean deleteCategory(int categoryID) {
-        logger.info("START deleteCategory().");
+        logger.info("\n\nSTART deleteCategory().");
         String sql = "DELETE FROM category WHERE category_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setInt(1, categoryID);
-            preparedStatement.executeUpdate();
-            return true;
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE deleteCategory() Die Kategorie wurde erfolgreich gelöscht.");
+                return true;
+            } else {
+                logger.warn("WARN deleteCategory() Die Kategorie konnte nicht gelöscht werden. category_id: {}", categoryID);
+            }
         } catch (SQLException e) {
             logger.error("ERROR deleteCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-            return false;
         }
+        return false;
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public List<Article> getAllArticles() {
         List<Article> listOfArticle = new ArrayList<>();
         String sql = "SELECT * FROM article";
