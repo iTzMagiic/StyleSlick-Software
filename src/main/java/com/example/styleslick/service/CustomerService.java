@@ -34,7 +34,6 @@ public class CustomerService {
     }
 
 
-
     public boolean addCustomer(Map<String, String> fields) {
 
         Map<String, String> filledFields = new HashMap<>();

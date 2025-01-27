@@ -38,14 +38,15 @@ public class CategoryService {
 
 
     public boolean addCategory(Map<String, String> fields) {
-
         Map<String, String> filledFields = new HashMap<>();
+
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
                 filledFields.put(entry.getKey(), entry.getValue());
             }
         }
+
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte tragen Sie was ein.");
@@ -63,7 +64,6 @@ public class CategoryService {
 
 
     public boolean updateCategory(Map<String, String> fields, int categoryID) {
-
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -71,6 +71,7 @@ public class CategoryService {
                 filledFields.put(entry.getKey(), entry.getValue());
             }
         }
+
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte geben Sie was ein um die Kategorie zu bearbeiten.");
@@ -87,6 +88,7 @@ public class CategoryService {
             return false;
         }
 
+        AlertService.showConfirmAlert("Die Kategorie wurde erfolgreich bearbeitet.");
         return true;
     }
 
@@ -103,7 +105,7 @@ public class CategoryService {
             return false;
         }
 
-        AlertService.showConfirmAlert("Kategorie wurde erfolgreich gelöscht.");
+        AlertService.showConfirmAlert("Die Kategorie wurde erfolgreich gelöscht.");
         return true;
     }
 

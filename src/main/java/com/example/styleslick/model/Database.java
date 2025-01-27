@@ -10,7 +10,6 @@ import java.util.List;
 import java.util.Map;
 
 
-
 public class Database {
 
     private static final Logger logger = LoggerFactory.getLogger(Database.class);
@@ -73,17 +72,17 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql);
              ResultSet resultSet = preparedStatement.executeQuery()) {
 
-                if (resultSet.next()) {
-                    TotalExpenditure = String.valueOf(resultSet.getDouble("TotalExpenditure"));
-                    TotalExpenditure = TotalExpenditure.replace(".", ",");
-                    TotalExpenditure += "€";
-                    if (resultSet.wasNull()) {
-                        logger.info("ENDE getTotalExpenditure() erfolgreich Gesamtausgaben berechnet {}.", TotalExpenditure);
+            if (resultSet.next()) {
+                TotalExpenditure = String.valueOf(resultSet.getDouble("TotalExpenditure"));
+                TotalExpenditure = TotalExpenditure.replace(".", ",");
+                TotalExpenditure += "€";
+                if (resultSet.wasNull()) {
+                    logger.info("ENDE getTotalExpenditure() erfolgreich Gesamtausgaben berechnet {}.", TotalExpenditure);
 
-                    } else {
-                        logger.warn("WARN getTotalExpenditure() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
-                    }
+                } else {
+                    logger.warn("WARN getTotalExpenditure() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
                 }
+            }
         } catch (SQLException e) {
             logger.error("ERROR getTotalExpenditure() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
@@ -380,7 +379,7 @@ public class Database {
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                preparedStatement.setString(index++,  "%" + entry.getValue() + "%");
+                preparedStatement.setString(index++, "%" + entry.getValue() + "%");
             }
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -436,31 +435,35 @@ public class Database {
 
 
     public List<Category> getAllCategories() {
-        logger.info("\n\nSTART getAllCategories().");
+        logger.debug("\n\nSTART getAllCategories().");
         List<Category> listOfCategories = new ArrayList<>();
+
         String sql = "SELECT * FROM category";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 while (resultSet.next()) {
                     String name = resultSet.getString("name");
                     int id = resultSet.getInt("category_id");
                     listOfCategories.add(new Category(name, id));
                 }
-                logger.info("ENDE erfolgreich getAllCategories().");
+
+                logger.info("ENDE getAllCategories(). listOfCategories Länge: {}", listOfCategories.size());
                 return listOfCategories;
             }
+
         } catch (SQLException e) {
             logger.error("ERROR getAllCategories() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
-        logger.warn("WARN getAllCategories() fehler beim Laden der Kategorien.");
         return listOfCategories;
     }
 
 
     public String getCategoryName(int categoryID) {
-        logger.debug("START getCategoryName().");
+        logger.debug("\n\nSTART getCategoryName().");
         String sql = "SELECT name FROM category WHERE category_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -484,49 +487,47 @@ public class Database {
 
 
     public boolean addCategory(Map<String, String> filledFields) {
-        logger.info("Methode addCategory START.");
-        String sql = "INSERT INTO category (";
-        StringBuilder whereClause = new StringBuilder();
+        logger.debug("\n\nSTART addCategory()");
 
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (whereClause.length() > 0) {
-                whereClause.append(", ");
-            }
-            whereClause.append(entry.getKey());
-        }
-        whereClause.append(") VALUES (");
-        sql += whereClause.toString();
+        String sql = generateInsertIntoQuery("category", filledFields);
+        logger.debug("Generated sql Query: {}", sql);
 
-        whereClause = new StringBuilder();
-
-        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-            if (whereClause.length() > 0) {
-                whereClause.append(", ");
-            }
-            whereClause.append("?");
-        }
-        whereClause.append(")");
-        sql += whereClause.toString();
-
-        logger.debug("SQL Query: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
+
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 preparedStatement.setString(index++, entry.getValue());
             }
-            preparedStatement.executeUpdate();
-            return true;
+
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE addCategory() Die Kategorie wurde erfolgreich hinzugefügt.");
+                return true;
+            } else {
+                logger.warn("WARN addCategory() Die Kategorie wurde nicht hinzugefügt.");
+                return false;
+            }
+
         } catch (SQLException e) {
             logger.error("ERROR addCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-            return false;
         }
+        return false;
     }
 
 
     public boolean updateCategory(Map<String, String> filledFields, int categoryID) {
-        logger.info("START updateCategory().");
+        /*
+        Diese Methode ist so flexibel aufgebaut, dass sie sich automatisch anpasst,
+        wenn die Tabelle "category" in der Datenbank um zusätzliche Attribute (Spalten) erweitert wird.
+        Dadurch sind nur minimale Änderungen am Code erforderlich.
+         */
+
+        logger.debug("\n\nSTART updateCategory().");
+
         String sql = "UPDATE category SET ";
         StringBuilder setClause = new StringBuilder();
 
@@ -536,6 +537,7 @@ public class Database {
             }
             setClause.append(entry.getKey()).append(" = ?");
         }
+
         setClause.append(" WHERE category_id = ?");
         sql += setClause.toString();
 
@@ -543,17 +545,28 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
+
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 preparedStatement.setString(index++, entry.getValue());
             }
+
             preparedStatement.setInt(index, categoryID);
-            preparedStatement.executeUpdate();
-            return true;
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE updateCategory() Die Kategorie wurde erfolgreich bearbeitet.");
+                return true;
+            } else {
+                logger.warn("WARN updateCategory() Die Kategorie konnte nicht bearbeitet werden.");
+                return false;
+            }
+
         } catch (SQLException e) {
             logger.error("ERROR updateCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-            return false;
         }
+        return false;
     }
 
 
