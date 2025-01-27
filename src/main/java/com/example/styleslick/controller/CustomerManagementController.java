@@ -120,12 +120,12 @@ public class CustomerManagementController implements Initializable {
     private void executeUpdateCustomer() {
         Map<String, String> fields = new HashMap<>();
 
-        // Abrufen des ausgewählten Kunden
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
         if (selectedCustomer == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu bearbeiten.");
             return;
         }
+
 
         fields.put("username", field_username.getText());
         fields.put("first_name", field_first_name.getText());
@@ -136,19 +136,20 @@ public class CustomerManagementController implements Initializable {
         fields.put("country", field_country.getText());
         fields.put("purchased_from", field_purchased_from.getText());
 
-        // Kunden aus der Datenbank löschen
-        if (customerService.updateCustomer(fields, selectedCustomer.getCustomerID())) {
-            field_username.clear();
-            field_first_name.clear();
-            field_last_name.clear();
-            field_street.clear();
-            field_postal_code.clear();
-            field_city.clear();
-            field_country.clear();
-            field_purchased_from.clear();
-            executeShowAllCustomers();
+
+        if (!customerService.updateCustomer(fields, selectedCustomer.getCustomerID())) {
             return;
         }
+
+        field_username.clear();
+        field_first_name.clear();
+        field_last_name.clear();
+        field_street.clear();
+        field_postal_code.clear();
+        field_city.clear();
+        field_country.clear();
+        field_purchased_from.clear();
+        executeShowAllCustomers();
     }
 
 

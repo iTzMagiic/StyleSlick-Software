@@ -32,7 +32,7 @@ public class Database {
             logger.info("ENDE isConnected() erfolgreich mit der Datenbank verbunden.");
             return true;
         } catch (SQLException e) {
-            logger.error("ERROR Verbindung zur Datenbank fehlgeschlagen! FEHLER: {} ", e.getMessage(), e);
+            logger.error("ERROR isConnected() Verbindung zur Datenbank fehlgeschlagen! FEHLER: {} ", e.getMessage(), e);
         }
         return false;
     }
@@ -59,7 +59,7 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR getTotalSales() fehler beim abrufen der gesamteinnahmen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getTotalSales() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return totalSales;
     }
@@ -82,11 +82,11 @@ public class Database {
                         logger.info("ENDE getTotalExpenditure() erfolgreich Gesamtausgaben berechnet {}.", TotalExpenditure);
 
                     } else {
-                        logger.warn("WARN getTotalSales() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
+                        logger.warn("WARN getTotalExpenditure() Es gibt keine Gesamtausgaben. SQL Query: {}", sql);
                     }
                 }
         } catch (SQLException e) {
-            logger.error("ERROR getTotalExpenditure() fehlgeschlagen beim abrufen der gesamtausgaben. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getTotalExpenditure() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         return TotalExpenditure;
@@ -113,7 +113,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR fehlgeschlagen beim abrufen des Gewinns. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getTotalProfit() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return TotalProfit;
     }
@@ -131,7 +131,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen der gesamten anzahl der Kunden. " + e.getMessage());
+            logger.error("ERROR getTotalCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return numberOfCustomers;
     }
@@ -162,7 +162,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim Abrufen der Kunden: " + e.getMessage());
+            logger.error("ERROR getAllCustomers() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return listOfCustomers;
     }
@@ -187,7 +187,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR getCustomerNumber() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getCustomerNumber() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return "ERROR";
         }
     }
@@ -212,7 +212,7 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR getCustomerID() FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getCustomerID() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         logger.warn("WARN getCustomerID() fehlgeschlagen es konnte kein Kunde mit der Kunden-Nr gefunden werden.");
@@ -232,7 +232,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim abrufen ob der username schon existiert. " + e.getMessage());
+            logger.error("ERROR isUsernameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
         return false;
@@ -240,7 +240,7 @@ public class Database {
 
 
     public boolean addCustomer(Map<String, String> filledFields) {
-        logger.debug("\n\nSTART addCustomer() Parameter Länge: {}", filledFields.size());
+        logger.debug("\n\nSTART addCustomer() filledFields Länge: {}", filledFields.size());
 
         String sql = generateInsertIntoQueryWithNumber("customer", filledFields);
         logger.debug("Generated sql Query: {}", sql);
@@ -267,7 +267,7 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR addCustomer() Kunde konnte nicht in die Datenbank geschrieben werden. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return false;
     }
@@ -297,13 +297,14 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR generateCustomerNumber() Erstellen der neuen Kundennummer fehlgeschlagen. {}", e.getMessage(), e);
+            logger.error("ERROR generateCustomerNumber() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return "ERROR";
     }
 
 
     public boolean updateCustomer(Map<String, String> filledFields, int customerID) {
+        logger.debug("\n\nSTART updateCustomer() filledFields Länge: {}", filledFields.size());
         String sql = "UPDATE customer SET ";
         StringBuilder setClause = new StringBuilder();
 
@@ -319,6 +320,7 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
@@ -326,12 +328,20 @@ public class Database {
             }
 
             preparedStatement.setInt(index, customerID);
-            preparedStatement.executeUpdate();
-            return true;
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE updateCustomer() Der Kunde wurde erfolgreich bearbeitet.");
+                return true;
+            } else {
+                logger.warn("WARN updateCustomer() Der Kunde konnte nicht bearbeitet werden");
+                return false;
+            }
+
         } catch (SQLException e) {
-            System.err.println("Fehler beim bearbeiten des Kunden. " + e.getMessage());
-            return false;
+            logger.error("ERROR updateCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
+        return false;
     }
 
 
@@ -380,7 +390,7 @@ public class Database {
                 return listOfCustomers;
             }
         } catch (SQLException e) {
-            logger.error("ERROR searchCustomer() Fehler beim abrufen der Kunden aus der Datenbank. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR searchCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         return listOfCustomers;
     }
@@ -395,7 +405,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            System.err.println("Fehler beim Löschen des Kunden. " + e.getMessage());
+            logger.error("ERROR deleteCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -418,7 +428,7 @@ public class Database {
                 return listOfCategories;
             }
         } catch (SQLException e) {
-            logger.error("Fehler beim abrufen der Kategorien. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getAllCategories() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
         logger.warn("WARN getAllCategories() fehler beim Laden der Kategorien.");
         return listOfCategories;
@@ -443,7 +453,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR getCategoryName() FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getCategoryName() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return "NULL";
         }
     }
@@ -485,7 +495,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("ERROR beim hinzufügen der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -517,7 +527,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("ERROR beim bearbeiten der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR updateCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -533,7 +543,7 @@ public class Database {
             preparedStatement.executeUpdate();
             return true;
         } catch (SQLException e) {
-            logger.error("ERROR beim löschen der Kategorie. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR deleteCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
     }
@@ -565,7 +575,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim entnehmen der Artikel aus der Datenbank. " + e.getMessage());
+            logger.error("ERROR getAllArticles() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return listOfArticle;
         }
         return listOfArticle;
@@ -632,7 +642,7 @@ public class Database {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            logger.error("ERROR addArticle() Artikel konnte nicht in die Datenbank importiert werden! FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
 
@@ -676,7 +686,7 @@ public class Database {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            logger.error("ERROR updateArticle() Fehler beim bearbeiten der Artikel. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR updateArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
 
@@ -735,7 +745,7 @@ public class Database {
                 return listOfFoundetArticles;
             }
         } catch (SQLException e) {
-            System.err.println("Fehler beim Suchen des Artikels. " + e.getMessage());
+            logger.error("ERROR searchArticlesLike() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         return listOfFoundetArticles;
@@ -761,7 +771,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR getStockOfArticle() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getStockOfArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return -9999;
         }
     }
@@ -780,7 +790,7 @@ public class Database {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            logger.error("ERROR deleteArticle() Fehler beim löschen des Artikels aus der Datenbank. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR deleteArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
 
@@ -820,7 +830,7 @@ public class Database {
                 return listOfInvoices;
             }
         } catch (SQLException e) {
-            logger.error("ERROR getAllInvoices() fehlgeschlagen. Fehler beim exportieren der Bestellungen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getAllInvoices() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         logger.warn("WARN getAllInvoices() fehlgeschlagen. Bestellungen konnten nicht geladen werden.");
@@ -870,7 +880,7 @@ public class Database {
             }
 
         } catch (SQLException e) {
-            logger.error("ERROR addInvoice() fehlgeschlagen. Fehler beim importieren der Bestellung. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR addInvoice() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         logger.warn("WARN addInvoice() fehlgeschlagen. Bestellung konnte nicht erstellt werden.");
@@ -919,7 +929,7 @@ public class Database {
 
             } catch (SQLException e) {
                 connection.rollback();
-                logger.error("ERROR addItemToInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+                logger.error("ERROR addItemToInvoice() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             } finally {
                 connection.setAutoCommit(true);
             }
@@ -957,7 +967,7 @@ public class Database {
                 return listOfInvoiceItems;
             }
         } catch (SQLException e) {
-            logger.error("ERROR getInvoiceItems() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+            logger.error("ERROR getInvoiceItems() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return listOfInvoiceItems;
         }
     }
@@ -984,7 +994,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR getInvoiceID() Fehler: {}", e.getMessage(), e);
+            logger.error("ERROR getInvoiceID() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return -1;
         }
     }
@@ -1038,7 +1048,7 @@ public class Database {
 
             } catch (SQLException e) {
                 connection.rollback();
-                logger.error("ERROR deleteInvoice() fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+                logger.error("ERROR deleteInvoice() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
                 throw e;
             } finally {
                 connection.setAutoCommit(true);
@@ -1076,7 +1086,7 @@ public class Database {
                 }
             }
         } catch (SQLException e) {
-            logger.error("ERROR generateInvoiceNumber() Erstellen der neuen Rechnungsnummer fehlgeschlagen. {}", e.getMessage(), e);
+            logger.error("ERROR generateInvoiceNumber() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
         logger.warn("WARN generateInvoiceNumber fehlgeschlagen. Fehler beim erstellen der Bestell-Nr.");

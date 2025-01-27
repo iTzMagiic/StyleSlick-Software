@@ -65,7 +65,7 @@ public class CustomerService {
         }
 
 
-        AlertService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
+        AlertService.showConfirmAlert("Der Kunde wurde erfolgreich angelegt.");
         return true;
     }
 
@@ -104,19 +104,23 @@ public class CustomerService {
             }
         }
 
+
         if (customerRules.isNotAllowedToUpdateCustomer(filledFields)) {
             return false;
         }
+
 
         if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerID + " bearbeiten?")) {
             AlertService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }
 
+
         if (!database.updateCustomer(filledFields, customerID)) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
             return false;
         }
+
 
         AlertService.showConfirmAlert("Der Kunde wurde erfolgreich bearbeitet.");
         return true;
