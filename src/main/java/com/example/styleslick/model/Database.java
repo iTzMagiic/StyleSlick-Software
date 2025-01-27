@@ -274,6 +274,7 @@ public class Database {
 
     private String generateCustomerNumber() {
         logger.debug("START generateCustomerNumber()");
+
         // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
                 "FROM customer " +
@@ -412,7 +413,7 @@ public class Database {
                 logger.info("ENDE deleteCustomer() Der Kunde wurde erfolgreich aus der Datenbank gelöscht.");
                 return true;
             } else {
-                logger.warn("WARN deleteCustomer() Der Kunde konnte nicht gelöscht werden. customer_id: {}", customerID);
+                logger.warn("WARN deleteCustomer() Der Kunde konnte nicht gelöscht werden.");
                 return false;
             }
 
