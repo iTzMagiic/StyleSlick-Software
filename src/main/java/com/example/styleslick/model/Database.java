@@ -1,6 +1,5 @@
 package com.example.styleslick.model;
 
-import com.example.styleslick.service.AlertService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -345,13 +344,12 @@ public class Database {
     }
 
 
-    public List<Customer> searchCustomer(Map<String, String> filledFields) {
-        logger.debug("START searchCustomer() Parameter Länger: {}", filledFields.size());
+    public List<Customer> searchCustomerLike(Map<String, String> filledFields) {
+        logger.debug("\n\nSTART searchCustomer() filledFields Länger: {}", filledFields.size());
         List<Customer> listOfCustomers = new ArrayList<>();
         StringBuilder whereClause = new StringBuilder();
 
         String sql = "SELECT * FROM customer WHERE ";
-
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (whereClause.length() > 0) {
@@ -359,15 +357,18 @@ public class Database {
             }
             whereClause.append(entry.getKey()).append(" LIKE ?");
         }
+
         sql += whereClause.toString();
         logger.debug("DEBUG searchCustomer() SQL Query: {}", sql);
+
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             int index = 1;
+
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
-                preparedStatement.setString(index++, entry.getValue() + "%");
+                preparedStatement.setString(index++,  "%" + entry.getValue() + "%");
             }
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
@@ -397,17 +398,28 @@ public class Database {
 
 
     public boolean deleteCustomer(int customerID) {
+        logger.debug("\n\nSTART deleteCustomer()");
+
         String sql = "DELETE FROM customer WHERE customer_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setInt(1, customerID);
-            preparedStatement.executeUpdate();
-            return true;
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE deleteCustomer() Der Kunde wurde erfolgreich aus der Datenbank gelöscht.");
+                return true;
+            } else {
+                logger.warn("WARN deleteCustomer() Der Kunde konnte nicht gelöscht werden. customer_id: {}", customerID);
+                return false;
+            }
+
         } catch (SQLException e) {
             logger.error("ERROR deleteCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-            return false;
         }
+        return false;
     }
 
 

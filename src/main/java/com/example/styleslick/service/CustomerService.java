@@ -74,6 +74,7 @@ public class CustomerService {
         Map<String, String> filledFields = new HashMap<>();
         List<Customer> listOfCustomers = new ArrayList<>();
 
+
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
                 filledFields.put(entry.getKey(), entry.getValue());
@@ -85,7 +86,7 @@ public class CustomerService {
             return listOfCustomers;
         }
 
-        listOfCustomers = database.searchCustomer(filledFields);
+        listOfCustomers = database.searchCustomerLike(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
             AlertService.showErrorAlert("Es wurde kein Kunden gefunden.");
@@ -128,10 +129,18 @@ public class CustomerService {
 
 
     public boolean deleteCustomer(int customerID, String customerNumber) {
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerNumber + "' löschen?")) {
-            return database.deleteCustomer(customerID);
+
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerNumber + "' löschen?")) {
+            AlertService.showErrorAlert("Kunde wird nicht gelöscht.");
+            return false;
         }
-        return false;
+        if (!database.deleteCustomer(customerID)) {
+            AlertService.showErrorAlert("Kunde konnte nicht gelöscht werden.");
+            return false;
+        }
+
+        AlertService.showConfirmAlert("Kunde erfolgreich gelöscht.");
+        return true;
     }
 
 

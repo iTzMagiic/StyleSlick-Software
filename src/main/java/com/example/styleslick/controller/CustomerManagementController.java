@@ -74,6 +74,8 @@ public class CustomerManagementController implements Initializable {
 
 
     private void executeShowAllCustomers() {
+        clearFields();
+
         column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
         column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
         column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
@@ -105,14 +107,6 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
-        field_username.clear();
-        field_first_name.clear();
-        field_last_name.clear();
-        field_street.clear();
-        field_city.clear();
-        field_country.clear();
-        field_purchased_from.clear();
-        field_postal_code.clear();
         executeShowAllCustomers();
     }
 
@@ -141,14 +135,6 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
-        field_username.clear();
-        field_first_name.clear();
-        field_last_name.clear();
-        field_street.clear();
-        field_postal_code.clear();
-        field_city.clear();
-        field_country.clear();
-        field_purchased_from.clear();
         executeShowAllCustomers();
     }
 
@@ -168,41 +154,32 @@ public class CustomerManagementController implements Initializable {
 
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
 
-        // Wenn kein Customer gefunden wurde abbrechen
+
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            field_username.clear();
-            field_first_name.clear();
-            field_last_name.clear();
-            field_street.clear();
-            field_city.clear();
-            field_country.clear();
-            field_purchased_from.clear();
-            field_postal_code.clear();
-            executeShowAllCustomers();
             return;
         }
 
-        // Packt die Liste von Customers in die Tabellenansicht
+
         ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
         tableView_customer.setItems(observableList);
     }
 
 
     public void executeDeleteCustomer() {
-        // Abrufen des ausgewählten Kunden
+
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+
         if (selectedCustomer == null) {
-            AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um ihn zu löschen.");
+            AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu löschen.");
             return;
         }
 
-        // Kunden aus der Datenbank löschen
-        if (customerService.deleteCustomer(selectedCustomer.getCustomerID(), selectedCustomer.getCustomerNumber())) {
-            AlertService.showConfirmAlert("Kunde erfolgreich gelöscht.");
-            executeShowAllCustomers();
-        } else {
-            AlertService.showErrorAlert("Kunde wurde nicht gelöscht.");
+
+        if (!customerService.deleteCustomer(selectedCustomer.getCustomerID(), selectedCustomer.getCustomerNumber())) {
+            return;
         }
+
+        executeShowAllCustomers();
     }
 
 
@@ -289,5 +266,17 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private void onMouseClickedExitCustomerManagement(MouseEvent event) {
         executeExitCustomerManagement();
+    }
+
+
+    private void clearFields() {
+        field_city.clear();
+        field_country.clear();
+        field_first_name.clear();
+        field_last_name.clear();
+        field_postal_code.clear();
+        field_purchased_from.clear();
+        field_street.clear();
+        field_username.clear();
     }
 }
