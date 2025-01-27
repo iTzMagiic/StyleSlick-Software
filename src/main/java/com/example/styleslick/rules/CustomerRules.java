@@ -29,7 +29,6 @@ public class CustomerRules {
             return true;
         }
 
-
         if (!filledFields.containsKey("country")) {
             AlertService.showErrorAlert("Bitte geben Sie ein Land an.");
             return true;
@@ -41,6 +40,7 @@ public class CustomerRules {
 
         return false;
     }
+
 
     public boolean isNotAllowedToSearchCustomer(Map<String, String> filledFields) {
 
@@ -55,6 +55,7 @@ public class CustomerRules {
 
         return false;
     }
+
 
     public boolean isNotAllowedToUpdateCustomer(Map<String, String> filledFields) {
 
@@ -74,6 +75,7 @@ public class CustomerRules {
         return false;
     }
 
+
     private boolean isNotValidPostalCode(String postalCode) {
         if (!postalCode.matches("\\d{5}")) {
             AlertService.showErrorAlert("Die Postleitzahl darf nur aus Zahlen bestehen und muss 5-stellig sein.");
@@ -81,6 +83,7 @@ public class CustomerRules {
         }
         return false;
     }
+
 
     private boolean isNotValidCountry(String country) {
         if (!country.matches("^[a-zA-Z]+$")) {

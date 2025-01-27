@@ -240,50 +240,33 @@ public class Database {
 
 
     public boolean addCustomer(Map<String, String> filledFields) {
-        logger.debug("START addCustomer() Parameter Länge: {}", filledFields.size());
-        String sql = "INSERT INTO customer (";
-        StringBuilder whereClause = new StringBuilder();
+        logger.debug("\n\nSTART addCustomer() Parameter Länge: {}", filledFields.size());
 
-        // WHERE-Bedingung aus der Map filledFields einfügen und mit(" AND " &" = ?")trennen;
-        for (Map.Entry<String, String> key : filledFields.entrySet()) {
-
-            if (whereClause.length() > 0) {
-                whereClause.append(", ");
-            }
-            whereClause.append(key.getKey());
-        }
-        whereClause.append(", customer_number) VALUES (");
-        sql += whereClause.toString();
-
-        whereClause = new StringBuilder();
-
-        for (Map.Entry<String, String> values : filledFields.entrySet()) {
-            if (whereClause.length() > 0) {
-                whereClause.append(", ");
-            }
-            whereClause.append(" ?");
-        }
-
-        whereClause.append(", ?)");
-        sql += whereClause.toString();
-
-        logger.debug("DEBUG addCustomer() SQL Query: {}", sql);
+        String sql = generateInsertIntoQueryWithNumber("customer", filledFields);
+        logger.debug("Generated sql Query: {}", sql);
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
 
             for (Map.Entry<String, String> field : filledFields.entrySet()) {
                 preparedStatement.setString(index++, field.getValue());
             }
+
             preparedStatement.setString(index, generateCustomerNumber());
-            preparedStatement.executeUpdate();
-            logger.info("ENDE addCustomer() erfolgreich.");
-            return true;
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE addCustomer() erfolgreich.");
+                return true;
+            } else {
+                logger.warn("WARN addCustomer() es konnte kein neuer Kunde hinzugefügt werden.");
+                return false;
+            }
 
         } catch (SQLException e) {
-            AlertService.showErrorAlert("Fehler beim hinzufügen des Kunden.");
             logger.error("ERROR addCustomer() Kunde konnte nicht in die Datenbank geschrieben werden. FEHLER: {}", e.getMessage(), e);
         }
         return false;

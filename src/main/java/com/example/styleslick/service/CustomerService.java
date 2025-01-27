@@ -20,6 +20,7 @@ public class CustomerService {
     private CustomerService() {
     }
 
+
     public static synchronized CustomerService getInstance() {
         if (customerService == null) {
             customerService = new CustomerService();
@@ -27,9 +28,11 @@ public class CustomerService {
         return customerService;
     }
 
+
     public void setDatabase(Database database) {
         this.database = database;
     }
+
 
 
     public boolean addCustomer(Map<String, String> fields) {
@@ -43,9 +46,11 @@ public class CustomerService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
+
         if (customerRules.isNotAllowedToAddCustomer(filledFields)) {
             return false;
         }
+
 
         if (database.isUsernameExist(filledFields.get("username"))) {
             if (!AlertService.showConfirmAlertResult("Möchte Sie wirklich noch einen Kunden mit dem selben Benutzernamen erstellen? '" + filledFields.get("username") + "'")) {
@@ -53,10 +58,12 @@ public class CustomerService {
             }
         }
 
+
         if (!database.addCustomer(filledFields)) {
             AlertService.showErrorAlert("Fehler beim speichern des Kunden, in die Datenbank.");
             return false;
         }
+
 
         AlertService.showConfirmAlert("Kunde wurde erfolgreich angelegt.");
         return true;
