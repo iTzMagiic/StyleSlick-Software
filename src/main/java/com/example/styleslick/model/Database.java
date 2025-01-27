@@ -137,14 +137,18 @@ public class Database {
 
 
     public List<Customer> getAllCustomers() {
+        logger.debug("\n\nSTART getAllCustomers()");
         List<Customer> listOfCustomers = new ArrayList<>();
-        String sql = "SELECT * FROM customer";
 
+        String sql = "SELECT * FROM customer";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 while (resultSet.next()) {
+
                     String username = resultSet.getString("username");
                     String first_name = resultSet.getString("first_name");
                     String last_name = resultSet.getString("last_name");
@@ -168,7 +172,8 @@ public class Database {
 
 
     public String getCustomerNumber(int customerID) {
-        logger.debug("START getCustomerNumber().");
+        logger.debug("\n\nSTART getCustomerNumber().");
+
         String sql = "SELECT customer_number FROM customer WHERE customer_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -181,7 +186,7 @@ public class Database {
                     logger.info("ENDE getCustomerNumber() erfolgreich Kunden-Nr aus der Datenbank exportiert.");
                     return resultSet.getString("customer_number");
                 } else {
-                    logger.warn("WARN getCustomerNumber() fehlgeschlagen, es wurde kein Kunde mit der Kunden ID gefunden.");
+                    logger.warn("WARN getCustomerNumber() fehlgeschlagen, es wurde kein Kunde mit der customer_id gefunden.");
                     return "NULL";
                 }
             }
@@ -193,10 +198,10 @@ public class Database {
 
 
     public int getCustomerID(String customer_number) {
-        logger.debug("START getCustomerID().");
+        logger.debug("\n\nSTART getCustomerID().");
 
         String sqlQuery = "SELECT customer_id FROM customer WHERE customer_number = ?";
-        logger.debug("SQL Query: {}", sqlQuery);
+        logger.debug("DEBUG SQL Query: {}", sqlQuery);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sqlQuery)) {
@@ -204,35 +209,41 @@ public class Database {
             preparedStatement.setString(1, customer_number);
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
-                    logger.info("ENDE getCustomerID erfolgreich.");
+
+                    logger.info("ENDE getCustomerID() erfolgreich.");
                     return resultSet.getInt("customer_id");
+                } else {
+                    logger.warn("WARN getCustomerID() fehlgeschlagen es konnte kein Kunde mit der Kunden-Nr gefunden werden.");
                 }
             }
-
         } catch (SQLException e) {
             logger.error("ERROR getCustomerID() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
-
-        logger.warn("WARN getCustomerID() fehlgeschlagen es konnte kein Kunde mit der Kunden-Nr gefunden werden.");
         return -1;
     }
 
 
     public boolean isUsernameExist(String username) {
+        logger.debug("\n\nSTART isUsernameExist()");
+
         String sql = "SELECT username FROM customer WHERE username = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             preparedStatement.setString(1, username);
+
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
                 if (resultSet.next()) {
                     return true;
                 }
             }
+
         } catch (SQLException e) {
             logger.error("ERROR isUsernameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-            return false;
         }
         return false;
     }
@@ -273,7 +284,7 @@ public class Database {
 
 
     private String generateCustomerNumber() {
-        logger.debug("START generateCustomerNumber()");
+        logger.debug("\n\nSTART generateCustomerNumber()");
 
         // SQL-Abfrage, um die höchste Kundennummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(customer_number, 6) AS UNSIGNED)), 0) + 1 AS new_customer_number " +
@@ -425,7 +436,7 @@ public class Database {
 
 
     public List<Category> getAllCategories() {
-        logger.info("START getAllCategories().");
+        logger.info("\n\nSTART getAllCategories().");
         List<Category> listOfCategories = new ArrayList<>();
         String sql = "SELECT * FROM category";
 
