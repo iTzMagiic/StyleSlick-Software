@@ -413,7 +413,7 @@ public class Database {
                     Customer customer = new Customer(username, first_name, last_name, street, postal_code, city, country, purchased_from, customerID, customer_number);
                     listOfCustomers.add(customer);
                 }
-                logger.info("ENDE searchCustomer() erfolgreich. Länger der Liste von Kunden: {}", listOfCustomers.size());
+                logger.info("ENDE searchCustomer() Länger der Liste von Kunden: {}", listOfCustomers.size());
                 return listOfCustomers;
             }
         } catch (SQLException e) {

@@ -143,7 +143,7 @@ public class CustomerManagementController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
-        fields.put("name", field_first_name.getText());
+        fields.put("first_name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
         fields.put("postal_code", field_postal_code.getText());
