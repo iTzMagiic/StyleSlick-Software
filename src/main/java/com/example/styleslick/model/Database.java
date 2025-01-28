@@ -117,7 +117,7 @@ public class Database {
 
 
     public String getTotalCustomer() {
-        logger.debug("START getTotalCustomer()");
+        logger.debug("\n\nSTART getTotalCustomer()");
 
         String numberOfCustomers = "0";
         String sql = "SELECT COUNT(*) AS anzahl_kunden FROM customer";
@@ -131,7 +131,7 @@ public class Database {
                     numberOfCustomers = String.valueOf(resultSet.getInt("anzahl_kunden"));
                     logger.info("ENDE getTotalCustomer() erfolgreich die Anzahl der Kunden ermittelt.");
                 } else {
-                    logger.warn("WARN getTotalCustomer() es konnte nicht die Anzahl der Kunden ermittelt werden.");
+                    logger.warn("WARN getTotalCustomer() es konnte nicht die Anzahl der Kunden ermittelt werden. SQL Query: {}", sql);
                 }
             }
         } catch (SQLException e) {
@@ -636,9 +636,9 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     public List<Article> getAllArticles() {
         logger.debug("\n\nSTART getAllArticles()");
+
         List<Article> listOfArticle = new ArrayList<>();
         String sql = "SELECT * FROM article";
 
@@ -659,7 +659,6 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-
                     listOfArticle.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
             }
@@ -667,14 +666,19 @@ public class Database {
             logger.error("ERROR getAllArticles() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return listOfArticle;
         }
+        logger.info("ENDE getAllArticles() listOfArticle Länge: {}", listOfArticle.size());
         return listOfArticle;
     }
 
 
     public boolean addArticle(Map<String, String> filledFields) {
         logger.debug("\n\nSTART addArticle()");
+
+        // Die Methode so lassen, da sie sich anpasst, ob nur die Menge oder auch der Bestand angegeben ist
+
         String sql = "INSERT INTO article (";
         StringBuilder whereClause = new StringBuilder();
+
 
         for (Map.Entry<String, String> entry : filledFields.entrySet()) {
             if (whereClause.length() > 0) {
@@ -711,18 +715,25 @@ public class Database {
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
+
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+
                 if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+
                 } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
+
             if (!filledFields.containsKey("stock")) {
                 int stock = Integer.parseInt(filledFields.get("amount"));
                 preparedStatement.setInt(index, stock);
@@ -740,6 +751,7 @@ public class Database {
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public boolean updateArticle(Map<String, String> filledFields, int articleID) {
         logger.debug("\n\nSTART updateArticle()");
         String sql = "UPDATE article SET ";

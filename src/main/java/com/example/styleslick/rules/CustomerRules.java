@@ -11,7 +11,7 @@ public class CustomerRules {
     public boolean isNotAllowedToAddCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
-            AlertService.showErrorAlert("Bitte geben Sie was ein.");
+            AlertService.showErrorAlert("Bitte geben Sie die Pflichtfelder ein.");
             return true;
         }
 

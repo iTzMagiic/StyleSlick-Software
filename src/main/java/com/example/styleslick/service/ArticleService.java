@@ -41,6 +41,7 @@ public class ArticleService {
     public boolean addArticle(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
 
+
         for (Map.Entry<String, String> field : fields.entrySet()) {
             if (field.getValue() == null || field.getValue().trim().isEmpty()) {
                 continue;
@@ -48,9 +49,11 @@ public class ArticleService {
             filledFields.put(field.getKey(), field.getValue());
         }
 
+
         if (filledFields.containsKey("price")) {
             filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
+
 
         if (articleRules.isNotAllowedToAddArticle(filledFields)) {
             return false;

@@ -137,7 +137,6 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-
         executeShowAllArticles();
     }
 

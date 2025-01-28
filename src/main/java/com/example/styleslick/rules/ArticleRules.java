@@ -13,7 +13,7 @@ public class ArticleRules {
     public boolean isNotAllowedToAddArticle(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
-            AlertService.showErrorAlert("Bitte geben Sie etwas ein.");
+            AlertService.showErrorAlert("Bitte geben Sie die Pflichtfelder ein.");
             return true;
         }
 
@@ -79,16 +79,18 @@ public class ArticleRules {
         return false;
     }
 
+
     private boolean isNotValidPurchasePrice(Map<String, String> filledFields) {
         try {
             Double.parseDouble(filledFields.get("price"));
         } catch (NumberFormatException e) {
             AlertService.showErrorAlert("Bitte geben Sie ein Gültigen Kaufpreis ein.");
-            logger.error("Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
+            logger.error("ERROR isNotValidPurchasePrice() Benutzer hat kein Gültigen Kaufpreis eingegeben FEHLER: {} ENDE.\n", e.getMessage(), e);
             return true;
         }
         return false;
     }
+
 
     private boolean isNotValidAmount(Map<String, String> filledFields) {
         if (!filledFields.get("amount").matches("\\d+")) {
@@ -97,6 +99,7 @@ public class ArticleRules {
         }
         return false;
     }
+
 
     private boolean isNotValidStock(Map<String, String> filledFields) {
         if (!filledFields.get("stock").matches("[0-9]+")) {
