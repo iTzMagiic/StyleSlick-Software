@@ -145,6 +145,7 @@ public class ArticleManagementMenuController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+
         if (selectedArticle == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu bearbeiten.");
             return;
@@ -169,7 +170,6 @@ public class ArticleManagementMenuController implements Initializable {
         if (!articleService.updateArticle(fields, selectedArticle.getArticleID())) {
             return;
         }
-
 
         executeShowAllArticles();
     }

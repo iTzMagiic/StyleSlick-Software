@@ -609,13 +609,13 @@ public class Database {
     }
 
 
-    public boolean hasCategoryDependencies (int categoryID) {
+    public boolean hasCategoryDependencies(int categoryID) {
         logger.debug("\n\nSTART hasCategoryDependencies()");
 
         String sql = "SELECT category_id FROM article WHERE category_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, categoryID);
 
@@ -751,9 +751,9 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     public boolean updateArticle(Map<String, String> filledFields, int articleID) {
         logger.debug("\n\nSTART updateArticle()");
+
         String sql = "UPDATE article SET ";
         StringBuilder setClause = new StringBuilder();
 
@@ -768,35 +768,48 @@ public class Database {
         sql += setClause.toString();
         logger.debug("SQL Query: {}", sql);
 
+
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
             int index = 1;
 
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+
                 } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+
                 } else {
                     preparedStatement.setString(index++, entry.getValue());
                 }
             }
+
             preparedStatement.setInt(index, articleID);
-            preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE updateArticle() Der Artikel wurde erfolgreich in der Datenbank bearbeitet.");
+                return true;
+            } else {
+                logger.warn("WARN updateArticle() Der Artikel konnte nicht bearbeitet werden. Artikel-Nr: {}", articleID);
+                return false;
+            }
 
         } catch (SQLException e) {
             logger.error("ERROR updateArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
-
-        logger.info("ENDE updateArticle() Der Artikel wurde erfolgreich in der Datenbank bearbeitet.");
-        return true;
     }
 
 
     public List<Article> searchArticlesLike(Map<String, String> filledFields) {
+        logger.debug("\n\n Start searchArticlesLike()");
+
         List<Article> listOfFoundetArticles = new ArrayList<>();
         String sql = "SELECT * FROM article WHERE ";
         StringBuilder whereClause = new StringBuilder();
@@ -814,13 +827,17 @@ public class Database {
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             int index = 1;
+
             for (Map.Entry<String, String> entry : filledFields.entrySet()) {
                 if (entry.getKey().equals("price")) {
                     preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+
                 } else if (entry.getKey().equals("purchase_date")) {
                     preparedStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
+
                 } else if (entry.getKey().equals("amount") || entry.getKey().equals("category_id") || entry.getKey().equals("stock")) {
                     preparedStatement.setInt(index++, Integer.parseInt(entry.getValue()));
+
                 } else {
                     preparedStatement.setString(index++, "%" + entry.getValue() + "%");
                 }
@@ -843,16 +860,17 @@ public class Database {
 
                     listOfFoundetArticles.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
-                return listOfFoundetArticles;
             }
         } catch (SQLException e) {
             logger.error("ERROR searchArticlesLike() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
+        logger.info("ENDE searchArticlesLike() listOfFoundetArticles Länge: {}", listOfFoundetArticles.size());
         return listOfFoundetArticles;
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public int getStockOfArticle(int articleID) {
         logger.debug("START getStockOfArticle()");
         String sql = "SELECT stock FROM article WHERE article_id = ?";

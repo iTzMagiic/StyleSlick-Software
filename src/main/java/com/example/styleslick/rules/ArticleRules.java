@@ -10,6 +10,7 @@ public class ArticleRules {
 
     private static final Logger logger = LoggerFactory.getLogger(ArticleRules.class);
 
+
     public boolean isNotAllowedToAddArticle(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
@@ -56,6 +57,7 @@ public class ArticleRules {
 
         return false;
     }
+
 
     public boolean isNotAllowedToUpdateOrSearchArticles(Map<String, String> filledFields) {
 

@@ -73,11 +73,13 @@ public class ArticleService {
     public boolean updateArticle(Map<String, String> fields, int articleID) {
         Map<String, String> filledFields = new HashMap<>();
 
+
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() != null && !entry.getValue().trim().isEmpty()) {
                 filledFields.put(entry.getKey(), entry.getValue());
             }
         }
+
 
         if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
             return false;
