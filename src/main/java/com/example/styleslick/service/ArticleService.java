@@ -57,8 +57,6 @@ public class ArticleService {
         }
 
 
-
-
         if (!database.addArticle(filledFields)) {
             AlertService.showErrorAlert("Artikel konnte nicht hinzugefügt werden.");
             return false;
@@ -67,8 +65,6 @@ public class ArticleService {
         AlertService.showConfirmAlert("Artikel wurde erfolgreich hinzugefügt!");
         return true;
     }
-
-
 
 
     public boolean updateArticle(Map<String, String> fields, int articleID) {

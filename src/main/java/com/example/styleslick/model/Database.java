@@ -610,7 +610,7 @@ public class Database {
 
 
     public boolean hasCategoryDependencies (int categoryID) {
-        logger.debug("START hasCategoryDependencies()");
+        logger.debug("\n\nSTART hasCategoryDependencies()");
 
         String sql = "SELECT category_id FROM article WHERE category_id = ?";
 
@@ -638,6 +638,7 @@ public class Database {
 
     //TODO:: ab hier weiter logging verbessern.
     public List<Article> getAllArticles() {
+        logger.debug("\n\nSTART getAllArticles()");
         List<Article> listOfArticle = new ArrayList<>();
         String sql = "SELECT * FROM article";
 

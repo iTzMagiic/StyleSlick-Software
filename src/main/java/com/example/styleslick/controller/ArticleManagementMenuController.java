@@ -14,8 +14,6 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -27,7 +25,6 @@ import java.util.ResourceBundle;
 
 public class ArticleManagementMenuController implements Initializable {
 
-    private static final Logger logger = LoggerFactory.getLogger(ArticleManagementMenuController.class);
     private ArticleService articleService;
     private CategoryService categoryService;
 
@@ -56,7 +53,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableColumn<Article, Integer> column_stock;
     @FXML
-    private ChoiceBox<Category> choiceBox_category_id;
+    private ChoiceBox<Category> choiceBox_categories;
     @FXML
     private TextField field_name;
     @FXML
@@ -79,23 +76,20 @@ public class ArticleManagementMenuController implements Initializable {
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
-        logger.debug("\n\nSTART initialize().");
         articleService = ArticleService.getInstance();
         categoryService = CategoryService.getInstance();
 
         List<Category> listOfCategories = categoryService.getAllCategories();
-        choiceBox_category_id.getItems().addAll(listOfCategories);
+        choiceBox_categories.getItems().addAll(listOfCategories);
 
         // Beobachten, welche Zeile in der Tabelle ausgewählt ist
         tableView_articles.getSelectionModel().selectedItemProperty();
 
         executeShowAllArticles();
-        logger.debug("ENDE initialize() erfolgreich.");
     }
 
 
     private void executeShowAllArticles() {
-        logger.debug("\n\nSTART executeShowAllArticles().");
         clearFields();
 
         column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -112,12 +106,10 @@ public class ArticleManagementMenuController implements Initializable {
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
         tableView_articles.setItems(observableList);
-        logger.debug("ENDE executeShowAllArticles() erfolgreich.");
     }
 
 
     private void executeAddArticle() {
-        logger.debug("\n\nSTART executeAddArticle().");
         Map<String, String> fields = new HashMap<>();
 
         if (datePicker_purchase_date.getValue() == null) {
@@ -125,12 +117,12 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        if (choiceBox_category_id.getValue() == null) {
+        if (choiceBox_categories.getValue() == null) {
             AlertService.showErrorAlert("Kategorie darf nicht leer sein.");
             return;
         }
 
-        fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        fields.put("category_id", String.valueOf(choiceBox_categories.getValue().getID()));
         fields.put("name", field_name.getText());
         fields.put("color", field_color.getText());
         fields.put("price", field_price.getText());
@@ -147,12 +139,10 @@ public class ArticleManagementMenuController implements Initializable {
 
 
         executeShowAllArticles();
-        logger.debug("ENDE executeAddArticle() erfolgreich.");
     }
 
 
     private void executeUpdateArticle() {
-        logger.debug("\n\nSTART executeUpdateArticle().");
         Map<String, String> fields = new HashMap<>();
 
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
@@ -161,8 +151,8 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        if (choiceBox_category_id.getValue() != null) {
-            fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        if (choiceBox_categories.getValue() != null) {
+            fields.put("category_id", String.valueOf(choiceBox_categories.getValue().getID()));
         }
 
         fields.put("name", field_name.getText());
@@ -183,12 +173,10 @@ public class ArticleManagementMenuController implements Initializable {
 
 
         executeShowAllArticles();
-        logger.debug("ENDE executeUpdateArticle() erfolgreich.");
     }
 
 
     private void executeDeleteArticle() {
-        logger.debug("\n\nSTART executeDeleteArticle.");
 
         // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
@@ -206,17 +194,15 @@ public class ArticleManagementMenuController implements Initializable {
 
         AlertService.showConfirmAlert("Artikel erfolgreich gelöscht.");
         executeShowAllArticles();
-        logger.debug("ENDE executeDeleteArticle() erfolgreich.");
     }
 
 
     private void executeSearchArticle() {
-        logger.debug("\n\nSTART executeSearchArticle().");
         Map<String, String> fields = new HashMap<>();
 
 
-        if (choiceBox_category_id.getValue() != null) {
-            fields.put("category_id", String.valueOf(choiceBox_category_id.getValue().getID()));
+        if (choiceBox_categories.getValue() != null) {
+            fields.put("category_id", String.valueOf(choiceBox_categories.getValue().getID()));
         }
 
         fields.put("name", field_name.getText());
@@ -239,14 +225,12 @@ public class ArticleManagementMenuController implements Initializable {
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
         tableView_articles.setItems(observableList);
-        logger.debug("ENDE executeSearchArticle() erfolgreich.");
     }
 
 
     private void executeExitArticleManagement() {
         articleService.clearSession();
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
-        logger.debug("BEENDET Benutzer hat ArticleManagementMenu Verlassen.--------------\n\n");
     }
 
 
@@ -334,9 +318,6 @@ public class ArticleManagementMenuController implements Initializable {
     }
 
 
-
-
-
     private void clearFields() {
         field_name.clear();
         field_color.clear();
@@ -347,6 +328,6 @@ public class ArticleManagementMenuController implements Initializable {
         field_amount.clear();
         field_stock.clear();
         datePicker_purchase_date.setValue(null);
-        choiceBox_category_id.setValue(null);
+        choiceBox_categories.setValue(null);
     }
 }
