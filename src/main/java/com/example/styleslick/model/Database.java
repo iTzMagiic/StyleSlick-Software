@@ -929,9 +929,9 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     public List<Invoice> getAllInvoices() {
-        logger.debug("START getAllInvoices()");
+        logger.debug("\n\nSTART getAllInvoices()");
+
         String sql = "SELECT * FROM invoice";
         List<Invoice> listOfInvoices = new ArrayList<>();
 
@@ -957,18 +957,17 @@ public class Database {
                             transaction_number, payment_amount, shipping_cost, shipping_receipt, shipping_method));
                 }
 
-                logger.info("ENDE getAllInvoices() erfolgreich. Alle Bestellungen wurden aus der Datenbank geladen.");
+                logger.info("ENDE getAllInvoices() Alle Bestellungen wurden aus der Datenbank geladen. listOfInvoices Länge: {}", listOfInvoices.size());
                 return listOfInvoices;
             }
         } catch (SQLException e) {
             logger.error("ERROR getAllInvoices() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+            return listOfInvoices;
         }
-
-        logger.warn("WARN getAllInvoices() fehlgeschlagen. Bestellungen konnten nicht geladen werden.");
-        return listOfInvoices;
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public int addInvoice(Map<String, String> filledFields) {
         logger.debug("START addInvoice().");
         String sqlQuery = generateInsertIntoQueryWithNumber("invoice", filledFields);
@@ -1073,7 +1072,8 @@ public class Database {
 
 
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
-        logger.debug("START getInvoiceItems().");
+        logger.debug("\n\nSTART getInvoiceItems().");
+
         List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
         String sql = "SELECT i.*, a.name FROM invoice_item i INNER JOIN article a ON i.article_id = a.article_id WHERE " +
                 "invoice_id = ?";
@@ -1093,8 +1093,8 @@ public class Database {
 
                     listOfInvoiceItems.add(new InvoiceItem(articleID, amount, articleName));
                 }
-                logger.debug("getInvoiceItems() listOfInvoiceItems größe: {}", listOfInvoiceItems.size());
-                logger.info("ENDE getInvoiceItems erfolgreich.");
+
+                logger.info("ENDE getInvoiceItems() listOfInvoiceItem Länge: {}", listOfInvoiceItems.size());
                 return listOfInvoiceItems;
             }
         } catch (SQLException e) {

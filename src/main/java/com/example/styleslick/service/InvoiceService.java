@@ -123,7 +123,6 @@ public class InvoiceService {
     }
 
 
-    //TODO:: Methode muss noch benutzt werden.
     public boolean addItemToInvoiceWithInvoiceID(Map<String, String> itemFields, int invoice_id) {
         Map<String, String> filledItemFields = new HashMap<>();
 

@@ -20,9 +20,7 @@ import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
 import java.time.LocalDate;
-import java.util.HashMap;
-import java.util.Map;
-import java.util.ResourceBundle;
+import java.util.*;
 
 public class InvoiceManagementController implements Initializable {
 
@@ -253,14 +251,20 @@ public class InvoiceManagementController implements Initializable {
 
     private void executeShowInvoiceItems() {
 
+        List<InvoiceItem> listOfInvoiceItems;
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
         if (selectedInvoice == null) {
-            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus der Bestellungstabelle aus.");
+            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus.");
             return;
         }
         tableView_invoices.getSelectionModel().clearSelection();
 
+        listOfInvoiceItems = invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID());
+
+        if (listOfInvoiceItems.isEmpty()) {
+            return;
+        }
 
         setTableViewVisible("invoice_items");
 
@@ -273,7 +277,7 @@ public class InvoiceManagementController implements Initializable {
         column_invoice_item_articleName.setCellValueFactory(new PropertyValueFactory<>("articleName"));
 
 
-        ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID()));
+        ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
         tableView_invoice_item.setItems(observableList);
     }
 
@@ -305,16 +309,7 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        field_customer_number.clear();
-        datePicker_purchase_date.setValue(null);
-        field_payment_method.clear();
-        field_transaction_number.clear();
-        field_payment_amount.clear();
-        field_shipping_method.clear();
-        field_shipping_receipt.clear();
-        field_shipping_cost.clear();
-        field_articleID.clear();
-        field_amount.clear();
+        clearFields();
         executeShowAllInvoices();
     }
 
@@ -322,7 +317,7 @@ public class InvoiceManagementController implements Initializable {
     private void executeAddItemToInvoice() {
 
         if (field_invoice_number.getLength() == 0 && tableView_invoices.getSelectionModel().getSelectedItem() == null) {
-            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus der Bestellungstabelle oder tragen " +
+            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus oder tragen " +
                     "Sie eine Rechnung-Nr ein.");
             return;
         }
@@ -337,12 +332,14 @@ public class InvoiceManagementController implements Initializable {
                 field_amount.clear();
                 field_articleID.clear();
                 tableView_invoices.getSelectionModel().clearSelection();
+                executeShowAllInvoices();
             }
         } else {
             if (invoiceService.addItemToInvoiceWithInvoiceNumber(articleToAddToInvoice, field_invoice_number.getText())) {
                 field_amount.clear();
                 field_articleID.clear();
                 field_invoice_number.clear();
+                executeShowAllInvoices();
             }
         }
     }
@@ -357,7 +354,7 @@ public class InvoiceManagementController implements Initializable {
 
         int invoiceID = tableView_invoices.getSelectionModel().getSelectedItem().getInvoiceID();
 
-        if(AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + invoiceID + " löschen?")) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + invoiceID + " löschen?")) {
             if (invoiceService.deleteInvoice(invoiceID)) {
                 executeShowAllInvoices();
             }
@@ -428,7 +425,6 @@ public class InvoiceManagementController implements Initializable {
             executeExitInvoiceManagement();
         }
     }
-
 
 
     @FXML
@@ -507,7 +503,20 @@ public class InvoiceManagementController implements Initializable {
             tableView_invoices.setVisible(false);
             tableView_invoice_item.setVisible(false);
         }
+    }
 
+
+    private void clearFields() {
+        field_customer_number.clear();
+        datePicker_purchase_date.setValue(null);
+        field_payment_method.clear();
+        field_transaction_number.clear();
+        field_payment_amount.clear();
+        field_shipping_method.clear();
+        field_shipping_receipt.clear();
+        field_shipping_cost.clear();
+        field_articleID.clear();
+        field_amount.clear();
     }
 
 }
