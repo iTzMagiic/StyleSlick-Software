@@ -324,13 +324,16 @@ public class InvoiceManagementController implements Initializable {
 
         Map<String, String> articleToAddToInvoice = new HashMap<>();
 
+
         articleToAddToInvoice.put("article_id", field_articleID.getText());
         articleToAddToInvoice.put("amount", field_amount.getText());
+
 
         if (tableView_invoices.getSelectionModel().getSelectedItem() != null) {
             if (invoiceService.addItemToInvoiceWithInvoiceID(articleToAddToInvoice, tableView_invoices.getSelectionModel().getSelectedItem().getInvoiceID())) {
                 field_amount.clear();
                 field_articleID.clear();
+                field_invoice_number.clear();
                 tableView_invoices.getSelectionModel().clearSelection();
                 executeShowAllInvoices();
             }

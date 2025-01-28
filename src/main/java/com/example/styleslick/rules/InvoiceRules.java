@@ -80,6 +80,7 @@ public class InvoiceRules {
     }
 
 
+
     private boolean isNotValidAmountOrArticleID(String input) {
         if (!input.matches("[1-9]\\d*")) {
             return true;
@@ -93,7 +94,7 @@ public class InvoiceRules {
     }
 
 
-    private boolean isNotValidDouble(String input) {
+    public boolean isNotValidDouble(String input) {
         try {
             double inputDouble = Double.parseDouble(input);
 

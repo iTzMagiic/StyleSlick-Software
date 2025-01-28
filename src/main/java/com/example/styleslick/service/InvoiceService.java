@@ -124,9 +124,11 @@ public class InvoiceService {
             filledItemFields.put(entry.getKey(), entry.getValue());
         }
 
+
         if (invoiceRules.isNotAllowedToAddItemToInvoice(itemFields)) {
             return false;
         }
+
 
         int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
 

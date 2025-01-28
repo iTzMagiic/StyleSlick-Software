@@ -967,7 +967,6 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     //TODO:: Die Methode muss noch genauer angeschaut werden und geprüft werden.
     public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
         logger.debug("\n\nSTART addInvoice()");
@@ -1067,11 +1066,13 @@ public class Database {
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public boolean addItemToInvoice(int invoiceID, Map<String, String> filledFields) {
         logger.debug("START addItemToInvoice().");
 
         String sqlAddItemToInvoice = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
         String sqlUpdateArticleStock = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
+
 
         logger.debug("sqlAddItemToInvoice Query: {}", sqlAddItemToInvoice);
         logger.debug("sqlUpdateArticleStock Query: {}", sqlAddItemToInvoice);
