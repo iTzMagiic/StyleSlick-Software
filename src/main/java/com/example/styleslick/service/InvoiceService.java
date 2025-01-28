@@ -51,7 +51,6 @@ public class InvoiceService {
             if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
                 continue;
             }
-
             filledInvoiceFields.put(entry.getKey(), entry.getValue());
         }
 
@@ -68,7 +67,6 @@ public class InvoiceService {
             return false;
         }
 
-
         if (filledInvoiceFields.containsKey("shipping_cost")) {
             filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
         }
@@ -77,15 +75,16 @@ public class InvoiceService {
             filledInvoiceFields.replace("payment_amount", filledInvoiceFields.get("payment_amount").replace(",", "."));
         }
 
-
         if (invoiceRules.isNotAllowedToAddInvoice(filledInvoiceFields)) {
             return false;
         }
+
 
         if (database.getCustomerID(filledInvoiceFields.get("customer_id")) == -1) {
             AlertService.showErrorAlert("Kunden-Nr existiert nicht.");
             return false;
         }
+
 
         int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
 
@@ -104,20 +103,12 @@ public class InvoiceService {
         }
 
 
-        int invoiceID = database.addInvoice(filledInvoiceFields);
-
-
-        if (invoiceID == -1) {
-            AlertService.showErrorAlert("Bestellung konnte nicht angelegt werden.");
-            return false;
-        }
-
-        if (database.addItemToInvoice(invoiceID, filledItemFields)) {
-            AlertService.showConfirmAlert("Bestellung wurde erfolgreich aufgenommen.");
+        if (database.addInvoice(filledInvoiceFields, filledItemFields)) {
+            AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich erstellt.");
             return true;
-        } else {
-            AlertService.showErrorAlert("Bestellung wurde angelegt aber der Artikel konnte nicht in die Bestellung" +
-                    "hinzugefügt werden.");
+        }
+        else {
+            AlertService.showErrorAlert("Die Bestellung konnte nicht erstellt werden.");
             return false;
         }
     }

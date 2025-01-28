@@ -63,6 +63,9 @@ public class CustomerManagementController implements Initializable {
     private TextField field_purchased_from;
 
 
+    //TODO:: Kunde muss nach Abhängigkeiten zu Bestellungen geprüft werden wenn ein Kunde gelöscht wird.
+
+
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
