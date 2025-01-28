@@ -79,7 +79,7 @@ public class CategoryService {
         }
 
         if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
-            AlertService.showErrorAlert("Artikel wird nicht bearbeitet.");
+            AlertService.showErrorAlert("Kategorie wird nicht bearbeitet.");
             return false;
         }
 
@@ -97,6 +97,11 @@ public class CategoryService {
 
         if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
             AlertService.showErrorAlert("Kategorie wird nicht gelöscht.");
+            return false;
+        }
+
+        if (database.hasCategoryDependencies(categoryID)) {
+            AlertService.showErrorAlert("Bitte Löschen Sie zu erst alle Artikel die eine Abhängigkeit zu der Kategorie haben.");
             return false;
         }
 

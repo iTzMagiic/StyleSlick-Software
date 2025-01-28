@@ -609,6 +609,33 @@ public class Database {
     }
 
 
+    public boolean hasCategoryDependencies (int categoryID) {
+        logger.debug("START hasCategoryDependencies()");
+
+        String sql = "SELECT category_id FROM article WHERE category_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, categoryID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (!resultSet.next()) {
+                    logger.info("ENDE hasCategoryDependencies() Es gibt keine Abhängigkeiten zu der Kategorie.");
+                    return false;
+                } else {
+                    logger.info("ENDE hasCategoryDependencies() Es gibt noch Artikel mit Abhängigkeiten zur Kategorie.");
+                    return true;
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR hasCategoryDependencies() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+            return true;
+        }
+    }
+
+
     //TODO:: ab hier weiter logging verbessern.
     public List<Article> getAllArticles() {
         List<Article> listOfArticle = new ArrayList<>();
