@@ -176,9 +176,8 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void executeDeleteArticle() {
-
-        // Abrufen des ausgewählten Artikels
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+
         if (selectedArticle == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Artikel aus der Tabelle aus, um ihn zu löschen.");
             return;
@@ -187,11 +186,9 @@ public class ArticleManagementMenuController implements Initializable {
         int articleID = selectedArticle.getArticleID();
 
         if (!articleService.deleteArticle(articleID)) {
-            AlertService.showErrorAlert("Artikel wurde nicht gelöscht.");
             return;
         }
 
-        AlertService.showConfirmAlert("Artikel erfolgreich gelöscht.");
         executeShowAllArticles();
     }
 

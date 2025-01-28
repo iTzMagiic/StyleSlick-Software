@@ -81,12 +81,12 @@ public class ArticleService {
         }
 
 
-        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
-            return false;
-        }
-
         if (filledFields.containsKey("price")) {
             filledFields.replace("price", filledFields.get("price").replace(",", "."));
+        }
+
+        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
+            return false;
         }
 
         if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
@@ -108,6 +108,7 @@ public class ArticleService {
         Map<String, String> filledFields = new HashMap<>();
         List<Article> listOfArticles = new ArrayList<>();
 
+
         for (Map.Entry<String, String> entry : fields.entrySet()) {
             if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
                 continue;
@@ -115,13 +116,15 @@ public class ArticleService {
             filledFields.put(entry.getKey(), entry.getValue());
         }
 
-        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
-            return listOfArticles;
-        }
 
         if (filledFields.containsKey("price")) {
             filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
+
+        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
+            return listOfArticles;
+        }
+
 
         listOfArticles = database.searchArticlesLike(filledFields);
 
@@ -135,10 +138,17 @@ public class ArticleService {
 
 
     public boolean deleteArticle(int articleID) {
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + articleID + "' löschen?")) {
-            return database.deleteArticle(articleID);
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + articleID + "' löschen?")) {
+            AlertService.showErrorAlert("Artikel wird nicht gelöscht.");
+            return false;
         }
-        return false;
+        if (!database.deleteArticle(articleID)) {
+            AlertService.showErrorAlert("Artikel konnte nicht gelöscht werden.");
+            return false;
+        }
+
+        AlertService.showConfirmAlert("Artikel erfolgreich gelöscht.");
+        return true;
     }
 
 

@@ -818,7 +818,12 @@ public class Database {
             if (whereClause.length() > 0) {
                 whereClause.append(" AND ");
             }
-            whereClause.append(entry.getKey()).append(" LIKE ?");
+
+            if (entry.getKey().contains("price")) {
+                whereClause.append(entry.getKey()).append(" = ?");
+            } else {
+                whereClause.append(entry.getKey()).append(" LIKE ?");
+            }
         }
 
         sql += whereClause.toString();
@@ -870,9 +875,9 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     public int getStockOfArticle(int articleID) {
-        logger.debug("START getStockOfArticle()");
+        logger.debug("\n\nSTART getStockOfArticle()");
+
         String sql = "SELECT stock FROM article WHERE article_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -897,7 +902,7 @@ public class Database {
 
 
     public boolean deleteArticle(int articleID) {
-        logger.debug("START deleteArticle().");
+        logger.debug("\n\nSTART deleteArticle().");
 
         String sql = "DELETE FROM article WHERE article_id = ?";
         logger.debug("SQL Query: {}", sql);
@@ -906,18 +911,25 @@ public class Database {
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
             preparedStatement.setInt(1, articleID);
-            preparedStatement.executeUpdate();
+
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.");
+                return true;
+            } else {
+                logger.warn("WARN deleteArticle() Fehlgeschlagen kein passender Artikel mit der article_id gefunden.");
+                return false;
+            }
 
         } catch (SQLException e) {
             logger.error("ERROR deleteArticle() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
             return false;
         }
-
-        logger.info("ENDE deleteArticle() Der Artikel wurde erfolgreich aus der Datenbank gelöscht.");
-        return true;
     }
 
 
+    //TODO:: ab hier weiter logging verbessern.
     public List<Invoice> getAllInvoices() {
         logger.debug("START getAllInvoices()");
         String sql = "SELECT * FROM invoice";
