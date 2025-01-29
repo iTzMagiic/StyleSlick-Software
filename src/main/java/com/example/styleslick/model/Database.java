@@ -1121,6 +1121,34 @@ public class Database {
     }
 
 
+    //TODO:: Methode muss noch eingesetz werden.
+    public boolean deleteArticleFromInvoice(int invoice_item_id) {
+        logger.debug("START deleteArticleFromInvoice()");
+
+        String sql = "DELETE FROM invoice_item WHERE invoice_item_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, invoice_item_id);
+
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE deleteArticleFromInvoice() Artikel wurde erfolgreich aus der Bestellung gelöscht.");
+                return true;
+            } else {
+                logger.warn("WARN deleteArticleFromInvoice() Artikel konnte nicht aus der Bestellung gelöscht werden.");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR deleteArticleFromInvoice() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+            return false;
+        }
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         logger.debug("\n\nSTART getInvoiceItems().");
 
@@ -1140,8 +1168,9 @@ public class Database {
                     int articleID = resultSet.getInt("article_id");
                     int amount = resultSet.getInt("amount");
                     String articleName = resultSet.getString("name");
+                    int invoice_item_id = resultSet.getInt("invoice_item_id");
 
-                    listOfInvoiceItems.add(new InvoiceItem(articleID, amount, articleName));
+                    listOfInvoiceItems.add(new InvoiceItem(articleID, amount, articleName, invoice_item_id));
                 }
 
                 logger.info("ENDE getInvoiceItems() listOfInvoiceItem Länge: {}", listOfInvoiceItems.size());
