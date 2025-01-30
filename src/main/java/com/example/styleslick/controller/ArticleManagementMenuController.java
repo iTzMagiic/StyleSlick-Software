@@ -226,7 +226,7 @@ public class ArticleManagementMenuController implements Initializable {
 
     private void executeExitArticleManagement() {
         articleService.clearSession();
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
     }
 
 

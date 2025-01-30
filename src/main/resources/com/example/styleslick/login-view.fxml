@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.control.TextField?>
@@ -9,39 +9,40 @@
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
 
-
-<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoginManagementController">
+<AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="600.0" prefWidth="1000.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoginManagementController">
    <children>
       <AnchorPane prefHeight="600.0" prefWidth="500.0" style="-fx-background-color: #2F1832;">
          <children>
             <ImageView fitHeight="400.0" fitWidth="400.0" layoutX="50.0" layoutY="100.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../image/login_background.jpg" />
+                  <Image url="@../../../image/login/background_logo.jpg" />
                </image>
             </ImageView>
          </children>
       </AnchorPane>
-      <TextField fx:id="field_username" layoutX="644.0" layoutY="248.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="username" />
-      <Label layoutX="663.0" layoutY="130.0" text="Logge dich ein!">
+      <TextField fx:id="field_username" layoutX="645.0" layoutY="250.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="username" />
+      <Label layoutX="647.0" layoutY="130.0" styleClass="label-highlight" text="Logge dich ein!">
          <font>
             <Font size="30.0" />
          </font>
       </Label>
-      <Label layoutX="644.0" layoutY="61.0" text="Willkommen" textFill="#2f1831">
+      <Label layoutX="624.0" layoutY="52.0" styleClass="label-title" text="Willkommen" textFill="#2f1831">
          <font>
             <Font name="System Bold" size="40.0" />
          </font>
       </Label>
-      <Button layoutX="644.0" layoutY="370.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="45.0" prefWidth="114.0" style="-fx-background-color: #2F1831;" text="Einloggen" textFill="WHITE">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
-      <Button layoutX="771.0" layoutY="370.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" prefHeight="45.0" prefWidth="114.0" style="-fx-background-color: #2F1831;" text="Beenden" textFill="WHITE">
-         <font>
-            <Font size="17.0" />
-         </font>
-      </Button>
-      <PasswordField fx:id="field_password" layoutX="644.0" layoutY="300.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="Passwort" />
+      <PasswordField fx:id="field_password" layoutX="645.0" layoutY="316.0" onKeyPressed="#onKeyPressedEnterLogin" prefHeight="32.0" prefWidth="241.0" promptText="Passwort" />
+      <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="602.0" layoutY="250.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/login/avatar.png" />
+         </image>
+      </ImageView>
+      <ImageView fitHeight="32.0" fitWidth="31.0" layoutX="602.0" layoutY="317.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../../image/login/lock.png" />
+         </image>
+      </ImageView>
+      <JFXButton layoutX="602.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="49.0" prefWidth="139.0" text="Einloggen" />
+      <JFXButton layoutX="779.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" prefHeight="49.0" prefWidth="139.0" text="Beenden" />
    </children>
 </AnchorPane>

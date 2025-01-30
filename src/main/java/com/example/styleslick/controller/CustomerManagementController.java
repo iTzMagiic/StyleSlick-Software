@@ -188,7 +188,7 @@ public class CustomerManagementController implements Initializable {
 
     private void executeExitCustomerManagement() {
         CustomerService.getInstance().clearSession();
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
     }
 
     @FXML

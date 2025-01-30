@@ -984,8 +984,8 @@ public class Database {
             connection.setAutoCommit(false);
 
             try (PreparedStatement addInvoiceStatement = connection.prepareStatement(addInvoiceSqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
-            PreparedStatement addItemStatement = connection.prepareStatement(addItemSqlQuery);
-            PreparedStatement updateArticleStockStatement = connection.prepareStatement(updateArticleStockSqlQuery)) {
+                 PreparedStatement addItemStatement = connection.prepareStatement(addItemSqlQuery);
+                 PreparedStatement updateArticleStockStatement = connection.prepareStatement(updateArticleStockSqlQuery)) {
 
                 int index = 1;
 
@@ -1015,7 +1015,6 @@ public class Database {
                 }
 
 
-
                 ResultSet generatedKeys = addInvoiceStatement.getGeneratedKeys();
                 if (!generatedKeys.next()) {
                     logger.error("ERROR addInvoice() Keine invoice_id generiert.");
@@ -1034,7 +1033,6 @@ public class Database {
                     logger.error("ERROR addInvoice() Der Artikel konnte nicht zur Bestellung hinzugefügt werden.");
                     throw new SQLException("ROLLBACK Artikel konnte nicht zur Bestellung hinzugefügt werden.");
                 }
-
 
 
                 updateArticleStockStatement.setInt(1, Integer.parseInt(itemFields.get("amount")));
@@ -1121,14 +1119,13 @@ public class Database {
     }
 
 
-    //TODO:: Methode muss noch eingesetz werden.
     public boolean deleteArticleFromInvoice(int invoice_item_id) {
         logger.debug("START deleteArticleFromInvoice()");
 
         String sql = "DELETE FROM invoice_item WHERE invoice_item_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, invoice_item_id);
 
@@ -1154,26 +1151,26 @@ public class Database {
 
         String sql = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
 
-         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
-             preparedStatement.setInt(1, amount);
-             preparedStatement.setInt(2, articleID);
+            preparedStatement.setInt(1, amount);
+            preparedStatement.setInt(2, articleID);
 
-             int result = preparedStatement.executeUpdate();
+            int result = preparedStatement.executeUpdate();
 
-             if (result == 1) {
-                 logger.info("ENDE addBackDeletedItem() erfolgreich der Bestand wurde erfolgreich wieder angepasst.");
-                 return true;
-             } else {
-                 logger.warn("WARN addBackDeletedItem() fehlgeschlagen der Bestand des Artikels konnte nicht angepasst werden.");
-                 return false;
-             }
+            if (result == 1) {
+                logger.info("ENDE addBackDeletedItem() erfolgreich der Bestand wurde erfolgreich wieder angepasst.");
+                return true;
+            } else {
+                logger.warn("WARN addBackDeletedItem() fehlgeschlagen der Bestand des Artikels konnte nicht angepasst werden.");
+                return false;
+            }
 
-         } catch (SQLException e) {
-             logger.error("ERROR addBackDeletedItem() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
-             return false;
-         }
+        } catch (SQLException e) {
+            logger.error("ERROR addBackDeletedItem() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+            return false;
+        }
     }
 
 
@@ -1298,6 +1295,8 @@ public class Database {
 
         return false;
     }
+
+
 
 
     private String generateInvoiceNumber() {

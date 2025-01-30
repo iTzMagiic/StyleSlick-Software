@@ -405,8 +405,6 @@ public class InvoiceManagementController implements Initializable {
 
             ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
             tableView_invoice_item.setItems(observableList);
-
-
         }
     }
 
@@ -415,14 +413,13 @@ public class InvoiceManagementController implements Initializable {
         articleService.clearSession();
         customerService.clearSession();
         invoiceService.clearSession();
-        SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
     }
-
 
 
     @FXML
     private void onKeyPressedEnterDeleteArticleFromInvoice(KeyEvent event) {
-        if (event.getCode().toString().equals("ENTER")){
+        if (event.getCode().toString().equals("ENTER")) {
             executeDeleteArticleFromInvoice();
         }
     }
@@ -482,7 +479,6 @@ public class InvoiceManagementController implements Initializable {
             executeExitInvoiceManagement();
         }
     }
-
 
 
     @FXML

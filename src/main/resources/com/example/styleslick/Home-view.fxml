@@ -32,7 +32,7 @@
                   <Font size="24.0" />
                </font>
             </Button>
-            <Button layoutX="35.0" layoutY="187.0" mnemonicParsing="false" prefHeight="50.0" prefWidth="380.0" text="Einstellung">
+            <Button layoutX="35.0" layoutY="187.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterSettings" onMouseClicked="#onMousePressedSettings" prefHeight="50.0" prefWidth="380.0" text="Einstellung">
                <font>
                   <Font size="24.0" />
                </font>

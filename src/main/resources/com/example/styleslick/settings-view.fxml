@@ -1,14 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.AnchorPane?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="com.example.styleslick.controller.SettingsManagementController"
-            prefHeight="400.0" prefWidth="600.0">
-
+<AnchorPane prefHeight="400.0" prefWidth="600.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.SettingsManagementController">
+   <children>
+      <Label layoutX="196.0" layoutY="81.0" styleClass="label-highlight" stylesheets="@../../../style/style.css" text="Hello Text Test" />
+      <JFXButton buttonType="RAISED" layoutX="215.0" layoutY="200.0" stylesheets="@../../../style/style.css" text="Einloggen" />
+      <Label layoutX="182.0" layoutY="14.0" styleClass="label-title" stylesheets="@../../../style/style.css" text="Willkommens text" />
+      <Label layoutX="196.0" layoutY="142.0" stylesheets="@../../../style/style.css" text="Normaler Text" />
+   </children>
 </AnchorPane>
