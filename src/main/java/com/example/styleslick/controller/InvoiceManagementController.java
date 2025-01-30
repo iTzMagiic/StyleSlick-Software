@@ -365,6 +365,50 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
+    private void executeDeleteArticleFromInvoice() {
+
+        List<InvoiceItem> listOfInvoiceItems;
+
+        if (tableView_invoice_item.getSelectionModel().getSelectedItem() == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie ein Artikel aus einer Bestellung aus.");
+            return;
+        }
+
+        InvoiceItem selectedArticle = tableView_invoice_item.getSelectionModel().getSelectedItem();
+        tableView_invoice_item.getSelectionModel().clearSelection();
+
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel " + selectedArticle.getArticleName() +
+                " aus der Bestellung löschen?")) {
+            return;
+        }
+
+        if (AlertService.showConfirmAlertResult("Soll der Artikel zum Bestand wieder angepasst werden?")) {
+            /*
+            Der Bestand muss im Inventar wieder angepasst werden das es Hoch addiert wird statt 0 soll es wieder 1 werden
+            invoiceService.
+             */
+        }
+
+
+        if (invoiceService.deleteArticleFromInvoice(selectedArticle.getInvoiceItemID())) {
+
+            listOfInvoiceItems = invoiceService.getInvoiceItems(field_invoice_number.getText());
+
+            if (listOfInvoiceItems.isEmpty()) {
+                return;
+            }
+
+            column_invoice_item_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+            column_invoice_item_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+            column_invoice_item_articleName.setCellValueFactory(new PropertyValueFactory<>("articleName"));
+
+
+            ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
+            tableView_invoice_item.setItems(observableList);
+        }
+    }
+
+
     private void executeExitInvoiceManagement() {
         articleService.clearSession();
         customerService.clearSession();
@@ -372,6 +416,14 @@ public class InvoiceManagementController implements Initializable {
         SceneManager.switchScene("/com/example/styleslick/loggedIn-view.fxml", "Willkommen");
     }
 
+
+
+    @FXML
+    private void onKeyPressedEnterDeleteArticleFromInvoice(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")){
+            executeDeleteArticleFromInvoice();
+        }
+    }
 
     @FXML
     private void onKeyPressedEnterDeleteInvoice(KeyEvent event) {
@@ -429,6 +481,12 @@ public class InvoiceManagementController implements Initializable {
         }
     }
 
+
+
+    @FXML
+    private void onMouseClickedDeleteArticleFromInvoice(MouseEvent event) {
+        executeDeleteArticleFromInvoice();
+    }
 
     @FXML
     private void onMouseClickedDeleteInvoice(MouseEvent event) {

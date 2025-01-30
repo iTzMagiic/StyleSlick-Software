@@ -106,8 +106,7 @@ public class InvoiceService {
         if (database.addInvoice(filledInvoiceFields, filledItemFields)) {
             AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich erstellt.");
             return true;
-        }
-        else {
+        } else {
             AlertService.showErrorAlert("Die Bestellung konnte nicht erstellt werden.");
             return false;
         }
@@ -185,16 +184,34 @@ public class InvoiceService {
     }
 
 
+    public boolean deleteArticleFromInvoice(int invoice_item_id) {
+
+        if (!database.deleteArticleFromInvoice(invoice_item_id)) {
+            AlertService.showErrorAlert("Artikel konnte nicht aus der Bestellung gelöscht werden.");
+            return false;
+        }
+
+        AlertService.showConfirmAlert("Artikel wurde erfolgreich gelöscht.");
+        return true;
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         List<InvoiceItem> listOfInvoiceItems;
 
         listOfInvoiceItems = database.getInvoiceItems(invoice_id);
 
         if (listOfInvoiceItems.isEmpty()) {
-            AlertService.showErrorAlert("Es wurden keine Bestellten Artikel gefunden.");
+            AlertService.showErrorAlert("Es sind keine Bestellten Artikel vorhanden.");
         }
 
         return listOfInvoiceItems;
+    }
+
+    public List<InvoiceItem> getInvoiceItems(String invoice_number) {
+        int invoiceID = database.getInvoiceID(invoice_number);
+
+        return getInvoiceItems(invoiceID);
     }
 
 
