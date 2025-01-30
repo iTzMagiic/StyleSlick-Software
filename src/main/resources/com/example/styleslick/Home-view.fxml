@@ -36,7 +36,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="824.0" spacing="10.0" style="-fx-border-color: #2F1832; -fx-border-radius: 10;">
                <children>
-                  <Label text="Übersicht" textFill="#0937b9">
+                  <Label styleClass="label-header" text="Übersicht" textFill="#0937b9">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
@@ -49,7 +49,7 @@
                         <Font size="20.0" />
                      </font>
                   </Label>
-                  <Label text="Hallo StyleSlick, Willkommen zurück!">
+                  <Label styleClass="label-header" text="Hallo StyleSlick, Willkommen zurück!">
                      <font>
                         <Font name="System Bold" size="16.0" />
                      </font>
@@ -57,7 +57,7 @@
                         <Insets top="5.0" />
                      </padding>
                   </Label>
-                  <Label text="Datum">
+                  <Label styleClass="label-header" text="Datum">
                      <HBox.margin>
                         <Insets left="300.0" />
                      </HBox.margin>
@@ -83,7 +83,7 @@
                <children>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label text="Gewinn" underline="true">
+                        <Label styleClass="label-header" text="Gewinn" underline="true">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -97,7 +97,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label text="Gesamtumsatz" underline="true">
+                        <Label styleClass="label-header" text="Gesamtumsatz" underline="true">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -111,7 +111,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
                      <children>
-                        <Label text="Gesamtausgaben" underline="true">
+                        <Label styleClass="label-header" text="Gesamtausgaben" underline="true">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
@@ -125,7 +125,7 @@
                   </VBox>
                   <VBox alignment="CENTER" prefHeight="200.0" prefWidth="230.0">
                      <children>
-                        <Label text="Anzahl der Kunden" underline="true">
+                        <Label styleClass="label-header" text="Anzahl der Kunden" underline="true">
                            <font>
                               <Font name="System Bold" size="19.0" />
                            </font>
