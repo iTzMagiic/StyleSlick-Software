@@ -382,19 +382,19 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        if (AlertService.showConfirmAlertResult("Soll der Artikel zum Bestand wieder angepasst werden?")) {
-            /*
-            Der Bestand muss im Inventar wieder angepasst werden das es Hoch addiert wird statt 0 soll es wieder 1 werden
-            invoiceService.
-             */
-        }
-
 
         if (invoiceService.deleteArticleFromInvoice(selectedArticle.getInvoiceItemID())) {
+
+
+            if (AlertService.showConfirmAlertResult("Soll der Bestand wieder angepasst werden?")) {
+                invoiceService.addBackDeletedItem(selectedArticle.getArticleID(), selectedArticle.getAmount());
+            }
 
             listOfInvoiceItems = invoiceService.getInvoiceItems(field_invoice_number.getText());
 
             if (listOfInvoiceItems.isEmpty()) {
+                field_invoice_number.clear();
+                executeShowAllInvoices();
                 return;
             }
 
@@ -405,6 +405,8 @@ public class InvoiceManagementController implements Initializable {
 
             ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
             tableView_invoice_item.setItems(observableList);
+
+
         }
     }
 

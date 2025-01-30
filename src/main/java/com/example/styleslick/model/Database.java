@@ -1149,6 +1149,34 @@ public class Database {
     }
 
 
+    public boolean addBackDeletedItem(int articleID, int amount) {
+        logger.debug("START addBackDeletedItem()");
+
+        String sql = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
+
+         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+         PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+             preparedStatement.setInt(1, amount);
+             preparedStatement.setInt(2, articleID);
+
+             int result = preparedStatement.executeUpdate();
+
+             if (result == 1) {
+                 logger.info("ENDE addBackDeletedItem() erfolgreich der Bestand wurde erfolgreich wieder angepasst.");
+                 return true;
+             } else {
+                 logger.warn("WARN addBackDeletedItem() fehlgeschlagen der Bestand des Artikels konnte nicht angepasst werden.");
+                 return false;
+             }
+
+         } catch (SQLException e) {
+             logger.error("ERROR addBackDeletedItem() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+             return false;
+         }
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         logger.debug("\n\nSTART getInvoiceItems().");
 

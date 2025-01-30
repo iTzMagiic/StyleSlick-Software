@@ -196,6 +196,17 @@ public class InvoiceService {
     }
 
 
+    public boolean addBackDeletedItem(int articleID, int amount) {
+
+        if (!database.addBackDeletedItem(articleID, amount)) {
+            AlertService.showErrorAlert("Der Bestand konnte nicht angepasst werden.");
+            return false;
+        }
+
+        return true;
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         List<InvoiceItem> listOfInvoiceItems;
 
