@@ -82,8 +82,24 @@ public class ArticleManagementMenuController implements Initializable {
         List<Category> listOfCategories = categoryService.getAllCategories();
         choiceBox_categories.getItems().addAll(listOfCategories);
 
-        // Beobachten, welche Zeile in der Tabelle ausgewählt ist
-        tableView_articles.getSelectionModel().selectedItemProperty();
+
+        tableView_articles.setOnMouseClicked(event -> {
+           if (event.getClickCount() == 2) {
+               Article doubleClickedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+               choiceBox_categories.setValue(listOfCategories.stream().filter(category -> category.getID() == doubleClickedArticle.getCategoryID()).findFirst().orElse(null));
+               field_name.setText(doubleClickedArticle.getName());
+               field_color.setText(doubleClickedArticle.getColor());
+               field_price.setText(String.valueOf(doubleClickedArticle.getPrice()));
+               datePicker_purchase_date.setValue(doubleClickedArticle.getPurchase_date());
+               field_manufacturer.setText(doubleClickedArticle.getManufacturer());
+               field_purchased_from.setText(doubleClickedArticle.getPurchased_from());
+               field_quality.setText(doubleClickedArticle.getQuality());
+               field_amount.setText(String.valueOf(doubleClickedArticle.getAmount()));
+               field_stock.setText(String.valueOf(doubleClickedArticle.getStock()));
+
+
+           }
+        });
 
         executeShowAllArticles();
     }

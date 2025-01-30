@@ -177,8 +177,6 @@ public class InvoiceManagementController implements Initializable {
         articleService = ArticleService.getInstance();
         customerService = CustomerService.getInstance();
 
-
-
         executeShowAllInvoices();
     }
 
@@ -247,6 +245,11 @@ public class InvoiceManagementController implements Initializable {
         setInvoiceItemFieldsEditable(true);
         setTableViewVisible("invoices");
 
+        tableView_invoices.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                executeShowInvoiceItems();
+            }
+        });
 
         column_invoice_number.setCellValueFactory(new PropertyValueFactory<>("invoiceNumber"));
         column_invoice_customerNumber.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
@@ -268,10 +271,13 @@ public class InvoiceManagementController implements Initializable {
         List<InvoiceItem> listOfInvoiceItems;
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
+        //TODO:: Hier gefällt mir nicht das nur nach Selektierter Zelle geschaut wird aber was ist wenn ich eine Bestell-Nr
+        //  Selbst eingetragen hab? dann muss ich ja auch die Bestellung einsehen können.
         if (selectedInvoice == null) {
             AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus.");
             return;
         }
+
         tableView_invoices.getSelectionModel().clearSelection();
 
         listOfInvoiceItems = invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID());

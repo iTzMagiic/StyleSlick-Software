@@ -70,7 +70,19 @@ public class CustomerManagementController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
 
-        tableView_customer.getSelectionModel().selectedIndexProperty();
+        tableView_customer.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                Customer doubleClickedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+                field_username.setText(doubleClickedCustomer.getUsername());
+                field_first_name.setText(doubleClickedCustomer.getFirstName());
+                field_last_name.setText(doubleClickedCustomer.getLastName());
+                field_street.setText(doubleClickedCustomer.getStreet());
+                field_postal_code.setText(doubleClickedCustomer.getPostalCode());
+                field_city.setText(doubleClickedCustomer.getCity());
+                field_country.setText(doubleClickedCustomer.getCountry());
+                field_purchased_from.setText(doubleClickedCustomer.getPurchasedFrom());
+            }
+        });
 
         executeShowAllCustomers();
     }

@@ -41,7 +41,12 @@ public class CategoryManagementController implements Initializable {
     public void initialize(URL url, ResourceBundle resourceBundle) {
         categoryService = CategoryService.getInstance();
 
-        tableView_categories.getSelectionModel().selectedItemProperty();
+        tableView_categories.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                field_categoryName.setText(tableView_categories.getSelectionModel().getSelectedItem().getName());
+            }
+        });
+
         executeShowAllCategories();
     }
 
