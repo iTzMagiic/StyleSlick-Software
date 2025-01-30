@@ -375,10 +375,10 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        int invoiceID = tableView_invoices.getSelectionModel().getSelectedItem().getInvoiceID();
+        Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + invoiceID + " löschen?")) {
-            if (invoiceService.deleteInvoice(invoiceID)) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + selectedInvoice.getInvoiceNumber() + " löschen?")) {
+            if (invoiceService.deleteInvoice(selectedInvoice.getInvoiceID())) {
                 executeShowAllInvoices();
             }
         }

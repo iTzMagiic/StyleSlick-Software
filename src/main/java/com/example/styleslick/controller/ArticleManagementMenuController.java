@@ -96,8 +96,6 @@ public class ArticleManagementMenuController implements Initializable {
                field_quality.setText(doubleClickedArticle.getQuality());
                field_amount.setText(String.valueOf(doubleClickedArticle.getAmount()));
                field_stock.setText(String.valueOf(doubleClickedArticle.getStock()));
-
-
            }
         });
 
