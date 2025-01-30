@@ -190,6 +190,7 @@ public class InvoiceManagementController implements Initializable {
     private void executeShowAllCustomers() {
         setInvoiceItemFieldsEditable(true);
         setTableViewVisible("customers");
+        tableView_invoices.getSelectionModel().clearSelection();
 
 
         column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -210,6 +211,7 @@ public class InvoiceManagementController implements Initializable {
     private void executeShowAllArticles() {
         setInvoiceItemFieldsEditable(true);
         setTableViewVisible("articles");
+        tableView_invoices.getSelectionModel().clearSelection();
 
 
         column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
