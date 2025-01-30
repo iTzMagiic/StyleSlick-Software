@@ -34,14 +34,14 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
-                  <TextField fx:id="field_username" promptText="Benutzername*" />
-                  <TextField fx:id="field_first_name" promptText="Vorname" />
-                  <TextField fx:id="field_last_name" promptText="Nachname" />
-                  <TextField fx:id="field_street" promptText="Straße" />
-                  <TextField fx:id="field_postal_code" promptText="Postleitzahl" />
-                  <TextField fx:id="field_city" promptText="Ort" />
-                  <TextField fx:id="field_country" layoutX="1053.0" layoutY="48.0" promptText="Land*" />
-                  <TextField fx:id="field_purchased_from" promptText="Gekauft über*" />
+                  <TextField fx:id="field_username" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Benutzername*" />
+                  <TextField fx:id="field_first_name" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Vorname" />
+                  <TextField fx:id="field_last_name" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Nachname" />
+                  <TextField fx:id="field_street" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Straße" />
+                  <TextField fx:id="field_postal_code" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Postleitzahl" />
+                  <TextField fx:id="field_city" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Ort" />
+                  <TextField fx:id="field_country" layoutX="1053.0" layoutY="48.0" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Land*" />
+                  <TextField fx:id="field_purchased_from" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Gekauft über*" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">

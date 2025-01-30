@@ -177,11 +177,7 @@ public class InvoiceManagementController implements Initializable {
         articleService = ArticleService.getInstance();
         customerService = CustomerService.getInstance();
 
-        /*
-        TODO:: Beim Auswählen von einem Kunden oder Artikel soll die Artikel-Nr oder Kunden-Nr automatisch in die
-            Textfelder eingefügt werden.
-         */
-        tableView_invoices.getSelectionModel().selectedItemProperty();
+
 
         executeShowAllInvoices();
     }
@@ -191,6 +187,12 @@ public class InvoiceManagementController implements Initializable {
         setInvoiceItemFieldsEditable(true);
         setTableViewVisible("customers");
         tableView_invoices.getSelectionModel().clearSelection();
+
+        tableView_customers.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                field_customer_number.setText(tableView_customers.getSelectionModel().getSelectedItem().getCustomerNumber());
+            }
+        });
 
 
         column_customer_username.setCellValueFactory(new PropertyValueFactory<>("username"));
@@ -205,6 +207,8 @@ public class InvoiceManagementController implements Initializable {
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
         tableView_customers.setItems(observableList);
+
+        tableView_customers.getSelectionModel().clearSelection();
     }
 
 
@@ -212,6 +216,12 @@ public class InvoiceManagementController implements Initializable {
         setInvoiceItemFieldsEditable(true);
         setTableViewVisible("articles");
         tableView_invoices.getSelectionModel().clearSelection();
+
+        tableView_articles.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                field_articleID.setText(String.valueOf(tableView_articles.getSelectionModel().getSelectedItem().getArticleID()));
+            }
+        });
 
 
         column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
@@ -228,6 +238,8 @@ public class InvoiceManagementController implements Initializable {
 
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
         tableView_articles.setItems(observableList);
+
+        tableView_articles.getSelectionModel().clearSelection();
     }
 
 
