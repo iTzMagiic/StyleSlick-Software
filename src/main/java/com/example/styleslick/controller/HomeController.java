@@ -10,9 +10,11 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 import java.net.URL;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
-public class LoggedInManagementController implements Initializable {
+public class HomeController implements Initializable {
 
     UserSession userSession;
     @FXML
@@ -23,10 +25,17 @@ public class LoggedInManagementController implements Initializable {
     private Label label_gewinn;
     @FXML
     private Label label_anzahlKunden;
+    @FXML
+    private Label label_date;
 
 
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
+        LocalDate todayDate = LocalDate.now();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd.MM.yyyy");
+        label_date.setText(todayDate.format(formatter));
+
+
         userSession = UserSession.getInstance();
 
         label_gesamtumsatz.setText(userSession.getDatabase().getTotalSales());
