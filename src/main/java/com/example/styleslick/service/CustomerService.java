@@ -133,7 +133,9 @@ public class CustomerService {
             AlertService.showErrorAlert("Kunde wird nicht gelöscht.");
             return false;
         }
+
         if (!database.deleteCustomer(customerID)) {
+            //TODO:: Falls der Kunde abhängigkeiten zu Bestellungen hat eine Meldung ausgeben
             AlertService.showErrorAlert("Kunde konnte nicht gelöscht werden.");
             return false;
         }

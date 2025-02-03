@@ -189,7 +189,6 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
-
         if (!customerService.deleteCustomer(selectedCustomer.getCustomerID(), selectedCustomer.getCustomerNumber())) {
             return;
         }

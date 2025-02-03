@@ -377,6 +377,7 @@ public class InvoiceManagementController implements Initializable {
 
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
+        //TODO:: Nachfragen ob der Bestand angepasst werde soll.
         if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + selectedInvoice.getInvoiceNumber() + " löschen?")) {
             if (invoiceService.deleteInvoice(selectedInvoice.getInvoiceID())) {
                 executeShowAllInvoices();

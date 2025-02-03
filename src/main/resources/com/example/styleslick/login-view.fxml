@@ -42,7 +42,7 @@
             <Image url="@../../../image/login/lock.png" />
          </image>
       </ImageView>
-      <JFXButton layoutX="602.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="49.0" prefWidth="139.0" text="Einloggen" />
-      <JFXButton layoutX="779.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" prefHeight="49.0" prefWidth="139.0" text="Beenden" />
+      <JFXButton fx:id="button_login" layoutX="602.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterLogin" onMouseClicked="#onMouseClickedLogin" prefHeight="49.0" prefWidth="139.0" text="Einloggen" />
+      <JFXButton fx:id="button_exit" layoutX="779.0" layoutY="387.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" prefHeight="49.0" prefWidth="139.0" text="Beenden" />
    </children>
 </AnchorPane>
