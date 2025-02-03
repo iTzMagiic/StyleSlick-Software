@@ -1,16 +1,14 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
+<?import com.jfoenix.controls.JFXButton?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
-
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CategoryManagementController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CategoryManagementController">
    <top>
       <VBox prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
@@ -21,31 +19,11 @@
             </HBox>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterShowAllCategories" onMouseClicked="#onMouseClickedShowAllCategories" text="Alle anzeigen">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddCategory" onMouseClicked="#onMouseClickedAddCategory" text="Speichern">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterUpdateCategory" onMouseClicked="#onMouseClickedUpdateCategory" text="Bearbeiten">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterDeleteCategory" onMouseClicked="#onMouseClickedDeleteCategory" text="Löschen" textFill="RED">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button layoutX="10.0" layoutY="10.0" mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" text="Abbrechen">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
+                  <JFXButton onKeyPressed="#onKeyPressedEnterShowAllCategories" onMouseClicked="#onMouseClickedShowAllCategories" styleClass="button-Management" text="Alle anzeigen" />
+                  <JFXButton layoutX="305.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterAddCategory" onMouseClicked="#onMouseClickedAddCategory" styleClass="button-Management" text="Speichern" />
+                  <JFXButton layoutX="458.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterUpdateCategory" onMouseClicked="#onMouseClickedUpdateCategory" styleClass="button-Management" text="Bearbeiten" />
+                  <JFXButton layoutX="587.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterDeleteCategory" onMouseClicked="#onMouseClickedDeleteCategory" styleClass="button-Management" text="Löschen" />
+                  <JFXButton layoutX="721.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" styleClass="button-Management" text="Abbrechen" />
                </children>
             </HBox>
          </children>
