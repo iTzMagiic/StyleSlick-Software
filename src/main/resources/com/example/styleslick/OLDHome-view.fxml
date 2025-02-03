@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import com.jfoenix.controls.JFXButton?>
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.LoggedInManagementController">
+   <center>
+      <VBox alignment="CENTER" prefHeight="200.0" prefWidth="1280.0" spacing="25.0" BorderPane.alignment="CENTER">
+         <children>
+            <JFXButton buttonType="RAISED" onKeyPressed="#onKeyPressedEnterCustomerManagement" onMouseClicked="#onMousePressedCustomerManagement" styleClass="button-home" text="Kundenverwaltung" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="132.0" onKeyPressed="#onKeyPressedEnterCategoryManagement" onMouseClicked="#onMousePressedCategoryManagement" styleClass="button-home" text="Kategorieverwaltung" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="207.0" onKeyPressed="#onKeyPressedEnterArticleManagement" onMouseClicked="#onMousePressedArticleManagement" styleClass="button-home" text="Artikelverwaltung" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="282.0" onKeyPressed="#onKeyPressedEnterOrdereManagement" onMouseClicked="#onMousePressedOrderManagement" styleClass="button-home" text="Bestellungsverwaltung" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="357.0" onKeyPressed="#onKeyPressedEnterSettings" onMouseClicked="#onMousePressedSettings" styleClass="button-home" text="Einstellung" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="432.0" onKeyPressed="#onKeyPressedEnterLogout" onMouseClicked="#onMouseClickedLogout" styleClass="button-home" text="Ausloggen" />
+            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="507.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" styleClass="button-home" text="Beenden" />
+         </children>
+         <opaqueInsets>
+            <Insets />
+         </opaqueInsets>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="25.0" />
+         </padding>
+      </VBox>
+   </center>
+   <top>
+      <VBox prefHeight="157.0" prefWidth="824.0" BorderPane.alignment="CENTER">
+         <children>
+            <HBox alignment="CENTER" prefHeight="52.0" prefWidth="824.0" spacing="10.0" style="-fx-border-color: #2F1832; -fx-border-radius: 10;">
+               <children>
+                  <Label styleClass="label-header" text="Übersicht" textFill="#0937b9">
+                     <HBox.margin>
+                        <Insets />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="20.0" />
+                     </font>
+                  </Label>
+                  <Label text="|">
+                     <font>
+                        <Font size="20.0" />
+                     </font>
+                  </Label>
+                  <Label styleClass="label-header" text="Hallo StyleSlick, Willkommen zurück!">
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+                  <Label styleClass="label-header" text="Datum">
+                     <HBox.margin>
+                        <Insets left="300.0" />
+                     </HBox.margin>
+                     <font>
+                        <Font name="System Bold" size="16.0" />
+                     </font>
+                     <padding>
+                        <Insets top="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+               <opaqueInsets>
+                  <Insets />
+               </opaqueInsets>
+               <padding>
+                  <Insets left="20.0" top="5.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets left="100.0" right="100.0" />
+               </VBox.margin>
+            </HBox>
+            <HBox alignment="CENTER" prefHeight="105.0" prefWidth="1280.0" spacing="60.0">
+               <children>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="label-header" text="Gewinn" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_gewinn" text="0" textFill="#0fc305">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="label-header" text="Gesamtumsatz" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_gesamtumsatz" text="0" textFill="#ff8600">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="200.0">
+                     <children>
+                        <Label styleClass="label-header" text="Gesamtausgaben" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_gesamtausgaben" text="0" textFill="RED">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+                  <VBox alignment="CENTER" prefHeight="200.0" prefWidth="230.0">
+                     <children>
+                        <Label styleClass="label-header" text="Anzahl der Kunden" underline="true">
+                           <font>
+                              <Font name="System Bold" size="19.0" />
+                           </font>
+                        </Label>
+                        <Label fx:id="label_anzahlKunden" text="0">
+                           <font>
+                              <Font size="20.0" />
+                           </font>
+                        </Label>
+                     </children>
+                  </VBox>
+               </children>
+               <padding>
+                  <Insets left="10.0" right="10.0" top="10.0" />
+               </padding>
+               <VBox.margin>
+                  <Insets />
+               </VBox.margin>
+            </HBox>
+         </children>
+         <BorderPane.margin>
+            <Insets />
+         </BorderPane.margin>
+      </VBox>
+   </top>
+</BorderPane>

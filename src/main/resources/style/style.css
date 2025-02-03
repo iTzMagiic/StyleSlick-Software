@@ -18,9 +18,14 @@
     -fx-background-color: linear-gradient(to right, #8E44AD, #4A235A);
 }
 
-.button-home {
+.button-home-OLD {
     -fx-pref-height: 50;
     -fx-pref-width: 380;
+}
+
+.button-home {
+    -fx-pref-height: 50;
+    -fx-pref-width: 300;
 }
 
 
@@ -33,14 +38,14 @@
 }
 
 .label-title {
-    -fx-text-fill: #D4AC0D;
+    -fx-text-fill: #E0E0E0;
     -fx-font-size: 40px;
     -fx-font-weight: bold;
     -fx-padding: 10px 15px;
 }
 
 .label-highlight {
-    -fx-text-fill: linear-gradient(to right, #FFDD44, #FFA500);
+    -fx-text-fill: #E0E0E0;
     -fx-font-size: 30px;
 
 }
@@ -53,10 +58,4 @@
     -fx-padding: 5px 15px;
     -fx-background-color: rgba(255, 255, 255, 0.1); /* Dezente Transparenz */
     -fx-background-radius: 8px;
-}
-
-.label-stat {
-    -fx-text-fill: linear-gradient(to right, #FFD700, #FF6347); /* Gold zu Orange */
-    -fx-font-size: 20px;
-    -fx-font-weight: bold;
 }
