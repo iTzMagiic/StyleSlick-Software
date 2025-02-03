@@ -11,7 +11,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 
 
-public class LoginManagementController {
+public class LoginController {
 
     @FXML
     private TextField field_username;

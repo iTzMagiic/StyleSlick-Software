@@ -18,11 +18,6 @@
     -fx-background-color: linear-gradient(to right, #8E44AD, #4A235A);
 }
 
-.button-home-OLD {
-    -fx-pref-height: 50;
-    -fx-pref-width: 380;
-}
-
 .button-home {
     -fx-pref-height: 50;
     -fx-pref-width: 300;
@@ -58,4 +53,44 @@
     -fx-padding: 5px 15px;
     -fx-background-color: rgba(255, 255, 255, 0.1); /* Dezente Transparenz */
     -fx-background-radius: 8px;
+}
+
+
+/* Stil für Buttons */
+.button-customer {
+    -fx-background-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-border-radius: 5;
+    -fx-padding: 8 15;
+    -fx-font-size: 14px;
+}
+
+
+/* Stil für TableView */
+.table-view {
+    -fx-background-color: #2E2E2E;
+    -fx-border-color: #8A2BE2;
+    -fx-border-radius: 5;
+}
+
+.table-view .column-header {
+    -fx-background-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view .table-row-cell {
+    -fx-background-color: #3E3E3E;
+    -fx-text-fill: white;
+}
+
+.table-view .table-row-cell:selected {
+    -fx-background-color: #A020F0;
+    -fx-text-fill: white;
+}
+
+.table-view .table-cell {
+    -fx-text-fill: white;
+    -fx-padding: 5;
 }
