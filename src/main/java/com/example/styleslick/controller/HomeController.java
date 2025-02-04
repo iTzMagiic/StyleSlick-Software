@@ -1,8 +1,11 @@
 package com.example.styleslick.controller;
 
 
+import com.example.styleslick.model.Database;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
+import javafx.application.Platform;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
@@ -47,8 +50,27 @@ public class HomeController implements Initializable {
 
     @FXML
     private void executeCustomerManagement() {
-        CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+        Task<Database> customerThread = new Task<>() {
+            @Override
+            protected Database call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    return null;
+                }
+
+                Platform.runLater(() -> {
+                    CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+                });
+
+                return null;
+            }
+        };
+
+
+
+        new Thread(customerThread).start();
     }
 
 

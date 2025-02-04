@@ -54,8 +54,9 @@ public class LoginController {
 
         button_login.setDisable(true); // Verhindert mehrfaches Klicken
 
-        // 1️⃣ Erstelle den Task für den Login-Prozess
+        // Erstelle den Task für den Login-Prozess
         Task<Database> loginTask = new Task<>() {
+
             @Override
             protected Database call() {
                 try {
@@ -71,7 +72,7 @@ public class LoginController {
             }
         };
 
-        // 2️⃣ Erfolgreicher Login → UI-Update im JavaFX-Thread
+        // Erfolgreicher Login → UI-Update im JavaFX-Thread
         loginTask.setOnSucceeded(event -> {
             Database database = loginTask.getValue(); // Holt das Ergebnis aus call()
             if (database == null) {
@@ -84,13 +85,13 @@ public class LoginController {
             button_login.setDisable(false); // Button wieder aktivieren
         });
 
-        // 3️⃣ Falls etwas schiefgeht (Fehlermeldung)
+        // Falls etwas schiefgeht (Fehlermeldung)
         loginTask.setOnFailed(event -> {
             AlertService.showErrorAlert("Verbindungsfehler! Bitte erneut versuchen.");
             button_login.setDisable(false);
         });
 
-        // 4️⃣ Task in separatem Thread starten
+        // Task in separatem Thread starten
         new Thread(loginTask).start();
     }
 
