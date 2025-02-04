@@ -140,13 +140,13 @@
    <left>
       <VBox alignment="CENTER_LEFT" prefHeight="200.0" prefWidth="350.0" spacing="25.0" BorderPane.alignment="CENTER">
          <children>
-            <JFXButton buttonType="RAISED" onKeyPressed="#onKeyPressedEnterCustomerManagement" onMouseClicked="#onMousePressedCustomerManagement" styleClass="button-home" text="Kundenverwaltung" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="132.0" onKeyPressed="#onKeyPressedEnterCategoryManagement" onMouseClicked="#onMousePressedCategoryManagement" styleClass="button-home" text="Kategorieverwaltung" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="207.0" onKeyPressed="#onKeyPressedEnterArticleManagement" onMouseClicked="#onMousePressedArticleManagement" styleClass="button-home" text="Artikelverwaltung" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="282.0" onKeyPressed="#onKeyPressedEnterOrdereManagement" onMouseClicked="#onMousePressedOrderManagement" styleClass="button-home" text="Bestellungsverwaltung" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="357.0" onKeyPressed="#onKeyPressedEnterSettings" onMouseClicked="#onMousePressedSettings" styleClass="button-home" text="Einstellung" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="432.0" onKeyPressed="#onKeyPressedEnterLogout" onMouseClicked="#onMouseClickedLogout" styleClass="button-home" text="Ausloggen" />
-            <JFXButton buttonType="RAISED" layoutX="473.0" layoutY="507.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" styleClass="button-home" text="Beenden" />
+            <JFXButton fx:id="button_customer" buttonType="RAISED" onKeyPressed="#onKeyPressedEnterCustomerManagement" onMouseClicked="#onMousePressedCustomerManagement" styleClass="button-home" text="Kundenverwaltung" />
+            <JFXButton fx:id="button_category" buttonType="RAISED" layoutX="473.0" layoutY="132.0" onKeyPressed="#onKeyPressedEnterCategoryManagement" onMouseClicked="#onMousePressedCategoryManagement" styleClass="button-home" text="Kategorieverwaltung" />
+            <JFXButton fx:id="button_article" buttonType="RAISED" layoutX="473.0" layoutY="207.0" onKeyPressed="#onKeyPressedEnterArticleManagement" onMouseClicked="#onMousePressedArticleManagement" styleClass="button-home" text="Artikelverwaltung" />
+            <JFXButton fx:id="button_invoice" buttonType="RAISED" layoutX="473.0" layoutY="282.0" onKeyPressed="#onKeyPressedEnterOrdereManagement" onMouseClicked="#onMousePressedOrderManagement" styleClass="button-home" text="Bestellungsverwaltung" />
+            <JFXButton fx:id="button_settings" buttonType="RAISED" layoutX="473.0" layoutY="357.0" onKeyPressed="#onKeyPressedEnterSettings" onMouseClicked="#onMousePressedSettings" styleClass="button-home" text="Einstellung" />
+            <JFXButton fx:id="button_logout" buttonType="RAISED" layoutX="473.0" layoutY="432.0" onKeyPressed="#onKeyPressedEnterLogout" onMouseClicked="#onMouseClickedLogout" styleClass="button-home" text="Ausloggen" />
+            <JFXButton fx:id="button_exit" buttonType="RAISED" layoutX="473.0" layoutY="507.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" styleClass="button-home" text="Beenden" />
          </children>
          <opaqueInsets>
             <Insets />

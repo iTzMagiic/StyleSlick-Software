@@ -8,6 +8,7 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
@@ -30,6 +31,8 @@ public class HomeController implements Initializable {
     private Label label_anzahlKunden;
     @FXML
     private Label label_date;
+    @FXML
+    private Button button_customer;
 
 
     @Override
@@ -50,18 +53,23 @@ public class HomeController implements Initializable {
 
     @FXML
     private void executeCustomerManagement() {
+
+        button_customer.setDisable(true);
+
         Task<Database> customerThread = new Task<>() {
             @Override
             protected Database call() {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
+                    button_customer.setDisable(false);
                     return null;
                 }
 
                 Platform.runLater(() -> {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+                    button_customer.setDisable(false);
                 });
 
                 return null;
