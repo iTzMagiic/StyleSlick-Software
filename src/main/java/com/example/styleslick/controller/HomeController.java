@@ -4,6 +4,7 @@ package com.example.styleslick.controller;
 import com.example.styleslick.model.Database;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
+import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -32,7 +33,25 @@ public class HomeController implements Initializable {
     @FXML
     private Label label_date;
     @FXML
-    private Button button_customer;
+    private JFXButton button_article;
+
+    @FXML
+    private JFXButton button_category;
+
+    @FXML
+    private JFXButton button_customer;
+
+    @FXML
+    private JFXButton button_exit;
+
+    @FXML
+    private JFXButton button_invoice;
+
+    @FXML
+    private JFXButton button_logout;
+
+    @FXML
+    private JFXButton button_settings;
 
 
     @Override
@@ -56,9 +75,9 @@ public class HomeController implements Initializable {
 
         button_customer.setDisable(true);
 
-        Task<Database> customerThread = new Task<>() {
+        Task<Void> customerThread = new Task<>() {
             @Override
-            protected Database call() {
+            protected Void call() {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
@@ -75,8 +94,6 @@ public class HomeController implements Initializable {
                 return null;
             }
         };
-
-
 
         new Thread(customerThread).start();
     }

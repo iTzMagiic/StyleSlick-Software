@@ -1,5 +1,4 @@
 module com.example.styleslick {
-    requires javafx.controls;
     requires javafx.fxml;
     requires javafx.web;
 
@@ -9,6 +8,7 @@ module com.example.styleslick {
     requires eu.hansolo.tilesfx;
     requires java.sql;
     requires org.slf4j;
+    requires com.jfoenix;
 
     opens com.example.styleslick to javafx.fxml;
     exports com.example.styleslick;
