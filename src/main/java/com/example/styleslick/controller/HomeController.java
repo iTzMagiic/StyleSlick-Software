@@ -71,7 +71,7 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
+
     private void executeCustomerManagement() {
 
         button_customer.setDisable(true);
@@ -101,7 +101,6 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
     private void executeCategoryManagement() {
 
         button_category.setDisable(true);
@@ -131,7 +130,6 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
     private void executeArticleManagement() {
 
         button_article.setDisable(true);
@@ -162,7 +160,6 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
     private void executeInvoiceManagement() {
 
         button_invoice.setDisable(true);
@@ -195,7 +192,6 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
     private void executeSettings() {
 
         button_settings.setDisable(true);
@@ -225,7 +221,6 @@ public class HomeController implements Initializable {
     }
 
 
-    @FXML
     private void executeLogout() {
 
         button_logout.setDisable(true);
@@ -252,6 +247,34 @@ public class HomeController implements Initializable {
         };
 
         new Thread(logoutTask).start();
+    }
+
+
+    private void executeExit() {
+
+        button_exit.setDisable(true);
+
+        Task<Void> exitTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+                Platform.runLater(() -> {
+                   System.exit(0);
+                   button_exit.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(exitTask).start();
     }
 
 
@@ -336,12 +359,6 @@ public class HomeController implements Initializable {
         if (event.getCode().toString().equals("ENTER")) {
             executeLogout();
         }
-    }
-
-
-    @FXML
-    private void executeExit() {
-        System.exit(0);
     }
 
 
