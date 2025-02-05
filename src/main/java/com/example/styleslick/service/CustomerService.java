@@ -109,8 +109,10 @@ public class CustomerService {
             return false;
         }
 
+        String customerNumber = database.getCustomerNumber(customerID);
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerID + " bearbeiten?")) {
+
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerNumber + " bearbeiten?")) {
             AlertService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }

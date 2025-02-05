@@ -4,8 +4,11 @@ import com.example.styleslick.model.Customer;
 import com.example.styleslick.service.CustomerService;
 import com.example.styleslick.service.AlertService;
 import com.example.styleslick.utils.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.TableColumn;
@@ -61,9 +64,18 @@ public class CustomerManagementController implements Initializable {
     private TextField field_country;
     @FXML
     private TextField field_purchased_from;
-
-
-    //TODO:: Kunde muss nach Abhängigkeiten zu Bestellungen geprüft werden wenn ein Kunde gelöscht wird.
+    @FXML
+    private JFXButton button_add;
+    @FXML
+    private JFXButton button_delete;
+    @FXML
+    private JFXButton button_exit;
+    @FXML
+    private JFXButton button_search;
+    @FXML
+    private JFXButton button_showAll;
+    @FXML
+    private JFXButton button_update;
 
 
     @Override
@@ -89,20 +101,37 @@ public class CustomerManagementController implements Initializable {
 
 
     private void executeShowAllCustomers() {
-        clearFields();
-
-        column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
-        column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
-        column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
-        column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
-        column_city.setCellValueFactory(new PropertyValueFactory<>("city"));
-        column_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
-        column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
-        column_customer_number.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
-        column_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+        button_showAll.setMouseTransparent(true);
 
         ObservableList<Customer> observableList = FXCollections.observableArrayList(customerService.getCustomers());
-        tableView_customer.setItems(observableList);
+
+        Task<Void> showAllTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    clearFields();
+
+                    column_username.setCellValueFactory(new PropertyValueFactory<>("username"));
+                    column_first_name.setCellValueFactory(new PropertyValueFactory<>("firstName"));
+                    column_last_name.setCellValueFactory(new PropertyValueFactory<>("lastName"));
+                    column_street.setCellValueFactory(new PropertyValueFactory<>("street"));
+                    column_city.setCellValueFactory(new PropertyValueFactory<>("city"));
+                    column_postal_code.setCellValueFactory(new PropertyValueFactory<>("postalCode"));
+                    column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchasedFrom"));
+                    column_customer_number.setCellValueFactory(new PropertyValueFactory<>("customerNumber"));
+                    column_country.setCellValueFactory(new PropertyValueFactory<>("country"));
+
+
+                    tableView_customer.setItems(observableList);
+                    button_showAll.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(showAllTask).start();
     }
 
 
@@ -127,13 +156,14 @@ public class CustomerManagementController implements Initializable {
 
 
     private void executeUpdateCustomer() {
-        Map<String, String> fields = new HashMap<>();
-
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+
         if (selectedCustomer == null) {
             AlertService.showErrorAlert("Bitte wählen Sie einen Kunden aus der Tabelle aus, um Ihn zu bearbeiten.");
             return;
         }
+
+        Map<String, String> fields = new HashMap<>();
 
 
         fields.put("username", field_username.getText());
@@ -174,14 +204,29 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
+        button_search.setMouseTransparent(true);
 
-        ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
-        tableView_customer.setItems(observableList);
+        Task<Void> searchTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                Platform.runLater(() -> {
+                    ObservableList<Customer> observableList = FXCollections.observableArrayList(listOfCustomers);
+                    tableView_customer.setItems(observableList);
+                    button_search.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+
+            ;
+        };
+
+        new Thread(searchTask).start();
     }
 
 
     public void executeDeleteCustomer() {
-
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer == null) {

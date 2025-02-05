@@ -11,9 +11,6 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -21,7 +18,6 @@ import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
 
-    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     UserSession userSession;
     @FXML
@@ -36,24 +32,19 @@ public class HomeController implements Initializable {
     private Label label_date;
     @FXML
     private JFXButton button_article;
-
     @FXML
     private JFXButton button_category;
-
     @FXML
     private JFXButton button_customer;
-
     @FXML
     private JFXButton button_exit;
-
     @FXML
     private JFXButton button_invoice;
-
     @FXML
     private JFXButton button_logout;
-
     @FXML
     private JFXButton button_settings;
+
 
 
     @Override
@@ -80,13 +71,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeCustomerManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
@@ -109,13 +93,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeCategoryManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
@@ -138,13 +115,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeArticleManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
@@ -168,13 +138,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeInvoiceManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
@@ -200,14 +163,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeSettings() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
-
                 Platform.runLater(() -> {
                     SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
                     button_settings.setMouseTransparent(false);
@@ -229,13 +184,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeLogout() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     UserSession.getInstance().clearSession();
                     SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
@@ -258,13 +206,6 @@ public class HomeController implements Initializable {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     System.exit(0);
                 });

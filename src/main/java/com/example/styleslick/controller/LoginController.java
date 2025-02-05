@@ -8,17 +8,16 @@ import com.jfoenix.controls.JFXButton;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
+import javafx.fxml.Initializable;
 import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import java.net.URL;
+import java.util.ResourceBundle;
 
 
-public class LoginController {
-
-    Logger logger = LoggerFactory.getLogger(LoginController.class);
+public class LoginController implements Initializable {
 
     @FXML
     private TextField field_username;
@@ -30,7 +29,8 @@ public class LoginController {
     private JFXButton button_exit;
 
 
-    public void initialize() {
+    @Override
+    public void initialize(URL location, ResourceBundle resources) {
         field_username.setText("styleslick");
         field_password.setText("rVHjMtqL{u%LZme=MQRHu~Q");
     }
@@ -47,13 +47,6 @@ public class LoginController {
 
             @Override
             protected Database call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeLogin() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 // Login-Logik
                 Database database = new Database(username, password);
                 return database.isConnected() ? database : null;
@@ -92,13 +85,6 @@ public class LoginController {
 
             @Override
             protected Void call() {
-                try {
-                    Thread.sleep(150);
-                } catch (InterruptedException e) {
-                    Thread.currentThread().interrupt();
-                    logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
-                }
-
                 Platform.runLater(() -> {
                     System.exit(0);
                 });
