@@ -230,8 +230,31 @@ public class HomeController implements Initializable {
 
     @FXML
     private void executeLogout() {
-        UserSession.getInstance().clearSession();
-        SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
+
+        button_logout.setDisable(true);
+
+        Task<Void> logoutTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeLogout() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+                Platform.runLater(() -> {
+                    UserSession.getInstance().clearSession();
+                    SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
+                    button_logout.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(logoutTask).start();
     }
 
 
