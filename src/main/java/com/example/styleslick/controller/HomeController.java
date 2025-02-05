@@ -13,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 import java.net.URL;
 import java.time.LocalDate;
@@ -20,6 +22,8 @@ import java.time.format.DateTimeFormatter;
 import java.util.ResourceBundle;
 
 public class HomeController implements Initializable {
+
+    private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
     UserSession userSession;
     @FXML
@@ -76,13 +80,14 @@ public class HomeController implements Initializable {
         button_customer.setDisable(true);
 
         Task<Void> customerThread = new Task<>() {
+
             @Override
             protected Void call() {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    button_customer.setDisable(false);
-                    return null;
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeCustomerManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
                 }
 
                 Platform.runLater(() -> {
@@ -101,8 +106,31 @@ public class HomeController implements Initializable {
 
     @FXML
     private void executeCategoryManagement() {
-        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
+
+        button_category.setDisable(true);
+
+        Task<Void> categoryThread = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeCategoryManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+                Platform.runLater(() -> {
+                    CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
+                    button_category.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(categoryThread).start();
     }
 
 
