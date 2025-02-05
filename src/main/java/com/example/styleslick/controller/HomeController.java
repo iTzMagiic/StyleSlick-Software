@@ -13,6 +13,7 @@ import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -71,10 +72,8 @@ public class HomeController implements Initializable {
     }
 
 
-
     private void executeCustomerManagement() {
 
-        button_customer.setDisable(true);
 
         Task<Void> customerTask = new Task<>() {
 
@@ -90,7 +89,6 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
-                    button_customer.setDisable(false);
                 });
 
                 return null;
@@ -103,7 +101,6 @@ public class HomeController implements Initializable {
 
     private void executeCategoryManagement() {
 
-        button_category.setDisable(true);
 
         Task<Void> categoryTask = new Task<>() {
 
@@ -119,7 +116,6 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
-                    button_category.setDisable(false);
                 });
 
                 return null;
@@ -132,7 +128,6 @@ public class HomeController implements Initializable {
 
     private void executeArticleManagement() {
 
-        button_article.setDisable(true);
 
         Task<Void> articleTask = new Task<>() {
 
@@ -149,7 +144,6 @@ public class HomeController implements Initializable {
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
-                    button_article.setDisable(false);
                 });
 
                 return null;
@@ -162,7 +156,6 @@ public class HomeController implements Initializable {
 
     private void executeInvoiceManagement() {
 
-        button_invoice.setDisable(true);
 
         Task<Void> invoiceTask = new Task<>() {
 
@@ -180,7 +173,6 @@ public class HomeController implements Initializable {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
-                    button_invoice.setDisable(false);
                 });
 
                 return null;
@@ -194,7 +186,6 @@ public class HomeController implements Initializable {
 
     private void executeSettings() {
 
-        button_settings.setDisable(true);
 
         Task<Void> settingsTask = new Task<>() {
 
@@ -210,7 +201,6 @@ public class HomeController implements Initializable {
 
                 Platform.runLater(() -> {
                     SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
-                    button_settings.setDisable(false);
                 });
 
                 return null;
@@ -223,7 +213,6 @@ public class HomeController implements Initializable {
 
     private void executeLogout() {
 
-        button_logout.setDisable(true);
 
         Task<Void> logoutTask = new Task<>() {
 
@@ -239,7 +228,6 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     UserSession.getInstance().clearSession();
                     SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
-                    button_logout.setDisable(false);
                 });
 
                 return null;
@@ -252,7 +240,6 @@ public class HomeController implements Initializable {
 
     private void executeExit() {
 
-        button_exit.setDisable(true);
 
         Task<Void> exitTask = new Task<>() {
 
@@ -266,8 +253,7 @@ public class HomeController implements Initializable {
                 }
 
                 Platform.runLater(() -> {
-                   System.exit(0);
-                   button_exit.setDisable(false);
+                    System.exit(0);
                 });
 
                 return null;
