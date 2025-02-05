@@ -134,8 +134,13 @@ public class CustomerService {
             return false;
         }
 
+        if (database.customerHasInvoices(customerID)) {
+            AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen des Kunden, bevor Sie " +
+                    "den Kunden entfernen.");
+            return false;
+        }
+
         if (!database.deleteCustomer(customerID)) {
-            //TODO:: Falls der Kunde abhängigkeiten zu Bestellungen hat eine Meldung ausgeben
             AlertService.showErrorAlert("Kunde konnte nicht gelöscht werden.");
             return false;
         }

@@ -423,6 +423,40 @@ public class Database {
     }
 
 
+    public boolean customerHasInvoices(int customerID) {
+        logger.debug("\n\nSTART customerHasINvoices()");
+
+        String sql = "SELECT EXISTS (SELECT 1 FROM invoice WHERE customer_id = ?)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, customerID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+
+                if (resultSet.next()) {
+
+                    boolean invoiceExists = resultSet.getBoolean(1);
+
+                    if (invoiceExists) {
+                        logger.info("ENDE customerHasInvoices() Kunde hat Bestellungen.");
+                    } else {
+                        logger.warn("WARN customerHasInvoices() Kunde hat keine Bestellungen");
+                    }
+
+                    return invoiceExists;
+                }
+
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR customerHasInvoices() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+
     public boolean deleteCustomer(int customerID) {
         logger.debug("\n\nSTART deleteCustomer()");
 
@@ -1295,8 +1329,6 @@ public class Database {
 
         return false;
     }
-
-
 
 
     private String generateInvoiceNumber() {

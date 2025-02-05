@@ -1,7 +1,6 @@
 package com.example.styleslick.controller;
 
 
-import com.example.styleslick.model.Database;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import com.jfoenix.controls.JFXButton;
@@ -9,13 +8,11 @@ import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
