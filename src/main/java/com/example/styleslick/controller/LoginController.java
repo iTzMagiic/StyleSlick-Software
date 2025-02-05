@@ -36,11 +36,11 @@ public class LoginController {
     }
 
 
-    @FXML
     private void executeLogin() {
         String username = field_username.getText();
         String password = field_password.getText();
 
+        button_login.setMouseTransparent(true);
 
         // Erstelle den Task für den Login-Prozess
         Task<Database> loginTask = new Task<>() {
@@ -48,7 +48,7 @@ public class LoginController {
             @Override
             protected Database call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeLogin() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -70,11 +70,13 @@ public class LoginController {
                 session.setDatabase(database);
                 SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
             }
+            button_login.setMouseTransparent(false);
         });
 
         // Falls etwas schiefgeht (Fehlermeldung)
         loginTask.setOnFailed(event -> {
             AlertService.showErrorAlert("Verbindungsfehler! Bitte erneut versuchen.");
+            button_login.setMouseTransparent(false);
         });
 
 
@@ -82,16 +84,16 @@ public class LoginController {
     }
 
 
-    @FXML
     private void executeExit() {
 
+        button_exit.setMouseTransparent(true);
 
         Task<Void> exitTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);

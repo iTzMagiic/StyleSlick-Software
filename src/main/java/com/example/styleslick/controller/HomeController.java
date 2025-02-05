@@ -74,13 +74,14 @@ public class HomeController implements Initializable {
 
     private void executeCustomerManagement() {
 
+        button_customer.setMouseTransparent(true);
 
         Task<Void> customerTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeCustomerManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -89,6 +90,7 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+                    button_customer.setMouseTransparent(false);
                 });
 
                 return null;
@@ -101,13 +103,14 @@ public class HomeController implements Initializable {
 
     private void executeCategoryManagement() {
 
+        button_category.setMouseTransparent(true);
 
         Task<Void> categoryTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeCategoryManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -116,6 +119,7 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
+                    button_category.setMouseTransparent(false);
                 });
 
                 return null;
@@ -128,13 +132,14 @@ public class HomeController implements Initializable {
 
     private void executeArticleManagement() {
 
+        button_article.setMouseTransparent(true);
 
         Task<Void> articleTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeArticleManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -144,6 +149,7 @@ public class HomeController implements Initializable {
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
+                    button_article.setMouseTransparent(false);
                 });
 
                 return null;
@@ -156,13 +162,14 @@ public class HomeController implements Initializable {
 
     private void executeInvoiceManagement() {
 
+        button_invoice.setMouseTransparent(true);
 
         Task<Void> invoiceTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeInvoiceManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -173,6 +180,7 @@ public class HomeController implements Initializable {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
+                    button_invoice.setMouseTransparent(false);
                 });
 
                 return null;
@@ -186,13 +194,14 @@ public class HomeController implements Initializable {
 
     private void executeSettings() {
 
+        button_settings.setMouseTransparent(true);
 
         Task<Void> settingsTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeSettings() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -201,6 +210,7 @@ public class HomeController implements Initializable {
 
                 Platform.runLater(() -> {
                     SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
+                    button_settings.setMouseTransparent(false);
                 });
 
                 return null;
@@ -213,13 +223,14 @@ public class HomeController implements Initializable {
 
     private void executeLogout() {
 
+        button_logout.setMouseTransparent(true);
 
         Task<Void> logoutTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeLogout() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
@@ -228,6 +239,7 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     UserSession.getInstance().clearSession();
                     SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
+                    button_logout.setMouseTransparent(false);
                 });
 
                 return null;
@@ -240,13 +252,14 @@ public class HomeController implements Initializable {
 
     private void executeExit() {
 
+        button_exit.setMouseTransparent(true);
 
         Task<Void> exitTask = new Task<>() {
 
             @Override
             protected Void call() {
                 try {
-                    Thread.sleep(100);
+                    Thread.sleep(150);
                 } catch (InterruptedException e) {
                     Thread.currentThread().interrupt();
                     logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
