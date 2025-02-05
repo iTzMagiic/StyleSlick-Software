@@ -79,7 +79,7 @@ public class HomeController implements Initializable {
 
         button_customer.setDisable(true);
 
-        Task<Void> customerThread = new Task<>() {
+        Task<Void> customerTask = new Task<>() {
 
             @Override
             protected Void call() {
@@ -100,7 +100,7 @@ public class HomeController implements Initializable {
             }
         };
 
-        new Thread(customerThread).start();
+        new Thread(customerTask).start();
     }
 
 
@@ -109,7 +109,7 @@ public class HomeController implements Initializable {
 
         button_category.setDisable(true);
 
-        Task<Void> categoryThread = new Task<>() {
+        Task<Void> categoryTask = new Task<>() {
 
             @Override
             protected Void call() {
@@ -130,24 +130,71 @@ public class HomeController implements Initializable {
             }
         };
 
-        new Thread(categoryThread).start();
+        new Thread(categoryTask).start();
     }
 
 
     @FXML
     private void executeArticleManagement() {
-        ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
+
+        button_article.setDisable(true);
+
+        Task<Void> articleTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeArticleManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+                Platform.runLater(() -> {
+                    ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
+                    button_article.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(articleTask).start();
     }
 
 
     @FXML
     private void executeInvoiceManagement() {
-        InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-        SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
+
+        button_invoice.setDisable(true);
+
+        Task<Void> invoiceTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeInvoiceManagement() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+                Platform.runLater(() -> {
+                    InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
+                    SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
+                    button_invoice.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+
+        new Thread(invoiceTask).start();
     }
 
 

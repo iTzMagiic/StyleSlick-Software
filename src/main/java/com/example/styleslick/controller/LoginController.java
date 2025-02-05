@@ -91,7 +91,7 @@ public class LoginController {
 
         button_exit.setDisable(true);
 
-        Task<Void> exitThread = new Task<>() {
+        Task<Void> exitTask = new Task<>() {
 
             @Override
             protected Void call() {
@@ -111,7 +111,7 @@ public class LoginController {
             }
         };
 
-        new Thread(exitThread).start();
+        new Thread(exitTask).start();
     }
 
 
