@@ -200,7 +200,31 @@ public class HomeController implements Initializable {
 
     @FXML
     private void executeSettings() {
-        SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
+
+        button_settings.setDisable(true);
+
+        Task<Void> settingsTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+                try {
+                    Thread.sleep(100);
+                } catch (InterruptedException e) {
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeSettings() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
+                }
+
+
+                Platform.runLater(() -> {
+                    SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
+                    button_settings.setDisable(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(settingsTask).start();
     }
 
 
