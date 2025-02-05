@@ -4,23 +4,27 @@
 
 
 .button {
-    -fx-background-color: linear-gradient(to right, #4A235A, #8E44AD);
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #6A0DAD);
     -fx-text-fill: white;
-    -fx-font-size: 16px;
+    -fx-font-size: 14px;
     -fx-font-weight: bold;
-    -fx-padding: 12px 24px;
-    -fx-background-radius: 10px;
-    -fx-border-radius: 10px;
-    -fx-effect: dropshadow(three-pass-box, rgba(0,0,0,0.3), 8, 0, 0, 3);
+    -fx-background-radius: 10;
+    -fx-padding: 10px 20px;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.3), 5, 0, 0, 2);
+}
+.button:hover {
+    -fx-background-color: #A020F0;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
-.button:hover {
-    -fx-background-color: linear-gradient(to right, #8E44AD, #4A235A);
-}
 
 .button-home {
     -fx-pref-height: 50;
     -fx-pref-width: 300;
+    -fx-font-size: 16px; /* Größe des Textes */
+    -fx-font-weight: bold; /* Fettgedruckt für bessere Sichtbarkeit */
+    -fx-text-fill: white; /* Farbe des Textes */
 }
 
 
@@ -56,43 +60,78 @@
 }
 
 
+
 .button-Management {
-    -fx-background-color: #8A2BE2;
+    -fx-background-color: #6A0DAD;
     -fx-text-fill: white;
-    -fx-font-weight: bold;
-    -fx-border-radius: 5;
-    -fx-padding: 8 15;
     -fx-font-size: 14px;
+    -fx-padding: 8px 15px;
+    -fx-background-radius: 10;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 5, 0, 0, 2);
+}
+.button-Management:hover {
+    -fx-background-color: #8A2BE2;
+    -fx-scale-x: 1.05;
+    -fx-scale-y: 1.05;
 }
 
 
 
+/* Haupt-TableView-Styling */
 .table-view {
     -fx-background-color: #2E2E2E;
     -fx-border-color: #8A2BE2;
-    -fx-border-radius: 5;
+    -fx-border-radius: 8;
+    -fx-padding: 5;
+    -fx-effect: dropshadow(three-pass-box, rgba(0, 0, 0, 0.2), 8, 0, 0, 4);
 }
 
+/* Styling der Spalten-Header */
 .table-view .column-header {
-    -fx-background-color: #8A2BE2;
+    -fx-background-color: linear-gradient(to bottom, #8A2BE2, #6A0DAD);
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+    -fx-font-size: 14px;
+    -fx-border-width: 0 0 2px 0;
+    -fx-border-color: #6A0DAD;
+}
+
+/* Styling für die Tabellenzeilen */
+.table-view .table-row-cell {
+    -fx-background-color: #3E3E3E;
+    -fx-text-fill: white;
+    -fx-border-color: #4A4A4A;
+    -fx-border-width: 0 0 1px 0;
+}
+
+/* Abwechselnde Farben für bessere Übersicht */
+.table-view .table-row-cell:odd {
+    -fx-background-color: #353535;
+}
+
+.table-view .table-row-cell:even {
+    -fx-background-color: #404040;
+}
+
+/* Hover-Effekt für Zeilen */
+.table-view .table-row-cell:hover {
+    -fx-background-color: #5A2D91;
+}
+
+/* Ausgewählte Zeile */
+.table-view .table-row-cell:selected {
+    -fx-background-color: #A020F0;
     -fx-text-fill: white;
     -fx-font-weight: bold;
 }
 
-.table-view .table-row-cell {
-    -fx-background-color: #3E3E3E;
-    -fx-text-fill: white;
-}
-
-.table-view .table-row-cell:selected {
-    -fx-background-color: #A020F0;
-    -fx-text-fill: white;
-}
-
+/* Styling für Zellen */
 .table-view .table-cell {
     -fx-text-fill: white;
-    -fx-padding: 5;
+    -fx-padding: 8px;
+    -fx-font-size: 13px;
 }
+
 
 
 
@@ -100,9 +139,9 @@
 .text-field {
     -fx-background-color: #3E3E3E;
     -fx-text-fill: white;
-    -fx-border-color: #8A2BE2; /* Lila Rahmen */
-    -fx-border-radius: 5;
-    -fx-padding: 5;
+    -fx-border-color: #8A2BE2;
     -fx-font-size: 14px;
+    -fx-padding: 8px;
+    -fx-border-radius: 8;
 }
 
