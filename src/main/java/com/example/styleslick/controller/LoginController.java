@@ -13,9 +13,13 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 
 public class LoginController {
+
+    Logger logger = LoggerFactory.getLogger(LoginController.class);
 
     @FXML
     private TextField field_username;
@@ -38,7 +42,7 @@ public class LoginController {
         String username = field_username.getText();
         String password = field_password.getText();
 
-        button_login.setDisable(true); // Verhindert mehrfaches Klicken
+        button_login.setDisable(true);
 
         // Erstelle den Task für den Login-Prozess
         Task<Database> loginTask = new Task<>() {
@@ -46,10 +50,10 @@ public class LoginController {
             @Override
             protected Database call() {
                 try {
-                    // Simuliere eine Verzögerung damit der Button seine Animation komplett ausführt
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    return null;
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeLogin() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
                 }
 
                 // Login-Logik
@@ -68,7 +72,7 @@ public class LoginController {
                 session.setDatabase(database);
                 SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
             }
-            button_login.setDisable(false); // Button wieder aktivieren
+            button_login.setDisable(false);
         });
 
         // Falls etwas schiefgeht (Fehlermeldung)
@@ -77,7 +81,7 @@ public class LoginController {
             button_login.setDisable(false);
         });
 
-        // Task in separatem Thread starten
+
         new Thread(loginTask).start();
     }
 
@@ -88,13 +92,14 @@ public class LoginController {
         button_exit.setDisable(true);
 
         Task<Void> exitThread = new Task<>() {
+
             @Override
             protected Void call() {
                 try {
                     Thread.sleep(100);
                 } catch (InterruptedException e) {
-                    button_exit.setDisable(false);
-                    return null;
+                    Thread.currentThread().interrupt();
+                    logger.error("ERROR executeExit() Thread.sleep() wurde Unterbrochen. FEHLER: {}", e.getMessage(), e);
                 }
 
                 Platform.runLater(() -> {
