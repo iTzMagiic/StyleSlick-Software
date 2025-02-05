@@ -14,16 +14,17 @@
          <children>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0">
                <children>
-                  <TextField fx:id="field_categoryName" promptText="Name*" />
+                  <TextField fx:id="field_categoryName" onKeyPressed="#onKeyPressedEnterAddCategory" promptText="Name*" />
                </children>
             </HBox>
             <HBox alignment="CENTER" prefHeight="80.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <JFXButton onKeyPressed="#onKeyPressedEnterShowAllCategories" onMouseClicked="#onMouseClickedShowAllCategories" styleClass="button-Management" text="Alle anzeigen" />
-                  <JFXButton layoutX="305.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterAddCategory" onMouseClicked="#onMouseClickedAddCategory" styleClass="button-Management" text="Speichern" />
-                  <JFXButton layoutX="458.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterUpdateCategory" onMouseClicked="#onMouseClickedUpdateCategory" styleClass="button-Management" text="Bearbeiten" />
-                  <JFXButton layoutX="587.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterDeleteCategory" onMouseClicked="#onMouseClickedDeleteCategory" styleClass="button-Management" text="Löschen" />
-                  <JFXButton layoutX="721.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" styleClass="button-Management" text="Abbrechen" />
+                  <JFXButton fx:id="button_showAll" onKeyPressed="#onKeyPressedEnterShowAllCategories" onMouseClicked="#onMouseClickedShowAllCategories" styleClass="button-Management" text="Alle anzeigen" />
+                  <JFXButton fx:id="button_add" layoutX="305.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterAddCategory" onMouseClicked="#onMouseClickedAddCategory" styleClass="button-Management" text="Speichern" />
+                  <JFXButton fx:id="button_search" layoutX="498.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterSearchCategory" onMouseClicked="#onMouseClickedSearchCategory" styleClass="button-Management" text="Suchen" />
+                  <JFXButton fx:id="button_update" layoutX="458.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterUpdateCategory" onMouseClicked="#onMouseClickedUpdateCategory" styleClass="button-Management" text="Bearbeiten" />
+                  <JFXButton fx:id="button_delete" layoutX="587.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterDeleteCategory" onMouseClicked="#onMouseClickedDeleteCategory" styleClass="button-Management" text="Löschen" />
+                  <JFXButton fx:id="button_exit" layoutX="721.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" styleClass="button-Management" text="Abbrechen" />
                </children>
             </HBox>
          </children>

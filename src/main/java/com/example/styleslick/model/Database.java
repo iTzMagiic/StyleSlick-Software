@@ -620,6 +620,32 @@ public class Database {
     }
 
 
+    public List<Category> searchCategory(String name) {
+        List<Category> foundetCategories = new ArrayList<>();
+
+        String sql = "SELECT * FROM category WHERE name LIKE ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+
+            preparedStatement.setString(1, "%" + name + "%");
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int categoryID = resultSet.getInt("category_id");
+                    String categoryName = resultSet.getString("name");
+
+                    foundetCategories.add(new Category(categoryName, categoryID));
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR searchCategory() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return foundetCategories;
+    }
+
+
     public boolean deleteCategory(int categoryID) {
         logger.info("\n\nSTART deleteCategory().");
         String sql = "DELETE FROM category WHERE category_id = ?";

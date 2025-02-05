@@ -200,7 +200,7 @@ public class CustomerManagementController implements Initializable {
         List<Customer> listOfCustomers = customerService.searchCustomer(fields);
 
 
-        if (listOfCustomers == null || listOfCustomers.isEmpty()) {
+        if (listOfCustomers.isEmpty()) {
             return;
         }
 
@@ -226,7 +226,7 @@ public class CustomerManagementController implements Initializable {
     }
 
 
-    public void executeDeleteCustomer() {
+    private void executeDeleteCustomer() {
         Customer selectedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
 
         if (selectedCustomer == null) {

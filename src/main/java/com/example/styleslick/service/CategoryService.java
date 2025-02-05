@@ -5,6 +5,7 @@ import com.example.styleslick.model.Database;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -90,6 +91,19 @@ public class CategoryService {
 
         AlertService.showConfirmAlert("Die Kategorie wurde erfolgreich bearbeitet.");
         return true;
+    }
+
+
+    public List<Category> searchCategory(String name) {
+        List<Category> listOfCategories;
+
+        listOfCategories = database.searchCategory(name);
+
+        if (listOfCategories.isEmpty()) {
+            AlertService.showErrorAlert("Es wurden keine Passenden Kategorien gefunden.");
+        }
+
+        return listOfCategories;
     }
 
 
