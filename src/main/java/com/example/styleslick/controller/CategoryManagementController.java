@@ -37,6 +37,8 @@ public class CategoryManagementController implements Initializable {
     @FXML
     private JFXButton button_showAll;
     @FXML
+    private JFXButton button_search;
+    @FXML
     private JFXButton button_update;
     @FXML
     private TableColumn<Category, Integer> column_categoryID;
@@ -136,8 +138,24 @@ public class CategoryManagementController implements Initializable {
             return;
         }
 
-        ObservableList<Category> observableList = FXCollections.observableArrayList(listOfCategories);
-        tableView_categories.setItems(observableList);
+        button_search.setMouseTransparent(true);
+
+        Task<Void> searchTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+
+                Platform.runLater(() -> {
+                    ObservableList<Category> observableList = FXCollections.observableArrayList(listOfCategories);
+                    tableView_categories.setItems(observableList);
+                    button_search.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(searchTask).start();
     }
 
 
