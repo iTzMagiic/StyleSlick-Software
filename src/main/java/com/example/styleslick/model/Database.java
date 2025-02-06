@@ -596,6 +596,32 @@ public class Database {
     }
 
 
+    public boolean isCategoryNameExist(String categoryName) {
+        logger.debug("\n\nStart isCategoryNameExist()");
+
+        String sql = "SELECT EXISTS (SELECT 1 FROM category WHERE name = ?)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, categoryName);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE isCategoryNameExists() erfolgreich");
+                    return resultSet.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR isCategoryNameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN isCategoryNameExist() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
+        return true;
+    }
+
+
     public boolean updateCategory(Map<String, String> filledFields, int categoryID) {
         /*
         Diese Methode ist so flexibel aufgebaut, dass sie sich automatisch anpasst,

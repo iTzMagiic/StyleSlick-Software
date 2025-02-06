@@ -28,20 +28,11 @@ public class CategoryManagementController implements Initializable {
 
     CategoryService categoryService;
 
-    @FXML
-    private JFXButton button_add;
-    @FXML
-    private JFXButton button_delete;
-    @FXML
-    private JFXButton button_exit;
+
     @FXML
     private JFXButton button_showAll;
     @FXML
     private JFXButton button_search;
-    @FXML
-    private JFXButton button_update;
-    @FXML
-    private TableColumn<Category, Integer> column_categoryID;
     @FXML
     private TableColumn<Category, String> column_categoryName;
     @FXML
@@ -76,7 +67,6 @@ public class CategoryManagementController implements Initializable {
             protected Void call() {
 
                 Platform.runLater(() -> {
-                    column_categoryID.setCellValueFactory(new PropertyValueFactory<>("ID"));
                     column_categoryName.setCellValueFactory(new PropertyValueFactory<>("name"));
 
                     tableView_categories.setItems(observableList);

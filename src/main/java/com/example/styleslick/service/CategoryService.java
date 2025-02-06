@@ -54,8 +54,13 @@ public class CategoryService {
             return false;
         }
 
+        if (database.isCategoryNameExist(filledFields.get("name"))) {
+            AlertService.showErrorAlert("Die Kategorie existiert bereits.");
+            return false;
+        }
+
         if (!database.addCategory(filledFields)) {
-            AlertService.showErrorAlert("Fehler beim erstellen.");
+            AlertService.showErrorAlert("Ein Fehler ist aufgetreten.");
             return false;
         }
 
