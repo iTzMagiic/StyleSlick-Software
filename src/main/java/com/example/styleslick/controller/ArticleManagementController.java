@@ -6,8 +6,11 @@ import com.example.styleslick.service.AlertService;
 import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.CategoryService;
 import com.example.styleslick.utils.SceneManager;
+import com.jfoenix.controls.JFXButton;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.concurrent.Task;
 import javafx.fxml.FXML;
 import javafx.fxml.Initializable;
 import javafx.scene.control.*;
@@ -74,6 +77,10 @@ public class ArticleManagementController implements Initializable {
     private TextField field_stock;
     @FXML
     private TextField field_articleNumber;
+    @FXML
+    private JFXButton button_showAll;
+    @FXML
+    private JFXButton button_search;
 
 
     @Override
@@ -107,22 +114,42 @@ public class ArticleManagementController implements Initializable {
 
 
     private void executeShowAllArticles() {
-        clearFields();
-
-        column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleNumber"));
-        column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
-        column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
-        column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
-        column_price.setCellValueFactory(new PropertyValueFactory<>("price"));
-        column_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
-        column_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
-        column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
-        column_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
-        column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        column_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
-
         ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
-        tableView_articles.setItems(observableList);
+
+        button_showAll.setMouseTransparent(true);
+
+        Task<Void> showAllTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+
+                Platform.runLater(() -> {
+                    clearFields();
+
+                    column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleNumber"));
+                    column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+                    column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+                    column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
+                    column_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+                    column_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+                    column_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+                    column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
+                    column_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+                    column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+                    column_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+
+                    tableView_articles.setItems(observableList);
+                    button_showAll.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+
+            ;
+        };
+
+        new Thread(showAllTask).start();
     }
 
 
@@ -235,8 +262,24 @@ public class ArticleManagementController implements Initializable {
             return;
         }
 
-        ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
-        tableView_articles.setItems(observableList);
+        button_search.setMouseTransparent(true);
+
+        Task<Void> searchTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+
+                Platform.runLater(() -> {
+                    ObservableList<Article> observableList = FXCollections.observableArrayList(listOfArticles);
+                    tableView_articles.setItems(observableList);
+                    button_search.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(searchTask).start();
     }
 
 

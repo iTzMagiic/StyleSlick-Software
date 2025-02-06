@@ -51,7 +51,7 @@
                   <JFXButton fx:id="button_search" layoutX="718.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" styleClass="button-Management" text="Kunden suchen" />
                   <JFXButton layoutX="376.0" layoutY="19.0" onKeyPressed="#onKeyPressedUpdateCustomer" onMouseClicked="#onMouseClickedUpdateCustomer" styleClass="button-Management" text="Kunden bearbeiten" />
                   <JFXButton layoutX="545.0" layoutY="19.0" onKeyPressed="#onKeyPressedDeleteCustomer" onMouseClicked="#onMouseCLickedDeleteCustomer" styleClass="button-Management" text="Kunden löschen" />
-                  <JFXButton layoutX="870.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" styleClass="button-Management" text="Abbrechen" />
+                  <JFXButton layoutX="870.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" styleClass="button-Management" text="Zurück" />
                </children>
             </HBox>
          </children>

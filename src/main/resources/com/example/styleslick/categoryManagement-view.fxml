@@ -24,7 +24,7 @@
                   <JFXButton fx:id="button_search" layoutX="498.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterSearchCategory" onMouseClicked="#onMouseClickedSearchCategory" styleClass="button-Management" text="Suchen" />
                   <JFXButton layoutX="458.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterUpdateCategory" onMouseClicked="#onMouseClickedUpdateCategory" styleClass="button-Management" text="Bearbeiten" />
                   <JFXButton layoutX="587.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterDeleteCategory" onMouseClicked="#onMouseClickedDeleteCategory" styleClass="button-Management" text="Löschen" />
-                  <JFXButton layoutX="721.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" styleClass="button-Management" text="Abbrechen" />
+                  <JFXButton layoutX="721.0" layoutY="32.0" onKeyPressed="#onKeyPressedEnterExitCategoryManagement" onMouseClicked="#onMouseClickedExitCategoryManagement" styleClass="button-Management" text="Zurück" />
                </children>
             </HBox>
          </children>
