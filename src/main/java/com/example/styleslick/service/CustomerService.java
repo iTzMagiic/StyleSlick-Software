@@ -95,7 +95,7 @@ public class CustomerService {
     }
 
 
-    public boolean updateCustomer(Map<String, String> fields, int customerID) {
+    public boolean updateCustomer(Map<String, String> fields, Customer customer) {
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -109,16 +109,14 @@ public class CustomerService {
             return false;
         }
 
-        String customerNumber = database.getCustomerNumber(customerID);
 
-
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customerNumber + " bearbeiten?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customer.getCustomerNumber() + " bearbeiten?")) {
             AlertService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }
 
 
-        if (filledFields.containsKey("customer_number") && !filledFields.get("customer_number").equals(customerNumber)) {
+        if (filledFields.containsKey("customer_number") && !filledFields.get("customer_number").equals(customer.getCustomerNumber())) {
             if (database.isCustomerNumberExist(fields.get("customer_number"))) {
                 AlertService.showErrorAlert("Die Kunden-Nr existiert bereits.");
                 return false;
@@ -126,7 +124,7 @@ public class CustomerService {
         }
 
 
-        if (!database.updateCustomer(filledFields, customerID)) {
+        if (!database.updateCustomer(filledFields, customer.getCustomerID())) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
             return false;
         }
@@ -137,19 +135,19 @@ public class CustomerService {
     }
 
 
-    public boolean deleteCustomer(int customerID, String customerNumber) {
+    public boolean deleteCustomer(Customer customer) {
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customerNumber + "' löschen?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customer.getCustomerNumber() + "' löschen?")) {
             AlertService.showErrorAlert("Kunde wird nicht gelöscht.");
             return false;
         }
 
-        if (database.customerHasInvoices(customerID)) {
+        if (database.customerHasInvoices(customer.getCustomerID())) {
             AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen des Kunden, bevor Sie ihn entfernen.");
             return false;
         }
 
-        if (!database.deleteCustomer(customerID)) {
+        if (!database.deleteCustomer(customer.getCustomerID())) {
             AlertService.showErrorAlert("Kunde konnte nicht gelöscht werden.");
             return false;
         }

@@ -72,7 +72,6 @@ public class CustomerManagementController implements Initializable {
     private JFXButton button_showAll;
 
 
-
     @Override
     public void initialize(URL url, ResourceBundle resourceBundle) {
         customerService = CustomerService.getInstance();
@@ -173,7 +172,7 @@ public class CustomerManagementController implements Initializable {
         fields.put("purchased_from", field_purchased_from.getText());
 
 
-        if (!customerService.updateCustomer(fields, selectedCustomer.getCustomerID())) {
+        if (!customerService.updateCustomer(fields, selectedCustomer)) {
             return;
         }
 
@@ -232,7 +231,7 @@ public class CustomerManagementController implements Initializable {
             return;
         }
 
-        if (!customerService.deleteCustomer(selectedCustomer.getCustomerID(), selectedCustomer.getCustomerNumber())) {
+        if (!customerService.deleteCustomer(selectedCustomer)) {
             return;
         }
 
