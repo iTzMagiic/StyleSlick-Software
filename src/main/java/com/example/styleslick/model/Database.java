@@ -235,7 +235,8 @@ public class Database {
     public boolean isUsernameExist(String username) {
         logger.debug("\n\nSTART isUsernameExist()");
 
-        String sql = "SELECT username FROM customer WHERE username = ?";
+        //String sql = "SELECT username FROM customer WHERE username = ?";
+        String sql = "SELECT EXISTS (SELECT 1 FROM customer WHERE username = ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
              PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
@@ -245,7 +246,9 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
-                    return true;
+                    return resultSet.getBoolean(1);
+                } else {
+                    logger.warn("WARN isUsernameExist() fehlgeschlagen.");
                 }
             }
 
@@ -254,7 +257,8 @@ public class Database {
         }
 
         logger.info("ENDE isUsernameExist()");
-        return false;
+        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde mit dem Benutzernamen existiert oder nicht
+        return true;
     }
 
 
@@ -270,14 +274,17 @@ public class Database {
 
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 if (resultSet.next()) {
+                    logger.info("ENDE isCustomerNumberExists() erfolgreich");
                     return resultSet.getBoolean(1);
+                } else {
+                    logger.warn("WARN isCustomerNumberExists() fehlgeschlagen");
                 }
             }
         } catch (SQLException e) {
             logger.error("ERROR isCustomerNumberExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
-        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis ob ein Kunde existiert oder nicht
+        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde existiert oder nicht
 
         return true;
     }
