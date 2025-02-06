@@ -105,7 +105,7 @@ public class CategoryService {
         listOfCategories = database.searchCategory(name);
 
         if (listOfCategories.isEmpty()) {
-            AlertService.showErrorAlert("Es wurden keine Passenden Kategorien gefunden.");
+            AlertService.showErrorAlert("Keine passende Kategorie gefunden.");
         }
 
         return listOfCategories;

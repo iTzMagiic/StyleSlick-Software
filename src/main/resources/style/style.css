@@ -136,8 +136,6 @@
 
 
 
-
-
 .text-field {
     -fx-background-color: #3E3E3E;
     -fx-text-fill: white;
@@ -146,4 +144,120 @@
     -fx-padding: 8px;
     -fx-border-radius: 8;
 }
+
+
+
+
+.choice-box {
+    -fx-pref-width: 150px;
+    -fx-pref-height: 30px;
+    -fx-background-color: #3E3E3E;
+    -fx-border-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-border-radius: 8;
+    -fx-font-size: 14px;
+    -fx-alignment: center-left;
+}
+
+/* Dropdown-Menü Styling */
+.choice-box .context-menu {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: #8A2BE2;
+    -fx-min-width: 150px; /* Gleiche Breite wie ChoiceBox */
+    -fx-max-width: 150px; /* Maximalbreite begrenzen */
+}
+
+/* Menüeinträge */
+.choice-box .menu-item {
+    -fx-background-color: #3E3E3E;
+    -fx-text-fill: white;
+    -fx-font-size: 12px; /* Kleinere Schriftgröße für Dropdown-Elemente */
+    -fx-padding: 3px 8px; /* Kompaktere Darstellung */
+}
+
+/* Hover-Effekt für Dropdown-Optionen */
+.choice-box .menu-item:hover {
+    -fx-background-color: #6A0DAD;
+}
+
+
+
+
+
+
+
+
+
+/* Grundlegender Stil des DatePickers */
+.date-picker {
+    -fx-background-color: #3E3E3E;
+    -fx-border-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-font-size: 14px;
+    -fx-border-radius: 8;
+}
+
+/* Stil für das DropDown-Menü (Kalender) */
+.date-picker .popup-content {
+    -fx-background-color: #2C2C2C;
+    -fx-border-color: #8A2BE2;
+}
+
+/* Stil für die Navigationsleiste (Monat, Jahr, Pfeile) */
+.date-picker .month-year-pane {
+    -fx-background-color: #3E3E3E;
+    -fx-text-fill: white;
+    -fx-font-size: 16px;
+    -fx-font-weight: bold;
+}
+
+/* Stil für die Navigationsbuttons */
+.date-picker .spinner .button {
+    -fx-background-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-background-radius: 8;
+}
+.date-picker .spinner .button:hover {
+    -fx-background-color: #A020F0;
+}
+
+/* Standard-Zellen für Tage */
+.date-picker .cell {
+    -fx-background-color: #3E3E3E;
+    -fx-text-fill: white;
+}
+
+/* Hover-Effekt für Tage */
+.date-picker .cell:hover {
+    -fx-background-color: #6A0DAD;
+}
+
+/* Markierung des aktuellen Tages */
+.date-picker .cell:focused {
+    -fx-background-color: #A020F0;
+    -fx-text-fill: white;
+}
+
+/* Markierung für ausgewähltes Datum */
+.date-picker .selected {
+    -fx-background-color: #8A2BE2;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Stil für die Wochentage in der Kopfzeile */
+.date-picker .day-name-cell {
+    -fx-background-color: #4A4A4A;
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+/* Stil für deaktivierte Tage (Vergangene oder ungültige) */
+.date-picker .cell:disabled {
+    -fx-background-color: #252525;
+    -fx-text-fill: #888888;
+}
+
+
+
 

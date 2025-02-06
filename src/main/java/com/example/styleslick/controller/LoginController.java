@@ -61,7 +61,7 @@ public class LoginController implements Initializable {
             } else {
                 UserSession session = UserSession.getInstance();
                 session.setDatabase(database);
-                SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
+                SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen", false);
             }
             button_login.setMouseTransparent(false);
         });

@@ -47,11 +47,11 @@
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
                   <JFXButton fx:id="button_showAll" onKeyPressed="#onKeyPressedEnterShowAllCustomers" onMouseClicked="#onMouseClickedShowAllCustomers" styleClass="button-Management" text="Alle Kunden anzeigen" />
-                  <JFXButton fx:id="button_add" layoutX="187.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" styleClass="button-Management" text="Kunden speichern" />
+                  <JFXButton layoutX="187.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterAddCustomer" onMouseClicked="#onMouseClickedAddCustomer" styleClass="button-Management" text="Kunden speichern" />
                   <JFXButton fx:id="button_search" layoutX="718.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterSearchCustomer" onMouseClicked="#onMouseClickedSearchCustomer" styleClass="button-Management" text="Kunden suchen" />
-                  <JFXButton fx:id="button_update" layoutX="376.0" layoutY="19.0" onKeyPressed="#onKeyPressedUpdateCustomer" onMouseClicked="#onMouseClickedUpdateCustomer" styleClass="button-Management" text="Kunden bearbeiten" />
-                  <JFXButton fx:id="button_delete" layoutX="545.0" layoutY="19.0" onKeyPressed="#onKeyPressedDeleteCustomer" onMouseClicked="#onMouseCLickedDeleteCustomer" styleClass="button-Management" text="Kunden löschen" />
-                  <JFXButton fx:id="button_exit" layoutX="870.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" styleClass="button-Management" text="Abbrechen" />
+                  <JFXButton layoutX="376.0" layoutY="19.0" onKeyPressed="#onKeyPressedUpdateCustomer" onMouseClicked="#onMouseClickedUpdateCustomer" styleClass="button-Management" text="Kunden bearbeiten" />
+                  <JFXButton layoutX="545.0" layoutY="19.0" onKeyPressed="#onKeyPressedDeleteCustomer" onMouseClicked="#onMouseCLickedDeleteCustomer" styleClass="button-Management" text="Kunden löschen" />
+                  <JFXButton layoutX="870.0" layoutY="19.0" onKeyPressed="#onKeyPressedEnterExitCustomerManagement" onMouseClicked="#onMouseClickedExitCustomerManagement" styleClass="button-Management" text="Abbrechen" />
                </children>
             </HBox>
          </children>

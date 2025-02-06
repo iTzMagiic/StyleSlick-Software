@@ -165,7 +165,7 @@ public class CategoryManagementController implements Initializable {
 
     private void executeExitCategoryManagement() {
         categoryService.clearSession();
-        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen", false);
     }
 
 

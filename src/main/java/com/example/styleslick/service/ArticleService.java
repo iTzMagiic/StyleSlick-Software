@@ -129,7 +129,7 @@ public class ArticleService {
         listOfArticles = database.searchArticlesLike(filledFields);
 
         if (listOfArticles == null || listOfArticles.isEmpty()) {
-            AlertService.showErrorAlert("Es wurde kein passender Artikel gefunden.");
+            AlertService.showErrorAlert("Kein passender Artikel gefunden.");
             return listOfArticles;
         }
 

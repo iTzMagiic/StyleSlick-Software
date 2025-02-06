@@ -73,7 +73,7 @@ public class HomeController implements Initializable {
             protected Void call() {
                 Platform.runLater(() -> {
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-                    SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung");
+                    SceneManager.switchScene("/com/example/styleslick/customerManagement-view.fxml", "Kundenverwaltung", true);
                     button_customer.setMouseTransparent(false);
                 });
 
@@ -95,7 +95,7 @@ public class HomeController implements Initializable {
             protected Void call() {
                 Platform.runLater(() -> {
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-                    SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung");
+                    SceneManager.switchScene("/com/example/styleslick/categoryManagement-view.fxml", "Kategorie Verwaltung", true);
                     button_category.setMouseTransparent(false);
                 });
 
@@ -118,7 +118,7 @@ public class HomeController implements Initializable {
                 Platform.runLater(() -> {
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CategoryService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-                    SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung");
+                    SceneManager.switchScene("/com/example/styleslick/articleManagement-view.fxml", "Artikelverwaltung", true);
                     button_article.setMouseTransparent(false);
                 });
 
@@ -142,7 +142,7 @@ public class HomeController implements Initializable {
                     InvoiceService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     CustomerService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
                     ArticleService.getInstance().setDatabase(UserSession.getInstance().getDatabase());
-                    SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung");
+                    SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung", true);
                     button_invoice.setMouseTransparent(false);
                 });
 
@@ -164,7 +164,7 @@ public class HomeController implements Initializable {
             @Override
             protected Void call() {
                 Platform.runLater(() -> {
-                    SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen");
+                    SceneManager.switchScene("/com/example/styleslick/settings-view.fxml", "Einstellungen", true);
                     button_settings.setMouseTransparent(false);
                 });
 
@@ -186,7 +186,7 @@ public class HomeController implements Initializable {
             protected Void call() {
                 Platform.runLater(() -> {
                     UserSession.getInstance().clearSession();
-                    SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen");
+                    SceneManager.switchScene("/com/example/styleslick/login-view.fxml", "Einloggen", false);
                     button_logout.setMouseTransparent(false);
                 });
 

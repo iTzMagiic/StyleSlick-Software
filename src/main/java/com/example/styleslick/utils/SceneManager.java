@@ -27,17 +27,17 @@ public class SceneManager {
      *
      * @param fxmlPath Der relative Pfad zur FXML-Datei (z. B. "/com/example/view/login-view.fxml").
      */
-    public static void switchScene(String fxmlPath, String title) {
+    public static void switchScene(String fxmlPath, String title, boolean resizable) {
         try {
             // Lade die FXML-Datei
             FXMLLoader loader = new FXMLLoader(SceneManager.class.getResource(fxmlPath));
-            Parent root = loader.load(); // Parent root ist das Wirzelelement z.B. AnchorPane oder VBox
+            Parent root = loader.load(); // Parent root ist das Wurzelelement z.B. AnchorPane oder VBox
             // Erstelle eine neue Szene und setze sie in die Stage
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
             stage.setTitle(title);
-            stage.resizableProperty().setValue(true);
+            stage.setResizable(resizable);
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

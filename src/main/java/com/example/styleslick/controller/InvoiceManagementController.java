@@ -434,7 +434,7 @@ public class InvoiceManagementController implements Initializable {
         articleService.clearSession();
         customerService.clearSession();
         invoiceService.clearSession();
-        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen", false);
     }
 
 

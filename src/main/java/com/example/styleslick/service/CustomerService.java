@@ -88,7 +88,7 @@ public class CustomerService {
         listOfCustomers = database.searchCustomerLike(filledFields);
 
         if (listOfCustomers == null || listOfCustomers.isEmpty()) {
-            AlertService.showErrorAlert("Es wurde kein Kunden gefunden.");
+            AlertService.showErrorAlert("Kein passender Kunde gefunden.");
         }
 
         return listOfCustomers;

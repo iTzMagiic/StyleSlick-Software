@@ -67,17 +67,10 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TextField field_purchased_from;
     @FXML
-    private JFXButton button_add;
-    @FXML
-    private JFXButton button_delete;
-    @FXML
-    private JFXButton button_exit;
-    @FXML
     private JFXButton button_search;
     @FXML
     private JFXButton button_showAll;
-    @FXML
-    private JFXButton button_update;
+
 
 
     @Override
@@ -249,7 +242,7 @@ public class CustomerManagementController implements Initializable {
 
     private void executeExitCustomerManagement() {
         CustomerService.getInstance().clearSession();
-        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen");
+        SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen", false);
     }
 
     @FXML
