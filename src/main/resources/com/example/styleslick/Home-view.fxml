@@ -14,7 +14,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="52.0" prefWidth="824.0" spacing="10.0" style="-fx-border-color: #2F1832; -fx-border-radius: 10;">
                <children>
-                  <Label styleClass="label-header" text="Übersicht" textFill="#0937b9">
+                  <Label styleClass="label-header" text="Home" textFill="#0937b9">
                      <HBox.margin>
                         <Insets />
                      </HBox.margin>
