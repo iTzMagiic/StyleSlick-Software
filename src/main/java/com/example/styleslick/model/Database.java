@@ -897,6 +897,28 @@ public class Database {
 
     //TODO:: Die methode muss noch erstellt werden
     public boolean isArticleNumberExist(String articleNumber) {
+        logger.debug("\n\nSTART isArticleNumberExist()");
+
+        String sql = "SELECT EXISTS (SELECT 1 FROM article WHERE article_number = ?)";
+
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, articleNumber);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE isArticleNumberExist() erfolgreich");
+                    return resultSet.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR isArticleNumberExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN isArticleNumberExist() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
         return true;
     }
 

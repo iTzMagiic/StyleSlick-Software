@@ -94,6 +94,13 @@ public class ArticleService {
             return false;
         }
 
+        if (filledFields.containsKey("article_number") && !filledFields.get("article_number").equals(article.getArticleNumber())) {
+            if (database.isArticleNumberExist(filledFields.get("article_number"))) {
+                AlertService.showErrorAlert("Die Artikel-Nr existiert bereits.");
+                return false;
+            }
+        }
+
         if (!database.updateArticle(filledFields, article.getArticleID())) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Artikels.");
             return false;
