@@ -235,7 +235,6 @@ public class Database {
     public boolean isUsernameExist(String username) {
         logger.debug("\n\nSTART isUsernameExist()");
 
-        //String sql = "SELECT username FROM customer WHERE username = ?";
         String sql = "SELECT EXISTS (SELECT 1 FROM customer WHERE username = ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -246,6 +245,7 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
 
                 if (resultSet.next()) {
+                    logger.info("ENDE isUsernameExist() erfolgreich");
                     return resultSet.getBoolean(1);
                 } else {
                     logger.warn("WARN isUsernameExist() fehlgeschlagen.");
@@ -256,7 +256,6 @@ public class Database {
             logger.error("ERROR isUsernameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
-        logger.info("ENDE isUsernameExist()");
         //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde mit dem Benutzernamen existiert oder nicht
         return true;
     }
@@ -285,7 +284,6 @@ public class Database {
         }
 
         //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde existiert oder nicht
-
         return true;
     }
 
