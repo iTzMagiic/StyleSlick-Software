@@ -9,7 +9,7 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 
-<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="600.0" minWidth="1024.0" prefHeight="900.0" prefWidth="1280.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CustomerManagementController">
+<BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1280.0" prefHeight="1000.0" prefWidth="1700.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.CustomerManagementController">
    <center>
       <TableView fx:id="tableView_customer" prefHeight="545.0" prefWidth="1288.0" BorderPane.alignment="CENTER">
         <columns>
@@ -33,6 +33,7 @@
          <children>
             <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
                <children>
+                  <TextField fx:id="field_customerNumber" layoutX="10.0" layoutY="41.0" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Kunden-Nr" />
                   <TextField fx:id="field_username" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Benutzername*" />
                   <TextField fx:id="field_first_name" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Vorname" />
                   <TextField fx:id="field_last_name" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Nachname" />

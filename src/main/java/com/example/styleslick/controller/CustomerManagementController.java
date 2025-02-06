@@ -51,6 +51,8 @@ public class CustomerManagementController implements Initializable {
     @FXML
     private TextField field_username;
     @FXML
+    private TextField field_customerNumber;
+    @FXML
     private TextField field_first_name;
     @FXML
     private TextField field_last_name;
@@ -85,6 +87,7 @@ public class CustomerManagementController implements Initializable {
         tableView_customer.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 Customer doubleClickedCustomer = tableView_customer.getSelectionModel().getSelectedItem();
+                field_customerNumber.setText(doubleClickedCustomer.getCustomerNumber());
                 field_username.setText(doubleClickedCustomer.getUsername());
                 field_first_name.setText(doubleClickedCustomer.getFirstName());
                 field_last_name.setText(doubleClickedCustomer.getLastName());
@@ -167,6 +170,7 @@ public class CustomerManagementController implements Initializable {
 
 
         fields.put("username", field_username.getText());
+        fields.put("customer_number", field_customerNumber.getText());
         fields.put("first_name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
@@ -188,6 +192,7 @@ public class CustomerManagementController implements Initializable {
         Map<String, String> fields = new HashMap<>();
 
         fields.put("username", field_username.getText());
+        fields.put("customer_number", field_customerNumber.getText());
         fields.put("first_name", field_first_name.getText());
         fields.put("last_name", field_last_name.getText());
         fields.put("street", field_street.getText());
@@ -329,6 +334,7 @@ public class CustomerManagementController implements Initializable {
 
 
     private void clearFields() {
+        field_customerNumber.clear();
         field_city.clear();
         field_country.clear();
         field_first_name.clear();

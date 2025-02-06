@@ -258,6 +258,31 @@ public class Database {
     }
 
 
+    public boolean isCustomerNumberExist(String customerNumber) {
+        logger.debug("\n\nSTART isCustomerNumberExists()");
+
+        String sql = "SELECT EXISTS (SELECT 1 FROM customer WHERE customer_number = ?)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, customerNumber);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    return resultSet.getBoolean(1);
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR isCustomerNumberExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis ob ein Kunde existiert oder nicht
+
+        return true;
+    }
+
+
     public boolean addCustomer(Map<String, String> filledFields) {
         logger.debug("\n\nSTART addCustomer() filledFields Länge: {}", filledFields.size());
 

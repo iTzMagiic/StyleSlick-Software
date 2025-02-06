@@ -118,6 +118,14 @@ public class CustomerService {
         }
 
 
+        if (filledFields.containsKey("customer_number") && !filledFields.get("customer_number").equals(customerNumber)) {
+            if (database.isCustomerNumberExist(fields.get("customer_number"))) {
+                AlertService.showErrorAlert("Die Kunden-Nr existiert bereits.");
+                return false;
+            }
+        }
+
+
         if (!database.updateCustomer(filledFields, customerID)) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Kunden.");
             return false;
