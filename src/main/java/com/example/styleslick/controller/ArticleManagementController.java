@@ -23,7 +23,7 @@ import java.util.Map;
 import java.util.ResourceBundle;
 
 
-public class ArticleManagementMenuController implements Initializable {
+public class ArticleManagementController implements Initializable {
 
     private ArticleService articleService;
     private CategoryService categoryService;

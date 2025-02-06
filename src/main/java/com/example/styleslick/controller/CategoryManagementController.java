@@ -106,7 +106,7 @@ public class CategoryManagementController implements Initializable {
 
         fields.put("name", field_categoryName.getText());
 
-        if (!categoryService.updateCategory(fields, selectedCategory.getID())) {
+        if (!categoryService.updateCategory(fields, selectedCategory)) {
             return;
         }
 
@@ -157,7 +157,7 @@ public class CategoryManagementController implements Initializable {
             return;
         }
 
-        if (categoryService.deleteCategory(selectedCategory.getID())) {
+        if (categoryService.deleteCategory(selectedCategory)) {
             executeShowAllCategories();
         }
     }

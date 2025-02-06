@@ -69,7 +69,7 @@ public class CategoryService {
     }
 
 
-    public boolean updateCategory(Map<String, String> fields, int categoryID) {
+    public boolean updateCategory(Map<String, String> fields, Category category) {
         Map<String, String> filledFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : fields.entrySet()) {
@@ -89,7 +89,7 @@ public class CategoryService {
             return false;
         }
 
-        if (!database.updateCategory(filledFields, categoryID)) {
+        if (!database.updateCategory(filledFields, category.getID())) {
             AlertService.showErrorAlert("Fehler beim bearbeiten der Kategorie.");
             return false;
         }
@@ -112,19 +112,19 @@ public class CategoryService {
     }
 
 
-    public boolean deleteCategory(int categoryID) {
+    public boolean deleteCategory(Category category) {
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr '" + categoryID + "' löschen?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie löschen?")) {
             AlertService.showErrorAlert("Kategorie wird nicht gelöscht.");
             return false;
         }
 
-        if (database.hasCategoryDependencies(categoryID)) {
+        if (database.hasCategoryDependencies(category.getID())) {
             AlertService.showErrorAlert("Bitte Löschen Sie zu erst alle Artikel die eine Abhängigkeit zu der Kategorie haben.");
             return false;
         }
 
-        if (!database.deleteCategory(categoryID)) {
+        if (!database.deleteCategory(category.getID())) {
             AlertService.showErrorAlert("Fehler beim löschen der Kategorie.");
             return false;
         }
