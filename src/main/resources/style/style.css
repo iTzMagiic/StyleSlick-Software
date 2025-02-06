@@ -1,5 +1,6 @@
 .root {
     -fx-background-color: #2C2C2C;
+    -fx-border-radius: 15px;
 }
 
 

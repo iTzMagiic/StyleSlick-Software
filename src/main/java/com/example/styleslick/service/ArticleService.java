@@ -89,7 +89,7 @@ public class ArticleService {
             return false;
         }
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + article.getArticleNumber() + " bearbeiten?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr: '" + article.getArticleNumber() + "' bearbeiten?")) {
             AlertService.showErrorAlert("Der Artikel wird nicht bearbeitet.");
             return false;
         }
@@ -145,7 +145,7 @@ public class ArticleService {
 
 
     public boolean deleteArticle(Article article) {
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + article.getArticleNumber() + "' löschen?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr: '" + article.getArticleNumber() + "' löschen?")) {
             AlertService.showErrorAlert("Artikel wird nicht gelöscht.");
             return false;
         }

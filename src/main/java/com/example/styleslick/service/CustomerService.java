@@ -110,7 +110,7 @@ public class CustomerService {
         }
 
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: " + customer.getCustomerNumber() + " bearbeiten?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Kunden mit der Kunden-Nr: '" + customer.getCustomerNumber() + "' bearbeiten?")) {
             AlertService.showErrorAlert("Kunde wird nicht bearbeitet.");
             return false;
         }

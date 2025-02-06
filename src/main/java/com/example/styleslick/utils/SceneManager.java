@@ -3,9 +3,10 @@ package com.example.styleslick.utils;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.image.Image;
 import javafx.stage.Stage;
-
 import java.io.IOException;
+import java.util.Objects;
 
 public class SceneManager {
 
@@ -19,6 +20,10 @@ public class SceneManager {
      */
     public static void setStage(Stage primaryStage) {
         stage = primaryStage;
+    }
+
+    public static void setWindowIcon(String iconPath) {
+        stage.getIcons().add(new Image(Objects.requireNonNull(SceneManager.class.getResourceAsStream(iconPath))));
     }
 
 
@@ -36,8 +41,12 @@ public class SceneManager {
             Scene scene = new Scene(root);
             stage.setScene(scene);
 
+
+            stage.centerOnScreen();
             stage.setTitle(title);
             stage.setResizable(resizable);
+
+
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

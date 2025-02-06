@@ -378,7 +378,7 @@ public class InvoiceManagementController implements Initializable {
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
         //TODO:: Nachfragen ob der Bestand angepasst werde soll.
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung " + selectedInvoice.getInvoiceNumber() + " löschen?")) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung: '" + selectedInvoice.getInvoiceNumber() + "' löschen?")) {
             if (invoiceService.deleteInvoice(selectedInvoice.getInvoiceID())) {
                 executeShowAllInvoices();
             }
@@ -398,8 +398,8 @@ public class InvoiceManagementController implements Initializable {
         InvoiceItem selectedArticle = tableView_invoice_item.getSelectionModel().getSelectedItem();
         tableView_invoice_item.getSelectionModel().clearSelection();
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel " + selectedArticle.getArticleName() +
-                " aus der Bestellung löschen?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel: '" + selectedArticle.getArticleName() +
+                "' aus der Bestellung löschen?")) {
             return;
         }
 
