@@ -145,8 +145,7 @@ public class CustomerService {
         }
 
         if (database.customerHasInvoices(customerID)) {
-            AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen des Kunden, bevor Sie " +
-                    "den Kunden entfernen.");
+            AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen des Kunden, bevor Sie ihn entfernen.");
             return false;
         }
 

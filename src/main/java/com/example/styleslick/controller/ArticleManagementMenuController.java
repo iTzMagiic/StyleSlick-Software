@@ -31,7 +31,7 @@ public class ArticleManagementMenuController implements Initializable {
     @FXML
     private TableView<Article> tableView_articles;
     @FXML
-    private TableColumn<Article, Integer> column_articleID;
+    private TableColumn<Article, Integer> column_articleNumber;
     @FXML
     private TableColumn<Article, Integer> column_categoryName;
     @FXML
@@ -72,6 +72,8 @@ public class ArticleManagementMenuController implements Initializable {
     private TextField field_amount;
     @FXML
     private TextField field_stock;
+    @FXML
+    private TextField field_articleNumber;
 
 
     @Override
@@ -84,19 +86,20 @@ public class ArticleManagementMenuController implements Initializable {
 
 
         tableView_articles.setOnMouseClicked(event -> {
-           if (event.getClickCount() == 2) {
-               Article doubleClickedArticle = tableView_articles.getSelectionModel().getSelectedItem();
-               choiceBox_categories.setValue(listOfCategories.stream().filter(category -> category.getID() == doubleClickedArticle.getCategoryID()).findFirst().orElse(null));
-               field_name.setText(doubleClickedArticle.getName());
-               field_color.setText(doubleClickedArticle.getColor());
-               field_price.setText(String.valueOf(doubleClickedArticle.getPrice()));
-               datePicker_purchase_date.setValue(doubleClickedArticle.getPurchase_date());
-               field_manufacturer.setText(doubleClickedArticle.getManufacturer());
-               field_purchased_from.setText(doubleClickedArticle.getPurchased_from());
-               field_quality.setText(doubleClickedArticle.getQuality());
-               field_amount.setText(String.valueOf(doubleClickedArticle.getAmount()));
-               field_stock.setText(String.valueOf(doubleClickedArticle.getStock()));
-           }
+            if (event.getClickCount() == 2) {
+                Article doubleClickedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+                choiceBox_categories.setValue(listOfCategories.stream().filter(category -> category.getID() == doubleClickedArticle.getCategoryID()).findFirst().orElse(null));
+                field_articleNumber.setText(doubleClickedArticle.getArticleNumber());
+                field_name.setText(doubleClickedArticle.getName());
+                field_color.setText(doubleClickedArticle.getColor());
+                field_price.setText(String.valueOf(doubleClickedArticle.getPrice()));
+                datePicker_purchase_date.setValue(doubleClickedArticle.getPurchase_date());
+                field_manufacturer.setText(doubleClickedArticle.getManufacturer());
+                field_purchased_from.setText(doubleClickedArticle.getPurchased_from());
+                field_quality.setText(doubleClickedArticle.getQuality());
+                field_amount.setText(String.valueOf(doubleClickedArticle.getAmount()));
+                field_stock.setText(String.valueOf(doubleClickedArticle.getStock()));
+            }
         });
 
         executeShowAllArticles();
@@ -106,7 +109,7 @@ public class ArticleManagementMenuController implements Initializable {
     private void executeShowAllArticles() {
         clearFields();
 
-        column_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+        column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleNumber"));
         column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
         column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
         column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
@@ -329,6 +332,7 @@ public class ArticleManagementMenuController implements Initializable {
 
 
     private void clearFields() {
+        field_articleNumber.clear();
         field_name.clear();
         field_color.clear();
         field_price.clear();

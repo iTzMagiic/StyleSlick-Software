@@ -142,6 +142,12 @@ public class ArticleService {
             AlertService.showErrorAlert("Artikel wird nicht gelöscht.");
             return false;
         }
+
+        if (database.hasArticleDependencies(articleID)) {
+            AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen, die diesen Artikel enthalten, bevor Sie ihn entfernen.");
+            return false;
+        }
+
         if (!database.deleteArticle(articleID)) {
             AlertService.showErrorAlert("Artikel konnte nicht gelöscht werden.");
             return false;

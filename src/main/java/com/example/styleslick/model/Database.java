@@ -761,6 +761,7 @@ public class Database {
                 while (resultSet.next()) {
                     int articleID = resultSet.getInt("article_id");
                     int categoryID = resultSet.getInt("category_id");
+                    String articleNumber = resultSet.getString("article_number");
                     String category_name = getCategoryName(categoryID);
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
@@ -772,7 +773,7 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-                    listOfArticle.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfArticle.add(new Article(articleID, categoryID, articleNumber, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
             }
         } catch (SQLException e) {
@@ -800,11 +801,12 @@ public class Database {
             whereClause.append(entry.getKey());
         }
 
+        whereClause.append(", article_number");
+
         if (!filledFields.containsKey("stock")) {
             whereClause.append(", stock) VALUES (");
         } else {
             whereClause.append(") VALUES (");
-            System.out.println("stock vorhanden " + filledFields.get("stock"));
         }
 
         sql += whereClause.toString();
@@ -816,6 +818,7 @@ public class Database {
             }
             whereClause.append("?");
         }
+        whereClause.append(", ?");
 
         if (!filledFields.containsKey("stock")) {
             whereClause.append(", ?)");
@@ -847,6 +850,8 @@ public class Database {
                 }
             }
 
+            preparedStatement.setString(index++, generateArticleNumber());
+
             if (!filledFields.containsKey("stock")) {
                 int stock = Integer.parseInt(filledFields.get("amount"));
                 preparedStatement.setInt(index, stock);
@@ -861,6 +866,65 @@ public class Database {
 
         logger.info("ENDE addArticle() Artikel wurde erfolgreich in die Datenbank importiert.");
         return true;
+    }
+
+
+    public boolean hasArticleDependencies(int articleID) {
+        logger.debug("\n\nSTART hasArticleDependencies()");
+
+        String sql = "SELECT EXISTS (SELECT 1 FROM invoice_item WHERE article_id = ?)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, articleID);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    logger.info("ENDE hasArticleDependencies() erfolgreich");
+                    return resultSet.getBoolean(1);
+                }
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR hasArticleDependencies() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        logger.warn("WARN hasArticleDependencies() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
+        return true;
+    }
+
+
+    private String generateArticleNumber() {
+        logger.debug("\n\nSTART generateArticleNumber()");
+
+        // SQL-Abfrage, um die höchste Artikelnummer für das aktuelle Jahr zu finden
+        String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(article_number, 6) AS UNSIGNED)), 0) + 1 AS new_article_number " +
+                "FROM article " +
+                "WHERE SUBSTRING(article_number, 2, 4) = YEAR(CURDATE())";
+
+        logger.debug("sql: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    int new_article_number = resultSet.getInt("new_article_number");
+
+                    // Generieren der Artikelnummer: 'A' + Jahr + Nummer mit führenden Nullen
+                    String articleNumber = "A" + java.time.Year.now() + String.format("%04d", new_article_number);
+                    logger.info("ENDE generateArticleNumber() erfolgreich. Erstellte Artikelnummer: {}", articleNumber);
+                    return articleNumber;
+                } else {
+                    logger.warn("WARN generateArticleNumber() Keine vorhandene Artikelnummer für das aktuelle Jahr.");
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR generateArticleNumber() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return "ERROR";
     }
 
 
@@ -965,6 +1029,7 @@ public class Database {
                 while (resultSet.next()) {
                     int articleID = resultSet.getInt("article_id");
                     int categoryID = resultSet.getInt("category_id");
+                    String articleNumber = resultSet.getString("article_number");
                     String category_name = getCategoryName(categoryID);
                     String name = resultSet.getString("name");
                     String color = resultSet.getString("color");
@@ -976,7 +1041,7 @@ public class Database {
                     int amount = resultSet.getInt("amount");
                     int stock = resultSet.getInt("stock");
 
-                    listOfFoundetArticles.add(new Article(articleID, categoryID, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                    listOfFoundetArticles.add(new Article(articleID, categoryID, articleNumber, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
                 }
             }
         } catch (SQLException e) {
