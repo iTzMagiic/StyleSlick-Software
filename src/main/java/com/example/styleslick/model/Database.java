@@ -875,7 +875,7 @@ public class Database {
         String sql = "SELECT EXISTS (SELECT 1 FROM invoice_item WHERE article_id = ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, articleID);
 
@@ -891,6 +891,12 @@ public class Database {
         }
 
         logger.warn("WARN hasArticleDependencies() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
+        return true;
+    }
+
+
+    //TODO:: Die methode muss noch erstellt werden
+    public boolean isArticleNumberExist(String articleNumber) {
         return true;
     }
 

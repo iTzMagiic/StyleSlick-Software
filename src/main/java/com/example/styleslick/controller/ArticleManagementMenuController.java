@@ -173,6 +173,7 @@ public class ArticleManagementMenuController implements Initializable {
         }
 
         fields.put("name", field_name.getText());
+        fields.put("article_number", field_articleNumber.getText());
         fields.put("color", field_color.getText());
         fields.put("price", field_price.getText());
         if (datePicker_purchase_date.getValue() != null) {
@@ -184,7 +185,7 @@ public class ArticleManagementMenuController implements Initializable {
         fields.put("amount", field_amount.getText());
         fields.put("stock", field_stock.getText());
 
-        if (!articleService.updateArticle(fields, selectedArticle.getArticleID())) {
+        if (!articleService.updateArticle(fields, selectedArticle)) {
             return;
         }
 
@@ -200,9 +201,7 @@ public class ArticleManagementMenuController implements Initializable {
             return;
         }
 
-        int articleID = selectedArticle.getArticleID();
-
-        if (!articleService.deleteArticle(articleID)) {
+        if (!articleService.deleteArticle(selectedArticle)) {
             return;
         }
 

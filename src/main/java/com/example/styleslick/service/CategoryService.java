@@ -84,7 +84,7 @@ public class CategoryService {
             return false;
         }
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie mit der Kategorie-Nr " + categoryID + " bearbeiten?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Kategorie bearbeiten?")) {
             AlertService.showErrorAlert("Kategorie wird nicht bearbeitet.");
             return false;
         }

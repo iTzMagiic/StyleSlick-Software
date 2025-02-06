@@ -70,7 +70,7 @@ public class ArticleService {
     }
 
 
-    public boolean updateArticle(Map<String, String> fields, int articleID) {
+    public boolean updateArticle(Map<String, String> fields, Article article) {
         Map<String, String> filledFields = new HashMap<>();
 
 
@@ -89,12 +89,12 @@ public class ArticleService {
             return false;
         }
 
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + articleID + " bearbeiten?")) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr " + article.getArticleNumber() + " bearbeiten?")) {
             AlertService.showErrorAlert("Der Artikel wird nicht bearbeitet.");
             return false;
         }
 
-        if (!database.updateArticle(filledFields, articleID)) {
+        if (!database.updateArticle(filledFields, article.getArticleID())) {
             AlertService.showErrorAlert("Fehler beim bearbeiten des Artikels.");
             return false;
         }
@@ -137,18 +137,18 @@ public class ArticleService {
     }
 
 
-    public boolean deleteArticle(int articleID) {
-        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + articleID + "' löschen?")) {
+    public boolean deleteArticle(Article article) {
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel mit der Artikel-Nr '" + article.getArticleNumber() + "' löschen?")) {
             AlertService.showErrorAlert("Artikel wird nicht gelöscht.");
             return false;
         }
 
-        if (database.hasArticleDependencies(articleID)) {
+        if (database.hasArticleDependencies(article.getArticleID())) {
             AlertService.showErrorAlert("Bitte löschen Sie zuerst alle Bestellungen, die diesen Artikel enthalten, bevor Sie ihn entfernen.");
             return false;
         }
 
-        if (!database.deleteArticle(articleID)) {
+        if (!database.deleteArticle(article.getArticleID())) {
             AlertService.showErrorAlert("Artikel konnte nicht gelöscht werden.");
             return false;
         }
