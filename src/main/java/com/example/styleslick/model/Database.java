@@ -247,8 +247,6 @@ public class Database {
                 if (resultSet.next()) {
                     logger.info("ENDE isUsernameExist() erfolgreich");
                     return resultSet.getBoolean(1);
-                } else {
-                    logger.warn("WARN isUsernameExist() fehlgeschlagen.");
                 }
             }
 
@@ -256,18 +254,18 @@ public class Database {
             logger.error("ERROR isUsernameExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
-        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde mit dem Benutzernamen existiert oder nicht
+        logger.warn("WARN isUsernameExist() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
         return true;
     }
 
 
     public boolean isCustomerNumberExist(String customerNumber) {
-        logger.debug("\n\nSTART isCustomerNumberExists()");
+        logger.debug("\n\nSTART isCustomerNumberExist()");
 
         String sql = "SELECT EXISTS (SELECT 1 FROM customer WHERE customer_number = ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, customerNumber);
 
@@ -275,15 +273,14 @@ public class Database {
                 if (resultSet.next()) {
                     logger.info("ENDE isCustomerNumberExists() erfolgreich");
                     return resultSet.getBoolean(1);
-                } else {
-                    logger.warn("WARN isCustomerNumberExists() fehlgeschlagen");
                 }
             }
         } catch (SQLException e) {
             logger.error("ERROR isCustomerNumberExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
         }
 
-        //  * Die Methode gibt True bei einem Fehler zurück da man nicht weis, ob ein Kunde existiert oder nicht
+        // Die Methode gibt True zurück, um das Anlegen eines Kunden zu verhindern, falls die DB-Abfrage fehlschlägt.
+        logger.warn("WARN isCustomerNumberExist() - Fehler aufgetreten oder kein Ergebnis erhalten. Rückgabe: true");
         return true;
     }
 
@@ -656,7 +653,7 @@ public class Database {
         String sql = "SELECT * FROM category WHERE name LIKE ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)){
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, "%" + name + "%");
 
