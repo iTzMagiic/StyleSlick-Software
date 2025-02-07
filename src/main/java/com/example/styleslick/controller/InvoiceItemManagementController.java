@@ -154,7 +154,7 @@ public class InvoiceItemManagementController implements Initializable {
 
 
         //TODO:: FEHLER WIR BEKOMMEN article_number und nicht ID!
-        articleToAdd.put("article_id", field_articleNumber.getText());
+        articleToAdd.put("article_number", field_articleNumber.getText());
         articleToAdd.put("amount", field_amount.getText());
 
 
@@ -172,6 +172,7 @@ public class InvoiceItemManagementController implements Initializable {
     private void executeDeleteItem() {
 
     }
+
 
     private void executeShowAllArticles() {
         tableView_invoiceItem.setVisible(false);

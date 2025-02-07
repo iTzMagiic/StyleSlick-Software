@@ -55,22 +55,23 @@ public class InvoiceRules {
             return true;
         }
 
-        if (!filledFields.containsKey("article_id")) {
+        if (!filledFields.containsKey("article_number")) {
             AlertService.showErrorAlert("Bitte geben Sie die Artikel-Nr ein.");
             return true;
         }
 
-        if (isNotValidAmountOrArticleID(filledFields.get("article_id"))) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Artikel-Nr an.");
-            return true;
-        }
+        //TODO:: Methode isNotValidArticleNumber muss noch erstellt werden
+//        if (isNotValidArticleNumber(filledFields.get("article_number"))) {
+//            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Artikel-Nr an.");
+//            return true;
+//        }
 
         if (!filledFields.containsKey("amount")) {
             AlertService.showErrorAlert("Bitte geben Sie die Menge der Bestellten Artikel an.");
             return true;
         }
 
-        if (isNotValidAmountOrArticleID(filledFields.get("amount"))) {
+        if (isNotValidAmount(filledFields.get("amount"))) {
             AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
             return true;
         }
@@ -81,7 +82,7 @@ public class InvoiceRules {
 
 
 
-    private boolean isNotValidAmountOrArticleID(String input) {
+    private boolean isNotValidAmount(String input) {
         if (!input.matches("[1-9]\\d*")) {
             return true;
         }

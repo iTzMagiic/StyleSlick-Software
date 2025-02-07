@@ -306,11 +306,9 @@ public class InvoiceManagementController implements Initializable {
         invoiceFields.put("shipping_receipt", field_shipping_receipt.getText());
         invoiceFields.put("shipping_cost", field_shipping_cost.getText());
 
-        itemFields.put("article_id", field_articleID.getText());
-        itemFields.put("amount", field_amount.getText());
 
 
-        if (!invoiceService.addInvoice(invoiceFields, itemFields)) {
+        if (!invoiceService.addInvoice(invoiceFields)) {
             return;
         }
 

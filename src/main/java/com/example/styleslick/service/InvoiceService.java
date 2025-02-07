@@ -44,7 +44,7 @@ public class InvoiceService {
     }
 
 
-    public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
+    public boolean addInvoice(Map<String, String> invoiceFields) {
         Map<String, String> filledInvoiceFields = new HashMap<>();
         Map<String, String> filledItemFields = new HashMap<>();
 
@@ -55,18 +55,7 @@ public class InvoiceService {
             filledInvoiceFields.put(entry.getKey(), entry.getValue());
         }
 
-        for (Map.Entry<String, String> entry : itemFields.entrySet()) {
-            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
-                continue;
-            }
 
-            filledItemFields.put(entry.getKey(), entry.getValue());
-        }
-
-
-        if (invoiceRules.isNotAllowedToAddItemToInvoice(filledItemFields)) {
-            return false;
-        }
 
         if (filledInvoiceFields.containsKey("shipping_cost")) {
             filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
@@ -87,23 +76,6 @@ public class InvoiceService {
         }
 
 
-        int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
-
-        if (stockOfArticle == -9999) {
-            AlertService.showErrorAlert("Es konnte kein Artikel mit der Artikel-Nr gefunden werden.");
-            return false;
-        }
-
-        if (stockOfArticle <= 0) {
-            AlertService.showErrorAlert("Der Bestand des Artikel ist " + stockOfArticle + ".");
-            return false;
-        }
-        if (stockOfArticle < Integer.parseInt(filledItemFields.get("amount"))) {
-            AlertService.showErrorAlert("Zu wenig Artikel im Bestand.");
-            return false;
-        }
-
-
         if (database.addInvoice(filledInvoiceFields, filledItemFields)) {
             AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich erstellt.");
             return true;
@@ -114,7 +86,7 @@ public class InvoiceService {
     }
 
 
-    public boolean addItemToInvoiceWithInvoiceID(Map<String, String> itemFields, int invoice_id) {
+    public boolean addItemToInvoiceWithInvoiceID(Map<String, String> itemFields, int invoiceID) {
         Map<String, String> filledItemFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : itemFields.entrySet()) {
@@ -130,10 +102,11 @@ public class InvoiceService {
         }
 
 
-        int stockOfArticle = database.getStockOfArticle(Integer.parseInt(filledItemFields.get("article_id")));
+        int stockOfArticle = database.getStockOfArticle(filledItemFields.get("article_number"));
 
         if (stockOfArticle == -9999) {
-            AlertService.showErrorAlert("Es konnte kein Artikel mit der Artikel-Nr gefunden werden.");
+            AlertService.showErrorAlert("Es konnte kein Artikel mit der Artikel-Nr: '" + filledItemFields.get("article_number")
+                    + "' gefunden werden.");
             return false;
         }
 
@@ -147,7 +120,7 @@ public class InvoiceService {
         }
 
 
-        if (database.addItemToInvoice(invoice_id, filledItemFields)) {
+        if (database.addItemToInvoice(invoiceID, filledItemFields)) {
             AlertService.showConfirmAlert("Der Artikel wurde erfolgreich hinzugefügt.");
             return true;
         } else {
