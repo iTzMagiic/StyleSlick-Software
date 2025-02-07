@@ -46,7 +46,6 @@ public class InvoiceService {
 
     public boolean addInvoice(Map<String, String> invoiceFields) {
         Map<String, String> filledInvoiceFields = new HashMap<>();
-        Map<String, String> filledItemFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : invoiceFields.entrySet()) {
             if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
@@ -75,7 +74,7 @@ public class InvoiceService {
         }
 
 
-        if (database.addInvoice(filledInvoiceFields, filledItemFields)) {
+        if (database.addInvoice(filledInvoiceFields)) {
             AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich erstellt.");
             return true;
         } else {

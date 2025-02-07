@@ -1173,94 +1173,44 @@ public class Database {
 
 
     //TODO:: Die Methode muss noch genauer angeschaut werden und geprüft werden.
-    public boolean addInvoice(Map<String, String> invoiceFields, Map<String, String> itemFields) {
+    public boolean addInvoice(Map<String, String> invoiceFields) {
         logger.debug("\n\nSTART addInvoice()");
 
-        String addInvoiceSqlQuery = generateInsertIntoQueryWithNumber("invoice", invoiceFields);
-        String addItemSqlQuery = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
-        String updateArticleStockSqlQuery = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
+        String sql = generateInsertIntoQueryWithNumber("invoice", invoiceFields);
+        logger.debug("sql: {}", sql);
 
-        logger.debug("addInvoiceSqlQuery: {}", addInvoiceSqlQuery);
-        logger.debug("addItemSqlQuery: {}", addItemSqlQuery);
-        logger.debug("updateArticleStockSqlQuery: {}", updateArticleStockSqlQuery);
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement addInvoiceStatement = connection.prepareStatement(sql)) {
 
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD)) {
+            int index = 1;
 
-            connection.setAutoCommit(false);
+            for (Map.Entry<String, String> entry : invoiceFields.entrySet()) {
 
-            try (PreparedStatement addInvoiceStatement = connection.prepareStatement(addInvoiceSqlQuery, PreparedStatement.RETURN_GENERATED_KEYS);
-                 PreparedStatement addItemStatement = connection.prepareStatement(addItemSqlQuery);
-                 PreparedStatement updateArticleStockStatement = connection.prepareStatement(updateArticleStockSqlQuery)) {
+                if (entry.getKey().equals("purchase_date")) {
+                    addInvoiceStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
 
-                int index = 1;
+                } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
+                    addInvoiceStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
 
-                for (Map.Entry<String, String> entry : invoiceFields.entrySet()) {
+                } else if (entry.getKey().equals("customer_id")) {
+                    addInvoiceStatement.setInt(index++, getCustomerID(entry.getValue()));
 
-                    if (entry.getKey().equals("purchase_date")) {
-                        addInvoiceStatement.setDate(index++, java.sql.Date.valueOf(LocalDate.parse(entry.getValue())));
-
-                    } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
-                        addInvoiceStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
-
-                    } else if (entry.getKey().equals("customer_id")) {
-                        addInvoiceStatement.setInt(index++, getCustomerID(entry.getValue()));
-
-                    } else {
-                        addInvoiceStatement.setString(index++, entry.getValue());
-                    }
+                } else {
+                    addInvoiceStatement.setString(index++, entry.getValue());
                 }
-
-                addInvoiceStatement.setString(index, generateInvoiceNumber());
-
-                int resultAddInvoice = addInvoiceStatement.executeUpdate();
-
-                if (resultAddInvoice != 1) {
-                    logger.error("ERROR addInvoice() Die Bestellung konnte nicht erstellt werden.");
-                    throw new SQLException("ROLLBACK Bestellung konnte nicht erstellt werden.");
-                }
-
-
-                ResultSet generatedKeys = addInvoiceStatement.getGeneratedKeys();
-                if (!generatedKeys.next()) {
-                    logger.error("ERROR addInvoice() Keine invoice_id generiert.");
-                    throw new SQLException("Keine invoice_id generiert.");
-                }
-
-                int invoice_id = generatedKeys.getInt(1);
-
-                addItemStatement.setInt(1, invoice_id);
-                addItemStatement.setInt(2, Integer.parseInt(itemFields.get("article_id")));
-                addItemStatement.setInt(3, Integer.parseInt(itemFields.get("amount")));
-
-                int addItemResult = addItemStatement.executeUpdate();
-
-                if (addItemResult != 1) {
-                    logger.error("ERROR addInvoice() Der Artikel konnte nicht zur Bestellung hinzugefügt werden.");
-                    throw new SQLException("ROLLBACK Artikel konnte nicht zur Bestellung hinzugefügt werden.");
-                }
-
-
-                updateArticleStockStatement.setInt(1, Integer.parseInt(itemFields.get("amount")));
-                updateArticleStockStatement.setInt(2, Integer.parseInt(itemFields.get("article_id")));
-
-                int updateArticleStockResult = updateArticleStockStatement.executeUpdate();
-
-                if (updateArticleStockResult != 1) {
-                    logger.error("ERROR addInvoice() Der Bestand des Artikels konnte nicht angepasst werden.");
-                    throw new SQLException("ROLLBACK Der Bestand des Artikels konnte nicht angepasst werden.");
-                }
-
-                logger.info("ENDE addInvoice() Bestellung konnte erfolgreich angelegt werden.");
-                connection.commit();
-                return true;
-
-            } catch (SQLException e) {
-                connection.rollback();
-                logger.error("ERROR addInvoice() Transaktion fehlgeschlagen: {}", e.getMessage(), e);
-            } finally {
-                connection.setAutoCommit(true);
             }
 
+            addInvoiceStatement.setString(index, generateInvoiceNumber());
+
+            int resultAddInvoice = addInvoiceStatement.executeUpdate();
+
+            if (resultAddInvoice != 1) {
+                logger.error("ERROR addInvoice() Die Bestellung konnte nicht erstellt werden.");
+                return false;
+            }
+
+            logger.info("ENDE addInvoice() Bestellung konnte erfolgreich angelegt werden.");
+            return true;
         } catch (SQLException e) {
             logger.error("ERROR addItemToInvoice() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
         }
@@ -1285,7 +1235,6 @@ public class Database {
 
             try (PreparedStatement addItemToInvoicePreparedStatement = connection.prepareStatement(sqlAddItemToInvoice);
                  PreparedStatement updatePreparedStatement = connection.prepareStatement(sqlUpdateArticleStock)) {
-
 
 
                 addItemToInvoicePreparedStatement.setInt(1, invoiceID);
@@ -1330,7 +1279,7 @@ public class Database {
         String sql = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setInt(1, amount);
             preparedStatement.setInt(2, invoiceItemID);

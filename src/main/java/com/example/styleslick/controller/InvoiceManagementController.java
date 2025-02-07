@@ -204,7 +204,6 @@ public class InvoiceManagementController implements Initializable {
 
     private void executeAddInvoice() {
         Map<String, String> invoiceFields = new HashMap<>();
-        Map<String, String> itemFields = new HashMap<>();
 
 
         if (datePicker_purchase_date.getValue() == null) {
