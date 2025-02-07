@@ -2,6 +2,7 @@ package com.example.styleslick.controller;
 
 import com.example.styleslick.model.Invoice;
 import com.example.styleslick.model.InvoiceItem;
+import com.example.styleslick.service.AlertService;
 import com.example.styleslick.service.InvoiceService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.application.Platform;
@@ -21,7 +22,9 @@ import javafx.scene.input.MouseEvent;
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 public class InvoiceItemManagementController implements Initializable {
@@ -86,7 +89,7 @@ public class InvoiceItemManagementController implements Initializable {
                     label_invoiceNumber.setText(invoice.getInvoiceNumber());
                     label_customerNumber.setText(invoice.getCustomerNumber());
 
-                    column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+                    column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleNumber"));
                     column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
                     column_name.setCellValueFactory(new PropertyValueFactory<>("articleName"));
 
@@ -103,7 +106,17 @@ public class InvoiceItemManagementController implements Initializable {
 
 
     private void executeAddItem() {
+        // Es wurde mit absicht eine Map erzeugt, für den Fall das sich die Artikel Attributen in der Datenbank verändern.
+        Map<String, String> articleToAdd = new HashMap<>();
 
+
+        articleToAdd.put("article_id", field_articleNumber.getText());
+        articleToAdd.put("amount", field_amount.getText());
+
+
+        if (invoiceService.addItemToInvoiceWithInvoiceID(articleToAdd, invoice.getInvoiceID())) {
+            clearFields();
+        }
     }
 
 
@@ -129,7 +142,7 @@ public class InvoiceItemManagementController implements Initializable {
 
     @FXML
     private void onKeyPressedEnterAddItem(KeyEvent event) {
-
+        executeAddItem();
     }
 
     @FXML
@@ -149,7 +162,7 @@ public class InvoiceItemManagementController implements Initializable {
 
     @FXML
     private void onMouseClickedAddItem(MouseEvent event) {
-
+        executeAddItem();
     }
 
     @FXML
@@ -167,4 +180,9 @@ public class InvoiceItemManagementController implements Initializable {
 
     }
 
+
+    private void clearFields() {
+        field_amount.clear();
+        field_articleNumber.clear();
+    }
 }

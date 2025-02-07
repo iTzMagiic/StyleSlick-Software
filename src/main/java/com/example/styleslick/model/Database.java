@@ -1383,7 +1383,7 @@ public class Database {
         logger.debug("\n\nSTART getInvoiceItems().");
 
         List<InvoiceItem> listOfInvoiceItems = new ArrayList<>();
-        String sql = "SELECT i.*, a.name FROM invoice_item i INNER JOIN article a ON i.article_id = a.article_id WHERE " +
+        String sql = "SELECT i.*, a.name, a.article_number FROM invoice_item i INNER JOIN article a ON i.article_id = a.article_id WHERE " +
                 "invoice_id = ?";
 
         logger.debug("SQL Query: {}", sql);
@@ -1396,11 +1396,12 @@ public class Database {
             try (ResultSet resultSet = preparedStatement.executeQuery()) {
                 while (resultSet.next()) {
                     int articleID = resultSet.getInt("article_id");
+                    String articleNumber = resultSet.getString("article_number");
                     int amount = resultSet.getInt("amount");
                     String articleName = resultSet.getString("name");
                     int invoice_item_id = resultSet.getInt("invoice_item_id");
 
-                    listOfInvoiceItems.add(new InvoiceItem(articleID, amount, articleName, invoice_item_id));
+                    listOfInvoiceItems.add(new InvoiceItem(articleID, articleNumber, amount, articleName, invoice_item_id));
                 }
 
                 logger.info("ENDE getInvoiceItems() listOfInvoiceItem Länge: {}", listOfInvoiceItems.size());

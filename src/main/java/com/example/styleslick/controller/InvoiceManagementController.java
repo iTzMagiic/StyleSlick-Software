@@ -268,43 +268,12 @@ public class InvoiceManagementController implements Initializable {
 
     private void executeShowInvoiceItems() {
 
-//        List<InvoiceItem> listOfInvoiceItems;
-//        Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
-//
-//        //TODO:: Hier gefällt mir nicht das nur nach Selektierter Zelle geschaut wird aber was ist wenn ich eine Bestell-Nr
-//        //  Selbst eingetragen hab? dann muss ich ja auch die Bestellung einsehen können.
-//        if (selectedInvoice == null) {
-//            AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus.");
-//            return;
-//        }
-//
-//        tableView_invoices.getSelectionModel().clearSelection();
-//
-//        listOfInvoiceItems = invoiceService.getInvoiceItems(selectedInvoice.getInvoiceID());
-//
-//        if (listOfInvoiceItems.isEmpty()) {
-//            return;
-//        }
-//
-//        setTableViewVisible("invoice_items");
-//
-//
-//        field_invoice_number.setText(selectedInvoice.getInvoiceNumber());
-//        setInvoiceItemFieldsEditable(false);
-//
-//        column_invoice_item_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
-//        column_invoice_item_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-//        column_invoice_item_articleName.setCellValueFactory(new PropertyValueFactory<>("articleName"));
-//
-//
-//        ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
-//        tableView_invoice_item.setItems(observableList);
+        //TODO:: Hier gefällt mir nicht das nur nach Selektierter Zelle geschaut wird aber was ist wenn ich eine Bestell-Nr
+        //  Selbst eingetragen hab? dann muss ich ja auch die Bestellung einsehen können.
 
 
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
-        //TODO:: Hier gefällt mir nicht das nur nach Selektierter Zelle geschaut wird aber was ist wenn ich eine Bestell-Nr
-        //  Selbst eingetragen hab? dann muss ich ja auch die Bestellung einsehen können.
         if (selectedInvoice == null) {
             AlertService.showErrorAlert("Bitte wählen Sie eine Bestellung aus.");
             return;
