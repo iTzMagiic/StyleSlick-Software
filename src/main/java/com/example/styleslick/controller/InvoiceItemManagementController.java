@@ -100,6 +100,14 @@ public class InvoiceItemManagementController implements Initializable {
 
         listOfInvoiceItems = invoiceService.getInvoiceItems(invoice.getInvoiceID());
 
+        tableView_invoiceItem.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                field_articleNumber.setText(String.valueOf(tableView_invoiceItem.getSelectionModel().getSelectedItem().getArticleNumber()));
+                field_amount.setText(String.valueOf(tableView_invoiceItem.getSelectionModel().getSelectedItem().getAmount()));
+                tableView_invoiceItem.getSelectionModel().clearSelection();
+            }
+        });
+
 
         ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
 
@@ -153,7 +161,22 @@ public class InvoiceItemManagementController implements Initializable {
 
 
     private void executeUpdateItem() {
-        //TODO:: Die Methode muss noch fertig gemacht werden
+
+        InvoiceItem selectedItem = tableView_invoiceItem.getSelectionModel().getSelectedItem();
+
+        if (selectedItem == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie ein Artikel aus der Bestellung aus.");
+            return;
+        }
+
+        if (field_amount.getText().isEmpty()) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Menge an.");
+            return;
+        }
+
+        if (invoiceService.updateItem(selectedItem, field_amount.getText())) {
+            executeShowAllItems();
+        }
     }
 
 
@@ -188,10 +211,13 @@ public class InvoiceItemManagementController implements Initializable {
     private void executeShowAllArticles() {
         tableView_invoiceItem.setVisible(false);
         tableView_articles.setVisible(true);
+        field_amount.clear();
+        field_articleNumber.clear();
 
         tableView_articles.setOnMouseClicked(event -> {
             if (event.getClickCount() == 2) {
                 field_articleNumber.setText(String.valueOf(tableView_articles.getSelectionModel().getSelectedItem().getArticleNumber()));
+                tableView_articles.getSelectionModel().clearSelection();
             }
         });
 

@@ -111,4 +111,9 @@ public class ArticleRules {
         return false;
     }
 
+
+    private boolean isNotValidArticleNumber(String articleNumber) {
+        return !articleNumber.matches("^A\\d{8}$");
+    }
+
 }

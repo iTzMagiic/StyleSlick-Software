@@ -2,20 +2,10 @@ package com.example.styleslick.service;
 
 import com.example.styleslick.model.Category;
 import com.example.styleslick.model.Database;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
-/*
-    TODO:: beim löschen einer Kategorie, muss noch geprüft werden ob die Kategorie in abhängigkeiten zu einem Artikel steht
-     wenn JA nachfragen ob alle verbundenen Artikel mit gelöscht werden sollen oder abbrechen.
-     vllt auch eine Meldung einfach ausgeben das es noch Artikel gibt mit einer abhängigkeit zu der Kategorie
-     und erst die Artikel manuel gelöscht werden müssen.
- */
 
 public class CategoryService {
 

@@ -1325,6 +1325,32 @@ public class Database {
     }
 
 
+    public boolean updateInvoiceItem(int invoiceItemID, int amount) {
+        logger.debug("START updateInvoiceItem()");
+        String sql = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setInt(1, amount);
+            preparedStatement.setInt(2, invoiceItemID);
+
+            int result = preparedStatement.executeUpdate();
+
+            if (result > 0) {
+                logger.info("ENDE updateInvoiceItem() erfolgreich.");
+                return true;
+            }
+            logger.warn("WARN updateInvoiceItem() fehlgeschlagen.");
+
+        } catch (SQLException e) {
+            logger.error("ERROR updateInvoiceItem() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+
     public boolean deleteArticleFromInvoice(int invoice_item_id) {
         logger.debug("START deleteArticleFromInvoice()");
 

@@ -163,6 +163,54 @@ public class InvoiceService {
     }
 
 
+    public boolean updateItem(InvoiceItem selectedInvoiceItem, String amount) {
+        //TODO:: Die Methode muss noch fertig gemacht werden.
+
+        if (invoiceRules.isNotValidAmount(amount)) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
+            return false;
+        }
+
+        int newAmount = Integer.parseInt(amount);
+        int stockOfArticle = database.getStockOfArticle(selectedInvoiceItem.getArticleNumber());
+
+        if (selectedInvoiceItem.getAmount() < newAmount) {
+            int sum = newAmount - selectedInvoiceItem.getAmount();
+            if (stockOfArticle < sum) {
+                AlertService.showErrorAlert("Zu wenig im Bestand.");
+                return false;
+            }
+        } else if (selectedInvoiceItem.getAmount() > newAmount) {
+            if (AlertService.showConfirmAlertResult("Soll der Bestand angepasst werden?")) {
+                int sum = selectedInvoiceItem.getAmount() - newAmount;
+                database.addBackDeletedItem(selectedInvoiceItem.getArticleID(), sum);
+                /*
+                TODO:: Eine neue Methode in Database erstellen die wieder hinzufügt in artikel und gleichzeitig
+                    den bestand in invoice_item ändert
+                 */
+            }
+        } else if (selectedInvoiceItem.getAmount() < newAmount) {
+            if (AlertService.showConfirmAlertResult("Soll der Bestand angepasst werden?")) {
+                //TODO:: Wenn der bestand weniger ist fragen ob der auch angepasst werden soll
+
+                int sum = newAmount - selectedInvoiceItem.getAmount();
+                //database.KorrigiereDenBestandVonDemArtikel
+            }
+        }
+
+
+
+
+        if (!database.updateInvoiceItem(selectedInvoiceItem.getInvoiceItemID(), newAmount)) {
+            AlertService.showErrorAlert("Artikel konnte nicht bearbeitet werden.");
+            return false;
+        }
+
+        AlertService.showConfirmAlert("Artikel wurde erfolgreich bearbeitet.");
+        return true;
+    }
+
+
     public List<InvoiceItem> getInvoiceItems(int invoice_id) {
         List<InvoiceItem> listOfInvoiceItems;
 

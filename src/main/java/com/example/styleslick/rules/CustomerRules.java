@@ -85,6 +85,10 @@ public class CustomerRules {
     }
 
 
+    private boolean isNotValidCustomerNumber(String customerNumber) {
+        return !customerNumber.matches("^C\\d{8}$");
+    }
+
     private boolean isNotValidCountry(String country) {
         if (!country.matches("^[a-zA-Z]+$")) {
             AlertService.showErrorAlert("Bitte geben Sie ein gültiges Land ein.");

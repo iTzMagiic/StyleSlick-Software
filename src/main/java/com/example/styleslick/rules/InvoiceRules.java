@@ -60,11 +60,10 @@ public class InvoiceRules {
             return true;
         }
 
-        //TODO:: Methode isNotValidArticleNumber muss noch erstellt werden
-//        if (isNotValidArticleNumber(filledFields.get("article_number"))) {
-//            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Artikel-Nr an.");
-//            return true;
-//        }
+        if (isNotValidArticleNumber(filledFields.get("article_number"))) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Artikel-Nr ein. bsp. 'A20250009'");
+            return true;
+        }
 
         if (!filledFields.containsKey("amount")) {
             AlertService.showErrorAlert("Bitte geben Sie die Menge der Bestellten Artikel an.");
@@ -82,16 +81,18 @@ public class InvoiceRules {
 
 
 
-    private boolean isNotValidAmount(String input) {
-        if (!input.matches("[1-9]\\d*")) {
-            return true;
-        }
-        return false;
+    public boolean isNotValidAmount(String input) {
+        return !input.matches("[1-9]\\d*");
     }
 
 
-    private boolean isNotValidCustomerNumber(Map<String, String> filledFields) {
-        return false;
+    private boolean isNotValidInvoiceNumber(String invoiceNumber) {
+        return !invoiceNumber.matches("^I\\d{8}$");
+    }
+
+
+    private Boolean isNotValidArticleNumber(String articleNumber) {
+        return !articleNumber.matches("^A\\d{8}$");
     }
 
 
