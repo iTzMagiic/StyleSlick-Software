@@ -4,6 +4,7 @@ import com.example.styleslick.model.Invoice;
 import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.service.InvoiceService;
 import com.example.styleslick.utils.SceneManager;
+import javafx.application.Platform;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.concurrent.Task;
@@ -76,16 +77,28 @@ public class InvoiceItemManagementController implements Initializable {
         ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
 
 
+        Task<Void> showAllTask = new Task<>() {
 
+            @Override
+            protected Void call() {
 
-        label_invoiceNumber.setText(invoice.getInvoiceNumber());
-        label_customerNumber.setText(invoice.getCustomerNumber());
+                Platform.runLater(() -> {
+                    label_invoiceNumber.setText(invoice.getInvoiceNumber());
+                    label_customerNumber.setText(invoice.getCustomerNumber());
 
-        column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleID"));
-        column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
-        column_name.setCellValueFactory(new PropertyValueFactory<>("articleName"));
+                    column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+                    column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+                    column_name.setCellValueFactory(new PropertyValueFactory<>("articleName"));
 
-        tableView_invoiceItem.setItems(observableList);
+                    tableView_invoiceItem.setItems(observableList);
+                });
+
+                return null;
+            }
+
+        };
+
+        new Thread(showAllTask).start();
     }
 
 
