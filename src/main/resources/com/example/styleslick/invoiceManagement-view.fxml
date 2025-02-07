@@ -2,7 +2,6 @@
 
 <?import com.jfoenix.controls.JFXButton?>
 <?import javafx.geometry.Insets?>
-<?import javafx.scene.control.Button?>
 <?import javafx.scene.control.DatePicker?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
@@ -11,7 +10,6 @@
 <?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.StackPane?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
 
 <BorderPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="900.0" minWidth="1280.0" prefHeight="1000.0" prefWidth="1700.0" stylesheets="@../../../style/style.css" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.styleslick.controller.InvoiceManagementController">
     <top>
@@ -43,31 +41,11 @@
                 </HBox>
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterAddInvoice" onMouseClicked="#onMouseClickedAddInvoice" text="Speichern">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Bearbeiten">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" text="Suchen">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterDeleteInvoice" onMouseClicked="#onMouseClickedDeleteInvoice" text="Bestellung Löschen" textFill="RED">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
-                  <Button mnemonicParsing="false" onKeyPressed="#onKeyPressedEnterExitInvoiceManagement" onMouseClicked="#onMouseClickedExitInvoiceManagement" text="Zurück">
-                     <font>
-                        <Font name="System Bold" size="12.0" />
-                     </font>
-                  </Button>
+                  <JFXButton onKeyPressed="#onKeyPressedEnterAddInvoice" onMouseClicked="#onMouseClickedAddInvoice" styleClass="button-Management" text="Speichern" />
+                  <JFXButton layoutX="609.0" layoutY="12.0" styleClass="button-Management" text="Bearbeiten" />
+                  <JFXButton layoutX="551.0" layoutY="12.0" styleClass="button-Management" text="Suchen" />
+                  <JFXButton layoutX="494.0" layoutY="12.0" onKeyPressed="#onKeyPressedEnterDeleteInvoice" onMouseClicked="#onMouseClickedDeleteInvoice" styleClass="button-Management" text="Löschen" />
+                  <JFXButton layoutX="1172.0" layoutY="12.0" onKeyPressed="#onKeyPressedEnterExitInvoiceManagement" onMouseClicked="#onMouseClickedExitInvoiceManagement" styleClass="button-Management" text="Zurück" />
                </children>
             </HBox>
             </children>
