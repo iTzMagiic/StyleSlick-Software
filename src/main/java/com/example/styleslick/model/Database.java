@@ -1268,34 +1268,13 @@ public class Database {
         return false;
     }
 
-    //TODO:: BEARBEITEN !!!!
-    public int getArticleID(String articleNumber) {
-        String sql = "SELECT article_id FROM article WHERE article_number = ?";
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            preparedStatement.setString(1, articleNumber);
-
-            try (ResultSet resultSet = preparedStatement.executeQuery()) {
-                if (resultSet.next()) {
-                    return resultSet.getInt("article_id");
-                }
-            }
-
-        } catch (SQLException e) {
-
-        }
-        return 0;
-    }
-
 
     //TODO:: ab hier weiter logging verbessern.
     public boolean addItemToInvoice(int invoiceID, Map<String, String> filledFields) {
         logger.debug("START addItemToInvoice().");
 
-        String sqlAddItemToInvoice = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, ?, ?)";
-        String sqlUpdateArticleStock = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
+        String sqlAddItemToInvoice = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, (SELECT article_id FROM article WHERE article_number = ?), ?)";
+        String sqlUpdateArticleStock = "UPDATE article SET stock = stock - ? WHERE article_number = ?";
 
 
         logger.debug("sqlAddItemToInvoice Query: {}", sqlAddItemToInvoice);
@@ -1308,18 +1287,16 @@ public class Database {
                  PreparedStatement updatePreparedStatement = connection.prepareStatement(sqlUpdateArticleStock)) {
 
 
-                int articleID = getArticleID(filledFields.get("article_number"));
 
                 addItemToInvoicePreparedStatement.setInt(1, invoiceID);
-                //addItemToInvoicePreparedStatement.setInt(2, Integer.parseInt(filledFields.get("article_id")));
-                addItemToInvoicePreparedStatement.setInt(2, articleID);
+                addItemToInvoicePreparedStatement.setString(2, filledFields.get("article_number"));
                 addItemToInvoicePreparedStatement.setInt(3, Integer.parseInt(filledFields.get("amount")));
 
                 int addResult = addItemToInvoicePreparedStatement.executeUpdate();
 
 
                 updatePreparedStatement.setInt(1, Integer.parseInt(filledFields.get("amount")));
-                updatePreparedStatement.setInt(2, articleID);
+                updatePreparedStatement.setString(2, filledFields.get("article_number"));
 
                 int updateResult = updatePreparedStatement.executeUpdate();
 
