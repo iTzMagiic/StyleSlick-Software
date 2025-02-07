@@ -35,46 +35,35 @@ public class InvoiceItemManagementController implements Initializable {
     private ArticleService articleService;
     private Invoice invoice;
 
+
     @FXML
     private TableColumn<InvoiceItem, Integer> column_amount;
     @FXML
     private TableColumn<InvoiceItem, String> column_articleNumber;
     @FXML
     private TableColumn<InvoiceItem, String> column_name;
-
     @FXML
-    private TableColumn<Article, ?> column_article_amount;
-
+    private TableColumn<Article, Integer> column_article_amount;
     @FXML
-    private TableColumn<Article, ?> column_article_articleID;
-
+    private TableColumn<Article, Integer> column_article_articleID;
     @FXML
-    private TableColumn<Article, ?> column_article_categoryID;
-
+    private TableColumn<Article, Integer> column_article_categoryID;
     @FXML
-    private TableColumn<Article, ?> column_article_color;
-
+    private TableColumn<Article, String> column_article_color;
     @FXML
-    private TableColumn<Article, ?> column_article_manufacturer;
-
+    private TableColumn<Article, String> column_article_manufacturer;
     @FXML
-    private TableColumn<Article, ?> column_article_name;
-
+    private TableColumn<Article, String> column_article_name;
     @FXML
-    private TableColumn<Article, ?> column_article_price;
-
+    private TableColumn<Article, Double> column_article_price;
     @FXML
-    private TableColumn<Article, ?> column_article_purchase_date;
-
+    private TableColumn<Article, LocalDate> column_article_purchase_date;
     @FXML
-    private TableColumn<Article, ?> column_article_purchased_from;
-
+    private TableColumn<Article, String> column_article_purchased_from;
     @FXML
-    private TableColumn<Article, ?> column_article_quality;
-
+    private TableColumn<Article, String> column_article_quality;
     @FXML
-    private TableColumn<Article, ?> column_article_stock;
-
+    private TableColumn<Article, Integer> column_article_stock;
     @FXML
     private TextField field_amount;
     @FXML
@@ -83,15 +72,12 @@ public class InvoiceItemManagementController implements Initializable {
     private TableView<InvoiceItem> tableView_invoiceItem;
     @FXML
     private TableView<Article> tableView_articles;
-
     @FXML
     private Label label_invoiceNumber;
     @FXML
     private Label label_customerNumber;
     @FXML
     private Label label_date;
-
-
 
 
     public void initialize(URL location, ResourceBundle resources) {
@@ -105,7 +91,6 @@ public class InvoiceItemManagementController implements Initializable {
 
         executeShowAllItems();
     }
-
 
 
     private void executeShowAllItems() {
@@ -148,22 +133,31 @@ public class InvoiceItemManagementController implements Initializable {
         // Es wurde mit absicht eine Map erzeugt, für den Fall das sich die Artikel Attributen in der Datenbank verändern.
         Map<String, String> articleToAdd = new HashMap<>();
 
-        articleToAdd.put("article_number", field_articleNumber.getText());
+        if (field_articleNumber.getText().isEmpty()) {
+            Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
+            if (selectedArticle != null) {
+                articleToAdd.put("article_number", selectedArticle.getArticleNumber());
+            }
+        } else {
+            articleToAdd.put("article_number", field_articleNumber.getText());
+        }
+
         articleToAdd.put("amount", field_amount.getText());
 
-        if (invoiceService.addItemToInvoiceWithInvoiceID(articleToAdd, invoice.getInvoiceID())) {
+
+        if (invoiceService.addItemToInvoice(articleToAdd, invoice.getInvoiceID())) {
+            executeShowAllItems();
             clearFields();
         }
     }
 
 
     private void executeUpdateItem() {
-
+        //TODO:: Die Methode muss noch fertig gemacht werden
     }
 
 
     private void executeDeleteItem() {
-        List<InvoiceItem> listOfInvoiceItems;
 
         if (tableView_invoiceItem.getSelectionModel().getSelectedItem() == null) {
             AlertService.showErrorAlert("Bitte wählen Sie ein Artikel aus einer Bestellung aus.");
@@ -185,7 +179,6 @@ public class InvoiceItemManagementController implements Initializable {
             if (AlertService.showConfirmAlertResult("Soll der Bestand wieder angepasst werden?")) {
                 invoiceService.addBackDeletedItem(selectedItem.getArticleID(), selectedItem.getAmount());
             }
-
 
             executeShowAllItems();
         }
@@ -240,7 +233,6 @@ public class InvoiceItemManagementController implements Initializable {
         invoiceService.clearCurrentInvoice();
         SceneManager.switchScene("/com/example/styleslick/invoiceManagement-view.fxml", "Bestellung verwaltung", true);
     }
-
 
 
     @FXML

@@ -85,7 +85,7 @@ public class InvoiceService {
     }
 
 
-    public boolean addItemToInvoiceWithInvoiceID(Map<String, String> itemFields, int invoiceID) {
+    public boolean addItemToInvoice(Map<String, String> itemFields, int invoiceID) {
         Map<String, String> filledItemFields = new HashMap<>();
 
         for (Map.Entry<String, String> entry : itemFields.entrySet()) {
@@ -126,23 +126,6 @@ public class InvoiceService {
             AlertService.showErrorAlert("Der Artikel konnte nicht zu der Bestellung hinzugefügt werden.");
             return false;
         }
-    }
-
-
-    public boolean addItemToInvoiceWithInvoiceNumber(Map<String, String> filledFields, String invoice_number) {
-
-        int invoiceID = database.getInvoiceID(invoice_number);
-
-        if (invoiceID == -1) {
-            AlertService.showErrorAlert("Es wurde keine Bestellung mit der Bestell-Nr: " + invoice_number + " gefunden.");
-            return false;
-        }
-
-        if (!addItemToInvoiceWithInvoiceID(filledFields, invoiceID)) {
-            return false;
-        }
-
-        return true;
     }
 
 
