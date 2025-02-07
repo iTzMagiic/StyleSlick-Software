@@ -1,8 +1,10 @@
 package com.example.styleslick.controller;
 
+import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Invoice;
 import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.service.AlertService;
+import com.example.styleslick.service.ArticleService;
 import com.example.styleslick.service.InvoiceService;
 import com.example.styleslick.utils.SceneManager;
 import javafx.application.Platform;
@@ -30,6 +32,7 @@ import java.util.ResourceBundle;
 public class InvoiceItemManagementController implements Initializable {
 
     private InvoiceService invoiceService;
+    private ArticleService articleService;
     private Invoice invoice;
 
     @FXML
@@ -38,12 +41,49 @@ public class InvoiceItemManagementController implements Initializable {
     private TableColumn<InvoiceItem, String> column_articleNumber;
     @FXML
     private TableColumn<InvoiceItem, String> column_name;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_amount;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_articleID;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_categoryID;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_color;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_manufacturer;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_name;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_price;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_purchase_date;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_purchased_from;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_quality;
+
+    @FXML
+    private TableColumn<Article, ?> column_article_stock;
+
     @FXML
     private TextField field_amount;
     @FXML
     private TextField field_articleNumber;
     @FXML
     private TableView<InvoiceItem> tableView_invoiceItem;
+    @FXML
+    private TableView<Article> tableView_articles;
+
     @FXML
     private Label label_invoiceNumber;
     @FXML
@@ -55,6 +95,7 @@ public class InvoiceItemManagementController implements Initializable {
 
 
     public void initialize(URL location, ResourceBundle resources) {
+        articleService = ArticleService.getInstance();
         invoiceService = InvoiceService.getInstance();
         invoice = invoiceService.getCurrentInvoice();
 
@@ -69,6 +110,8 @@ public class InvoiceItemManagementController implements Initializable {
 
     private void executeShowAllItems() {
         List<InvoiceItem> listOfInvoiceItems;
+        tableView_articles.setVisible(false);
+        tableView_invoiceItem.setVisible(true);
 
         listOfInvoiceItems = invoiceService.getInvoiceItems(invoice.getInvoiceID());
 
@@ -110,6 +153,7 @@ public class InvoiceItemManagementController implements Initializable {
         Map<String, String> articleToAdd = new HashMap<>();
 
 
+        //TODO:: FEHLER WIR BEKOMMEN article_number und nicht ID!
         articleToAdd.put("article_id", field_articleNumber.getText());
         articleToAdd.put("amount", field_amount.getText());
 
@@ -129,6 +173,49 @@ public class InvoiceItemManagementController implements Initializable {
 
     }
 
+    private void executeShowAllArticles() {
+        tableView_invoiceItem.setVisible(false);
+        tableView_articles.setVisible(true);
+
+        tableView_articles.setOnMouseClicked(event -> {
+            if (event.getClickCount() == 2) {
+                field_articleNumber.setText(String.valueOf(tableView_articles.getSelectionModel().getSelectedItem().getArticleNumber()));
+            }
+        });
+
+        ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
+
+
+        Task<Void> showAllArticlesTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+
+                Platform.runLater(() -> {
+                    column_article_articleID.setCellValueFactory(new PropertyValueFactory<>("articleID"));
+                    column_article_categoryID.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+                    column_article_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+                    column_article_color.setCellValueFactory(new PropertyValueFactory<>("color"));
+                    column_article_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+                    column_article_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+                    column_article_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+                    column_article_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
+                    column_article_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+                    column_article_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+                    column_article_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+
+                    tableView_articles.setItems(observableList);
+                    tableView_articles.getSelectionModel().clearSelection();
+                });
+
+                return null;
+            }
+        };
+
+        new Thread(showAllArticlesTask).start();
+    }
+
 
     private void executeExit() {
         invoiceService.clearCurrentInvoice();
@@ -137,27 +224,57 @@ public class InvoiceItemManagementController implements Initializable {
 
 
 
+    @FXML
+    private void onKeyPressedEnterShowAllArticles(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAllArticles();
+        }
+    }
 
-
+    @FXML
+    private void onKeyPressedEnterShowAllItems(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAllItems();
+        }
+    }
 
     @FXML
     private void onKeyPressedEnterAddItem(KeyEvent event) {
-        executeAddItem();
+        if (event.getCode().toString().equals("ENTER")) {
+            executeAddItem();
+        }
     }
 
     @FXML
     private void onKeyPressedEnterDeleteItem(KeyEvent event) {
-
+        if (event.getCode().toString().equals("ENTER")) {
+            executeDeleteItem();
+        }
     }
 
     @FXML
     private void onKeyPressedEnterExit(KeyEvent event) {
-        executeExit();
+        if (event.getCode().toString().equals("ENTER")) {
+            executeExit();
+        }
     }
 
     @FXML
     private void onKeyPressedEnterUpdateItem(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeUpdateItem();
+        }
+    }
 
+
+    @FXML
+    private void onMouseClickedShowAllArticles(MouseEvent event) {
+        executeShowAllArticles();
+    }
+
+    @FXML
+    private void onMouseClickedShowAllItems(MouseEvent event) {
+        executeShowAllItems();
     }
 
     @FXML
@@ -167,7 +284,7 @@ public class InvoiceItemManagementController implements Initializable {
 
     @FXML
     private void onMouseClickedDeleteItem(MouseEvent event) {
-
+        executeDeleteItem();
     }
 
     @FXML
@@ -177,7 +294,7 @@ public class InvoiceItemManagementController implements Initializable {
 
     @FXML
     private void onMouseClickedUpdateItem(MouseEvent event) {
-
+        executeUpdateItem();
     }
 
 
