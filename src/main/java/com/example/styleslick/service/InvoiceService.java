@@ -14,6 +14,7 @@ public class InvoiceService {
     private static InvoiceService invoiceService;
     private InvoiceRules invoiceRules = new InvoiceRules();
     private Database database;
+    private Invoice currentInvoice;
 
 
     private InvoiceService() {
@@ -225,6 +226,18 @@ public class InvoiceService {
         return getInvoiceItems(invoiceID);
     }
 
+
+    public void setCurrentInvoice(Invoice invoice) {
+        this.currentInvoice = invoice;
+    }
+
+    public Invoice getCurrentInvoice() {
+        return this.currentInvoice;
+    }
+
+    public void clearCurrentInvoice() {
+        currentInvoice = null;
+    }
 
     public void clearSession() {
         database = null;

@@ -895,7 +895,6 @@ public class Database {
     }
 
 
-    //TODO:: Die methode muss noch erstellt werden
     public boolean isArticleNumberExist(String articleNumber) {
         logger.debug("\n\nSTART isArticleNumberExist()");
 
@@ -903,7 +902,7 @@ public class Database {
 
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-        PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, articleNumber);
 

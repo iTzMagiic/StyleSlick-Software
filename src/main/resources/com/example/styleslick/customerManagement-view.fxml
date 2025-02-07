@@ -31,7 +31,7 @@
    <top>
       <VBox alignment="CENTER" prefHeight="200.0" prefWidth="100.0" spacing="10.0" BorderPane.alignment="CENTER">
          <children>
-            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="10.0">
+            <HBox alignment="CENTER" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
                   <TextField fx:id="field_customerNumber" layoutX="10.0" layoutY="41.0" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Kunden-Nr" />
                   <TextField fx:id="field_username" onKeyPressed="#onKeyPressedEnterAddCustomer" promptText="Benutzername*" />
