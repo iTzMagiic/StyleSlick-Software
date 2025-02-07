@@ -56,7 +56,6 @@ public class InvoiceService {
         }
 
 
-
         if (filledInvoiceFields.containsKey("shipping_cost")) {
             filledInvoiceFields.replace("shipping_cost", filledInvoiceFields.get("shipping_cost").replace(",", "."));
         }

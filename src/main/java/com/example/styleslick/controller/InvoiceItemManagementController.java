@@ -115,10 +115,6 @@ public class InvoiceItemManagementController implements Initializable {
 
         listOfInvoiceItems = invoiceService.getInvoiceItems(invoice.getInvoiceID());
 
-        if (listOfInvoiceItems.isEmpty()) {
-            return;
-        }
-
 
         ObservableList<InvoiceItem> observableList = FXCollections.observableArrayList(listOfInvoiceItems);
 
@@ -152,11 +148,8 @@ public class InvoiceItemManagementController implements Initializable {
         // Es wurde mit absicht eine Map erzeugt, für den Fall das sich die Artikel Attributen in der Datenbank verändern.
         Map<String, String> articleToAdd = new HashMap<>();
 
-
-        //TODO:: FEHLER WIR BEKOMMEN article_number und nicht ID!
         articleToAdd.put("article_number", field_articleNumber.getText());
         articleToAdd.put("amount", field_amount.getText());
-
 
         if (invoiceService.addItemToInvoiceWithInvoiceID(articleToAdd, invoice.getInvoiceID())) {
             clearFields();
@@ -170,7 +163,32 @@ public class InvoiceItemManagementController implements Initializable {
 
 
     private void executeDeleteItem() {
+        List<InvoiceItem> listOfInvoiceItems;
 
+        if (tableView_invoiceItem.getSelectionModel().getSelectedItem() == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie ein Artikel aus einer Bestellung aus.");
+            return;
+        }
+
+        InvoiceItem selectedItem = tableView_invoiceItem.getSelectionModel().getSelectedItem();
+        tableView_invoiceItem.getSelectionModel().clearSelection();
+
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich den Artikel: '" + selectedItem.getArticleName() +
+                "' aus der Bestellung löschen?")) {
+            return;
+        }
+
+
+        if (invoiceService.deleteArticleFromInvoice(selectedItem.getInvoiceItemID())) {
+
+
+            if (AlertService.showConfirmAlertResult("Soll der Bestand wieder angepasst werden?")) {
+                invoiceService.addBackDeletedItem(selectedItem.getArticleID(), selectedItem.getAmount());
+            }
+
+
+            executeShowAllItems();
+        }
     }
 
 

@@ -54,16 +54,16 @@
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="10.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <JFXButton onKeyPressed="#onKeyPressedEnterShowAllItems" onMouseClicked="#onMouseClickedShowAllItems" text="Bestellung Anzeigen" />
-                  <JFXButton layoutX="802.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" text="Alle Artikel Anzeigen" />
+                  <JFXButton onKeyPressed="#onKeyPressedEnterShowAllItems" onMouseClicked="#onMouseClickedShowAllItems" styleClass="button-Management" text="Bestellung Anzeigen" />
+                  <JFXButton layoutX="802.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" styleClass="button-Management" text="Alle Artikel Anzeigen" />
                </children>
             </HBox>
             <HBox alignment="CENTER" layoutX="10.0" layoutY="143.0" prefHeight="100.0" prefWidth="200.0" spacing="20.0">
                <children>
-                  <JFXButton onKeyPressed="#onKeyPressedEnterAddItem" onMouseClicked="#onMouseClickedAddItem" text="Hinzufügen" />
-                  <JFXButton layoutX="10.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterUpdateItem" onMouseClicked="#onMouseClickedUpdateItem" text="Bearbeiten" />
-                  <JFXButton layoutX="10.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterDeleteItem" onMouseClicked="#onMouseClickedDeleteItem" text="Löschen" />
-                  <JFXButton layoutX="96.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" text="Zurück" />
+                  <JFXButton onKeyPressed="#onKeyPressedEnterAddItem" onMouseClicked="#onMouseClickedAddItem" styleClass="button-Management" text="Hinzufügen" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterUpdateItem" onMouseClicked="#onMouseClickedUpdateItem" styleClass="button-Management" text="Bearbeiten" />
+                  <JFXButton layoutX="10.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterDeleteItem" onMouseClicked="#onMouseClickedDeleteItem" styleClass="button-Management" text="Löschen" />
+                  <JFXButton layoutX="96.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterExit" onMouseClicked="#onMouseClickedExit" styleClass="button-Management" text="Zurück" />
                </children>
             </HBox>
          </children>
