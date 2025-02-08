@@ -59,10 +59,35 @@ public class ArticleRules {
     }
 
 
-    public boolean isNotAllowedToUpdateOrSearchArticles(Map<String, String> filledFields) {
+    public boolean isNotAllowedToUpdateArticles(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
             AlertService.showErrorAlert("Bitte geben Sie etwas an um den Artikel zu bearbeiten.");
+            return true;
+        }
+
+        if (filledFields.containsKey("price") && isNotValidPurchasePrice(filledFields)) {
+            return true;
+        }
+
+        if (filledFields.containsKey("amount") && isNotValidAmount(filledFields)) {
+            return true;
+        }
+
+        if (filledFields.containsKey("article_number") && isNotValidArticleNumber(filledFields.get("article_number"))) {
+            return true;
+        }
+
+        if (filledFields.containsKey("stock") && isNotValidStock(filledFields)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    public boolean isNotAllowedToSearchArticle(Map<String, String> filledFields) {
+        if (filledFields.isEmpty()) {
+            AlertService.showErrorAlert("Bitte geben Sie etwas an um den Artikel zu suchen.");
             return true;
         }
 
@@ -113,7 +138,11 @@ public class ArticleRules {
 
 
     private boolean isNotValidArticleNumber(String articleNumber) {
-        return !articleNumber.matches("^A\\d{8}$");
+        if (!articleNumber.matches("^A\\d{8}$")) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Artikel-Nr in dem Format an. A20250001");
+            return true;
+        }
+        return false;
     }
 
 }

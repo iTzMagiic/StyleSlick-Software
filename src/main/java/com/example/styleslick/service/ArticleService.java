@@ -85,7 +85,7 @@ public class ArticleService {
             filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
 
-        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
+        if (articleRules.isNotAllowedToUpdateArticles(filledFields)) {
             return false;
         }
 
@@ -128,10 +128,9 @@ public class ArticleService {
             filledFields.replace("price", filledFields.get("price").replace(",", "."));
         }
 
-        if (articleRules.isNotAllowedToUpdateOrSearchArticles(filledFields)) {
+        if (articleRules.isNotAllowedToSearchArticle(filledFields)) {
             return listOfArticles;
         }
-
 
         listOfArticles = database.searchArticlesLike(filledFields);
 

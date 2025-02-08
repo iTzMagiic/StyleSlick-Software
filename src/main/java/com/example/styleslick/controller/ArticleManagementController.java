@@ -245,6 +245,7 @@ public class ArticleManagementController implements Initializable {
         }
 
         fields.put("name", field_name.getText());
+        fields.put("article_number", field_articleNumber.getText());
         fields.put("color", field_color.getText());
         fields.put("price", field_price.getText());
         if (datePicker_purchase_date.getValue() != null) {
