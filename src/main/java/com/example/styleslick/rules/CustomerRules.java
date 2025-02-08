@@ -45,7 +45,7 @@ public class CustomerRules {
     public boolean isNotAllowedToSearchCustomer(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
-            AlertService.showErrorAlert("Bitte mindestens Ein Feld ausfüllen.");
+            AlertService.showErrorAlert("Bitte geben Sie etwas ein um den einen Kunden zu suchen.");
             return true;
         }
 
@@ -68,6 +68,10 @@ public class CustomerRules {
             return true;
         }
 
+        if (filledFields.containsKey("customer_number") && isNotValidCustomerNumber(filledFields.get("customer_number"))) {
+            return true;
+        }
+
         if (filledFields.containsKey("country") && isNotValidCountry(filledFields.get("country"))) {
             return true;
         }
@@ -86,7 +90,11 @@ public class CustomerRules {
 
 
     private boolean isNotValidCustomerNumber(String customerNumber) {
-        return !customerNumber.matches("^C\\d{8}$");
+        if (!customerNumber.matches("^C\\d{8}$")) {
+            AlertService.showErrorAlert("Bitte geben Sie eine Kunden-Nr in dem Format ein: C20250001");
+            return true;
+        }
+        return false;
     }
 
     private boolean isNotValidCountry(String country) {
