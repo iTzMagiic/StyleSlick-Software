@@ -164,8 +164,6 @@
 .choice-box .context-menu {
     -fx-background-color: #2C2C2C;
     -fx-border-color: #8A2BE2;
-    -fx-min-width: 150px; /* Gleiche Breite wie ChoiceBox */
-    -fx-max-width: 150px; /* Maximalbreite begrenzen */
 }
 
 /* Menüeinträge */
