@@ -118,7 +118,6 @@ public class InvoiceManagementController implements Initializable {
     private TableView<Invoice> tableView_invoices;
 
 
-
     @Override
     public void initialize(URL location, ResourceBundle resources) {
         invoiceService = InvoiceService.getInstance();
@@ -221,7 +220,6 @@ public class InvoiceManagementController implements Initializable {
         invoiceFields.put("shipping_cost", field_shipping_cost.getText());
 
 
-
         if (!invoiceService.addInvoice(invoiceFields)) {
             return;
         }
@@ -229,7 +227,6 @@ public class InvoiceManagementController implements Initializable {
         clearFields();
         executeShowAllInvoices();
     }
-
 
 
     private void executeDeleteInvoice() {
@@ -248,7 +245,6 @@ public class InvoiceManagementController implements Initializable {
             }
         }
     }
-
 
 
     private void executeExitInvoiceManagement() {
@@ -335,7 +331,6 @@ public class InvoiceManagementController implements Initializable {
     private void onMouseClickedExitInvoiceManagement(MouseEvent event) {
         executeExitInvoiceManagement();
     }
-
 
 
     private void setTableViewVisible(String tableName) {

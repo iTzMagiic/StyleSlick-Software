@@ -1321,7 +1321,7 @@ public class Database {
         return false;
     }
 
-    public boolean increaseStockAndUpdateInvoice (int articleID, int difference, int newAmount, int invoiceItemID) {
+    public boolean increaseStockAndUpdateInvoice(int articleID, int difference, int newAmount, int invoiceItemID) {
         logger.debug("\n\nSTART increaseStockAndUpdateInvoice().");
 
         String sqlDecreaseArticle = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
@@ -1362,32 +1362,6 @@ public class Database {
 
         } catch (SQLException e) {
             logger.error("ERROR increaseStockAndUpdateInvoice() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
-        }
-
-        return false;
-    }
-
-
-    public boolean updateInvoiceItem(int invoiceItemID, int amount) {
-        logger.debug("START updateInvoiceItem()");
-        String sql = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
-
-        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
-
-            preparedStatement.setInt(1, amount);
-            preparedStatement.setInt(2, invoiceItemID);
-
-            int result = preparedStatement.executeUpdate();
-
-            if (result > 0) {
-                logger.info("ENDE updateInvoiceItem() erfolgreich.");
-                return true;
-            }
-            logger.warn("WARN updateInvoiceItem() fehlgeschlagen.");
-
-        } catch (SQLException e) {
-            logger.error("ERROR updateInvoiceItem() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
         }
 
         return false;

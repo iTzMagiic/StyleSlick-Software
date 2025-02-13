@@ -174,7 +174,7 @@ public class InvoiceService {
 
         if (selectedInvoiceItem.getAmount() < newAmount) {
 
-             int difference = newAmount - selectedInvoiceItem.getAmount();
+            int difference = newAmount - selectedInvoiceItem.getAmount();
 
             if (difference > stockOfArticle) {
                 AlertService.showErrorAlert("Zu wenig im Bestand");
