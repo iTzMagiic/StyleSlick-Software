@@ -211,7 +211,7 @@ public class InvoiceManagementController implements Initializable {
             return;
         }
 
-        invoiceFields.put("customer_id", field_customer_number.getText());
+        invoiceFields.put("customer_number", field_customer_number.getText());
         invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         invoiceFields.put("payment_method", field_payment_method.getText());
         invoiceFields.put("transaction_number", field_transaction_number.getText());

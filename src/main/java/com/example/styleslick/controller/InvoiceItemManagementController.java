@@ -211,6 +211,7 @@ public class InvoiceItemManagementController implements Initializable {
     private void executeShowAllArticles() {
         tableView_invoiceItem.setVisible(false);
         tableView_articles.setVisible(true);
+        tableView_invoiceItem.getSelectionModel().clearSelection();
         field_amount.clear();
         field_articleNumber.clear();
 

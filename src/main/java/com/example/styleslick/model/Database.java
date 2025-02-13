@@ -1176,7 +1176,8 @@ public class Database {
     public boolean addInvoice(Map<String, String> invoiceFields) {
         logger.debug("\n\nSTART addInvoice()");
 
-        String sql = generateInsertIntoQueryWithNumber("invoice", invoiceFields);
+
+        String sql = generateInsertIntoQueryWithNumber("invoice", invoiceFields).replace("customer_number", "customer_id");
         logger.debug("sql: {}", sql);
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
@@ -1192,7 +1193,7 @@ public class Database {
                 } else if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost")) {
                     addInvoiceStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
 
-                } else if (entry.getKey().equals("customer_id")) {
+                } else if (entry.getKey().equals("customer_number")) {
                     addInvoiceStatement.setInt(index++, getCustomerID(entry.getValue()));
 
                 } else {
@@ -1268,6 +1269,99 @@ public class Database {
             }
         } catch (SQLException e) {
             logger.error("ERROR addItemToInvoice() Verbindung fehlgeschlagen. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+
+    public boolean reduceStockAndUpdateInvoice(int articleID, int difference, int newAmount, int invoiceItemID) {
+        logger.debug("\n\nSTART decreaseStockOfArticle().");
+
+        String sqlDecreaseArticle = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
+        String sqlUpdateInvoiceItem = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatementArticle = connection.prepareStatement(sqlDecreaseArticle);
+             PreparedStatement preparedStatementInvoiceItem = connection.prepareStatement(sqlUpdateInvoiceItem)) {
+
+            connection.setAutoCommit(false);
+
+            // Artikel-Bestand reduzieren
+            preparedStatementArticle.setInt(1, difference);
+            preparedStatementArticle.setInt(2, articleID);
+            int articleResult = preparedStatementArticle.executeUpdate();
+
+            if (articleResult == 0) {
+                logger.warn("ENDE decreaseStockOfArticle() articleResult -> fehlgeschlagen.");
+                connection.rollback();
+                return false;
+            }
+
+            // InvoiceItem aktualisieren
+            preparedStatementInvoiceItem.setInt(1, newAmount);
+            preparedStatementInvoiceItem.setInt(2, invoiceItemID);
+            int invoiceItemResult = preparedStatementInvoiceItem.executeUpdate();
+
+            if (invoiceItemResult == 0) {
+                logger.warn("ENDE decreaseStockOfArticle() invoiceItemResult -> fehlgeschlagen.");
+                connection.rollback();
+                return false;
+            }
+
+            connection.commit();
+
+            logger.info("ENDE decreaseStockOfArticle() Bestände wurden erfolgreich aktualisiert.");
+            return true;
+
+        } catch (SQLException e) {
+            logger.error("ERROR decreaseStockOfArticle() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+    public boolean increaseStockAndUpdateInvoice (int articleID, int difference, int newAmount, int invoiceItemID) {
+        logger.debug("\n\nSTART increaseStockAndUpdateInvoice().");
+
+        String sqlDecreaseArticle = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
+        String sqlUpdateInvoiceItem = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatementArticle = connection.prepareStatement(sqlDecreaseArticle);
+             PreparedStatement preparedStatementInvoiceItem = connection.prepareStatement(sqlUpdateInvoiceItem)) {
+
+            connection.setAutoCommit(false);
+
+            // Artikel-Bestand reduzieren
+            preparedStatementArticle.setInt(1, difference);
+            preparedStatementArticle.setInt(2, articleID);
+            int articleResult = preparedStatementArticle.executeUpdate();
+
+            if (articleResult == 0) {
+                logger.warn("ENDE increaseStockAndUpdateInvoice() articleResult -> fehlgeschlagen.");
+                connection.rollback();
+                return false;
+            }
+
+            // InvoiceItem aktualisieren
+            preparedStatementInvoiceItem.setInt(1, newAmount);
+            preparedStatementInvoiceItem.setInt(2, invoiceItemID);
+            int invoiceItemResult = preparedStatementInvoiceItem.executeUpdate();
+
+            if (invoiceItemResult == 0) {
+                logger.warn("ENDE increaseStockAndUpdateInvoice() invoiceItemResult -> fehlgeschlagen.");
+                connection.rollback();
+                return false;
+            }
+
+            connection.commit();
+
+            logger.info("ENDE increaseStockAndUpdateInvoice() Bestände wurden erfolgreich aktualisiert.");
+            return true;
+
+        } catch (SQLException e) {
+            logger.error("ERROR increaseStockAndUpdateInvoice() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
         }
 
         return false;

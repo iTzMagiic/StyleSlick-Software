@@ -68,7 +68,7 @@ public class InvoiceService {
         }
 
 
-        if (database.getCustomerID(filledInvoiceFields.get("customer_id")) == -1) {
+        if (database.getCustomerID(filledInvoiceFields.get("customer_number")) == -1) {
             AlertService.showErrorAlert("Kunden-Nr existiert nicht.");
             return false;
         }
@@ -163,7 +163,6 @@ public class InvoiceService {
 
 
     public boolean updateItem(InvoiceItem selectedInvoiceItem, String amount) {
-        //TODO:: Die Methode muss noch fertig gemacht werden.
 
         if (invoiceRules.isNotValidAmount(amount)) {
             AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
@@ -174,38 +173,31 @@ public class InvoiceService {
         int stockOfArticle = database.getStockOfArticle(selectedInvoiceItem.getArticleNumber());
 
         if (selectedInvoiceItem.getAmount() < newAmount) {
-            int sum = newAmount - selectedInvoiceItem.getAmount();
-            if (stockOfArticle < sum) {
-                AlertService.showErrorAlert("Zu wenig im Bestand.");
+
+             int difference = newAmount - selectedInvoiceItem.getAmount();
+
+            if (difference > stockOfArticle) {
+                AlertService.showErrorAlert("Zu wenig im Bestand");
                 return false;
             }
+
+
+            if (!database.reduceStockAndUpdateInvoice(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
+                AlertService.showErrorAlert("Fehlgeschlagen den Artikel zu bearbeiten.");
+                return false;
+            }
+
         } else if (selectedInvoiceItem.getAmount() > newAmount) {
-            if (AlertService.showConfirmAlertResult("Soll der Bestand angepasst werden?")) {
-                int sum = selectedInvoiceItem.getAmount() - newAmount;
-                database.addBackDeletedItem(selectedInvoiceItem.getArticleID(), sum);
-                /*
-                TODO:: Eine neue Methode in Database erstellen die wieder hinzufügt in artikel und gleichzeitig
-                    den bestand in invoice_item ändert
-                 */
-            }
-        } else if (selectedInvoiceItem.getAmount() < newAmount) {
-            if (AlertService.showConfirmAlertResult("Soll der Bestand angepasst werden?")) {
-                //TODO:: Wenn der bestand weniger ist fragen ob der auch angepasst werden soll
 
-                int sum = newAmount - selectedInvoiceItem.getAmount();
-                //database.KorrigiereDenBestandVonDemArtikel
+            int difference = selectedInvoiceItem.getAmount() - newAmount;
+
+            if (!database.increaseStockAndUpdateInvoice(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
+                AlertService.showErrorAlert("Fehlgeschlagen den Artikel zu bearbeiten.");
+                return false;
             }
         }
 
-
-
-
-        if (!database.updateInvoiceItem(selectedInvoiceItem.getInvoiceItemID(), newAmount)) {
-            AlertService.showErrorAlert("Artikel konnte nicht bearbeitet werden.");
-            return false;
-        }
-
-        AlertService.showConfirmAlert("Artikel wurde erfolgreich bearbeitet.");
+        AlertService.showConfirmAlert("Bestellter Artikel wurde erfolgreich bearbeitet");
         return true;
     }
 

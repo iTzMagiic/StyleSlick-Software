@@ -19,10 +19,11 @@ public class InvoiceRules {
         }
 
         //TODO:: customer_id muss noch zu customer_number umgeändert werden in InvoiceManagementController und neue Methoden in der Database klasse
-        if (!filledFields.containsKey("customer_id")) {
+        if (!filledFields.containsKey("customer_number")) {
             AlertService.showErrorAlert("Bitte geben Sie eine Kunden-Nr ein.");
             return true;
         }
+
 
         if (!filledFields.containsKey("payment_method")) {
             AlertService.showErrorAlert("Bitte geben Sie eine Zahlungsmethode ein.");
@@ -41,6 +42,10 @@ public class InvoiceRules {
 
         if (filledFields.containsKey("shipping_cost") && isNotValidDouble(filledFields.get("shipping_cost"))) {
             AlertService.showErrorAlert("Bitte geben Sie ein gültigen Versandpreis an.");
+            return true;
+        }
+
+        if (isNotValidCustomerNumber(filledFields.get("customer_number"))) {
             return true;
         }
 
@@ -79,6 +84,7 @@ public class InvoiceRules {
     }
 
 
+    //TODO:: Hier weiter machen bearbeitung für bestellung
     public boolean isNotAllowedToUpdateInvoice(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
