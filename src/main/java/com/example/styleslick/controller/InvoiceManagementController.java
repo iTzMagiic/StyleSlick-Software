@@ -277,7 +277,6 @@ public class InvoiceManagementController implements Initializable {
 
         if (invoiceService.updateInvoice(invoiceFields, selectedInvoice)) {
             clearFields();
-            System.out.println(invoiceFields.size());
         }
 
     }
@@ -290,6 +289,13 @@ public class InvoiceManagementController implements Initializable {
         SceneManager.switchScene("/com/example/styleslick/Home-view.fxml", "Willkommen", false);
     }
 
+
+    @FXML
+    private void onKeyPressedEnterUpdateInvoice(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeUpdateInvoice();
+        }
+    }
 
     @FXML
     private void onKeyPressedEnterDeleteInvoice(KeyEvent event) {
@@ -335,6 +341,11 @@ public class InvoiceManagementController implements Initializable {
         }
     }
 
+
+    @FXML
+    private void onMouseClickedUpdateInvoice(MouseEvent event) {
+        executeUpdateInvoice();
+    }
 
     @FXML
     private void onMouseClickedDeleteInvoice(MouseEvent event) {

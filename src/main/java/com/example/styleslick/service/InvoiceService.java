@@ -140,6 +140,30 @@ public class InvoiceService {
 
 
     public boolean updateInvoice(Map<String, String> invoiceFields, Invoice invoice) {
+        Map<String, String> filledFields = new HashMap<>();
+
+        for (Map.Entry<String, String> entry : invoiceFields.entrySet()) {
+            if (entry.getValue() == null || entry.getValue().trim().isEmpty()) {
+                continue;
+            }
+            filledFields.put(entry.getKey(), entry.getValue());
+        }
+
+        if (invoiceRules.isNotAllowedToUpdateInvoice(filledFields)) {
+            return false;
+        }
+
+        if (!database.isCustomerNumberExist(filledFields.get("customer_number"))) {
+            AlertService.showErrorAlert("Kunden-Nr existiert nicht.");
+            return false;
+        }
+
+//        TODO:: Die Methode muss noch in Database erstellt werden
+//        if (database.isInvoiceNumberExist(filledFields.get("Invoice_number"))) {
+//            AlertService.showErrorAlert("Bestell-Nr existiert bereits.");
+//            return false;
+//        }
+
 
 
         return true;

@@ -42,7 +42,7 @@
             <HBox alignment="CENTER" prefHeight="54.0" prefWidth="1280.0" spacing="20.0">
                <children>
                   <JFXButton onKeyPressed="#onKeyPressedEnterAddInvoice" onMouseClicked="#onMouseClickedAddInvoice" styleClass="button-Management" text="Speichern" />
-                  <JFXButton layoutX="609.0" layoutY="12.0" styleClass="button-Management" text="Bearbeiten" />
+                  <JFXButton layoutX="609.0" layoutY="12.0" onKeyPressed="#onKeyPressedEnterUpdateInvoice" onMouseClicked="#onMouseClickedUpdateInvoice" styleClass="button-Management" text="Bearbeiten" />
                   <JFXButton layoutX="551.0" layoutY="12.0" styleClass="button-Management" text="Suchen" />
                   <JFXButton layoutX="494.0" layoutY="12.0" onKeyPressed="#onKeyPressedEnterDeleteInvoice" onMouseClicked="#onMouseClickedDeleteInvoice" styleClass="button-Management" text="Löschen" />
                   <JFXButton layoutX="1172.0" layoutY="12.0" onKeyPressed="#onKeyPressedEnterExitInvoiceManagement" onMouseClicked="#onMouseClickedExitInvoiceManagement" styleClass="button-Management" text="Zurück" />

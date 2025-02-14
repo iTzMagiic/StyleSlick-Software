@@ -84,7 +84,6 @@ public class InvoiceRules {
     }
 
 
-    //TODO:: Hier weiter machen bearbeitung für bestellung
     public boolean isNotAllowedToUpdateInvoice(Map<String, String> filledFields) {
 
         if (filledFields.isEmpty()) {
@@ -96,13 +95,7 @@ public class InvoiceRules {
             return true;
         }
 
-        if (filledFields.containsKey("amount") && isNotValidAmount(filledFields.get("amount"))) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Gültige Menge an.");
-            return true;
-        }
-
         if (filledFields.containsKey("customer_number") && isNotValidCustomerNumber(filledFields.get("customer_number"))) {
-            AlertService.showErrorAlert("Bitte geben Sie eine Kunden-Nr ein.");
             return true;
         }
 
