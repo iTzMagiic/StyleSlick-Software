@@ -165,7 +165,13 @@ public class InvoiceService {
         }
 
 
+        if (!database.updateInvoice(filledFields, invoice)) {
+            AlertService.showErrorAlert("Die Bestellung konnte nicht bearbeitet werden.");
+            return false;
+        }
 
+
+        AlertService.showConfirmAlert("Die Bestellung wurde erfolgreich bearbeitet.");
         return true;
     }
 
@@ -213,7 +219,7 @@ public class InvoiceService {
             }
 
 
-            if (!database.reduceStockAndUpdateInvoice(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
+            if (!database.reduceStockAndUpdateInvoiceItem(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
                 AlertService.showErrorAlert("Fehlgeschlagen den Artikel zu bearbeiten.");
                 return false;
             }
@@ -222,7 +228,7 @@ public class InvoiceService {
 
             int difference = selectedInvoiceItem.getAmount() - newAmount;
 
-            if (!database.increaseStockAndUpdateInvoice(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
+            if (!database.increaseStockAndUpdateInvoiceItem(selectedInvoiceItem.getArticleID(), difference, newAmount, selectedInvoiceItem.getInvoiceItemID())) {
                 AlertService.showErrorAlert("Fehlgeschlagen den Artikel zu bearbeiten.");
                 return false;
             }

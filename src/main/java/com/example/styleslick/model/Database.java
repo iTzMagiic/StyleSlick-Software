@@ -1200,6 +1200,59 @@ public class Database {
     }
 
 
+    public boolean updateInvoice(Map<String, String> filledFields, Invoice invoice) {
+        logger.debug("\n\nSTART updateInvoice()");
+
+        String sql = "UPDATE invoice SET ";
+        StringBuilder stringBuilder = new StringBuilder();
+
+        for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+            if (stringBuilder.length() > 0) {
+                stringBuilder.append(", ");
+            }
+            stringBuilder.append(entry.getKey()).append(" = ?");
+        }
+
+        stringBuilder.append(" WHERE invoice_id = ?");
+        sql += stringBuilder.toString();
+
+        logger.debug("SQL Query: {}", sql);
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            int index = 1;
+
+            for (Map.Entry<String, String> entry : filledFields.entrySet()) {
+                if (entry.getKey().equals("payment_amount") || entry.getKey().equals("shipping_cost") || entry.getKey().equals("shipping_method")) {
+                    preparedStatement.setDouble(index++, Double.parseDouble(entry.getValue()));
+                    continue;
+                }
+                if (entry.getKey().equals("purchase_date")) {
+                    preparedStatement.setDate(index++, java.sql.Date.valueOf(entry.getValue()));
+                    continue;
+                }
+                preparedStatement.setString(index++, entry.getValue());
+            }
+
+            preparedStatement.setInt(index, invoice.getInvoiceID());
+            int result = preparedStatement.executeUpdate();
+
+            if (result == 1) {
+                logger.info("ENDE updateInvoice() Die Bestellung wurde erfolgreich bearbeitet.");
+                return true;
+            } else {
+                logger.warn("WARN updateInvoice() Die Bestellung wurde nicht bearbeitet");
+                return false;
+            }
+
+        } catch (SQLException e) {
+            logger.error("ERROR updateCustomer() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+        return false;
+    }
+
+
     //TODO:: Die Methode muss noch genauer angeschaut werden und geprüft werden.
     public boolean addInvoice(Map<String, String> invoiceFields) {
         logger.debug("\n\nSTART addInvoice()");
@@ -1303,8 +1356,8 @@ public class Database {
     }
 
 
-    public boolean reduceStockAndUpdateInvoice(int articleID, int difference, int newAmount, int invoiceItemID) {
-        logger.debug("\n\nSTART decreaseStockOfArticle().");
+    public boolean reduceStockAndUpdateInvoiceItem(int articleID, int difference, int newAmount, int invoiceItemID) {
+        logger.debug("\n\nSTART reduceStockAndUpdateInvoiceItem().");
 
         String sqlDecreaseArticle = "UPDATE article SET stock = stock - ? WHERE article_id = ?";
         String sqlUpdateInvoiceItem = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
@@ -1321,7 +1374,7 @@ public class Database {
             int articleResult = preparedStatementArticle.executeUpdate();
 
             if (articleResult == 0) {
-                logger.warn("ENDE decreaseStockOfArticle() articleResult -> fehlgeschlagen.");
+                logger.warn("ENDE reduceStockAndUpdateInvoiceItem() articleResult -> fehlgeschlagen.");
                 connection.rollback();
                 return false;
             }
@@ -1332,25 +1385,25 @@ public class Database {
             int invoiceItemResult = preparedStatementInvoiceItem.executeUpdate();
 
             if (invoiceItemResult == 0) {
-                logger.warn("ENDE decreaseStockOfArticle() invoiceItemResult -> fehlgeschlagen.");
+                logger.warn("ENDE reduceStockAndUpdateInvoiceItem() invoiceItemResult -> fehlgeschlagen.");
                 connection.rollback();
                 return false;
             }
 
             connection.commit();
 
-            logger.info("ENDE decreaseStockOfArticle() Bestände wurden erfolgreich aktualisiert.");
+            logger.info("ENDE reduceStockAndUpdateInvoiceItem() Bestände wurden erfolgreich aktualisiert.");
             return true;
 
         } catch (SQLException e) {
-            logger.error("ERROR decreaseStockOfArticle() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
+            logger.error("ERROR reduceStockAndUpdateInvoiceItem() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
         }
 
         return false;
     }
 
-    public boolean increaseStockAndUpdateInvoice(int articleID, int difference, int newAmount, int invoiceItemID) {
-        logger.debug("\n\nSTART increaseStockAndUpdateInvoice().");
+    public boolean increaseStockAndUpdateInvoiceItem(int articleID, int difference, int newAmount, int invoiceItemID) {
+        logger.debug("\n\nSTART increaseStockAndUpdateInvoiceItem().");
 
         String sqlDecreaseArticle = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
         String sqlUpdateInvoiceItem = "UPDATE invoice_item SET amount = ? WHERE invoice_item_id = ?";
@@ -1367,7 +1420,7 @@ public class Database {
             int articleResult = preparedStatementArticle.executeUpdate();
 
             if (articleResult == 0) {
-                logger.warn("ENDE increaseStockAndUpdateInvoice() articleResult -> fehlgeschlagen.");
+                logger.warn("ENDE increaseStockAndUpdateInvoiceItem() articleResult -> fehlgeschlagen.");
                 connection.rollback();
                 return false;
             }
@@ -1378,18 +1431,18 @@ public class Database {
             int invoiceItemResult = preparedStatementInvoiceItem.executeUpdate();
 
             if (invoiceItemResult == 0) {
-                logger.warn("ENDE increaseStockAndUpdateInvoice() invoiceItemResult -> fehlgeschlagen.");
+                logger.warn("ENDE increaseStockAndUpdateInvoiceItem() invoiceItemResult -> fehlgeschlagen.");
                 connection.rollback();
                 return false;
             }
 
             connection.commit();
 
-            logger.info("ENDE increaseStockAndUpdateInvoice() Bestände wurden erfolgreich aktualisiert.");
+            logger.info("ENDE increaseStockAndUpdateInvoiceItem() Bestände wurden erfolgreich aktualisiert.");
             return true;
 
         } catch (SQLException e) {
-            logger.error("ERROR increaseStockAndUpdateInvoice() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
+            logger.error("ERROR increaseStockAndUpdateInvoiceItem() Fehler bei der Datenbankoperation: {}", e.getMessage(), e);
         }
 
         return false;

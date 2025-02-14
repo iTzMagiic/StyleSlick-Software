@@ -260,6 +260,15 @@ public class InvoiceManagementController implements Initializable {
         tableView_invoices.getSelectionModel().clearSelection();
         Map<String, String> invoiceFields = new HashMap<>();
 
+
+        if (!AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung mit der Bestell-Nr: '" +
+                selectedInvoice.getInvoiceNumber() + "' bearbeiten?")) {
+
+            AlertService.showConfirmAlert("Die Bestellung wird nicht bearbeite.");
+            return;
+        }
+
+
         if (datePicker_purchase_date.getValue() != null) {
             invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
@@ -277,6 +286,7 @@ public class InvoiceManagementController implements Initializable {
 
         if (invoiceService.updateInvoice(invoiceFields, selectedInvoice)) {
             clearFields();
+            executeShowAllInvoices();
         }
 
     }
