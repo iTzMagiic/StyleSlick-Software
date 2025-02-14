@@ -139,6 +139,13 @@ public class InvoiceService {
     }
 
 
+    public boolean updateInvoice(Map<String, String> invoiceFields, Invoice invoice) {
+
+
+        return true;
+    }
+
+
     public boolean deleteArticleFromInvoice(int invoice_item_id) {
 
         if (!database.deleteArticleFromInvoice(invoice_item_id)) {

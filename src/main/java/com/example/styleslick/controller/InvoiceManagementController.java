@@ -88,6 +88,8 @@ public class InvoiceManagementController implements Initializable {
     @FXML
     private DatePicker datePicker_purchase_date;
 
+    @FXML
+    private TextField field_invoice_number;
 
     @FXML
     private TextField field_customer_number;
@@ -247,6 +249,40 @@ public class InvoiceManagementController implements Initializable {
     }
 
 
+    private void executeUpdateInvoice() {
+
+        if (tableView_invoices.getSelectionModel().getSelectedItem() == null) {
+            AlertService.showErrorAlert("Bitte wählen Sie die zu bearbeitende Bestellung aus.");
+            return;
+        }
+
+        Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
+        tableView_invoices.getSelectionModel().clearSelection();
+        Map<String, String> invoiceFields = new HashMap<>();
+
+        if (datePicker_purchase_date.getValue() != null) {
+            invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
+        }
+
+        //TODO:: Validieren customer_number & invoice_number
+        invoiceFields.put("customer_number", field_customer_number.getText());
+        invoiceFields.put("invoice_number", field_invoice_number.getText());
+
+        invoiceFields.put("payment_method", field_payment_method.getText());
+        invoiceFields.put("transaction_number", field_transaction_number.getText());
+        invoiceFields.put("payment_amount", field_payment_amount.getText());
+        invoiceFields.put("shipping_method", field_shipping_method.getText());
+        invoiceFields.put("shipping_receipt", field_shipping_receipt.getText());
+        invoiceFields.put("shipping_cost", field_shipping_cost.getText());
+
+        if (invoiceService.updateInvoice(invoiceFields, selectedInvoice)) {
+            clearFields();
+            System.out.println(invoiceFields.size());
+        }
+
+    }
+
+
     private void executeExitInvoiceManagement() {
         articleService.clearSession();
         customerService.clearSession();
@@ -352,6 +388,7 @@ public class InvoiceManagementController implements Initializable {
 
     private void clearFields() {
         field_customer_number.clear();
+        field_invoice_number.clear();
         datePicker_purchase_date.setValue(null);
         field_payment_method.clear();
         field_transaction_number.clear();
