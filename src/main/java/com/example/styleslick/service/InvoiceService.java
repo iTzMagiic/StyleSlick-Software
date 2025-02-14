@@ -153,16 +153,16 @@ public class InvoiceService {
             return false;
         }
 
-        if (!database.isCustomerNumberExist(filledFields.get("customer_number"))) {
+        if (filledFields.containsKey("customer_number") && !database.isCustomerNumberExist(filledFields.get("customer_number"))) {
             AlertService.showErrorAlert("Kunden-Nr existiert nicht.");
             return false;
         }
 
-//        TODO:: Die Methode muss noch in Database erstellt werden
-//        if (database.isInvoiceNumberExist(filledFields.get("Invoice_number"))) {
-//            AlertService.showErrorAlert("Bestell-Nr existiert bereits.");
-//            return false;
-//        }
+
+        if (filledFields.containsKey("invoice_number") && database.isInvoiceNumberExist(filledFields.get("Invoice_number"))) {
+            AlertService.showErrorAlert("Bestell-Nr existiert bereits.");
+            return false;
+        }
 
 
 

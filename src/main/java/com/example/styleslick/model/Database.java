@@ -1172,6 +1172,34 @@ public class Database {
     }
 
 
+    public boolean isInvoiceNumberExist(String invoiceNumber) {
+        logger.debug("\n\nSTART isInvoiceNumberExist()");
+
+        String sql = "SELECT EXISTS(SELECT 1 FROM invoice WHERE invoice_number = ?)";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+
+            preparedStatement.setString(1, invoiceNumber);
+
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                if (resultSet.next()) {
+                    if (resultSet.wasNull()) {
+                        logger.warn("WARN isInvoiceNumberExist() keine bestellung mit der Bestell-Nr gefunden.");
+                        return false;
+                    }
+                    logger.info("ENDE isInvoiceNumberExist() erfolgreich");
+                    return true;
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR isInvoiceNumberExist() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+        }
+
+        return false;
+    }
+
+
     //TODO:: Die Methode muss noch genauer angeschaut werden und geprüft werden.
     public boolean addInvoice(Map<String, String> invoiceFields) {
         logger.debug("\n\nSTART addInvoice()");
