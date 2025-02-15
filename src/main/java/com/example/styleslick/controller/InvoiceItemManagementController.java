@@ -222,7 +222,7 @@ public class InvoiceItemManagementController implements Initializable {
             }
         });
 
-        ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAllArticles());
+        ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAvailableArticles());
 
 
         Task<Void> showAllArticlesTask = new Task<>() {

@@ -785,6 +785,42 @@ public class Database {
     }
 
 
+    public List<Article> getAvailableArticles() {
+        logger.debug("\n\nSTART getAvailableArticles()");
+
+        List<Article> listOfArticle = new ArrayList<>();
+        String sql = "SELECT * FROM article WHERE stock > 0";
+
+        try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+            try (ResultSet resultSet = preparedStatement.executeQuery()) {
+                while (resultSet.next()) {
+                    int articleID = resultSet.getInt("article_id");
+                    int categoryID = resultSet.getInt("category_id");
+                    String articleNumber = resultSet.getString("article_number");
+                    String category_name = getCategoryName(categoryID);
+                    String name = resultSet.getString("name");
+                    String color = resultSet.getString("color");
+                    double price = resultSet.getDouble("price");
+                    LocalDate purchase_date = resultSet.getDate("purchase_date").toLocalDate();
+                    String manufacturer = resultSet.getString("manufacturer");
+                    String purchased_from = resultSet.getString("purchased_from");
+                    String quality = resultSet.getString("quality");
+                    int amount = resultSet.getInt("amount");
+                    int stock = resultSet.getInt("stock");
+
+                    listOfArticle.add(new Article(articleID, categoryID, articleNumber, category_name, name, color, price, purchase_date, manufacturer, purchased_from, quality, amount, stock));
+                }
+            }
+        } catch (SQLException e) {
+            logger.error("ERROR getAvailableArticles() Ein SQL-Fehler ist aufgetreten. FEHLER: {}", e.getMessage(), e);
+            return listOfArticle;
+        }
+        logger.info("ENDE getAvailableArticles() listOfArticle Länge: {}", listOfArticle.size());
+        return listOfArticle;
+    }
+
+
     public boolean addArticle(Map<String, String> filledFields) {
         logger.debug("\n\nSTART addArticle()");
 

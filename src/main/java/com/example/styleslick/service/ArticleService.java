@@ -37,6 +37,10 @@ public class ArticleService {
         return database.getAllArticles();
     }
 
+    public List<Article> getAvailableArticles() {
+        return database.getAvailableArticles();
+    }
+
 
     public boolean addArticle(Map<String, String> fields) {
         Map<String, String> filledFields = new HashMap<>();
