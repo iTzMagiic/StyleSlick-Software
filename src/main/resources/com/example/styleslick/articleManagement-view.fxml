@@ -60,6 +60,7 @@
                 <HBox alignment="CENTER" prefHeight="50.0" prefWidth="1280.0" spacing="20.0">
                     <children>
                   <JFXButton fx:id="button_showAll" onKeyPressed="#onKeyPressedEnterShowAllArticles" onMouseClicked="#onMouseClickedShowAllArticles" styleClass="button-Management" text="Alle anzeigen" />
+                  <JFXButton fx:id="button_showAvailableArticles" layoutX="533.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterShowAvailableArticles" onMouseClicked="#onMouseClickedShowAvailableArticles" styleClass="button-Management" text="Verfügbar anzeigen" />
                   <JFXButton layoutX="520.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterAddArticle" onMouseClicked="#onMouseClickedAddArticle" styleClass="button-Management" text="Speichern" />
                   <JFXButton layoutX="659.0" layoutY="10.0" onKeyPressed="#onKeyPressedUpdateArticle" onMouseClicked="#onMouseClickedUpdateArticle" styleClass="button-Management" text="Bearbeiten" />
                   <JFXButton fx:id="button_search" layoutX="774.0" layoutY="10.0" onKeyPressed="#onKeyPressedEnterSearchArticle" onMouseClicked="#onMouseClickedSearchArticle" styleClass="button-Management" text="Suchen" />

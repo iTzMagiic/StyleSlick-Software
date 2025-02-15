@@ -81,6 +81,8 @@ public class ArticleManagementController implements Initializable {
     private JFXButton button_showAll;
     @FXML
     private JFXButton button_search;
+    @FXML
+    private JFXButton button_showAvaliableArticle;
 
 
     @Override
@@ -220,6 +222,46 @@ public class ArticleManagementController implements Initializable {
     }
 
 
+    private void executeShowAvalibleArticles() {
+        ObservableList<Article> observableList = FXCollections.observableArrayList(articleService.getAvailableArticles());
+
+        button_showAll.setMouseTransparent(true);
+
+        Task<Void> showAllTask = new Task<>() {
+
+            @Override
+            protected Void call() {
+
+                Platform.runLater(() -> {
+                    clearFields();
+
+                    column_articleNumber.setCellValueFactory(new PropertyValueFactory<>("articleNumber"));
+                    column_categoryName.setCellValueFactory(new PropertyValueFactory<>("categoryName"));
+                    column_name.setCellValueFactory(new PropertyValueFactory<>("name"));
+                    column_color.setCellValueFactory(new PropertyValueFactory<>("color"));
+                    column_price.setCellValueFactory(new PropertyValueFactory<>("price"));
+                    column_purchase_date.setCellValueFactory(new PropertyValueFactory<>("purchase_date"));
+                    column_manufacturer.setCellValueFactory(new PropertyValueFactory<>("manufacturer"));
+                    column_purchased_from.setCellValueFactory(new PropertyValueFactory<>("purchased_from"));
+                    column_quality.setCellValueFactory(new PropertyValueFactory<>("quality"));
+                    column_amount.setCellValueFactory(new PropertyValueFactory<>("amount"));
+                    column_stock.setCellValueFactory(new PropertyValueFactory<>("stock"));
+
+
+                    tableView_articles.setItems(observableList);
+                    button_showAll.setMouseTransparent(false);
+                });
+
+                return null;
+            }
+
+            ;
+        };
+
+        new Thread(showAllTask).start();
+    }
+
+
     private void executeDeleteArticle() {
         Article selectedArticle = tableView_articles.getSelectionModel().getSelectedItem();
 
@@ -341,6 +383,13 @@ public class ArticleManagementController implements Initializable {
         }
     }
 
+    @FXML
+    private void onKeyPressedEnterShowAvailableArticles(KeyEvent event) {
+        if (event.getCode().toString().equals("ENTER")) {
+            executeShowAvalibleArticles();
+        }
+    }
+
 
     @FXML
     void onMouseCLickedDeleteArticle(MouseEvent event) {
@@ -359,6 +408,11 @@ public class ArticleManagementController implements Initializable {
         executeSearchArticle();
     }
 
+
+    @FXML
+    private void onMouseClickedShowAvailableArticles(MouseEvent event) {
+        executeShowAvalibleArticles();
+    }
 
     @FXML
     void onKeyPressedEnterExitArticleManagement(KeyEvent event) {
