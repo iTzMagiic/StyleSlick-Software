@@ -184,9 +184,6 @@ public class InvoiceManagementController implements Initializable {
 
     private void executeShowInvoiceItems() {
 
-        //TODO:: Hier gefällt mir nicht das nur nach Selektierter Zelle geschaut wird aber was ist wenn ich eine Bestell-Nr
-        //  Selbst eingetragen hab? dann muss ich ja auch die Bestellung einsehen können.
-
 
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
@@ -240,8 +237,7 @@ public class InvoiceManagementController implements Initializable {
 
         Invoice selectedInvoice = tableView_invoices.getSelectionModel().getSelectedItem();
 
-        //TODO:: Nachfragen ob der Bestand angepasst werde soll.
-        if (AlertService.showConfirmAlertResult("Möchten Sie wirklich die Bestellung: '" + selectedInvoice.getInvoiceNumber() + "' löschen?")) {
+        if (AlertService.showConfirmAlertResult("Möchten Sie die Bestellung '" + selectedInvoice.getInvoiceNumber() + "' wirklich löschen? Falls Artikel enthalten sind, wird der Bestand automatisch angepasst.")) {
             if (invoiceService.deleteInvoice(selectedInvoice.getInvoiceID())) {
                 executeShowAllInvoices();
             }
@@ -273,7 +269,6 @@ public class InvoiceManagementController implements Initializable {
             invoiceFields.put("purchase_date", datePicker_purchase_date.getValue().toString());
         }
 
-        //TODO:: Validieren customer_number & invoice_number
         invoiceFields.put("customer_number", field_customer_number.getText());
         invoiceFields.put("invoice_number", field_invoice_number.getText());
 

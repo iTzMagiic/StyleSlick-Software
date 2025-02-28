@@ -1289,7 +1289,6 @@ public class Database {
     }
 
 
-    //TODO:: Die Methode muss noch genauer angeschaut werden und geprüft werden.
     public boolean addInvoice(Map<String, String> invoiceFields) {
         logger.debug("\n\nSTART addInvoice()");
 
@@ -1337,9 +1336,8 @@ public class Database {
     }
 
 
-    //TODO:: ab hier weiter logging verbessern.
     public boolean addItemToInvoice(int invoiceID, Map<String, String> filledFields) {
-        logger.debug("START addItemToInvoice().");
+        logger.debug("\n\nSTART addItemToInvoice().");
 
         String sqlAddItemToInvoice = "INSERT INTO invoice_item (invoice_id, article_id, amount) VALUES (?, (SELECT article_id FROM article WHERE article_number = ?), ?)";
         String sqlUpdateArticleStock = "UPDATE article SET stock = stock - ? WHERE article_number = ?";
@@ -1513,7 +1511,7 @@ public class Database {
 
 
     public boolean addBackDeletedItem(int articleID, int amount) {
-        logger.debug("START addBackDeletedItem()");
+        logger.debug("\n\nSTART addBackDeletedItem()");
 
         String sql = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
 
@@ -1576,7 +1574,7 @@ public class Database {
 
 
     public int getInvoiceID(String invoice_number) {
-        logger.debug("START getInvoiceID().");
+        logger.debug("\n\nSTART getInvoiceID().");
         String sql = "SELECT invoice_id FROM invoice WHERE invoice_number = ?";
 
         logger.debug("SQL Query: {}", sql);
@@ -1603,7 +1601,7 @@ public class Database {
 
 
     public boolean deleteInvoice(int invoiceID) {
-        logger.debug("START deleteInvoice().");
+        logger.debug("\n\nSTART deleteInvoice().");
         String getItemsSql = "SELECT article_id, amount FROM invoice_item WHERE invoice_id = ?";
         String updateStockSql = "UPDATE article SET stock = stock + ? WHERE article_id = ?";
         String deleteItemsSql = "DELETE FROM invoice_item WHERE invoice_id = ?";
@@ -1665,7 +1663,7 @@ public class Database {
 
 
     private String generateInvoiceNumber() {
-        logger.debug("START generateInvoiceNumber()");
+        logger.debug("\n\nSTART generateInvoiceNumber()");
         // SQL-Abfrage, um die höchste Rechnungsnummer für das aktuelle Jahr zu finden
         String sql = "SELECT IFNULL(MAX(CAST(SUBSTRING(invoice_number, 6) AS UNSIGNED)), 0) + 1 AS new_invoice_number " +
                 "FROM invoice " +
