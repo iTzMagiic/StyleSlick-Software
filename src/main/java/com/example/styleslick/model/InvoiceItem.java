@@ -9,15 +9,13 @@ public class InvoiceItem {
     private final String articleNumber;
 
 
-
-    public InvoiceItem(int articleID,String articleNumber, int amount, String articleName, int invoice_item_id) {
+    public InvoiceItem(int articleID, String articleNumber, int amount, String articleName, int invoice_item_id) {
         this.articleID = articleID;
         this.articleNumber = articleNumber;
         this.amount = amount;
         this.articleName = articleName;
         this.invoice_item_id = invoice_item_id;
     }
-
 
 
     public int getArticleID() {

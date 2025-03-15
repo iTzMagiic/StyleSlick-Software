@@ -11,6 +11,7 @@ import javafx.fxml.Initializable;
 import javafx.scene.control.Label;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 import java.net.URL;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -44,7 +45,6 @@ public class HomeController implements Initializable {
     private JFXButton button_logout;
     @FXML
     private JFXButton button_settings;
-
 
 
     @Override

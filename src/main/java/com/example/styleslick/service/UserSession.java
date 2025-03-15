@@ -14,7 +14,8 @@ public class UserSession {
     private Database database;
 
 
-    private UserSession() {}
+    private UserSession() {
+    }
 
 
     public static UserSession getInstance() {
