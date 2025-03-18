@@ -18,7 +18,7 @@ public class InvoiceRules {
             return true;
         }
 
-        //TODO:: customer_id muss noch zu customer_number umgeändert werden in InvoiceManagementController und neue Methoden in der Database klasse
+        //TODO:: customer_id muss noch zu customer_number umgeändert werden in InvoiceManagementController und eine neue Methoden in der Database klasse
         if (!filledFields.containsKey("customer_number")) {
             AlertService.showErrorAlert("Bitte geben Sie eine Kunden-Nr ein.");
             return true;
@@ -111,7 +111,6 @@ public class InvoiceRules {
 
         return false;
     }
-
 
 
     public boolean isNotValidAmount(String input) {

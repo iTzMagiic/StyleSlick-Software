@@ -1,9 +1,7 @@
 package com.example.styleslick.controller;
 
-import com.example.styleslick.model.Article;
 import com.example.styleslick.model.Customer;
 import com.example.styleslick.model.Invoice;
-import com.example.styleslick.model.InvoiceItem;
 import com.example.styleslick.service.*;
 import com.example.styleslick.utils.SceneManager;
 import javafx.collections.FXCollections;

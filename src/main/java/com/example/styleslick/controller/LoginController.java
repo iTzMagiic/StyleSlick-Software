@@ -13,6 +13,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.KeyEvent;
 import javafx.scene.input.MouseEvent;
+
 import java.net.URL;
 import java.util.ResourceBundle;
 
@@ -47,7 +48,6 @@ public class LoginController implements Initializable {
 
             @Override
             protected Database call() {
-                // Login-Logik
                 Database database = new Database(username, password);
                 return database.isConnected() ? database : null;
             }

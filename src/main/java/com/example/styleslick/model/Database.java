@@ -1214,7 +1214,7 @@ public class Database {
         String sql = "SELECT EXISTS(SELECT 1 FROM invoice WHERE invoice_number = ?)";
 
         try (Connection connection = DriverManager.getConnection(URL, USER, PASSWORD);
-            PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
 
             preparedStatement.setString(1, invoiceNumber);
 

@@ -18,7 +18,7 @@ public class Article {
     private final int amount;
     private final int stock;
 
-    public Article(int articleID, int categoryID,String articleNumber, String categoryName, String name, String color, double price, LocalDate purchase_date, String manufacturer, String purchased_from, String quality, int amount, int stock) {
+    public Article(int articleID, int categoryID, String articleNumber, String categoryName, String name, String color, double price, LocalDate purchase_date, String manufacturer, String purchased_from, String quality, int amount, int stock) {
         this.articleID = articleID;
         this.categoryID = categoryID;
         this.articleNumber = articleNumber;
