@@ -9,6 +9,7 @@ module com.example.styleslick {
     requires java.sql;
     requires org.slf4j;
     requires com.jfoenix;
+    requires java.dotenv;
 
     opens com.example.styleslick to javafx.fxml;
     exports com.example.styleslick;

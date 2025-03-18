@@ -1,5 +1,6 @@
 package com.example.styleslick.model;
 
+import io.github.cdimascio.dotenv.Dotenv;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -13,12 +14,15 @@ import java.util.Map;
 public class Database {
 
     private static final Logger logger = LoggerFactory.getLogger(Database.class);
-    private final String URL = "jdbc:mysql://localhost:3306/styleslickdb";
+    private final String URL;
     private final String USER;
     private final String PASSWORD;
 
 
     public Database(String USER, String PASSWORD) {
+        Dotenv dotenv = Dotenv.load();
+
+        this.URL = dotenv.get("DB_URL");
         this.USER = USER;
         this.PASSWORD = PASSWORD;
     }

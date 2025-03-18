@@ -32,8 +32,7 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
-        field_username.setText("styleslick");
-        field_password.setText("rVHjMtqL{u%LZme=MQRHu~Q");
+        //initialize ROOT
     }
 
 
