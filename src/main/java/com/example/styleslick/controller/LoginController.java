@@ -5,6 +5,7 @@ import com.example.styleslick.service.AlertService;
 import com.example.styleslick.service.UserSession;
 import com.example.styleslick.utils.SceneManager;
 import com.jfoenix.controls.JFXButton;
+import io.github.cdimascio.dotenv.Dotenv;
 import javafx.application.Platform;
 import javafx.concurrent.Task;
 import javafx.fxml.FXML;
@@ -32,6 +33,9 @@ public class LoginController implements Initializable {
 
     @Override
     public void initialize(URL location, ResourceBundle resources) {
+        Dotenv dotenv = Dotenv.load();
+        field_username.setText(dotenv.get("DB_USER"));
+        field_password.setText(dotenv.get("DB_PASSWORD"));
         //initialize ROOT
     }
 
