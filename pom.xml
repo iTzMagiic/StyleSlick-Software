@@ -8,9 +8,7 @@
     <artifactId>StyleSlick</artifactId>
     <version>1.0-SNAPSHOT</version>
     <name>StyleSlick</name>
-    <description>
-        StyleSlick is a JavaFX-based desktop application for managing customers, articles, categories, and invoices. It features a modular architecture, MySQL integration, custom data validation, and is built with Maven and SLF4J.
-    </description>
+    <description>StyleSlick is a JavaFX-based desktop application for managing customers, articles, categories, and invoices. It features a modular architecture, MySQL integration, custom data validation, and is built with Maven and SLF4J.</description>
 
     <properties>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
